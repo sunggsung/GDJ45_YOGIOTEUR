@@ -63,7 +63,8 @@ public class PageUtils {
 		}
 		
 		// beginPage, endPage 필드 값 계산
-		beginPage = (pagePerBlock * (page - 1) / pagePerBlock) + 1;
+		// beginPage = (pagePerBlock * (page - 1) / pagePerBlock) + 1;
+		beginPage = ((page - 1) / pagePerBlock) * pagePerBlock + 1;
 		endPage = beginPage + pagePerBlock - 1;
 		if(endPage > totalPage) {
 			endPage = totalPage;
