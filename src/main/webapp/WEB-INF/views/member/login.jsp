@@ -18,20 +18,43 @@
 	}
 </style>
 <script src="../resources/js/jquery-3.6.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-	
+		
 	$(function(){
-		fnLogin(); 
+		fnLogin();	
+		fnRememberId();
 	})
 
-		$('#LoginForm').on('submit', function(e){
+	function fnLogin(){
+	
+		$('#Loginform').on('submit', function(e){
 			if($('#memberId').val() == '' || $('#memberPw').val() == ''){
 				alert('아이디와 비밀번호를 입력하세요.');
 				e.preventDefault();
 				return false;
 			}
 
-			
+			if($('#rememberId').is(':checked')){			
+				$.cookie('rememberId', $('#memberId').val());		
+			} else{
+				$.cookie('rememberId', '');					
+			}
+			return true;
+		})
+	}
+
+	function fnRememberId(){
+		let rememberId = $.cookie('rememberId');
+		if(rememberId !=''){	
+			$('#memberId').val(rememberId);
+			$('#rememberId').prop('checked', true);
+		} else {				
+			$('#memberId').val('');
+			$('#rememberId').prop('checked', false);
+		}
+	}
+
 
 </script>
 </head>
@@ -43,7 +66,6 @@
 	<form id="Loginform" action="${contextPath}/member/login" method="post">
 		
 		<input type="hidden" name="url" value="${url}">
-		
 		<input type="text" id="memberId" name="memberId" placeholder="아이디"><br>
 		<input type="password" id="memberPw" name="memberPw" placeholder="비밀번호">
 		<button>로그인</button><br>

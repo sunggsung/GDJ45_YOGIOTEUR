@@ -23,7 +23,7 @@ public interface MemberMapper {
 	
 	public int updateMember(MemberDTO member);
 	
-//	public SignOutMemberDTO selectSignOutMemberByMemberId(String memberId);
-	
+	public int removeMember(Long memberNo);
+	public SignOutMemberDTO selectSignOutMemberByMemberId(String memberId);
 	
 }

@@ -70,18 +70,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 회원정보 수정 -->
 	<update id="updateMember" parameterType="MemberDTO">
 	UPDATE MEMBER
-	   SET MEMBER_PHONE = #{memberPhone}
-	    MEMBER_EMAIL = #{memberEmail}
-	 WHERE MEMBER_NO = #{memberNo}
+	   SET MEMBER_PW = #{memberPw}
+	    , MEMBER_PHONE = #{memberPhone}
+	    , MEMBER_EMAIL = #{memberEmail}
+	 WHERE MEMBER_ID = #{memberId}
 	</update>
 	
 	
-		<!-- 탈퇴 -->
-<!-- 	<select id="selectSignOutMemberByMemberId" parameterType="String" resultType="SignOutMemberDTO">
+
+	<!-- 탈퇴 -->	
+	<delete id="removeMember" parameterType="Long">
+	DELETE 
+		FROM MEMBER
+	 WHERE MEMBER_NO = #{memberNo}
+	</delete>
+	
+	<!-- 탈퇴확인 -->
+	<select id="selectSignOutMemberByMemberId" parameterType="String" resultType="SignOutMemberDTO">
 	SELECT SIGN_OUT_NO, MEMBER_NO, ID, NAME, EMAIL, AGREE_STATE, SIGN_IN, SIGN_OUT
 		FROM SIGN_OUT_MEMBER
-	 WHERE ID = #{memberId}
+	 WHERE ID = #{id}
 	</select>
-	-->
 	
 </mapper>

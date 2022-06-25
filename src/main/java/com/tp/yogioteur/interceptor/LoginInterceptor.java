@@ -57,12 +57,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 				response.sendRedirect(url.toString());
 			}
 		} 
-		else {
-			if(url.toString().isEmpty()) {		
-				response.sendRedirect(request.getContextPath() + "/member/loginPage");	// redirect는 외부접근이므로 ,request.getContextPath()가 필요함.				
-			} else {
-				response.sendRedirect(request.getContextPath() + "/member/loginPage?url=" + url.toString());									
-			}
-		}
+//		else {
+//			if(url.toString().isEmpty()) {		
+//				response.sendRedirect(request.getContextPath() + "/member/loginPage");	
+//			} else {
+//				response.sendRedirect(request.getContextPath() + "/member/loginPage?url=" + url.toString());									
+//			}
+//		}
 	}
 }

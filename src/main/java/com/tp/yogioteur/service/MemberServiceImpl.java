@@ -3,6 +3,7 @@ package com.tp.yogioteur.service;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tp.yogioteur.domain.MemberDTO;
+import com.tp.yogioteur.domain.SignOutMemberDTO;
 import com.tp.yogioteur.mapper.MemberMapper;
 import com.tp.yogioteur.util.SecurityUtils;
 
@@ -146,7 +148,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberDTO login(HttpServletRequest request) {
-		// 회원가입시 들어간 값과 같기 위해서는 login에도 암호화를 똑같이 해줘야한다.
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
 		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
 		
@@ -224,10 +225,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
 		
-		String memberPhone = request.getParameter("memberPhone");
-		String memberEmail = request.getParameter("memberEmail");
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
+		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
+		String memberPhone = request.getParameter("memberPhone");    
+		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
 		
 		MemberDTO member = MemberDTO.builder()
+				.memberId(memberId)
+				.memberPw(memberPw)
 				.memberPhone(memberPhone)
 				.memberEmail(memberEmail)
 				.build();
@@ -239,7 +244,7 @@ public class MemberServiceImpl implements MemberService {
 			if(res > 0) {
 				out.println("<script>");
 				out.println("alert('정상적으로 수정되었습니다.')");
-				out.println("location.href='"+ request.getContextPath() + "/member/memberPage'");		
+				out.println("location.href='"+ request.getContextPath() + "'");		
 				out.println("</script>");
 				out.close();
 			} else {
@@ -256,10 +261,45 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
-//	@Override
-//	public SignOutMemberDTO findSignOutMember(String memberId) {
-//		return memberMapper.selectSignOutMemberByMemberId(memberId);
-//	}
-//	
 	
+	// 탈퇴
+	@Override
+	public void signOut(HttpServletRequest request, HttpServletResponse response) {
+		
+		// 파라미터
+		Optional<String> opt = Optional.ofNullable(request.getParameter("memberNo"));
+		Long memberNo = Long.parseLong(opt.orElse("0"));
+		
+		// MEMBER 테이블에서 member 삭제
+		int res = memberMapper.removeMember(memberNo);
+		
+		// 응답
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(res == 1 ) {
+				request.getSession().invalidate();									
+				out.println("<script>");
+				out.println("alert('탈퇴되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "'");	
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('탈퇴에 실패했습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	// 탈퇴확인
+	@Override
+	public SignOutMemberDTO findSignOutMember(String memberId) {
+		return memberMapper.selectSignOutMemberByMemberId(memberId);
+	}
 }

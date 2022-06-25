@@ -30,7 +30,10 @@ public interface MemberService {
 	
 	// 회원정보 수정
 	public void changeMember(HttpServletRequest request, HttpServletResponse response);
-	
+		
 	// 탈퇴
-//	public SignOutMemberDTO findSignOutMember(String memberId);
+	public void signOut(HttpServletRequest request, HttpServletResponse response);
+	// 탈퇴확인
+	public SignOutMemberDTO findSignOutMember(String memberId);
+
 }

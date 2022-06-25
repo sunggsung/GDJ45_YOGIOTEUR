@@ -74,8 +74,7 @@ public class MemberController {
 		MemberDTO loginMember = memberService.login(request);
 		if(loginMember != null) {
 			model.addAttribute("loginMember", loginMember);
-			System.out.println(loginMember);
-		}
+		} 
 		model.addAttribute("url", request.getParameter("url"));
 	}
 	
@@ -122,13 +121,7 @@ public class MemberController {
 	public void findPw(HttpServletRequest request, HttpServletResponse response){
 		memberService.changePw(request, response);
 	}
-	
-	// intercept 테스트 매핑
-	@GetMapping("/board/reviewPage")
-	public String reservationPage() {
-		return "board/review";
-	}
-	
+
 	
 	// 회원 수정
 	@GetMapping("/member/memberPage")
@@ -142,8 +135,14 @@ public class MemberController {
 	}
 	
 	// 회원 탈퇴
-//	@GetMapping("/member/signOut")
-//	public void signOut(HttpServletRequest request, HttpServletResponse response) {
-//		memberService.signOut(request, response);
-//	}
+	@GetMapping("/member/signOut")
+	public void signOut(HttpServletRequest request, HttpServletResponse response) {
+		memberService.signOut(request, response);
+	}
+	
+	// 회원탈퇴 조회
+	@PostMapping("/member/reSignInPage")
+	public String resignInPage() {
+		return "member/reSignIn";
+	}
 }

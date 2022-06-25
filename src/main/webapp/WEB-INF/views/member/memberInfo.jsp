@@ -38,14 +38,12 @@
     .tab_menu > label:hover {
         cursor: pointer;
     }
-    /* input[type=radio] ~ div:first-of-type > label { 인풋(라디오)와 인접한 첫번째 형제들(#menu1, #menu2) 선택
-        background-color: aquamarine;
-    } */
-    #memberInfo:checked ~ div:first-of-type > label:nth-of-type(1) { /*첫번째 인풋(라디오)& 첫번째 형제들 中 첫번째 라벨(메뉴1) 선택 */
+
+    #memberInfo:checked ~ div:first-of-type > label:nth-of-type(1) {
         background-color: white;
         color: gray;
     }
-    #memberReser:checked ~ div:first-of-type > label:nth-of-type(2) { /*두번째 인풋(라디오)& 첫번째 형제들 中 두번째 라벨(메뉴2) 선택 */
+    #memberReser:checked ~ div:first-of-type > label:nth-of-type(2) { 
         background-color: white;
         color: gray;
     }
@@ -102,7 +100,7 @@
 	}
 	
 	function fnChangePw(){
-		$('#findPwForm').on('submit', function(event){
+		$('#modifyForm').on('submit', function(event){
 			if(pwPass == false || rePwPass == false){
 				alert('비밀번호를 확인하세요.');
 				event.preventDefault();
@@ -134,22 +132,23 @@
         <!-- 개인정보 내용 -->
         <div class="content">
             <p>정보 수정시, 비밀번호를 꼭 다시 한번 확인해 주세요.</p>
-            <form action="/member/modifyMember" method="post">
-            	아이디${loginMember.memberId}<br>
-            	이름${loginMember.memberName}<br>
-            	신규 비밀번호<input type="password" >
-            	신규 비밀번호 확인
-            	연락처<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}"><br>
-				이메일<input type="text" name="memberEmail" id="memberEmail" value="${loginMember.memberEmail}"><br>
-				생년월일${loginMember.memberBirth}<br>
+            <form id="modifyForm" action="${contextPath}/member/modifyMember" method="post">
+            	아이디<input type="text" name="memberId" id="memberId" value="${loginMember.memberId}" readonly="readonly"><br>
+            	이름<input type="text" name="memberName" id="memberName" value="${loginMember.memberName}" readonly="readonly"><br>
+            	신규 비밀번호<input type="password" name="memberPw" id="memberPw" placeholder="새 비밀번호">
+				<span id="pwMsg"></span><br>
+            	신규 비밀번호 확인<input type="password" id="memberRePw" placeholder="새 비밀번호 확인">
+            	<span id="rePwMsg"></span><br>
+            	연락처<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" placeholder="연락처 변경"><br>
+				이메일<input type="text" name="memberEmail" id="memberEmail" value="${loginMember.memberEmail}" placeholder="이메일 변경"><br>
+				생년월일<input type="text" name="memberBirth" id="memberBirth" value="${loginMember.memberBirth}" readonly="readonly"><br>
 				<button>수정하기</button>
-				<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/signOut'">
+				<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/signOut?memberNo=${loginMember.memberNo}'">
             </form>
         </div>
 
         <!-- 예약확인 내용 -->
         <div class="content">
-            <p>예약 확인</p>
 			<a href="${contextPath}/member/memberReser">예약확인</a>
         </div>
     </div>
