@@ -12,10 +12,18 @@
 <script>
 	
 	$(function(){
+<<<<<<< HEAD
 		fnRoomDetail();
 	})
 	var page = 1;
 	/* function fnFindRoomList() {
+=======
+		fnFindRoomList();
+		fnRoomDetail();
+	})
+	
+	function fnFindRoomList() {
+>>>>>>> fd28ee5d3915651013d499c88f91577e9062c375
 		$.ajax({
 			url: '${contextPath}/room/findRooms',
 			type: 'GET',
@@ -38,6 +46,7 @@
 				})
 			}
 		})
+<<<<<<< HEAD
 	} */
 	function fnRoomDetail() {
 		/* $(document).on('click', '.btnDetail', function() {
@@ -48,6 +57,13 @@
 			location.href='${contextPath}/admin/roomDetail?roomNo=' + $(this).data('room_no');
 		})
 		
+=======
+	}
+	function fnRoomDetail() {
+		$(document).on('click', '.btnDetail', function() {
+			location.href='${contextPath}/admin/roomDetail?roomNo=' + data('room_no');
+		})
+>>>>>>> fd28ee5d3915651013d499c88f91577e9062c375
 	}
 	
 </script>
@@ -71,6 +87,7 @@
 						<td>보기</td>
 					</tr>
 				</thead>
+<<<<<<< HEAD
 				<tbody>
 					<c:forEach items="${rooms}" var="room" varStatus="vs">
 						<tr>
@@ -91,6 +108,10 @@
 						<td colspan="6">${paging}</td>
 					</tr>
 				</tfoot>
+=======
+				<tbody id="rooms">
+				</tbody>
+>>>>>>> fd28ee5d3915651013d499c88f91577e9062c375
 			</table>
 		</div>
 		

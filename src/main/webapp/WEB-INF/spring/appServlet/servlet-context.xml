@@ -23,6 +23,29 @@
 	
 	<context:component-scan base-package="com.tp.yogioteur" />
 	
+	<beans:bean class="com.tp.yogioteur.interceptor.LoginInterceptor" id="LoginInterceptor"></beans:bean>
+	<beans:bean class="com.tp.yogioteur.interceptor.RequiredLoginInterceptor" id="RequiredLoginInterceptor"></beans:bean>
+	<beans:bean class="com.tp.yogioteur.interceptor.PreventLoginInterceptor" id="PreventLoginInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/login"/>
+			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/reservation/reservationPage"/>
+			<mapping path="/board/reviewPage"/>
+			<beans:ref bean="RequiredLoginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/member/loginPage"/>
+			<mapping path="/member/agreePage"/>
+			<mapping path="/member/signInPage"/>
+			<beans:ref bean="PreventLoginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	
 	
 	
 </beans:beans>

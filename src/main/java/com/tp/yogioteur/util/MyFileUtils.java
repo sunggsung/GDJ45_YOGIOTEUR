@@ -6,7 +6,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 
 public class MyFileUtils {
-	
+
 	// 파일명을 UUID로 변환
 	public static String getUuidName(String filename) {
 		// 확장자
@@ -16,10 +16,8 @@ public class MyFileUtils {
 		} else if(filename.endsWith("tar.bz2")) {
 			extension = "tar.bz2";
 		} else {
-//			int length = filename.length();
-//			extension = filename.substring(filename.lastIndexOf(".") + 1);
-			String[] arr = filename.split("\\.");
-			extension = arr[arr.length - 1];
+			String[] arr = filename.split("\\.");			
+			extension = filename.split("\\.")[arr.length - 1];
 		}
 		// 파일명(UUID) + 확장자
 		return UUID.randomUUID().toString().replaceAll("\\-", "") + "." + extension;
@@ -45,7 +43,5 @@ public class MyFileUtils {
 		String sep = Matcher.quoteReplacement(File.separator);
 		return "C:" + sep + "upload" + sep + year + sep + month + sep + day;
 	}
-	
-	
 	
 }

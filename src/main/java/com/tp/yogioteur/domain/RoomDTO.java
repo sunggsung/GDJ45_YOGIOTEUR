@@ -12,13 +12,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class RoomDTO {
+	
 	private Long roomNo;
 	private Long rtNo;
 	private String roomName;
-	private Integer roomPrice;
 	private Integer roomStatus;
 	private Date roomCheckIn;
 	private Date roomCheckOut;
+	private Integer roomPrice;
 	
 	private RoomTypeDTO roomTypeDTO;
+	
+	
 }

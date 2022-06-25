@@ -1,7 +1,6 @@
 package com.tp.yogioteur.controller;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +32,11 @@ public class AdminController {
 	@GetMapping("/admin/reservation")
 	public String reservation() {
 		return "admin/reservation";
+	}
+
+	@GetMapping("/admin/room")
+	public String room() {
+		return "admin/room";
 	}
 	
 	@GetMapping("/admin/addRoomPage")
