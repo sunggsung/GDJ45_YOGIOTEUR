@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,6 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
 	
-<<<<<<< HEAD
 	$(function() {
 		fnFileCheck($('#image1'));
 		fnFileCheck($('#image2'));
@@ -67,19 +68,12 @@
 			}
 		})
 	}
-=======
-	
->>>>>>> fd28ee5d3915651013d499c88f91577e9062c375
 	
 </script>
 <link rel="stylesheet" href="../resources/css/admin.css">
 </head>
 <body>
-<<<<<<< HEAD
-	
-=======
 		<jsp:include page="../layout/header.jsp"></jsp:include>
->>>>>>> fd28ee5d3915651013d499c88f91577e9062c375
 	<div class="container">
 		<jsp:include page="index.jsp"></jsp:include>
 		
@@ -93,26 +87,16 @@
 					<option value="2">더블</option>
 					<option value="3">트윈</option>
 				</select><br>
-<<<<<<< HEAD
 				객실이름 <input type="text" name="roomName" id="roomName"><br>
 				객실가격 <input type="text" name="roomPrice" id="roomPrice"><br><br>
 				이미지 첨부1 <input type="file" name="image1" id="image1"><br>
 				<img id="preview1" width="300px"><br>
 				이미지 첨부2 <input type="file" name="image1" id="image2"><br>
 				<img id="preview2" width="300px"><br>
-=======
-				객실이름<input type="text" name="roomName" id="roomName"><br>
-				객실가격<input type="text" name="roomPrice" id="roomPrice"><br>
-				이미지 첨부<input type="file" name="files" id="files" multiple="multiple"><br>
->>>>>>> fd28ee5d3915651013d499c88f91577e9062c375
 				<button>등록</button>
 			</form>
 		</div>
 	</div>
-<<<<<<< HEAD
-
-=======
 		<jsp:include page="../layout/footer.jsp"></jsp:include>
->>>>>>> fd28ee5d3915651013d499c88f91577e9062c375
 </body>
 </html>

@@ -10,7 +10,6 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
 	
-<<<<<<< HEAD
 	$(document).ready(function() {
 		var rtNo = ${room.rtNo}
 		switch(rtNo) {
@@ -46,9 +45,6 @@
 			}
 		})
 	}
-=======
-	
->>>>>>> fd28ee5d3915651013d499c88f91577e9062c375
 	
 </script>
 <link rel="stylesheet" href="../resources/css/admin.css">
@@ -60,23 +56,15 @@
 		
 		<div class="grid_item room">
 			<h3>객실상세</h3>
-<<<<<<< HEAD
 			<form id="f" action="${contextPath}/room/changeRoom" method="post" enctype="multipart/form-data">
 				객실번호: ${room.roomNo}<br>
 				<input type="hidden" name="roomNo" value="${room.roomNo}">
 				객실타입
 				<select name="rtNo" id="rtNo">
-=======
-			<form id="f" action="${contextPath}/room/saveRoom" method="post" enctype="multipart/form-data">
-				객실타입
-				<select name="rtNo">
-					<option value="">==선택==</option>
->>>>>>> fd28ee5d3915651013d499c88f91577e9062c375
 					<option value="1">싱글</option>
 					<option value="2">더블</option>
 					<option value="3">트윈</option>
 				</select><br>
-<<<<<<< HEAD
 				객실이름 <input type="text" name="roomName" id="roomName" value="${room.roomName}"><br>
 				객실가격 <input type="text" name="roomPrice" id="roomPrice" value="${room.roomPrice}"><br>
 				예약상태:
@@ -104,15 +92,5 @@
 		</div>
 	</div>
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
-=======
-				객실이름<input type="text" name="roomName" id="roomName"><br>
-				객실가격<input type="text" name="roomPrice" id="roomPrice"><br>
-				이미지 첨부<input type="file" name="files" id="files" multiple="multiple"><br>
-				<button>등록</button>
-			</form>
-		</div>
-	</div>
-
->>>>>>> fd28ee5d3915651013d499c88f91577e9062c375
 </body>
 </html>
