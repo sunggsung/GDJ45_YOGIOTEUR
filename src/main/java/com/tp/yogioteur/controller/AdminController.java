@@ -34,10 +34,9 @@ public class AdminController {
 		return "admin/reservation";
 	}
 
-	@GetMapping("/admin/room")
-	public String room() {
-		return "admin/room";
-	}
+	/*
+	 * @GetMapping("/admin/room") public String room() { return "admin/room"; }
+	 */
 	
 	@GetMapping("/admin/addRoomPage")
 	public String addRoomPage() {
@@ -72,10 +71,11 @@ public class AdminController {
 		return adminService.display(imageNo, type);
 	}
 	
-	@PostMapping("/room/saveRoom")
-	public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
-		adminService.saveRoom(request, response);
-	}
+	/*
+	 * @PostMapping("/room/saveRoom") public void
+	 * saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
+	 * adminService.saveRoom(request, response); }
+	 */
 	
 	@PostMapping("/room/changeRoom")
 	public void changeRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
