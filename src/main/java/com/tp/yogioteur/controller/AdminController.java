@@ -34,11 +34,6 @@ public class AdminController {
 		return "admin/reservation";
 	}
 
-	@GetMapping("/admin/room")
-	public String room() {
-		return "admin/room";
-	}
-	
 	@GetMapping("/admin/addRoomPage")
 	public String addRoomPage() {
 		return "admin/addRoom";
