@@ -10,58 +10,31 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    * {
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .tabmenu {
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+    }
+    .memberInfo {
+        list-style-type: none;
         padding: 0;
         margin: 0;
-        box-sizing: border-box;
+        overflow: hidden;
     }
-    input[type=radio] { /* checkbox표시를 없애준다. */
-        display: none;
+    .memberInfo > li {
+        float: left;
     }
-    .tab_menu {  /* 메뉴를 수평 배치해준다. */
-        display: flex;
-    }
-    .tab_menu > label {
+    .memberInfo > li > a {
         display: block;
-        width: 200px;
-        height: 50px;
-        text-align: center;
-        line-height: 50px;
-        border-top: 1px solid black; 
-        border-left: 1px solid black;
-        border-bottom: 1px solid black;
-        background-color: Lightgray;
+        padding: 10px 30px;
     }
-    .tab_menu > label:last-of-type {
-        border-right: 1px solid black;
+    .memberInfo > li > a:hover {
+        border-bottom: 3px solid skyblue;
     }
-    .tab_menu > label:hover {
-        cursor: pointer;
-    }
-
-    #memberInfo:checked ~ div:first-of-type > label:nth-of-type(1) {
-        background-color: white;
-        color: gray;
-    }
-    #memberReser:checked ~ div:first-of-type > label:nth-of-type(2) { 
-        background-color: white;
-        color: gray;
-    }
-    .content {
-        width: 400px;
-        height: 400px;
-        border-right: 1px solid black;
-        border-left: 1px solid black;
-        border-bottom: 1px solid black;
-        display: none;
-    }
-    #memberInfo:checked ~ div:nth-of-type(2) { /*첫번째 인풋(라디오)와 인접한 2번째 형제 */
-        display: block;
-    }
-    #memberReser:checked ~ div:nth-of-type(3) { /*첫번째 인풋(라디오)와 인접한 3번째 형제 */
-        display: block;
-    }
-
 </style>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
@@ -120,28 +93,26 @@
 </head>
 <body>
 	
-	<div class="container">
-        <!-- 상단 탭 메뉴 -->
-        <input type="radio" name="tabmenu" id="memberInfo" checked="checked">
-        <input type="radio" name="tabmenu" id="memberReser">
-        <div class="tab_menu">
-            <label for="memberInfo">개인정보</label>
-            <label for="memberReser">예약확인</label>
-        </div>
-
+	<jsp:include page="../layout/header.jsp"></jsp:include>
+	<!--  
+	<div class="tabmenu">
+        <ul class="memberInfo">
+            <li><a href="javascropt:exit(0)">개인정보</a></li>
+            <li><a href="javascropt:exit(0)">비밀번호 변경</a></li>
+            <li><a href="javascropt:exit(0)">예약확인</a></li>
+        </ul>
+    </div>
+	-->
         <!-- 개인정보 내용 -->
         <div class="content">
             <p>정보 수정시, 비밀번호를 꼭 다시 한번 확인해 주세요.</p>
             <form id="modifyForm" action="${contextPath}/member/modifyMember" method="post">
             	아이디<input type="text" name="memberId" id="memberId" value="${loginMember.memberId}" readonly="readonly"><br>
             	이름<input type="text" name="memberName" id="memberName" value="${loginMember.memberName}" readonly="readonly"><br>
-            	신규 비밀번호<input type="password" name="memberPw" id="memberPw" placeholder="새 비밀번호">
-				<span id="pwMsg"></span><br>
-            	신규 비밀번호 확인<input type="password" id="memberRePw" placeholder="새 비밀번호 확인">
-            	<span id="rePwMsg"></span><br>
-            	연락처<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" placeholder="연락처 변경"><br>
-				이메일<input type="text" name="memberEmail" id="memberEmail" value="${loginMember.memberEmail}" placeholder="이메일 변경"><br>
+            	연락처<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" ><br>
 				생년월일<input type="text" name="memberBirth" id="memberBirth" value="${loginMember.memberBirth}" readonly="readonly"><br>
+				이메일<input type="text" name="memberEmail" id="memberEmail" value="${loginMember.memberEmail}" ><br>
+				<input type="hidden" name="memberId" value="${loaginMember.memberId}">
 				<button>수정하기</button>
 				<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/signOut?memberNo=${loginMember.memberNo}'">
             </form>
@@ -151,7 +122,16 @@
         <div class="content">
 			<a href="${contextPath}/member/memberReser">예약확인</a>
         </div>
-    </div>
+	
+		<!-- 비밀번호 변경 -->
+		<div class="content">
+           	신규 비밀번호<input type="password" name="memberPw" id="memberPw" placeholder="새 비밀번호">
+			<span id="pwMsg"></span><br>
+           	신규 비밀번호 확인<input type="password" id="memberRePw" placeholder="새 비밀번호 확인">
+           	<span id="rePwMsg"></span><br>
+		</div>
 
+	<jsp:include page="../layout/footer.jsp"></jsp:include>
+	
 </body>
 </html>

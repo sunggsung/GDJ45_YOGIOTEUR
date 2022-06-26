@@ -15,10 +15,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tp.yogioteur.domain.MemberDTO;
 import com.tp.yogioteur.domain.SignOutMemberDTO;
@@ -98,8 +100,12 @@ public class MemberServiceImpl implements MemberService {
 		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));    
 		String memberName = SecurityUtils.xss(request.getParameter("memberName"));   
 		String memberPhone =request.getParameter("memberPhone");    
-		Integer memberBirth = Integer.parseInt(request.getParameter("memberBirth"));   
+		String memberBirth = request.getParameter("memberBirth");   
+		String memberGender = request.getParameter("memberGender");
+		String memberPostCode = request.getParameter("memberPostCode");
+		String memberRoadAddr = request.getParameter("memberRoadAddr");
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
+		String memberPromoAdd = request.getParameter("memberPromoAdd");
 		String info = request.getParameter("info");
 		String event = request.getParameter("event");
 		int agreeState = 1;  
@@ -117,7 +123,12 @@ public class MemberServiceImpl implements MemberService {
 				.memberName(memberName)
 				.memberPhone(memberPhone)
 				.memberBirth(memberBirth)
+				.memberPromoAdd(memberPhone)
+				.memberGender(memberGender)
+				.memberPostCode(memberPostCode)
+				.memberRoadAddr(memberRoadAddr)
 				.memberEmail(memberEmail)
+				.memberPromoAdd(memberPromoAdd)
 				.agreeState(agreeState)
 				.build();
 
@@ -175,9 +186,9 @@ public class MemberServiceImpl implements MemberService {
 				.memberName(memberName)
 				.memberEmail(memberEmail)
 				.build();
-		MemberDTO confirmMember = memberMapper.findMemberByNameEmail(member);
+		MemberDTO memberConfirm = memberMapper.findMemberByNameEmail(member);
 		
-		return confirmMember;
+		return memberConfirm;
 	}
 
 	
@@ -222,30 +233,42 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
+	// 회원정보
+	@Override
+	public MemberDTO memberCheck(String memberId) {
+		return memberMapper.selectMemberById(memberId);
+	}
+	
 	// 회원정보 수정
 	@Override
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
-		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
+		String memberName = SecurityUtils.xss(request.getParameter("memberName")); 
 		String memberPhone = request.getParameter("memberPhone");    
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
+		String memberBirth = request.getParameter("memberBirth");  
 		
 		MemberDTO member = MemberDTO.builder()
 				.memberId(memberId)
-				.memberPw(memberPw)
+				.memberName(memberName)
 				.memberPhone(memberPhone)
 				.memberEmail(memberEmail)
+				.memberBirth(memberBirth)
 				.build();
 		
+		System.out.println(member);
 		int res = memberMapper.updateMember(member);
+		System.out.println(res);
 		try {
 			response.setContentType("text/html; charset=UTF-8");
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", member);
 			PrintWriter out = response.getWriter();
 			if(res > 0) {
 				out.println("<script>");
 				out.println("alert('정상적으로 수정되었습니다.')");
-				out.println("location.href='"+ request.getContextPath() + "'");		
+				out.println("location.href='"+ request.getContextPath() + "/member/memberPage'");		
 				out.println("</script>");
 				out.close();
 			} else {
@@ -267,14 +290,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void signOut(HttpServletRequest request, HttpServletResponse response) {
 		
-		// 파라미터
 		Optional<String> opt = Optional.ofNullable(request.getParameter("memberNo"));
 		Long memberNo = Long.parseLong(opt.orElse("0"));
 		
-		// MEMBER 테이블에서 member 삭제
 		int res = memberMapper.removeMember(memberNo);
-		
-		// 응답
+
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
@@ -323,7 +343,7 @@ public class MemberServiceImpl implements MemberService {
 				.memberEmail(memberEmail)
 				.agreeState(agreeState)
 				.build();
-				
+
 		// MEMBER 테이블에 member 저장
 		int res1 = memberMapper.reSignInMember(member);
 		int res2 = memberMapper.removeSignOutMember(memberId);

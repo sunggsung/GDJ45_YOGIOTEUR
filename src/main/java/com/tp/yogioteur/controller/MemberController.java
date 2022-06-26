@@ -123,12 +123,13 @@ public class MemberController {
 	}
 
 	
-	// 회원 수정
+	// 회원 정보
 	@GetMapping("/member/memberPage")
 	public String memberPage(){
 		return "member/memberInfo";
 	}
 	
+	// 회원 수정
 	@PostMapping("/member/modifyMember")
 	public void modifyMember(HttpServletRequest request, HttpServletResponse response){
 		memberService.changeMember(request, response);
