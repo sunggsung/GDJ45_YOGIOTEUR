@@ -31,17 +31,7 @@ public class MainController {
 	public String adminPage() {
 		return "admin/index";
 	}
-	
-	@GetMapping("/faq/faqPage")
-	public String faqPage() {
-		return "faq/faqSearch";
-	}
-	
-	@GetMapping("/review/reviewPage")
-	public String reviewPage() {
-		return "review/reviewList";
-	}
-	 
+		 
 	
 		//form 정보 전달
 		@PostMapping("/room/roomList")

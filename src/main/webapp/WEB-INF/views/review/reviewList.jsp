@@ -12,6 +12,76 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
+
+	$(function(){
+		/* fnAdminReply();
+		fnAdminReplySave();
+		fnAdminReplyRemove();
+		fnInit(); */
+	})
+	
+	function fnAdminReply(){
+		$.ajax({
+			url: '${contextPath}/reply/replyList',
+			type:'get',
+			date: 'reviewNo=${review.reviewRevNo}',
+			dataType:'json',
+			success:function(obj){
+				$('#adminReplyList').empty();
+				$.each(obj.replies, function(i, reply){
+					var tr = $('<tr>')
+					.append($('<td>').text(reply.replyContent))
+					.append($('<td>').text(reply.replyCreated));
+					//.append($('<td>').html('<span class="removeReplyLink" data-reply_no="' + reply.replyNo + '">관리자 댓글 삭제</span>"'));
+
+					$(tr).appendTo('#adminReplyList');
+				})
+			}
+		})
+	}
+	
+	function fnAdminReplySave(){
+		$('#replyAdd').on('click', function(){
+			$.ajax({
+				url:'${context}/reply/replySave',
+				type: 'post',
+				data: $('#replydata').serialize(),
+				dataType: 'json',
+				sucess:function(obj){
+					if(obj.res > 0){
+						alert('댓글이 등록되었습니다');
+						fnAdminReply();
+						fnInit();
+					}
+				}
+			})
+		})
+	}
+	
+	function fnAdminReplyRemove(){
+		$('#removeReplyLink').on('click',function(){
+			if(confirm('삭제할까요?')){
+				$.ajax({
+					url: '${contextPath}/reply/replyRemove',
+					type: 'get',
+					date: 'replyNo=' + $(this).data('reply_no'),
+					dataType: 'json',
+					success: function(obj){
+						if(obj.res > 0){
+							alert('댓글이 삭제되었습니다.');
+							fnAdminReply();
+							fnInit();
+						}
+					}
+				})
+			}
+		})
+	}
+	
+	function fnInit(){
+		$('#replyContent').val('');
+	}
+	
 	 function fnReviewRemove(rn){      
 	       if(confirm('삭제할까요?')){
 	          location.href='${contextPath}/review/reviewRemove?reviewNo=' + $(rn).data('review_no');
@@ -58,11 +128,7 @@
    					
    					리뷰제목 : ${review.reviewTitle}<br>
    					리뷰 내용 : ${review.reviewContent}<br>
-   					
-   					
-	
-					
-						<div><img src="${contextPath}/review/display?reviewNo=${review.reviewNo}" width="300px" onerror="this.style.display='none'"></div>				
+   					<div><img src="${contextPath}/review/display?reviewNo=${review.reviewNo}" width="300px" onerror="this.style.display='none'"></div>				
 					
 					
 					
@@ -73,12 +139,22 @@
 		   			
    				</div>
    			</div>
-   			<c:if test="">
+   			
 	   			<div class="adminReply">
-	   				  			
+		   			<form id="replydata" action="${contextPath}/reply/replySave">
+		   				<input type="hidden" value="${review.reviewNo}">
+		   				<textarea rows="10" cols="50" id="replyContent" name="replyContent"></textarea>
+		   				<button type="button" id="replyAdd">댓글 등록</button>
+		   			</form>
+		   			<div id="adminReplyList">
+		   				관리자 댓글 :
+		   				
+		   				<input type="button" id="removeReplyLink" value="댓글 삭제">
+		   			</div>
+	   			
 	   			
 	   			</div>
-   			</c:if>
+   			
    		</div>
    </c:forEach>
    
