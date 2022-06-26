@@ -29,12 +29,22 @@
 	function fnLogin(){
 	
 		$('#Loginform').on('submit', function(e){
-			if($('#memberId').val() == '' || $('#memberPw').val() == ''){
+			if($('#memberId').val() == ''){
+				alert('아이디를 입력하세요.');
+				e.preventDefault();
+				return false;
+			}
+			if($('#memberPw').val() == ''){
+				alert('비밀번호를 입력하세요.');
+				e.preventDefault();
+				return false;
+			}
+			if($('#memberId').val() == '' && $('#memberPw').val() == ''){
 				alert('아이디와 비밀번호를 입력하세요.');
 				e.preventDefault();
 				return false;
 			}
-
+			
 			if($('#rememberId').is(':checked')){			
 				$.cookie('rememberId', $('#memberId').val());		
 			} else{

@@ -145,4 +145,10 @@ public class MemberController {
 	public String resignInPage() {
 		return "member/reSignIn";
 	}
+	
+	// 재가입
+	@PostMapping("/member/reSignIn")
+	public void reSignIn(HttpServletRequest request, HttpServletResponse response) {
+		memberService.reSignIn(request, response);
+	}
 }

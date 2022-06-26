@@ -16,8 +16,8 @@ import com.tp.yogioteur.util.SecurityUtils;
 
 public class LoginInterceptor implements HandlerInterceptor {
 	
-	//@Autowired
-	//private MemberService memberService;
+	@Autowired
+	private MemberService memberService;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -30,12 +30,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 		
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
 		
-//		SignOutMemberDTO SignOutMember = memberService.findSignOutMember(memberId);
-//		if(SignOutMember != null) {
-//			request.setAttribute("SignOutMember", SignOutMember);
-//			request.getRequestDispatcher("/member/reSignInPage").forward(request, response);
-//			return false;
-//		}
+		SignOutMemberDTO member = memberService.findSignOutMember(memberId);
+		if(member != null) {
+			request.setAttribute("member", member);
+			request.getRequestDispatcher("/member/reSignInPage").forward(request, response);
+			return false;
+		}
 		return true;
 	}
 	
@@ -57,12 +57,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 				response.sendRedirect(url.toString());
 			}
 		} 
-//		else {
-//			if(url.toString().isEmpty()) {		
-//				response.sendRedirect(request.getContextPath() + "/member/loginPage");	
-//			} else {
-//				response.sendRedirect(request.getContextPath() + "/member/loginPage?url=" + url.toString());									
-//			}
-//		}
+		else {
+			if(url.toString().isEmpty()) {		
+				response.sendRedirect(request.getContextPath() + "/member/loginPage");	
+			} else {
+				response.sendRedirect(request.getContextPath() + "/member/loginPage?url=" + url.toString());									
+			}
+		}
 	}
 }

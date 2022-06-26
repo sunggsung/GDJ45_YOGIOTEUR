@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tp.yogioteur.domain.MemberDTO;
 import com.tp.yogioteur.domain.SignOutMemberDTO;
@@ -301,5 +302,53 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public SignOutMemberDTO findSignOutMember(String memberId) {
 		return memberMapper.selectSignOutMemberByMemberId(memberId);
+	}
+	// 재가입
+	@Transactional
+	@Override
+	public void reSignIn(HttpServletRequest request, HttpServletResponse response) {
+		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
+		String memberName = SecurityUtils.xss(request.getParameter("memberName"));
+		Long memberNo = Long.parseLong(request.getParameter("memberNo"));
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
+		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail"));
+		Integer agreeState = Integer.parseInt(request.getParameter("agreeState"));
+		
+		// MemberDTO
+		MemberDTO member = MemberDTO.builder()
+				.memberPw(memberPw)
+				.memberName(memberName)
+				.memberNo(memberNo)
+				.memberId(memberId)
+				.memberEmail(memberEmail)
+				.agreeState(agreeState)
+				.build();
+				
+		// MEMBER 테이블에 member 저장
+		int res1 = memberMapper.reSignInMember(member);
+		int res2 = memberMapper.removeSignOutMember(memberId);
+		
+		// 응답
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(res1 == 1 && res2 == 1) {
+				out.println("<script>");
+				out.println("alert('다시 모든 서비스를 이용할 수 있습니다.')");
+				out.println("location.href='" + request.getContextPath() + "'");		// 첫 페이지(인덱스) 이동
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('재가입에 실패했습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
