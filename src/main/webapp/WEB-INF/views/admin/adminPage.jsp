@@ -17,7 +17,7 @@
 			<h3>관리자 메뉴</h3>
 			<a href="${contextPath}/admin/member">회원목록</a>
 			<br><br><br><br><br>
-			<a href="${contextPath}/admin/reservation">예약목록</a>
+			<a href="${contextPath}/admin/reservationList">예약목록</a>
 			<br><br><br><br><br>
 			<a href="${contextPath}/admin/room">객실목록</a><br>
 			<a href="${contextPath}/admin/addRoomPage">객실등록</a><br>

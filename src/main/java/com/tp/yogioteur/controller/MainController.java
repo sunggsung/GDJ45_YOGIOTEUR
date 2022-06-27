@@ -39,10 +39,10 @@ public class MainController {
 			roomService.roomList(request, model); 
 		}
 		
-		@PostMapping("/room/saveRoom")
-		public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
-			roomService.saveRoom(request, response);
-		}
+//		@PostMapping("/room/saveRoom")
+//		public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
+//			roomService.saveRoom(request, response);
+//		}
 		
 		@ResponseBody
 		@GetMapping(value = "/room/findRooms", produces = "application/json")
