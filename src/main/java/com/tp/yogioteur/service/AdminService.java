@@ -1,5 +1,7 @@
 package com.tp.yogioteur.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,5 +20,8 @@ public interface AdminService {
 	
 	public void findMembers(HttpServletRequest request, Model model);
 	public void findMemberByNo(HttpServletRequest request, Model model);
+	
+	public void findReservations(HttpServletRequest request, Model model);
+	public Map<String, Object> findReservationByMemberNo(HttpServletRequest request, Model model);
 	
 }
