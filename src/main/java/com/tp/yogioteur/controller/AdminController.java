@@ -34,11 +34,6 @@ public class AdminController {
 		return "admin/reservation";
 	}
 
-//	@GetMapping("/admin/room")
-//	public String room() {
-//		return "admin/room";
-//	}
-	
 	@GetMapping("/admin/addRoomPage")
 	public String addRoomPage() {
 		return "admin/addRoom";
@@ -93,5 +88,10 @@ public class AdminController {
 		return "admin/member";
 	}
 	
+	@GetMapping("/admin/memberDetail")
+	public String memberDetail(HttpServletRequest request, Model model) {
+		adminService.findRoomByNo(request, model);
+		return "admin/memberDetail";
+	}
 
 }
