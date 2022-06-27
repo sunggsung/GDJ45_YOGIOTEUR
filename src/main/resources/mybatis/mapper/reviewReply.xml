@@ -6,10 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.tp.yogioteur.mapper.ReviewReplyMapper">
 
 	<!-- 댓글 목록 -->
-	<select id="selectReviewReplyList" parameterType="Long" resultType="ReviewReplyDTO">
-		SELELCT REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED
-		  FROM REVEIW_REPLY
-		 WHERE REVIEW_NO = #{reviewNo}
+	<select id="selectReviewReplyList" resultType="ReviewReplyDTO">
+		SELECT REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED
+		  FROM REVIEW_REPLY
 	</select>
 	
 	<!-- 댓글 추가 -->
