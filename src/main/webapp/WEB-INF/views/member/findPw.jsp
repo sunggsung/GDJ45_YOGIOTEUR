@@ -142,6 +142,9 @@
 	.changeArea {
 		display: none;
 	}
+	.authArea > a {
+		color : black;
+	}
 	.dont {
 		color: red;
 	}
@@ -151,7 +154,9 @@
 </style>
 </head>
 <body>
-	
+		
+	<jsp:include page="../layout/header.jsp"></jsp:include>
+			
 		<form id="findPwForm" action="${contextPath}/member/findPw" method="post">
 	
 		<h3>비밀번호 찾기</h3>
@@ -180,6 +185,8 @@
 		</div>
 		
 	</form>
+
+	<jsp:include page="../layout/footer.jsp"></jsp:include>
 
 </body>
 </html>

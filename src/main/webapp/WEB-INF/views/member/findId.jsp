@@ -9,6 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.findIdArea > a {
+		color : black;
+	}
+</style>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
 	
@@ -37,9 +42,11 @@
 </head>
 <body>
 	
+	<jsp:include page="../layout/header.jsp"></jsp:include>
+	
 	<h3>아이디 찾기</h3>
 	<form id="findIdForm" action="${contextPath}/member/findId" method="post">
-		<div>
+		<div class="findIdArea">
 			이름<input type="text" name="memberName" id="memberName"><br>
 			이메일<input type="text" name="memberEmail" id="memberEmail"><br>
 			<button>확인</button> 
@@ -48,6 +55,9 @@
 			<a href="${contextPath}/member/agreePage">회원가입</a>
 		</div>
 	</form>
+
+	<jsp:include page="../layout/footer.jsp"></jsp:include>
+	
 
 </body>
 </html>

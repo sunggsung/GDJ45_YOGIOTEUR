@@ -19,7 +19,11 @@ public class MemberDTO {
 	private String memberId;
 	private String memberPw;
 	private String memberPhone;
-	private Integer memberBirth;
+	private String memberBirth;
+	private String memberGender;
+	private String memberPromoAdd;
+	private String memberPostCode;
+	private String memberRoadAddr;
 	private Integer agreeState;
 	private Date signIn;
 	private String memberSessionId;

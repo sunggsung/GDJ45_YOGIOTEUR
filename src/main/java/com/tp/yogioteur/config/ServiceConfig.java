@@ -26,4 +26,5 @@ public class ServiceConfig {
 		return new VilageFcstInfoService();
 	}
 	
+	
 }
