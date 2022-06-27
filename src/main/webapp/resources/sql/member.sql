@@ -20,8 +20,9 @@ CREATE TABLE SIGN_OUT_MEMBER (
 	EMAIL	    VARCHAR2(100 BYTE),
     AGREE_STATE	NUMBER,              	    -- 동의여부
     SIGN_IN	    DATE,     		-- 가입일
-	SIGN_OUT	DATE    DEFAULT SYSDATE     -- 탈퇴일
-);
+	SIGN_OUT	DATE    DEFAULT SYSDATE,     -- 탈퇴일
+	PHONE		VARCHAR2(30 BYTE)
+	);
 
 
 CREATE TABLE MEMBER (
