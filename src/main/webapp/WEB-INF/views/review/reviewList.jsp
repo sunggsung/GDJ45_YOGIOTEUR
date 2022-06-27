@@ -12,15 +12,24 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
+
+
+	function fnReviewReply(bn){
+		location.href='${contextPath}/reply/reviewReplySavePage?reviewNo=' + $(bn).data('review_no');
+	}
+	
 	 function fnReviewRemove(rn){      
-	       if(confirm('삭제할까요?')){
+	       if(confirm('리뷰를 삭제할까요?')){
 	          location.href='${contextPath}/review/reviewRemove?reviewNo=' + $(rn).data('review_no');
 	       }
 	 }
 	 
-	 function fnReviewReply(rr){
-		 location.href='${contextPath}/review/reviewReply?reviewNo=' + $(rr).data('review_no');
+	 function fnReviewReplyRemove(rpn){
+		 if(confirm('댓글을 삭제할까요?')){
+	          location.href='${contextPath}/reply/reviewReplyRemove?replyNo=' + $(rpn).data('reply_no');
+	       }
 	 }
+	 
 </script>
 <style>
 	.reviewbox {
@@ -43,42 +52,43 @@
    			<div class="memberReview">
    				<div class="reviewbox"> 
    					별점 : ${review.reviewRevNo}<br>
-
    					<c:forEach var="i" begin="1" end="5">
-   						
    						<c:if test="${review.reviewRevNo ge i}">
 	   						<span id="staro">★</span>					
    						</c:if>
    						<c:if test="${review.reviewRevNo lt i}">
 	   						<span id="staro">☆</span>					
-   						</c:if>
-	   										
+   						</c:if>	
    					</c:forEach>
    					
    					
    					리뷰제목 : ${review.reviewTitle}<br>
    					리뷰 내용 : ${review.reviewContent}<br>
-   					
-   					
-	
-					
-						<div><img src="${contextPath}/review/display?reviewNo=${review.reviewNo}" width="300px" onerror="this.style.display='none'"></div>				
+   					<div><img src="${contextPath}/review/display?reviewNo=${review.reviewNo}" width="300px" onerror="this.style.display='none'"></div>				
 					
 					
 					
 		   			<input type="button" value="삭제" name="reviewRemoveBtn" data-review_no="${review.reviewNo}" onclick="fnReviewRemove(this)">
-		   			<input type="button" value="댓글달기" name="reviewReplyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewReply(this)">
+		   			<input type="button" value="댓글달기" id ="reviewReplyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewReply(this)">
 		   			
 		   			<hr>
 		   			
    				</div>
    			</div>
-   			<c:if test="">
-	   			<div class="adminReply">
-	   				  			
-	   			
+   			
+	   			<div class="adminReply">		
+					<c:forEach items="${reviewReplies}" var="reviewReply">
+	   						<c:if test="${review.reviewNo eq reviewReply.reviewNo}">
+		   						<div id="adminReplyList" >
+				   					<div>관리자댓글
+										${reviewReply.replyContent}			   					
+							   			<input type="button" id="reviewReplyRemoveBtn" value="댓글 삭제" data-reply_no="${reviewReply.replyNo}" onclick="fnReviewReplyRemove(this)">
+				   					</div>					
+				   				</div>		   					   						
+	   						</c:if>
+					</c:forEach>
 	   			</div>
-   			</c:if>
+   			
    		</div>
    </c:forEach>
    
