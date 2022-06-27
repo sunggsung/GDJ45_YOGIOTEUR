@@ -16,6 +16,8 @@
 
 </head>
 <body>
+
+	<jsp:include page="../layout/header.jsp"></jsp:include>
 	
 	<c:if test="${memberConfirm != null}">
 		회원님의 아이디는 ${memberConfirm.memberId} 입니다.<br>
@@ -28,6 +30,9 @@
 		<input type="button" value="취소" onclick="location.href='${contextPath}/'">
 		<input type="button" value="회원가입" onclick="location.href='${contextPath}/member/agreePage'">
 	</c:if>
+	
+	<jsp:include page="../layout/footer.jsp"></jsp:include>
+	
 	
 </body>
 </html>

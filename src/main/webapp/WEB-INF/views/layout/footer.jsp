@@ -63,8 +63,6 @@
 </head>
 <body>
 	
-	</section>
-	
 	<div class="footer">
 		<div class="end_title">
 			YOGIOTEUR
