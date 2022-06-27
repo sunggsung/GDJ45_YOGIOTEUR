@@ -3,6 +3,7 @@ package com.tp.yogioteur.service;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -14,11 +15,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tp.yogioteur.domain.MemberDTO;
+import com.tp.yogioteur.domain.SignOutMemberDTO;
 import com.tp.yogioteur.mapper.MemberMapper;
 import com.tp.yogioteur.util.SecurityUtils;
 
@@ -95,8 +100,12 @@ public class MemberServiceImpl implements MemberService {
 		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));    
 		String memberName = SecurityUtils.xss(request.getParameter("memberName"));   
 		String memberPhone =request.getParameter("memberPhone");    
-		Integer memberBirth = Integer.parseInt(request.getParameter("memberBirth"));   
+		String memberBirth = request.getParameter("memberBirth");   
+		String memberGender = request.getParameter("memberGender");
+		String memberPostCode = request.getParameter("memberPostCode");
+		String memberRoadAddr = request.getParameter("memberRoadAddr");
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
+		String memberPromoAdd = request.getParameter("memberPromoAdd");
 		String info = request.getParameter("info");
 		String event = request.getParameter("event");
 		int agreeState = 1;  
@@ -114,7 +123,12 @@ public class MemberServiceImpl implements MemberService {
 				.memberName(memberName)
 				.memberPhone(memberPhone)
 				.memberBirth(memberBirth)
+				.memberPromoAdd(memberPhone)
+				.memberGender(memberGender)
+				.memberPostCode(memberPostCode)
+				.memberRoadAddr(memberRoadAddr)
 				.memberEmail(memberEmail)
+				.memberPromoAdd(memberPromoAdd)
 				.agreeState(agreeState)
 				.build();
 
@@ -146,7 +160,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberDTO login(HttpServletRequest request) {
-		// 회원가입시 들어간 값과 같기 위해서는 login에도 암호화를 똑같이 해줘야한다.
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
 		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
 		
@@ -173,9 +186,9 @@ public class MemberServiceImpl implements MemberService {
 				.memberName(memberName)
 				.memberEmail(memberEmail)
 				.build();
-		MemberDTO confirmMember = memberMapper.findMemberByNameEmail(member);
+		MemberDTO memberConfirm = memberMapper.findMemberByNameEmail(member);
 		
-		return confirmMember;
+		return memberConfirm;
 	}
 
 	
@@ -220,21 +233,37 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
+	// 회원정보
+	@Override
+	public MemberDTO memberCheck(String memberId) {
+		return memberMapper.selectMemberById(memberId);
+	}
+	
 	// 회원정보 수정
 	@Override
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
-		
-		String memberPhone = request.getParameter("memberPhone");
-		String memberEmail = request.getParameter("memberEmail");
+
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
+		String memberName = SecurityUtils.xss(request.getParameter("memberName")); 
+		String memberPhone = request.getParameter("memberPhone");    
+		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
+		String memberBirth = request.getParameter("memberBirth");  
 		
 		MemberDTO member = MemberDTO.builder()
+				.memberId(memberId)
+				.memberName(memberName)
 				.memberPhone(memberPhone)
 				.memberEmail(memberEmail)
+				.memberBirth(memberBirth)
 				.build();
 		
+		System.out.println(member);
 		int res = memberMapper.updateMember(member);
+		System.out.println(res);
 		try {
 			response.setContentType("text/html; charset=UTF-8");
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", member);
 			PrintWriter out = response.getWriter();
 			if(res > 0) {
 				out.println("<script>");
@@ -256,10 +285,90 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
-//	@Override
-//	public SignOutMemberDTO findSignOutMember(String memberId) {
-//		return memberMapper.selectSignOutMemberByMemberId(memberId);
-//	}
-//	
 	
+	// 탈퇴
+	@Override
+	public void signOut(HttpServletRequest request, HttpServletResponse response) {
+		
+		Optional<String> opt = Optional.ofNullable(request.getParameter("memberNo"));
+		Long memberNo = Long.parseLong(opt.orElse("0"));
+		int res = memberMapper.removeMember(memberNo);
+
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(res == 1 ) {
+				request.getSession().invalidate();									
+				out.println("<script>");
+				out.println("alert('탈퇴되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "'");	
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('탈퇴에 실패했습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	// 탈퇴확인
+	@Override
+	public SignOutMemberDTO findSignOutMember(String memberId) {
+		return memberMapper.selectSignOutMemberByMemberId(memberId);
+	}
+	
+	// 재가입
+	@Transactional
+	@Override
+	public void reSignIn(HttpServletRequest request, HttpServletResponse response) {
+		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
+		String memberName = SecurityUtils.xss(request.getParameter("memberName"));
+		Long memberNo = Long.parseLong(request.getParameter("memberNo"));
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
+		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail"));
+		Integer agreeState = Integer.parseInt(request.getParameter("agreeState"));
+		
+		// MemberDTO
+		MemberDTO member = MemberDTO.builder()
+				.memberPw(memberPw)
+				.memberName(memberName)
+				.memberNo(memberNo)
+				.memberId(memberId)
+				.memberEmail(memberEmail)
+				.agreeState(agreeState)
+				.build();
+
+		// MEMBER 테이블에 member 저장
+		int res1 = memberMapper.reSignInMember(member);
+		int res2 = memberMapper.removeSignOutMember(memberId);
+		
+		// 응답
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(res1 == 1 && res2 == 1) {
+				out.println("<script>");
+				out.println("alert('다시 모든 서비스를 이용할 수 있습니다.')");
+				out.println("location.href='" + request.getContextPath() + "'");		// 첫 페이지(인덱스) 이동
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('재가입에 실패했습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 }
