@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.tp.yogioteur.domain.RoomDTO;
 import com.tp.yogioteur.mapper.RoomMapper;
 
 
@@ -39,10 +40,21 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public void roomList(HttpServletRequest request, Model model) {
-		// TODO Auto-generated method stub
+		
+		/*
+		 * //checkIn, out 데이터 받기 String checkIn = request.getParameter("checkIn");
+		 * String checkOut = request.getParameter("checkOut");
+		 */
+		
+		
+		//mapper 데이터 받기
+		model.addAttribute("roomList", roomMapper.checkInRoomList());
+		
+		
+		
 		
 	}
-
+	
 	@Override
 	public Map<String, Object> findRooms() {
 		// TODO Auto-generated method stub

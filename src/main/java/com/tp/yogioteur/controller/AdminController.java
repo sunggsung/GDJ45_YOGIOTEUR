@@ -54,11 +54,6 @@ public class AdminController {
 		openAPIService.execute(request, response);
 	}
 	
-	@GetMapping("/admin/room")
-	public String room(HttpServletRequest request, Model model) {
-		adminService.findRooms(request, model);
-		return "admin/room";
-	}
 	
 	@GetMapping("/admin/roomDetail")
 	public String roomDetail(HttpServletRequest request, Model model) {

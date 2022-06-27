@@ -42,22 +42,10 @@ public class MainController {
 		return "review/reviewList";
 	}
 	 
-	
-		//form 정보 전달
-		@PostMapping("/room/roomList")
-		public void list(HttpServletRequest request, Model model) {
-			roomService.roomList(request, model); 
-		}
-		
-		@PostMapping("/room/saveRoom")
-		public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
-			roomService.saveRoom(request, response);
-		}
-		
-		@ResponseBody
-		@GetMapping(value = "/room/findRooms", produces = "application/json")
-		public Map<String, Object> findRooms() {
-			return roomService.findRooms();
-		}
+	@ResponseBody
+	@GetMapping(value = "/room/findRooms", produces = "application/json")
+	public Map<String, Object> findRooms() {
+		return roomService.findRooms();
+	}
 	
 }

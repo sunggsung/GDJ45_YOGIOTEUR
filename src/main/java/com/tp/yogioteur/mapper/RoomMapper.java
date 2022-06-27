@@ -13,9 +13,8 @@ public interface RoomMapper {
 	public int insertRoom(RoomDTO room);
 	public int insertImage(ImageDTO image);
 	
-	public List<RoomDTO> selectRoomList();
-	
-	
-	//checkin 방조회	
+
+	//객실조회	
+	public List<RoomDTO> checkInRoomList();
 	
 }

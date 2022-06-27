@@ -185,7 +185,7 @@
 	
 	<div class="center">
 		
-		<form id="f" action="${contextPath}/room/roomReservation" method="post">
+		<form id="f" action="${contextPath}/room/roomList" method="post">
 		
 		<div class="searchBar">
 			
