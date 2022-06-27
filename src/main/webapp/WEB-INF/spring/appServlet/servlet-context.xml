@@ -33,8 +33,9 @@
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 		<interceptor>
-			<mapping path="/reservation/reservationPage"/>
-			<mapping path="/board/reviewPage"/>
+			<mapping path="/review/reviewPage"/>
+			<mapping path="/faq/faqPage"/>
+			<mapping path="reservation/reservationPage"/>
 			<beans:ref bean="RequiredLoginInterceptor"/>
 		</interceptor>
 		<interceptor>
