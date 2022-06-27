@@ -33,7 +33,6 @@ public interface MemberService {
 	public void signOut(HttpServletRequest request, HttpServletResponse response);
 	// 탈퇴확인
 	public SignOutMemberDTO findSignOutMember(String memberId);
-	// 재가입
-	public void reSignIn(HttpServletRequest request, HttpServletResponse response);
+
 	
 }

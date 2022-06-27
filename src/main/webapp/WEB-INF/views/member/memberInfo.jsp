@@ -53,7 +53,7 @@
 				return false;
 			}
 			else if(phonePass == false){
-				alert('전화번호를 확인하세요.');
+				alert('연락처를 확인하세요.');
 				event.preventDefault();
 				return false;
 			}
@@ -152,10 +152,8 @@
         new daum.Postcode({
             oncomplete: function(data) {
                 var roadAddr = data.roadAddress; 
-
-                $('#memberPostcode').val(data.zonecode);
-                $('#memberRoadAddress').val(roadAddr);
-                
+	                $('#memberPostcode').val(data.zonecode);
+	                $('#memberRoadAddress').val(roadAddr);
             }
         }).open();
     }
@@ -173,9 +171,8 @@
             	이름<input type="text" name="memberName" id="memberName" value="${loginMember.memberName}" readonly="readonly"><br>
 				생년월일
 				<input type="text" name="memberBirth" id="memberBirth" value="${loginMember.memberBirth}" readonly="readonly"><br>
-				<span id="memberBirthMsg"></span>
             	연락처
-            	<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}"><br>
+            	<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" maxlength="11"><br>
 				<span id="memberPhoneMsg"></span>
 				주소<br>
 				<input type="text" id="memberPostcode" name="memberPostCode" value="${loginMember.memberPostCode}">
@@ -205,7 +202,7 @@
 				</label>
            		<br>
 				<button>수정하기</button>
-				<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/signOut?memberNo=${loginMember.memberNo}'">
+				<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/signOut?memberId=${loginMember.memberId}'">
             </form>
         </div>
 
@@ -216,10 +213,7 @@
 	
 		<!-- 비밀번호 변경 -->
 		<div class="content">
-           	신규 비밀번호<input type="password" name="memberPw" id="memberPw" placeholder="새 비밀번호">
-			<span id="pwMsg"></span><br>
-           	신규 비밀번호 확인<input type="password" id="memberRePw" placeholder="새 비밀번호 확인">
-           	<span id="rePwMsg"></span><br>
+			<a href="{contextPath}/member/pwModifyPage">비밀번호변경</a>
 		</div>
 
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
