@@ -1,12 +1,14 @@
 package com.tp.yogioteur.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.tp.yogioteur.domain.ReviewReplyDTO;
 import com.tp.yogioteur.mapper.ReviewReplyMapper;
@@ -19,19 +21,24 @@ public class ReviewReplyServiceImpl implements ReviewReplyService {
 	private ReviewReplyMapper reviewReplyMapper;
 	
 	@Override
-	public Map<String, Object> ReviewReplyList(Long reviewNo) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("reviewReply", reviewReplyMapper.selectReviewReplyList(reviewNo));
-		return map;
+	public void ReviewReplyList(HttpServletRequest request, Model model) {
+		
+		
+		
+		
 	}
 
 	@Override
 	public Map<String, Object> ReviewReplySave(HttpServletRequest request) {
-		ReviewReplyDTO reviewReply = ReviewReplyDTO.builder()
-				.reviewNo(Long.parseLong(request.getParameter("reviewNo")))
-				.replyContent(request.getParameter("replyContent"))
-				.build();
+		Long reviewNo = Long.parseLong(request.getParameter("reviewNo"));
+		String replyContent = request.getParameter("replyContent");
 		
+		
+		ReviewReplyDTO reviewReply = ReviewReplyDTO.builder()
+				.reviewNo(reviewNo)
+				.replyContent(replyContent)
+				.build();
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("res", reviewReplyMapper.insertReviewReply(reviewReply));
 		

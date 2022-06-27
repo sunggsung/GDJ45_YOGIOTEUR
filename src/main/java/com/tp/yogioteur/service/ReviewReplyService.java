@@ -4,10 +4,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.ui.Model;
+
 public interface ReviewReplyService {
 	
 		//리뷰댓글 목록
-		public Map<String, Object> ReviewReplyList(Long reviewNo);
+		public void ReviewReplyList(HttpServletRequest request, Model model);
 		
 		// 리뷰 댓글 추가
 		public Map<String, Object> ReviewReplySave(HttpServletRequest request);
