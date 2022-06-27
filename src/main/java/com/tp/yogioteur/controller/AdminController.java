@@ -33,11 +33,6 @@ public class AdminController {
 	public String reservation() {
 		return "admin/reservation";
 	}
-
-	@GetMapping("/admin/room")
-	public String room() {
-		return "admin/room";
-	}
 	
 	@GetMapping("/admin/addRoomPage")
 	public String addRoomPage() {
