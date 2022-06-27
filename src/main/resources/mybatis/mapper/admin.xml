@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection property="roomTypeDTO" resultMap="RoomTypeMap"/>
 	</resultMap>
 	
-	<select id="selectRoomList" parameterType="Map" resultType="RoomDTO">
+	<select id="selectRoomList" parameterType="Map" resultMap="RoomDTOMap">
 		SELECT A.ROOM_NO, A.RT_NO, A.ROOM_NAME, A.ROOM_STATUS, A.ROOM_CHECKIN, A.ROOM_CHECKOUT, A.ROOM_PRICE, A.RT_TYPE, A.RT_MAX
 	      FROM (SELECT ROW_NUMBER() OVER(ORDER BY R.ROOM_NO DESC) AS ROW_NUM, R.ROOM_NO, R.RT_NO, R.ROOM_NAME, R.ROOM_STATUS, R.ROOM_CHECKIN, R.ROOM_CHECKOUT, R.ROOM_PRICE, T.RT_TYPE, T.RT_MAX
 			      FROM ROOM R INNER JOIN ROOM_TYPE T
@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM ROOM
 	</select>
 	
-	<select id="selectRoomByNo" parameterType="Long" resultType="RoomDTO">
+	<select id="selectRoomByNo" parameterType="Long" resultMap="RoomDTOMap">
 		SELECT R.ROOM_NO, R.RT_NO, R.ROOM_NAME, R.ROOM_STATUS, R.ROOM_CHECKIN, R.ROOM_CHECKOUT, R.ROOM_PRICE, T.RT_TYPE, T.RT_MAX
 		  FROM ROOM R INNER JOIN ROOM_TYPE T
 			ON R.RT_NO = T.RT_NO

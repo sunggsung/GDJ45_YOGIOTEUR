@@ -1,24 +1,15 @@
 package com.tp.yogioteur.service;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface RoomService {
 	
 
 	//객실 조회
 	public void roomList(HttpServletRequest request, Model model);
-	
-	
-	
-	
-	//관리자 등록, 조회
-	public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response);
-	public Map<String, Object> findRooms();
+	public ResponseEntity<byte[]> roomDisplay(String path, String thumbnail);
 	
 }

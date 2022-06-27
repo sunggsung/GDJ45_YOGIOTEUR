@@ -1,18 +1,19 @@
 package com.tp.yogioteur.service;
 
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.nio.file.Files;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.util.FileCopyUtils;
 
-import com.tp.yogioteur.domain.RoomDTO;
+import com.tp.yogioteur.domain.ImageDTO;
 import com.tp.yogioteur.mapper.RoomMapper;
 
 
@@ -22,42 +23,37 @@ public class RoomServiceImpl implements RoomService {
 	@Autowired
 	private RoomMapper roomMapper;
 	
-	@Override
-	public void saveRoom(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
-		// 첨부된 모든 파일들
-		List<MultipartFile> files = multipartRequest.getFiles("files");  // 파라미터 files
-				
-		// 파일 첨부 결과
-		int fileAttachResult;
-		if(files.get(0).getOriginalFilename().isEmpty()) {  // 첨부가 없으면 files.size() == 1임. [MultipartFile[field="files", filename=, contentType=application/octet-stream, size=0]] 값을 가짐.
-			fileAttachResult = 1;
-		} else {  // 첨부가 있으면 "files.size() == 첨부파일갯수"이므로 fileAttachResult = 0으로 시작함.
-			fileAttachResult = 0;
-		}
-				
-				
-	}
 
 	@Override
 	public void roomList(HttpServletRequest request, Model model) {
 		
-		/*
+		/* checkIn > checkOut 되어있다면 alert창 뜨게하기
+		 * roomStatus 0이 없다면 예약이 꽉찼다는 alert창 뜨게하기
 		 * //checkIn, out 데이터 받기 String checkIn = request.getParameter("checkIn");
 		 * String checkOut = request.getParameter("checkOut");
 		 */
 		
-		
 		//mapper 데이터 받기
 		model.addAttribute("roomList", roomMapper.checkInRoomList());
 		
-		
-		
-		
 	}
 	
-	@Override
-	public Map<String, Object> findRooms() {
-		// TODO Auto-generated method stub
-		return null;
+@Override
+public ResponseEntity<byte[]> roomDisplay(String path, String thumbnail) {
+		
+	File file = new File(path, thumbnail);
+	
+	ResponseEntity<byte[]> result = null;
+	try {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", Files.probeContentType(file.toPath()));
+		result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), null, HttpStatus.OK);
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
+	
+	return result;
+	}
+			
+	
 }

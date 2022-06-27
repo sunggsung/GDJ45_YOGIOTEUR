@@ -16,27 +16,21 @@
 	
 	<h1>예약 가능 객실 조회</h1>
 	
-	객실이름: ${roomList.roomName}
 	
-	<%-- <table>
-	
+	<table>
 		<tbody>
 			<c:forEach items="${roomList}" var="roomLi">
 				<tr>
-					<td>${roomLi.imageNo}</td>
-					<td>${roomLi.roomNo}</td>			
-					<td>${roomLi.imagePath}</td>			
-					<td>${roomLi.imageSaved}</td>			
-					<td>${roomLi.imageOrigin}</td>			
+					<td>${roomLi.imageDTO.imageNo}</td>		
 					<td>${roomLi.roomName}</td>			
-					<td>${roomLi.roomTypeDTO.rtType}</td>			
 					<td>${roomLi.roomPrice}</td>		
+					<td><input type="button" id="reservation" value="예약하기"></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 		
 	</table>
-	 --%>
+	
 	
 </body>
 </html>

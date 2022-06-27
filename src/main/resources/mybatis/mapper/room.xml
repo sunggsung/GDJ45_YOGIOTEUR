@@ -5,14 +5,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.tp.yogioteur.mapper.RoomMapper">
 
+	<resultMap type="ImageDTO" id="ImageMap">
+		<id column="IMAGE_NO" property="imageNo"/>
+		<result column="ROOM_NO" property="roomNo"/>
+		<result column="IMAGE_PATH" property="imagePath"/>
+		<result column="IMAGE_SAVED" property="imageSaved"/>
+		<result column="IMAGE_ORIGIN" property="imageOrigin"/>
+	</resultMap>
 	
-	<select id="checkInRoomList" resultType="RoomDTO">
-		SELECT ROOM_NO, RT_NO, ROOM_NAME, ROOM_STATUS, ROOM_CHECKIN, ROOM_CHECKOUT, ROOM_PRICE
-		  FROM ROOM
-		  <![CDATA[
-		 WHERE ROOM_CHECKIN >= TO_CHAR('1900-01-01', 'YYYY-MM-DD')
-		   AND ROOM_CHECKOUT <  TO_CHAR('9999-12-31', 'YYYY-MM-DD')
-		  ]]>
+	<resultMap type="RoomTypeDTO" id="RoomTypeMap">
+		<id column="RT_NO" property="rtNo"/>
+		<result column="RT_TYPE" property="rtType"/>
+		<result column="RT_MAX" property="rtMax"/>
+	</resultMap>
+	
+	<resultMap type="RoomDTO" id="RoomDTOMap">
+		<id column="ROOM_NO" property="roomNo"/>
+		<result column="RT_NO" property="rtNo"/>
+		<result column="ROOM_NAME" property="roomName"/>
+		<result column="ROOM_PRICE" property="roomPrice"/>
+		<result column="ROOM_STATUS" property="roomStatus"/>
+		<result column="ROOM_CHECKIN" property="roomCheckIn"/>
+		<result column="ROOM_CHECKOUT" property="roomCheckOut"/>
+		<collection property="roomTypeDTO" resultMap="RoomTypeMap"/>
+		<collection property="imageDTO" resultMap="ImageMap"/>
+	</resultMap>
+	
+	<select id="checkInRoomList" resultMap="RoomDTOMap">
+		SELECT I.IMAGE_PATH, R.ROOM_NAME, R.ROOM_PRICE
+		  FROM ROOM R INNER JOIN IMAGE I
+		    ON R.ROOM_NO = I.ROOM_NO
+	 	  <![CDATA[
+		 WHERE ROOM_CHECKIN >= '1900-01-01'
+		   AND ROOM_CHECKOUT < '9999-12-31'
+		  ]]> 
 	</select>
+	
 	
 </mapper>

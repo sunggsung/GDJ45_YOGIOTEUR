@@ -33,11 +33,6 @@ public class AdminController {
 	public String reservation() {
 		return "admin/reservation";
 	}
-
-//	@GetMapping("/admin/room")
-//	public String room() {
-//		return "admin/room";
-//	}
 	
 	@GetMapping("/admin/addRoomPage")
 	public String addRoomPage() {
@@ -54,6 +49,11 @@ public class AdminController {
 		openAPIService.execute(request, response);
 	}
 	
+	@GetMapping("/admin/room")
+	public String room(HttpServletRequest request, Model model) {
+		adminService.findRooms(request, model);
+		return "admin/room";
+	}
 	
 	@GetMapping("/admin/roomDetail")
 	public String roomDetail(HttpServletRequest request, Model model) {
@@ -67,10 +67,10 @@ public class AdminController {
 		return adminService.display(imageNo, type);
 	}
 	
-//	@PostMapping("/room/saveRoom")
-//	public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
-//		adminService.saveRoom(request, response);
-//	}
+	@PostMapping("/room/saveRoom")
+	public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
+		adminService.saveRoom(request, response);
+	}
 	
 	@PostMapping("/room/changeRoom")
 	public void changeRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
