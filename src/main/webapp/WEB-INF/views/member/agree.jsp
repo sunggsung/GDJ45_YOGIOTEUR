@@ -14,6 +14,9 @@
 		margin: 0 auto;
 		font-family: 'Kdam Thmor Pro', sans-serif;
 	}
+	.title {
+		text-align: center;
+	}
 	#agreeForm {
 		text-align: center;
 	}
@@ -96,11 +99,11 @@
 </script>
 </head>
 <body>
-	<jsp:include page="../layout/header.jsp"></jsp:include>
-
+	
+	<div class="title"><h3>약관 동의하기</h3></div>
+	
 	
 	<form id="agreeForm" action="${contextPath}/member/signInPage">
-	<h3>약관 동의하기</h3>
 		<div class="box">
 			<input type="checkbox" id="checkAll" class="blind checkAll">
 			<label for="checkAll" class="items">

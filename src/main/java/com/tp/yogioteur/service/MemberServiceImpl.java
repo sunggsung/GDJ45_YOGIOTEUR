@@ -292,7 +292,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		Optional<String> opt = Optional.ofNullable(request.getParameter("memberNo"));
 		Long memberNo = Long.parseLong(opt.orElse("0"));
-		
 		int res = memberMapper.removeMember(memberNo);
 
 		try {
@@ -323,6 +322,7 @@ public class MemberServiceImpl implements MemberService {
 	public SignOutMemberDTO findSignOutMember(String memberId) {
 		return memberMapper.selectSignOutMemberByMemberId(memberId);
 	}
+	
 	// 재가입
 	@Transactional
 	@Override

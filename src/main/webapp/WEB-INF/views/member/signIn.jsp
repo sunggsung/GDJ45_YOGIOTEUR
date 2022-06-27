@@ -246,9 +246,9 @@
 </head>
 <body>
 	
-	<jsp:include page="../layout/header.jsp"></jsp:include>
 	
 	<h3>회원가입</h3>
+	<hr>
 	
 	<form id="SignInform" action="${contextPath}/member/signIn" method="post">
 	
@@ -257,36 +257,36 @@
 		
 		<label for="memberId">
 			아이디<br>
-			<input type="text" name="memberId" id="memberId"><br>
+			<input type="text" name="memberId" id="memberId" placeholder="사용할 아이디를 입력하세요"><br>
 			<span id="memberIdMsg"></span>
 		</label><br>
 		
 		<label for="memberPw">
 			비밀번호<br>
-			<input type="password" name="memberPw" id="memberPw"><br>
+			<input type="password" name="memberPw" id="memberPw" placeholder="비밀번호를 입력하세요"><br>
 			<span id="memberPwMsg"></span>
 		</label><br>
 
 		<label for="memberPwConfirm">
 			비밀번호 재확인<br>
-			<input type="password" id="memberPwConfirm"><br>
+			<input type="password" id="memberPwConfirm" placeholder="한번 더 같은 비밀번호를 입력하세요"><br>
 			<span id="memberPwConfirmMsg"></span>
 		</label><br>
 		
 		<label for="memberName">
 			이름<br>
-			<input type="text" name="memberName" id="memberName"><br>
+			<input type="text" name="memberName" id="memberName" placeholder="이름"><br>
 		</label><br>
 		
 		<label for="memberPhone">
 			연락처<br>
-			<input type="text" name="memberPhone" id="memberPhone"><br>
+			<input type="text" name="memberPhone" id="memberPhone" placeholder="전화번호는 하이픈(-)을 제외한 숫자만 입력해주세요"><br>
 			<span id="memberPhoneMsg"></span>
 		</label><br>
 		
 		<label for="memberBirth">
 			생년월일<br>
-			<input type="text" name="memberBirth" id="memberBirth"><br>
+			<input type="text" name="memberBirth" id="memberBirth" placeholder="생년월일(6자)을 입력하세요"><br>
 			<span id="memberBirthMsg"></span>
 		</label><br>
 		
@@ -295,7 +295,7 @@
 			<input type="radio" name="memberGender" id="male" value="male">남
 			<input type="radio" name="memberGender" id="female" value="female">여
 		</label>
-		<br>
+		<br><br>
 		
 		<div>
 			주소<br>
@@ -307,16 +307,16 @@
 		
 		<label for="memberEmail">
 			이메일<br>
-			<input type="text" name="memberEmail" id="memberEmail">
+			<input type="text" name="memberEmail" id="memberEmail" placeholder="사용할 이메일을 입력하세요">
 			<input type="button" value="인증번호받기" id="btnGetAuthCode"><br>
 			<span id="memberEmailMsg"></span><br>
-			<input type="text" name="authCode" id="authCode" placeholder="인증코드 입력">
+			<input type="text" name="authCode" id="authCode" placeholder="인증코드를 입력하세요">
 			<input type="button" value="인증하기" id="btnVerifyAuthCode"><br><br>
 		</label>
 		
 		
 		<label for="memberPromoAdd">
-			이메일 수신여부
+			이메일 수신여부<br>
 			<input type="radio" name="memberPromoAdd" value="yes" id="agree_yes">
             <label for="agree_yes">동의함</label>
             <input type="radio" name="memberPromoAdd" value="no" id="agree_no">
@@ -324,7 +324,7 @@
 		</label>
 		<br><br>
 		
-		<button>회원가입</button>
+		<button>가입하기</button>
 		<input type="button" value="취소하기" onclick="location.href='${contextPath}'"> 
 	</form>
 

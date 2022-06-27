@@ -74,6 +74,8 @@ function fnReSignIn(){
 		<input type="hidden" name="memberId" value="${member.id}">
 		<input type="hidden" name="memberEmail" value="${member.email}">
 		<input type="hidden" name="agreeState" value="${member.agreeState}">		
+		<input type="hidden" name="memberPhone" value="${member.memberPhone}">		
+		<input type="hidden" name="memberBirth" value="${member.memberBirth}">		
 		<br>
 		<button>사이트 다시 이용하기</button>
 		

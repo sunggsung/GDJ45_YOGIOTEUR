@@ -44,51 +44,8 @@
 		fnChangePw();
 	})
 	
-	let pwPass = false;
-	function fnPwCheck(){
-		$('#memberPw').on('keyup', function(){
-			let regPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/; 
-			if(regPw.test($('#memberPw').val())==false){
-				$('#pwMsg').text('영문 소문자, 숫자, 특수문자 포함 8~12자로 입력해주세요.').addClass('dont').removeClass('ok');
-				pwPass = false;
-			} else {
-				$('#pwMsg').text('사용 가능한 비밀번호입니다.').addClass('ok').removeClass('dont');
-				pwPass = true;
-			}
-		})
-	}
 	
-
-	let rePwPass = false;
-	function fnPwConfirm(){
-		$('#memberRePw').on('keyup', function(){
-			if($('#memberRePw').val() != '' && $('#memberPw').val() != $('#memberRePw').val()){
-				$('#rePwMsg').text('비밀번호를 확인하세요.').addClass('dont').removeClass('ok');
-				rePwPass = false;
-			} else {
-				$('#rePwMsg').text('');
-				rePwPass = true;
-			}
-		})
-	}
 	
-	function fnChangePw(){
-		$('#modifyForm').on('submit', function(event){
-			if(pwPass == false || rePwPass == false){
-				alert('비밀번호를 확인하세요.');
-				event.preventDefault();
-				return false;
-			}
-			else if('${loginMember.memberPhone}' == $('#memberPhone').val() && '${loginMember.memberEmail}' == $('#memberEmail').val()){
-				alert('변경된 정보가 없습니다.');
-				e.preventDefault();
-				return false;
-			}
-			}
-			return true;
-			})
-		})
-	}
 </script>
 </head>
 <body>
