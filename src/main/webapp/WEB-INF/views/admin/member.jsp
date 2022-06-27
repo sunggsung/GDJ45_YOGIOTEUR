@@ -11,10 +11,10 @@
 <script>
 
 	$(function(){
-		
+		fnMemberDetail();
 	})
 	
-	function fnDetail() {
+	function fnMemberDetail() {
 		$('.btnDetail').on('click', function() {
 			location.href='${contextPath}/admin/memberDetail?memberNo=' + $(this).data('member_no');
 		})

@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tp.yogioteur.domain.ImageDTO;
 import com.tp.yogioteur.domain.MemberDTO;
+import com.tp.yogioteur.domain.ReservationDTO;
 import com.tp.yogioteur.domain.RoomDTO;
 import com.tp.yogioteur.mapper.AdminMapper;
 import com.tp.yogioteur.util.MyFileUtils;
@@ -378,6 +379,34 @@ public class AdminServiceImpl implements AdminService {
 		model.addAttribute("member", adminMapper.selectMemberByNo(memberNo));
 	}
 	
+	@Override
+	public void findReservations(HttpServletRequest request, Model model) {
+		Optional<String> opt = Optional.ofNullable(request.getParameter("page"));
+		int page = Integer.parseInt(opt.orElse("1"));
+		int totalRecord = adminMapper.selectReservationCount();
+		
+		PageUtils pageUtils = new PageUtils();
+		pageUtils.setPageEntity(totalRecord, page);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("beginRecord", pageUtils.getBeginRecord());
+		map.put("endRecord", pageUtils.getEndRecord());
+		
+		List<MemberDTO> reservations = adminMapper.selectReservationList(map);
+		System.out.println(reservations);
+		model.addAttribute("totalRecord", totalRecord);
+		model.addAttribute("reservations", reservations);
+		model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtils.getRecordPerPage());
+		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/admin/reservation"));
+	}
 	
+	@Override
+	public Map<String, Object> findReservationByMemberNo(HttpServletRequest request, Model model) {
+		Long memberNo = Long.parseLong(request.getParameter("memberNo"));
+		Map<String, Object> map = new HashMap<>();
+		List<ReservationDTO> reservation =  adminMapper.selectReservationByMemberNo(memberNo);
+		map.put("reservation", reservation);
+		return map;
+	}
 	
 }

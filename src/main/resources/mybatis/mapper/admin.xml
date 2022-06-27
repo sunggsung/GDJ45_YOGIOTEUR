@@ -106,4 +106,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM MEMBER
 	</select>
 	
+	<select id="selectMemberByNo" parameterType="Long" resultType="MemberDTO">
+		SELECT MEMBER_NO, MEMBER_NAME, MEMBER_EMAIL, MEMBER_ID, MEMBER_PHONE, MEMBER_BIRTH, MEMBER_ROAD_ADDR, SIGN_IN
+		  FROM MEMBER
+		 WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<select id="selectReservationList" resultType="ReservationDTO">
+		SELECT RESER_NO, MEMBER_NO, ROOM_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE
+		  FROM RESERVATION
+		 ORDER BY RESER_NO DESC
+	</select>
+	
+	<select id="selectReservationCount" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM RESERVATION
+	</select>
+	
+	<select id="selectReservationByMemberNo" parameterType="Long" resultType="ReservationDTO">
+		SELECT RESER_NO, MEMBER_NO, ROOM_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE
+		  FROM RESERVATION
+		 WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
 </mapper>

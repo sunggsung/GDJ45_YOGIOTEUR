@@ -1,6 +1,7 @@
 package com.tp.yogioteur.controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,16 +30,6 @@ public class AdminController {
 		return "admin/adminPage";
 	}
 	
-	@GetMapping("/admin/reservation")
-	public String reservation() {
-		return "admin/reservation";
-	}
-
-	@GetMapping("/admin/addRoomPage")
-	public String addRoomPage() {
-		return "admin/addRoom";
-	}
-	
 	@GetMapping("/admin/weatherPage")
 	public String weatherPage() {
 		return "admin/weather";
@@ -47,6 +38,12 @@ public class AdminController {
 	@GetMapping("/admin/weather")
 	public void weather(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		openAPIService.execute(request, response);
+	}
+	
+	/* 객실 관리 */
+	@GetMapping("/admin/addRoomPage")
+	public String addRoomPage() {
+		return "admin/addRoom";
 	}
 	
 	@GetMapping("/admin/room")
@@ -67,10 +64,10 @@ public class AdminController {
 		return adminService.display(imageNo, type);
 	}
 	
-//	@PostMapping("/room/saveRoom")
-//	public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
-//		adminService.saveRoom(request, response);
-//	}
+	@PostMapping("/room/saveRoom")
+	public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
+		adminService.saveRoom(request, response);
+	}
 	
 	@PostMapping("/room/changeRoom")
 	public void changeRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
@@ -82,6 +79,8 @@ public class AdminController {
 		adminService.removeRoom(request, response);
 	}
 	
+
+	/* 회원 관리 */
 	@GetMapping("/admin/member")
 	public String member(HttpServletRequest request, Model model) {
 		adminService.findMembers(request, model);
@@ -90,8 +89,22 @@ public class AdminController {
 	
 	@GetMapping("/admin/memberDetail")
 	public String memberDetail(HttpServletRequest request, Model model) {
-		adminService.findRoomByNo(request, model);
+		adminService.findMemberByNo(request, model);
 		return "admin/memberDetail";
+	}
+	
+	
+	/* 예약 관리 */
+	@GetMapping("/admin/reservationList")
+	public String reservationList(HttpServletRequest request, Model model) {
+		adminService.findReservations(request, model);
+		return "admin/reservation";
+	}
+	
+	@ResponseBody
+	@GetMapping("/admin/reservation")
+	public Map<String, Object> reservation(HttpServletRequest request, Model model) {
+		return adminService.findReservationByMemberNo(request, model);
 	}
 
 }
