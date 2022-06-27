@@ -14,43 +14,42 @@
 <script>
 
 	$(function(){
-		/* fnAdminReply();
+		/* fnAdminReply(); */
 		fnAdminReplySave();
-		fnAdminReplyRemove();
-		fnInit(); */
+		/*fnAdminReplyRemove();*/
+		fnInit();
 	})
 	
-	function fnAdminReply(){
+	/* function fnAdminReply(){
 		$.ajax({
-			url: '${contextPath}/reply/replyList',
-			type:'get',
-			date: 'reviewNo=${review.reviewRevNo}',
-			dataType:'json',
-			success:function(obj){
-				$('#adminReplyList').empty();
+			url:'${contextPath}/reply/reviewReplyList',
+			type: 'get',
+			data: 'reviewNo=${reviewNo}',
+			dataType: 'json',
+			sucess:function(obj){
 				$.each(obj.replies, function(i, reply){
-					var tr = $('<tr>')
-					.append($('<td>').text(reply.replyContent))
-					.append($('<td>').text(reply.replyCreated));
-					//.append($('<td>').html('<span class="removeReplyLink" data-reply_no="' + reply.replyNo + '">관리자 댓글 삭제</span>"'));
-
-					$(tr).appendTo('#adminReplyList');
+					var ul = $('<ul>')
+					.append($('<li>').text(reply.replyContent))
+					.append($('<li>').text(reply.replyCreated));
+						
+					$(ul).appendTO('#adminReplyList');
 				})
 			}
-		})
+		}) */
+		
 	}
+	
 	
 	function fnAdminReplySave(){
 		$('#replyAdd').on('click', function(){
 			$.ajax({
-				url:'${context}/reply/replySave',
+				url:'${contextPath}/reply/reviewReplySave',
 				type: 'post',
 				data: $('#replydata').serialize(),
 				dataType: 'json',
 				sucess:function(obj){
 					if(obj.res > 0){
 						alert('댓글이 등록되었습니다');
-						fnAdminReply();
 						fnInit();
 					}
 				}
@@ -113,16 +112,13 @@
    			<div class="memberReview">
    				<div class="reviewbox"> 
    					별점 : ${review.reviewRevNo}<br>
-
    					<c:forEach var="i" begin="1" end="5">
-   						
    						<c:if test="${review.reviewRevNo ge i}">
 	   						<span id="staro">★</span>					
    						</c:if>
    						<c:if test="${review.reviewRevNo lt i}">
 	   						<span id="staro">☆</span>					
-   						</c:if>
-	   										
+   						</c:if>	
    					</c:forEach>
    					
    					
@@ -141,16 +137,20 @@
    			</div>
    			
 	   			<div class="adminReply">
+		   			
+		   				관리자 댓글 :
+		   				<div id="adminReplyList" data-review_no="${review.reviewNo}">
+		   				
+		   				</div>
+		   				
+		   				<input type="button" id="removeReplyLink" value="댓글 삭제">
+
 		   			<form id="replydata" action="${contextPath}/reply/replySave">
-		   				<input type="hidden" value="${review.reviewNo}">
+		   				<input type="hidden" name="reviewNo" value="${review.reviewNo}">
 		   				<textarea rows="10" cols="50" id="replyContent" name="replyContent"></textarea>
 		   				<button type="button" id="replyAdd">댓글 등록</button>
 		   			</form>
-		   			<div id="adminReplyList">
-		   				관리자 댓글 :
-		   				
-		   				<input type="button" id="removeReplyLink" value="댓글 삭제">
-		   			</div>
+		   		
 	   			
 	   			
 	   			</div>

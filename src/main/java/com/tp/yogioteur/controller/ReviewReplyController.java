@@ -18,15 +18,11 @@ import com.tp.yogioteur.service.ReviewReplyService;
 public class ReviewReplyController {
 	@Autowired
 	private ReviewReplyService reviewReplyService;
+
+	
 	
 	@ResponseBody
-	@GetMapping(value="/reply/replyList", produces="application/json; charset=UTF-8")
-	public Map<String, Object> reviewReplyList(@RequestParam Long reviewNo){
-		return reviewReplyService.ReviewReplyList(reviewNo);
-	}
-	
-	@ResponseBody
-	@PostMapping(value="/reply/replySave", produces="application/json; charset=UTF-8")
+	@PostMapping(value="/reply/reviewReplySave", produces="application/json; charset=UTF-8")
 	public Map<String, Object> reviewReplySave(HttpServletRequest request){
 		return reviewReplyService.ReviewReplySave(request);
 	}

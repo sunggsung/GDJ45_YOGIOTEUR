@@ -14,10 +14,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 댓글 추가 -->
 	<insert id="insertReviewReply" parameterType="ReviewReplyDTO">
-		INSERT INTO
+		INSERT INTO REVIEW_REPLY
 			(REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED)
 		VALUES
-			(REVIEW_REPLY_NO_SEQ.NEXTVAL, #{reviewNo}, #{reviewContent}, SYSDATE)
+			(REVIEW_REPLY_NO_SEQ.NEXTVAL, #{reviewNo}, #{replyContent}, SYSDATE)
 	</insert>
 	
 	<!-- 댓글 삭제 -->
