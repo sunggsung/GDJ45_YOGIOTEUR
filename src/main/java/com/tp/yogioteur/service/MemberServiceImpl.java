@@ -20,7 +20,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tp.yogioteur.domain.MemberDTO;
 import com.tp.yogioteur.domain.SignOutMemberDTO;
@@ -243,23 +242,30 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
 
-		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
-		String memberName = SecurityUtils.xss(request.getParameter("memberName")); 
-		String memberPhone = request.getParameter("memberPhone");    
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
+		String memberName = SecurityUtils.xss(request.getParameter("memberName"));   
+		String memberPhone =request.getParameter("memberPhone");    
+		String memberBirth = request.getParameter("memberBirth");   
+		String memberGender = request.getParameter("memberGender");
+		String memberPostCode = request.getParameter("memberPostCode");
+		String memberRoadAddr = request.getParameter("memberRoadAddr");
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
-		String memberBirth = request.getParameter("memberBirth");  
+		String memberPromoAdd = request.getParameter("memberPromoAdd");
 		
 		MemberDTO member = MemberDTO.builder()
 				.memberId(memberId)
 				.memberName(memberName)
-				.memberPhone(memberPhone)
-				.memberEmail(memberEmail)
 				.memberBirth(memberBirth)
+				.memberPhone(memberPhone)
+				.memberPostCode(memberPostCode)
+				.memberRoadAddr(memberRoadAddr)
+				.memberGender(memberGender)
+				.memberEmail(memberEmail)
+				.memberPromoAdd(memberPromoAdd)
 				.build();
 		
 		System.out.println(member);
 		int res = memberMapper.updateMember(member);
-		System.out.println(res);
 		try {
 			response.setContentType("text/html; charset=UTF-8");
 			HttpSession session = request.getSession();
@@ -334,6 +340,8 @@ public class MemberServiceImpl implements MemberService {
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail"));
 		Integer agreeState = Integer.parseInt(request.getParameter("agreeState"));
 		
+		
+		
 		// MemberDTO
 		MemberDTO member = MemberDTO.builder()
 				.memberPw(memberPw)
@@ -343,7 +351,8 @@ public class MemberServiceImpl implements MemberService {
 				.memberEmail(memberEmail)
 				.agreeState(agreeState)
 				.build();
-
+		
+		
 		// MEMBER 테이블에 member 저장
 		int res1 = memberMapper.reSignInMember(member);
 		int res2 = memberMapper.removeSignOutMember(memberId);
