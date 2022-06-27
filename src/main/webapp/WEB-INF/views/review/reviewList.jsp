@@ -13,83 +13,23 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
 
-	$(function(){
-		/* fnAdminReply(); */
-		fnAdminReplySave();
-		/*fnAdminReplyRemove();*/
-		fnInit();
-	})
-	
-	/* function fnAdminReply(){
-		$.ajax({
-			url:'${contextPath}/reply/reviewReplyList',
-			type: 'get',
-			data: 'reviewNo=${reviewNo}',
-			dataType: 'json',
-			sucess:function(obj){
-				$.each(obj.replies, function(i, reply){
-					var ul = $('<ul>')
-					.append($('<li>').text(reply.replyContent))
-					.append($('<li>').text(reply.replyCreated));
-						
-					$(ul).appendTO('#adminReplyList');
-				})
-			}
-		}) */
-		
-	}
-	
-	
-	function fnAdminReplySave(){
-		$('#replyAdd').on('click', function(){
-			$.ajax({
-				url:'${contextPath}/reply/reviewReplySave',
-				type: 'post',
-				data: $('#replydata').serialize(),
-				dataType: 'json',
-				sucess:function(obj){
-					if(obj.res > 0){
-						alert('댓글이 등록되었습니다');
-						fnInit();
-					}
-				}
-			})
-		})
-	}
-	
-	function fnAdminReplyRemove(){
-		$('#removeReplyLink').on('click',function(){
-			if(confirm('삭제할까요?')){
-				$.ajax({
-					url: '${contextPath}/reply/replyRemove',
-					type: 'get',
-					date: 'replyNo=' + $(this).data('reply_no'),
-					dataType: 'json',
-					success: function(obj){
-						if(obj.res > 0){
-							alert('댓글이 삭제되었습니다.');
-							fnAdminReply();
-							fnInit();
-						}
-					}
-				})
-			}
-		})
-	}
-	
-	function fnInit(){
-		$('#replyContent').val('');
+
+	function fnReviewReply(bn){
+		location.href='${contextPath}/reply/reviewReplySavePage?reviewNo=' + $(bn).data('review_no');
 	}
 	
 	 function fnReviewRemove(rn){      
-	       if(confirm('삭제할까요?')){
+	       if(confirm('리뷰를 삭제할까요?')){
 	          location.href='${contextPath}/review/reviewRemove?reviewNo=' + $(rn).data('review_no');
 	       }
 	 }
 	 
-	 function fnReviewReply(rr){
-		 location.href='${contextPath}/review/reviewReply?reviewNo=' + $(rr).data('review_no');
+	 function fnReviewReplyRemove(rpn){
+		 if(confirm('댓글을 삭제할까요?')){
+	          location.href='${contextPath}/reply/reviewReplyRemove?replyNo=' + $(rpn).data('reply_no');
+	       }
 	 }
+	 
 </script>
 <style>
 	.reviewbox {
@@ -129,30 +69,24 @@
 					
 					
 		   			<input type="button" value="삭제" name="reviewRemoveBtn" data-review_no="${review.reviewNo}" onclick="fnReviewRemove(this)">
-		   			<input type="button" value="댓글달기" name="reviewReplyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewReply(this)">
+		   			<input type="button" value="댓글달기" id ="reviewReplyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewReply(this)">
 		   			
 		   			<hr>
 		   			
    				</div>
    			</div>
    			
-	   			<div class="adminReply">
-		   			
-		   				관리자 댓글 :
-		   				<div id="adminReplyList" data-review_no="${review.reviewNo}">
-		   				
-		   				</div>
-		   				
-		   				<input type="button" id="removeReplyLink" value="댓글 삭제">
-
-		   			<form id="replydata" action="${contextPath}/reply/replySave">
-		   				<input type="hidden" name="reviewNo" value="${review.reviewNo}">
-		   				<textarea rows="10" cols="50" id="replyContent" name="replyContent"></textarea>
-		   				<button type="button" id="replyAdd">댓글 등록</button>
-		   			</form>
-		   		
-	   			
-	   			
+	   			<div class="adminReply">		
+					<c:forEach items="${reviewReplies}" var="reviewReply">
+	   						<c:if test="${review.reviewNo eq reviewReply.reviewNo}">
+		   						<div id="adminReplyList" >
+				   					<div>관리자댓글
+										${reviewReply.replyContent}			   					
+							   			<input type="button" id="reviewReplyRemoveBtn" value="댓글 삭제" data-reply_no="${reviewReply.replyNo}" onclick="fnReviewReplyRemove(this)">
+				   					</div>					
+				   				</div>		   					   						
+	   						</c:if>
+					</c:forEach>
 	   			</div>
    			
    		</div>

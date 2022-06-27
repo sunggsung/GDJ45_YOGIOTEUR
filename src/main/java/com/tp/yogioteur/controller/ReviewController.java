@@ -23,13 +23,10 @@ public class ReviewController {
 	@Autowired
 	public ReviewService reviewService;
 	
-	@Autowired
-	private ReviewReplyService reviewReplyService;
 	
 	@GetMapping("/review/reviewList")
 	public String reviewList(HttpServletRequest request, Model model) {
 		reviewService.ReviewList(request, model);
-		reviewReplyService.ReviewReplyList(request, model);
 		return "review/reviewList";
 	}
 	
@@ -38,8 +35,8 @@ public class ReviewController {
 		return"review/reviewSave";
 	}
 	
-	@PostMapping("/review/reviewSave") public void
-	reviewSave(MultipartHttpServletRequest multiparRequest, HttpServletResponse response) {
+	@PostMapping("/review/reviewSave") 
+	public void reviewSave(MultipartHttpServletRequest multiparRequest, HttpServletResponse response) {
 	
 		reviewService.ReviewSave(multiparRequest, response); 
 	
