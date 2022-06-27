@@ -11,7 +11,7 @@
 <script>
 
 	$(function(){
-		fnFindMemberList();
+		
 	})
 	
 	function fnFindMemberList() {

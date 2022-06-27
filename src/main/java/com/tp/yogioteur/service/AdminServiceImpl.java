@@ -372,4 +372,12 @@ public class AdminServiceImpl implements AdminService {
 		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/admin/member"));
 	}
 	
+	@Override
+	public void findMemberByNo(HttpServletRequest request, Model model) {
+		Long memberNo = Long.parseLong(request.getParameter("memberNo"));
+		model.addAttribute("member", adminMapper.selectMemberByNo(memberNo));
+	}
+	
+	
+	
 }

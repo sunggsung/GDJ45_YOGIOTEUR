@@ -13,25 +13,10 @@
 	$(function(){
 		
 	})
-	function fnFindMemberList() {
-		$.ajax({
-			url: '${contextPath}/admin/findMembers',
-			type: 'GET',
-			success: function(obj) {
-				$('#members').empty();
-				$.each(obj.members, function(i, member) {
-					var tr = '<tr>';
-					tr += '<td>' + member.memberNo + '</td>';
-					tr += '<td>' + member.memberId + '</td>';
-					tr += '<td>' + member.memberName + '</td>';
-					tr += '<td>' + member.memberEmail + '</td>';
-					tr += '<td>' + member.memberPhone + '</td>';
-					tr += '<td>' + member.memberBirth + '</td>';
-					tr += '<td><input type="button" value="예약내역확인" data-member_no="' + member.memberNo + '"></td>';
-					tr += '</tr>';
-					$('#members').append(tr);
-				})
-			}
+	
+	function fnDetail() {
+		$('.btnDetail').on('click', function() {
+			location.href='${contextPath}/admin/memberDetail?memberNo=' + $(this).data('member_no');
 		})
 	}
 	
@@ -67,7 +52,7 @@
 							<td>${member.memberEmail}</td>
 							<td>${member.memberPhone}</td>
 							<td>${member.signIn}</td>
-							<td><input type="button" value="상세보기" class="btnDetail" data-room_no="${member.memberNo}"></td>
+							<td><input type="button" value="상세보기" class="btnDetail" data-member_no="${member.memberNo}"></td>
 						</tr>
 					</c:forEach>
 				</tbody>

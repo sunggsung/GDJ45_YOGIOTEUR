@@ -88,5 +88,10 @@ public class AdminController {
 		return "admin/member";
 	}
 	
+	@GetMapping("/admin/memberDetail")
+	public String memberDetail(HttpServletRequest request, Model model) {
+		adminService.findRoomByNo(request, model);
+		return "admin/memberDetail";
+	}
 
 }

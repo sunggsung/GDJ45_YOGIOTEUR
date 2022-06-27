@@ -28,4 +28,5 @@ public interface AdminMapper {
 	
 	public List<MemberDTO> selectMemberList(Map<String, Object> map);
 	public int selectMemberCount();
+	public MemberDTO selectMemberByNo(Long memberNo);
 }
