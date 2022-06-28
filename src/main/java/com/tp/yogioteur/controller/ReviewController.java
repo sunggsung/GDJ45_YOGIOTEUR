@@ -61,15 +61,15 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/review/reviewChange")
-	public void reviewChange() {
-		
+	public void reviewChange(MultipartHttpServletRequest multiparRequest, HttpServletResponse response) {
+		reviewService.changeReview(multiparRequest, response);
 	}
 	
 	// 리뷰 이미지 수정삭제
 	@GetMapping("/review/removeReImage")
-	public String removeReIage(@RequestParam Long reImageNo, @RequestParam Long reviewNo ) {
+	public String removeReIage(@RequestParam Long reImageNo,@RequestParam Long reviewNo ) {
 		reviewService.removeReImage(reImageNo);
-		return "redirect:/review/reviewChange="+reviewNo;
+		return "redirect:/review/reviewChangePage?reviewNo="+reviewNo;
 	}
 	
 	 

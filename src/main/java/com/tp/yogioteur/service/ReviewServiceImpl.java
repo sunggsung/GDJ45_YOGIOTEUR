@@ -347,11 +347,13 @@ public class ReviewServiceImpl implements ReviewService {
 		  Long reviewNo = Long.parseLong(multipartRequest.getParameter("reviewNo"));
 		  String reviewTitle = multipartRequest.getParameter("reviewTitle");
 		  String reviewContent = multipartRequest.getParameter("reviewContent");
+		  Integer reviewRevNo = Integer.parseInt(multipartRequest.getParameter("reviewRevNo"));
 		  
 		  ReviewDTO review = ReviewDTO.builder()
 				  .reviewNo(reviewNo)
 				  .reviewTitle(reviewTitle)
 				  .reviewContent(reviewContent)
+				  .reviewRevNo(reviewRevNo)
 				  .build();
 		  
 		  int reviewChangeResult = reviewMapper.updateReview(review);
@@ -416,10 +418,10 @@ public class ReviewServiceImpl implements ReviewService {
 			  try {
 					response.setContentType("text/html");
 					PrintWriter out = response.getWriter();
-					if(reviewChangeResult == 1 && reviewImageResult == files.size()) {
+					if(reviewChangeResult >= 1 && reviewImageResult >= files.size()) {
 						out.println("<script>");
 						out.println("alert('리뷰가 수정되었습니다.')");
-						out.println("location.href='" + multipartRequest.getContextPath() + "/review/reviewList");
+						out.println("location.href='" + multipartRequest.getContextPath() + "/review/reviewList'");
 						out.println("</script>");
 						out.close();
 					} else {
