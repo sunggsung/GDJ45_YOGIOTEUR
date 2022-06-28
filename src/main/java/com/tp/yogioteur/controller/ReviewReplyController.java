@@ -21,6 +21,7 @@ public class ReviewReplyController {
 	@Autowired
 	public ReviewService reviewService;
 	
+	
 	@GetMapping("/reply/reviewReplySavePage")
 	public String reviewReplySavePage(Long reviewNo, Model model){
 		reviewService.ReviewOne(reviewNo, model);

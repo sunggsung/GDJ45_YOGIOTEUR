@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
 
+	function fnReviewModify(mb){
+		location.href='${contextPath}/review/reviewChangePage?reviewNo=' + $(mb).data('review_no');
+	}
 
 	function fnReviewReply(bn){
 		location.href='${contextPath}/reply/reviewReplySavePage?reviewNo=' + $(bn).data('review_no');
@@ -64,10 +67,15 @@
    					
    					리뷰제목 : ${review.reviewTitle}<br>
    					리뷰 내용 : ${review.reviewContent}<br>
-   					<div><img src="${contextPath}/review/display?reviewNo=${review.reviewNo}" width="300px" onerror="this.style.display='none'"></div>				
+   					
 					
+					<c:forEach var="reImage" items="${reImages}">
+						<c:if test="${review.reviewNo eq reImage.reviewNo}">
+							<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}" width="300px">					
+						</c:if>
+					</c:forEach>
 					
-					
+					<input type="button" value="리뷰 수정" name="reviewModifyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewModify(this)">
 		   			<input type="button" value="삭제" name="reviewRemoveBtn" data-review_no="${review.reviewNo}" onclick="fnReviewRemove(this)">
 		   			<input type="button" value="댓글달기" id ="reviewReplyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewReply(this)">
 		   			

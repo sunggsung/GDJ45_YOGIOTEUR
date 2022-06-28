@@ -18,9 +18,24 @@ public interface ReviewMapper {
 		//리뷰 목록가져오기 
 		public List<ReviewDTO> selectReviewList(Map<String, Object>map); 
 	  
+		// 사진 전체 가저오기 
+		public List<ReImageDTO> selectReImageList();
+		
 		// 리뷰 사진가져오기
-		public ReImageDTO selectReImage(Long reviewNo);
-	  
+		public ReImageDTO selectReImageByNo(Long reImageNo);
+
+		// 리뷰 하나당 사진 여러개
+		public List<ReImageDTO> selectReImage(Long reviewNo);
+		
+		// 리뷰 수정
+		public int updateReview(ReviewDTO review);
+		
+		
+		
+		
+		
+		
+		// 리뷰 하나
 		public ReviewDTO selectReviewByNo(Long reviewNo);
 		
 		

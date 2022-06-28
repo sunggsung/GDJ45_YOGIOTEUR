@@ -7,16 +7,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 댓글 목록 -->
 	<select id="selectReviewReplyList" resultType="ReviewReplyDTO">
-		SELECT REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED
+		SELECT REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED, REPLY_MODIFIED
 		  FROM REVIEW_REPLY
 	</select>
 	
 	<!-- 댓글 추가 -->
 	<insert id="insertReviewReply" parameterType="ReviewReplyDTO">
 		INSERT INTO REVIEW_REPLY
-			(REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED)
+			(REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED, REPLY_MODIFIED)
 		VALUES
-			(REVIEW_REPLY_NO_SEQ.NEXTVAL, #{reviewNo}, #{replyContent}, SYSDATE)
+			(REVIEW_REPLY_NO_SEQ.NEXTVAL, #{reviewNo}, #{replyContent}, SYSDATE, SYSDATE)
 	</insert>
 	
 	<!-- 댓글 삭제 -->

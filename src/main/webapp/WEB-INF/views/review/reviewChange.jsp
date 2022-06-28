@@ -15,7 +15,26 @@
 	
 	$(function(){
 		fnFileCheck();
+		fnReviewModify();
+		fnReviewList();
 	})
+	
+	function fnReviewModify(){
+		$('#reviewChange').on('submit', function(event){
+			if($('#reviewTitle').val() == '${review.reviewTitle}' && $('#reviewContent').val() == '${review.reviewContent}' && $('#files').val() == ''){
+				alert('변경된 내용이 없습니다.');
+				event.preventDefault();
+				return false;
+			}
+			return true;
+		})
+	}
+	
+	function fnReviewList(){
+		$('#reviewList').on('click', function(){
+			location.href="${contextPath}/review/reviewList";
+		})
+	}
 	
 	// 첨부파일 사전점검(확장자, 크기)
 	function fnFileCheck(){
@@ -46,6 +65,7 @@
 	
 </script>
 <style type="text/css">
+
 	#reviewAdd fieldset{
     display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
     border: 0; /* 필드셋 테두리 제거 */
@@ -68,19 +88,18 @@
 }
 }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
    <jsp:include page="../layout/header.jsp"></jsp:include>
    
-   <h1>새 리뷰 작성</h1>
+   <h1>리뷰 수정하기</h1>
    
-   <form id="reviewAdd" action="${contextPath}/review/reviewSave" method="post" enctype="multipart/form-data">
-   		아이디 : ${member.memberId}
-  		
-        
-  		<input type="text" name="reviewTitle" placeholder="리뷰 제목"><br>
-  		<textarea rows="10" cols="50" class="review_textarea" name="reviewContent" placeholder="리뷰 내용"></textarea><br>
+   <form id="reviewChange" action="${contextPath}/reveiw/reviewChange" method="post" enctype="multipart/form-data">
+   		작성자 : ${member.memberId}
+  		<input type="text" name="reviewTitle" placeholder="${review.reviewTitle}"><br>
+  		<textarea rows="10" cols="50" class="review_textarea" name="reviewContent" placeholder="${review.reviewContent}"></textarea><br>
    		
   		별점 :
    		<fieldset>
@@ -92,9 +111,26 @@
     	</fieldset>
    		
    		<input type="file" name="files" id="files" multiple="multiple"/>
-   		<button>등록</button>
-   
-   </form>
+   		<button>수정하기</button>
+   		<input type="button" id="reviewList" value="목록으로">
+   	
+   	
+ 	  </form>
+   		
+
+   			<c:forEach var="reImage" items="${reImage}">
+				<div>${reImage.reImageOrigin}<a href="${contextPath}/review/removeReImage?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}"><i class="fa-solid fa-circle-xmark"></i></a></div>
+			</c:forEach>
+				
+				
+			<hr>
+			
+			
+			<c:forEach var="reImage" items="${reImage}">
+				<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px">					
+			</c:forEach>
+   		
+   	
    
    <jsp:include page="../layout/footer.jsp"></jsp:include>
    
