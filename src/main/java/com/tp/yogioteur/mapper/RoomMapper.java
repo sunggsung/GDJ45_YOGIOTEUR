@@ -1,6 +1,7 @@
 package com.tp.yogioteur.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,7 +16,7 @@ public interface RoomMapper {
 	
 
 	//객실조회	
-	public List<RoomDTO> checkInRoomList();
+	public List<RoomDTO> checkInRoomList(Map<String, Object> map);
 	
 	//이미지 보여주기
 	public ImageDTO selectImageByNo(Long roomNo);

@@ -32,10 +32,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	
-	<select id="checkInRoomList" resultMap="RoomDTOMap">
+	<select id="checkInRoomList" parameterType="Map" resultMap="RoomDTOMap">
 		SELECT ROOM_NO, ROOM_NAME, ROOM_PRICE
 		  FROM ROOM
 	 	 WHERE ROOM_STATUS = 0
+	 	  <![CDATA[
+	 	   AND ROOM_CHECKIN >= '1999-01-01' AND ROOM_CHECKOUT <= '9999-12-31' 
+	 	  ]]>
 	</select>
 	
 	<select id="selectImageByNo" parameterType="Long" resultType="ImageDTO">

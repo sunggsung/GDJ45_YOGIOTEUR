@@ -2,7 +2,9 @@ package com.tp.yogioteur.service;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +42,10 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public void roomList(HttpServletRequest request, Model model) {
-		model.addAttribute("roomList", roomMapper.checkInRoomList());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("checkIn", request.getParameter("checkIn"));
+		map.put("checkOut", request.getParameter("checkOut"));
+		model.addAttribute("roomList", roomMapper.checkInRoomList(map));
 	}
 	
 	@Override
