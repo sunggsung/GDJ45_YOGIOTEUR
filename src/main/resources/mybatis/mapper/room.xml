@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.tp.yogioteur.mapper.RoomMapper">
-
+	
 	<resultMap type="ImageDTO" id="ImageMap">
 		<id column="IMAGE_NO" property="imageNo"/>
 		<result column="ROOM_NO" property="roomNo"/>
@@ -31,15 +31,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection property="imageDTO" resultMap="ImageMap"/>
 	</resultMap>
 	
+	
 	<select id="checkInRoomList" resultMap="RoomDTOMap">
-		SELECT I.IMAGE_PATH, R.ROOM_NAME, R.ROOM_PRICE
-		  FROM ROOM R INNER JOIN IMAGE I
-		    ON R.ROOM_NO = I.ROOM_NO
-	 	  <![CDATA[
-		 WHERE ROOM_CHECKIN >= '1900-01-01'
-		   AND ROOM_CHECKOUT < '9999-12-31'
-		  ]]> 
+		SELECT ROOM_NO, ROOM_NAME, ROOM_PRICE
+		  FROM ROOM
+	 	 WHERE ROOM_STATUS = 0
 	</select>
 	
+	<select id="selectImageByNo" parameterType="Long" resultType="ImageDTO">
+		SELECT ROOM_NO, IMAGE_NO, IMAGE_ORIGIN, IMAGE_PATH, IMAGE_SAVED
+		  FROM IMAGE
+		 WHERE ROOM_NO = #{roomNo}
+		   AND ROWNUM = 1
+	</select>	
 	
 </mapper>

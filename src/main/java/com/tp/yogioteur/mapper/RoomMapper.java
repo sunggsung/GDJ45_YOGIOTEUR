@@ -17,4 +17,7 @@ public interface RoomMapper {
 	//객실조회	
 	public List<RoomDTO> checkInRoomList();
 	
+	//이미지 보여주기
+	public ImageDTO selectImageByNo(Long roomNo);
+	
 }

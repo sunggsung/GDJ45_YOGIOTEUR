@@ -8,23 +8,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
-<script>
+<script type="text/javascript">
 	
 </script>
 </head>
 <body>
 	
-	<h1>예약 가능 객실 조회</h1>
-	
-	
 	<table>
+			
 		<tbody>
-			<c:forEach items="${roomList}" var="roomLi">
+			<c:forEach items="${roomList}" var="room">
 				<tr>
-					<td>${roomLi.imageDTO.imageNo}</td>		
-					<td>${roomLi.roomName}</td>			
-					<td>${roomLi.roomPrice}</td>		
-					<td><input type="button" id="reservation" value="예약하기"></td>
+					<td><a href="${contextPath}/room/detail?roomNo=${room.roomNo}"><img src="${contextPath}/room/view?roomNo=${room.roomNo}" width="300px"></a></td>
+					<td><a href="${contextPath}/room/detail?roomNo=${room.roomNo}">${room.roomName}</a></td>			
+					<td><input type="button" id="reservation" value="${room.roomPrice}KRW"></td>
 				</tr>
 			</c:forEach>
 		</tbody>

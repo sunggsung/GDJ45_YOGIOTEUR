@@ -7,9 +7,12 @@ import org.springframework.ui.Model;
 
 public interface RoomService {
 	
+	//checkIn,out 데이터 보내기
+	
 
 	//객실 조회
 	public void roomList(HttpServletRequest request, Model model);
-	public ResponseEntity<byte[]> roomDisplay(String path, String thumbnail);
+	//객실 이미지
+	public ResponseEntity<byte[]> view(Long roomNo, String type);
 	
 }
