@@ -310,8 +310,12 @@ public class ReviewServiceImpl implements ReviewService {
 		  ReviewDTO review = reviewMapper.selectReviewByNo(reviewNo);
 		  List<ReImageDTO> reImage = reviewMapper.selectReImage(reviewNo);
 		  
+		  
+		  
 		  model.addAttribute("review", review);
 		  model.addAttribute("reImage", reImage);
+		  
+		  
 	  }
 	  
 	  @Override

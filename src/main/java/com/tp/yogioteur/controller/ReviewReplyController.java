@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tp.yogioteur.service.ReviewReplyService;
 import com.tp.yogioteur.service.ReviewService;
@@ -39,4 +40,18 @@ public class ReviewReplyController {
 	public void reviewReplyRemove(HttpServletRequest request, HttpServletResponse response){
 		reviewReplyService.ReviewReplyRemove(request, response);
 	}
+	
+	// 댓글
+	@GetMapping("/reply/reviewReplyChangePage")
+	public String reviewChangePage(@RequestParam Long replyNo,@RequestParam Long reviewNo, Model model) {
+		reviewService.ReviewOne(reviewNo, model);
+		reviewReplyService.ReviewReplySelectOne(replyNo, model);
+		return "review/reviewReplyChange";
+	}
+	
+	@PostMapping("/review/reviewReplyChange")
+	public void reviewReplyChange(HttpServletRequest request, HttpServletResponse reponse) {
+		reviewReplyService.ReviewReplyChange(request, reponse);
+	}
+	
 }

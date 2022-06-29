@@ -13,20 +13,26 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
 
+	// 리뷰수정
 	function fnReviewModify(mb){
 		location.href='${contextPath}/review/reviewChangePage?reviewNo=' + $(mb).data('review_no');
 	}
-
+	//댓글 저장
 	function fnReviewReply(bn){
 		location.href='${contextPath}/reply/reviewReplySavePage?reviewNo=' + $(bn).data('review_no');
 	}
-	
+	// 리뷰삭제
 	 function fnReviewRemove(rn){      
 	       if(confirm('리뷰를 삭제할까요?')){
 	          location.href='${contextPath}/review/reviewRemove?reviewNo=' + $(rn).data('review_no');
 	       }
 	 }
-	 
+	
+	//댓글 수정
+	function fnReviewReplyModify(mr){
+		location.href='${contextPath}/reply/reviewReplyChangePage?replyNo=' + $(mr).data('reply_no')+'&reviewNo='+$(mr).data('review_no') ;
+	}
+	 // 댓글 삭제
 	 function fnReviewReplyRemove(rpn){
 		 if(confirm('댓글을 삭제할까요?')){
 	          location.href='${contextPath}/reply/reviewReplyRemove?replyNo=' + $(rpn).data('reply_no');
@@ -91,6 +97,7 @@
 				   					<div>관리자댓글
 										${reviewReply.replyContent}			   					
 							   			<input type="button" id="reviewReplyRemoveBtn" value="댓글 삭제" data-reply_no="${reviewReply.replyNo}" onclick="fnReviewReplyRemove(this)">
+							   			<input type="button" id="reviewReplyModifyBtn" value="댓글 수정" data-reply_no="${reviewReply.replyNo}" data-review_no="${review.reviewNo}" onclick="fnReviewReplyModify(this)">
 				   					</div>					
 				   				</div>		   					   						
 	   						</c:if>

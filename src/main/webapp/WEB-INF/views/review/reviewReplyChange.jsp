@@ -22,7 +22,8 @@
 
 	<jsp:include page="../layout/header.jsp"></jsp:include>
    
-   <h1>댓글 작성하기</h1>
+   
+   <h1>댓글 수정하기</h1>
    
    	리뷰 번호 : ${review.reviewNo}<br>
     예약번호 : ${review.reserNo}<br>
@@ -35,10 +36,10 @@
 		<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px">					
 	</c:forEach>
    	
-	<form id="replydata"  action="${contextPath}/review/reviewReplySave" method="post">
-		<input type="hidden" name="reviewNo" value="${review.reviewNo}">
-		<textarea rows="10" cols="50" id="replyContent" name="replyContent"></textarea>
-		<button>댓글 등록</button>
+	<form id="replyChangeData"  action="${contextPath}/review/reviewReplyChange" method="post">
+		<input type="hidden" name="replyNo" value="${reviewReply.replyNo}">		
+		<textarea rows="10" cols="50" id="replyContent" name="replyContent" >${reviewReply.replyContent}</textarea>
+		<button>댓글 수정</button>
 	</form>
    
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
