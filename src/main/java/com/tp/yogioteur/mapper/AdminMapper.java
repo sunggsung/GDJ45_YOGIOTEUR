@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.tp.yogioteur.domain.ImageDTO;
 import com.tp.yogioteur.domain.MemberDTO;
+import com.tp.yogioteur.domain.NonMemberDTO;
 import com.tp.yogioteur.domain.ReservationDTO;
 import com.tp.yogioteur.domain.RoomDTO;
 
@@ -31,7 +32,10 @@ public interface AdminMapper {
 	public int selectMemberCount();
 	public MemberDTO selectMemberByNo(Long memberNo);
 	
-	public List<MemberDTO> selectReservationList(Map<String, Object> map);
+	public List<MemberDTO> selectReservationList();
 	public int selectReservationCount();
 	public List<ReservationDTO> selectReservationByMemberNo(Long memberNo);
+	
+	public int insertNonMember(NonMemberDTO nonMember);
+	public ReservationDTO selectReservationByReserNo(Long reserNo);
 }

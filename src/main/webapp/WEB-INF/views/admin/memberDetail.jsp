@@ -20,7 +20,6 @@
 			type: 'GET',
 			dataType: 'json',
 			success: function(obj) {
-				console.log(obj);
 				$('#items').empty();
 				$.each(obj.reservation, function(i, reservation) {
 					var tr = '<tr>';

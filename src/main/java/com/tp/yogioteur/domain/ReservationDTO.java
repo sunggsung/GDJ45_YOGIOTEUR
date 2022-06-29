@@ -20,10 +20,10 @@ public class ReservationDTO {
 	private Long roomNo;
 	private Long nonNo;
 	// ajax에서 date 형식으로 만들기 위해 사용
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	//@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date reserCheckin;
 	
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	//@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date reserCheckout;
 	
 	private Integer reserPeople;
