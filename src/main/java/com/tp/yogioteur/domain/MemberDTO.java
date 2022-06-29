@@ -28,5 +28,4 @@ public class MemberDTO {
 	private Date signIn;
 	private String memberSessionId;
 
-	
 }

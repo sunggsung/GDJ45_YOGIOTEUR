@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tp.yogioteur.domain.MemberDTO;
+import com.tp.yogioteur.domain.NonMemberDTO;
 import com.tp.yogioteur.service.MemberService;
 
 @Controller
@@ -83,7 +84,8 @@ public class MemberController {
 	public String logout(HttpSession session, HttpServletResponse response) { 
 
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");	
-		if (loginMember != null) {
+		NonMemberDTO nonMember = (NonMemberDTO) session.getAttribute("nonMember");
+		if (loginMember != null || nonMember != null) {
 				session.invalidate(); 
 			}
 		return "redirect:/";
@@ -147,9 +149,12 @@ public class MemberController {
 		return "member/reSignIn";
 	}
 	
-	// 재가입
-	@PostMapping("/member/reSignIn")
-	public void reSignIn(HttpServletRequest request, HttpServletResponse response) {
-		memberService.reSignIn(request, response);
+	// 회원비밀번호 조회 검사페이지
+	@PostMapping("/member/pwModifyPage")
+	public String pwModifyPage() {
+		return "member/pwModify";
 	}
+	
+	
+
 }

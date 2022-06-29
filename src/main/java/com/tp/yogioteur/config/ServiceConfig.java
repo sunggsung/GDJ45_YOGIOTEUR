@@ -8,7 +8,7 @@ import com.tp.yogioteur.service.MemberServiceImpl;
 import com.tp.yogioteur.service.OpenAPIService;
 import com.tp.yogioteur.service.RoomService;
 import com.tp.yogioteur.service.RoomServiceImpl;
-import com.tp.yogioteur.service.VilageFcstInfoService;
+import com.tp.yogioteur.service.TourStnInfoService;
 
 @Configuration
 public class ServiceConfig {
@@ -17,13 +17,15 @@ public class ServiceConfig {
 	public MemberService memberService() {
 		return new MemberServiceImpl();
 	}
+	
 	@Bean
 	public RoomService roomService() {
 		return new RoomServiceImpl();
 	}
+	
 	@Bean
 	public OpenAPIService openAPIService() {
-		return new VilageFcstInfoService();
+		return new TourStnInfoService();
 	}
 	
 }

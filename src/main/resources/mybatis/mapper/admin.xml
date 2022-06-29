@@ -113,7 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectReservationList" resultType="ReservationDTO">
-		SELECT RESER_NO, MEMBER_NO, ROOM_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE
+		SELECT RESER_NO, MEMBER_NO, ROOM_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE, RESER_STATUS
 		  FROM RESERVATION
 		 ORDER BY RESER_NO DESC
 	</select>
@@ -124,9 +124,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectReservationByMemberNo" parameterType="Long" resultType="ReservationDTO">
-		SELECT RESER_NO, MEMBER_NO, ROOM_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE
+		SELECT RESER_NO, MEMBER_NO, ROOM_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE, RESER_STATUS
 		  FROM RESERVATION
 		 WHERE MEMBER_NO = #{memberNo}
 	</select>
+	
+	<select id="selectReservationByReserNo" parameterType="Long" resultType="ReservationDTO">
+		SELECT RESER_NO, MEMBER_NO, ROOM_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE, RESER_STATUS
+		  FROM RESERVATION
+		 WHERE RESER_NO = #{reserNo}
+	</select>
+	
+	<insert id="insertNonMember" parameterType="NonMemberDTO">
+		INSERT INTO NONMEMBER
+			(NON_NO, NON_ID, NON_NAME, NON_PHONE, NON_BIRTH)
+		VALUES
+			(NONMEMBER_SEQ.NEXTVAL, #{nonId}, #{nonName}, #{nonPhone}, #{nonBirth})
+	</insert>
 	
 </mapper>
