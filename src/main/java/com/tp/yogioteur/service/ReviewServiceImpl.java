@@ -243,7 +243,7 @@ public class ReviewServiceImpl implements ReviewService {
 				  
 				  
 				  
-				  int resImg = reviewMapper.deleteReImage(reviewNo);
+				  int resImg = reviewMapper.deleteReImageByReviewNo(reviewNo);
 					 
 				  int resRev = reviewMapper.deleteReview(reviewNo);
 				  

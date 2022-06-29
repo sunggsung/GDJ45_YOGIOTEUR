@@ -48,8 +48,12 @@ public interface ReviewMapper {
 	  
 		// 리뷰 삭제 
 		public int deleteReview(Long reviewNo);
+		
+		//리뷰를 삭제 했을때 reviewNo image 전체 삭제
+		
+		public int deleteReImageByReviewNo(Long reviewNo);
 	 
 		// 리뷰 첨부사진 삭제
-		public int deleteReImage(Long reviewNo);
+		public int deleteReImage(Long reImageNo);
 
 }

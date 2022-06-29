@@ -61,6 +61,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE REVIEW_NO = #{reviewNo}
 	</delete>
 	
+	<!-- 리뷰를 삭제 했을때 reviewNo image 전체 삭제 -->
+	<delete id="deleteReImageByReviewNo" parameterType="Long">
+		DELETE
+		  FROM RE_IMAGE
+		 WHERE REVIEW_NO = #{reviewNo}
+	</delete>
+	
 	<!-- 첨부파일 삭제 -->
 	<delete id="deleteReImage" parameterType="Long">
 		DELETE
