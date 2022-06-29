@@ -13,13 +13,12 @@
 <script>
 	
 	$(function(){
-		
-		
-		
+
 		fnFileCheck();
 		fnReviewList();
 		fnReviewModifyCheck();
 		fnRadioStar();
+		fnTextareaLimit();
 	})
 	
 	function fnRadioStar(){
@@ -33,13 +32,21 @@
 	function fnReviewModifyCheck(){
 		
 		$('#reviewChange').on('submit', function(event){
-			if($('#reviewTitle').val() == '${review.reviewTitle}' && $('#reviewContent').val() == '${review.reviewContent}' && $('#files').val() == ''  && $('input[name="reviewRevNo"]:checked').val() == '${review.reviewRevNo}'){
+			if($('#reviewTitle').val() == '${review.reviewTitle}' && $('#review_textarea').val() == '${review.reviewContent}' && $('#files').val() == ''  && $('input[name="reviewRevNo"]:checked').val() == '${review.reviewRevNo}'){
 				
 				
 				alert('변경된 내용이 없습니다.');
 				event.preventDefault();
 				return false;
 			}
+			else if($('#reviewTitle').val() == null || $('#reviewContent').val() == null ){
+				
+				
+				alert('리뷰제목 또는 리뷰내용이 없습니다.');
+				event.preventDefault();
+				return false;
+			}
+			
 			
 			
 			return true;
@@ -81,7 +88,17 @@
 		})
 	}
 		
-	
+	function fnTextareaLimit(){
+		$('#review_textarea').on('keyup', function(){
+			$('#review_textarea_cnt').html("(" + $(this).val().length+" / 500)");
+			
+			if($(this).val().length > 500){
+				$(this).val($(this).val().substring(0,500));
+				$('#review_textarea_cnt').html("(500 / 500)" );
+			}
+			
+		})
+	}
 </script>
 <style type="text/css">
 
@@ -119,7 +136,8 @@
    		
    		<input type="hidden" name="reviewNo" value="${review.reviewNo}">
   		<input type="text" id="reviewTitle" name="reviewTitle" value="${review.reviewTitle}" ><br>
-  		<textarea rows="10" cols="50" class="review_textarea" id="reviewContent" name="reviewContent" >${review.reviewContent}</textarea><br>
+  		<textarea rows="10" cols="50" id="review_textarea" class="review_textarea" id="reviewContent" name="reviewContent" >${review.reviewContent}</textarea><br>
+   		<div id="review_textarea_cnt">(0 / 500)</div>
    		
   		별점 :
    		<fieldset>

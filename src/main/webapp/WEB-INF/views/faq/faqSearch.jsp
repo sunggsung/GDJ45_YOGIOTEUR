@@ -18,13 +18,14 @@
    
    function fnSearch(){
       
-      var faqQuery = $('#faqQuery');
-      
       $('#faqSearchBtn').on('click', function(){
-         location.href="${contextPath}/faq/faqSearch?faqQuery=" + faqQuery.val();
-         
+         location.href="${contextPath}/faq/faqSearch?faqQuery=" + $('#faqQuery').val();
       })
       
+   }
+   
+   function fnSearchEnter(){
+	   location.href="${contextPath}/faq/faqSearch?faqQuery=" + $('#faqQuery').val();
    }
 </script>
 <style>
@@ -55,10 +56,10 @@
    <h1>FAQ.자주묻는 질문</h1>
    
    <br>
-   <form id="faqInput">
-      <input type="text" id="faqQuery" name="faqQuery">
+   
+      <input type="text" id="faqQuery" name="faqQuery" onkeyup="if(window.event.keyCode==13){fnSearchEnter()}">
       <button type="button"  id="faqSearchBtn" name="faqSearchBtn" value="검색"><i class="fa-solid fa-magnifying-glass fa-3x"></i></button>
-   </form>
+   
    
    <br><br>
   

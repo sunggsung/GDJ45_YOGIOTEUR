@@ -15,6 +15,8 @@
 	
 	$(function(){
 		fnFileCheck();
+		fnTextareaLimit();
+		fnReviewAddCheck();
 	})
 	
 	// 첨부파일 사전점검(확장자, 크기)
@@ -42,7 +44,33 @@
 			}
 		})
 	}
+	function fnTextareaLimit(){
+		$('#review_textarea').on('keyup', function(){
+			$('#review_textarea_cnt').html("(" + $(this).val().length+" / 500)");
+			
+			if($(this).val().length > 500){
+				$(this).val($(this).val().substring(0,500));
+				$('#review_textarea_cnt').html("(500 / 500)" );
+			}
+			
+		})
+	}
+	
+	function fnReviewAddCheck(){
 		
+		$('#reviewAdd').on('submit', function(event){
+			if($('#reviewTitle').val() == null || $('#reviewContent').val() == null || $('input:radio[name="reviewRevNo"]').is(':checked').val() == false){
+				
+				
+				alert('작성된 내용이 없습니다.');
+				event.preventDefault();
+				return false;
+			}
+			
+			
+			return true;
+		})
+	}
 	
 </script>
 <style type="text/css">
@@ -66,6 +94,50 @@
     direction: rtl; /* 이모지 순서 반전 */
     border: 0; /* 필드셋 테두리 제거 */
 }
+	#reviewTitle {
+	  width: 500px;
+	  height: 45px;
+	  font-size: 15px;
+	  border: 0;
+	  border-radius: 10px;
+	  outline: none;
+	  padding-left: 10px;
+	  background-color: rgb(233, 233, 233);
+	  margin : 15px 0;
+	}
+
+	#review_textarea{
+	  width: 500px;
+	  height: 300px;
+	  font-size: 15px;
+	  border: 0;
+	  border-radius: 10px;
+	  outline: none;
+	  padding-left: 10px;
+	  background-color: rgb(233, 233, 233);
+	  margin : 15px 0;
+	}
+	
+	.reviewAddWriter{
+		display:flex;
+		justify-content:center;
+	}
+	.reAddtitle{
+		text-align : center;
+	}
+	
+	#memberId{
+		border : none;
+	}
+	
+	#review_textarea_cnt{
+		display:flex;
+		justify-content:right;
+	}
+	#addBtn{
+		border : none;
+	}
+
 }
 </style>
 </head>
@@ -73,29 +145,31 @@
 
    <jsp:include page="../layout/header.jsp"></jsp:include>
    
-   <h1>새 리뷰 작성</h1>
+   <h1 class="reAddtitle">새 리뷰 작성</h1>
    
-   <form id="reviewAdd" action="${contextPath}/review/reviewSave" method="post" enctype="multipart/form-data">
-   		아이디 : ${member.memberId}
-  		
-        
-  		<input type="text" name="reviewTitle" placeholder="리뷰 제목"><br>
-  		<textarea rows="10" cols="50" class="review_textarea" name="reviewContent" placeholder="리뷰 내용"></textarea><br>
-   		
-  		별점 :
-   		<fieldset>
-	        <input type="radio" name="reviewRevNo" value="5" id="rate1"><label for="rate1">★</label>
-	        <input type="radio" name="reviewRevNo" value="4" id="rate2"><label for="rate2">★</label>
-	        <input type="radio" name="reviewRevNo" value="3" id="rate3"><label for="rate3">★</label>
-	        <input type="radio" name="reviewRevNo" value="2" id="rate4"><label for="rate4">★</label>
-	        <input type="radio" name="reviewRevNo" value="1" id="rate5"><label for="rate5">★</label>
-    	</fieldset>
-   		
-   		<input type="file" name="files" id="files" multiple="multiple"/>
-   		<button>등록</button>
-   
-   </form>
-   
+   <div class ="reviewAddWriter">
+	   <form id="reviewAdd" action="${contextPath}/review/reviewSave" method="post" enctype="multipart/form-data">
+	   		
+	   		아이디 : <input type="text" id="memberId" name="memberId" value="${loginMember.memberId}" readonly> <br>
+	  		별점 :
+	   		<fieldset>
+		        <input type="radio" name="reviewRevNo" value="5" id="rate1"><label for="rate1">★</label>
+		        <input type="radio" name="reviewRevNo" value="4" id="rate2"><label for="rate2">★</label>
+		        <input type="radio" name="reviewRevNo" value="3" id="rate3"><label for="rate3">★</label>
+		        <input type="radio" name="reviewRevNo" value="2" id="rate4"><label for="rate4">★</label>
+		        <input type="radio" name="reviewRevNo" value="1" id="rate5"><label for="rate5">★</label>
+	    	</fieldset>
+	  		
+	        <br>
+	  		<input type="text" id="reviewTitle" name="reviewTitle" placeholder="리뷰 제목" maxlength='50'><br>
+	  		<textarea rows="10" cols="50" id="review_textarea" class="review_textarea" name="reviewContent" placeholder="리뷰 내용"></textarea><br>
+	   		<div id="review_textarea_cnt">(0 / 500)</div>
+	   		
+	   		
+		   		<input type="file" name="files" id="files" multiple="multiple"/>
+		   		<button id="addBtn">등록</button>
+	   </form>
+   </div>
    <jsp:include page="../layout/footer.jsp"></jsp:include>
    
 </body>

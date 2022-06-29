@@ -13,6 +13,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
 	
+	$(function(){
+		fnTextareaLimit();
+	})
+	
+	function fnTextareaLimit(){
+		$('#replyContent').on('keyup', function(){
+			$('#replyContent_cnt').html("(" + $(this).val().length+" / 500)");
+			
+			if($(this).val().length > 500){
+				$(this).val($(this).val().substring(0,500));
+				$('#replyContent_cnt').html("(500 / 500)" );
+			}
+			
+		})
+	}
 	
 </script>
 
@@ -38,6 +53,7 @@
 	<form id="replydata"  action="${contextPath}/review/reviewReplySave" method="post">
 		<input type="hidden" name="reviewNo" value="${review.reviewNo}">
 		<textarea rows="10" cols="50" id="replyContent" name="replyContent"></textarea>
+		<div id="replyContent_cnt">(0 / 500)</div>
 		<button>댓글 등록</button>
 	</form>
    

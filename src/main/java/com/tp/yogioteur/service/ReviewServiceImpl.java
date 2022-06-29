@@ -103,13 +103,14 @@ public class ReviewServiceImpl implements ReviewService {
 	  //리뷰 저장
 	  @Override
 	  public void ReviewSave(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
-
+		  String memberId = multipartRequest.getParameter("memberId");
 		  String reviewTitle = multipartRequest.getParameter("reviewTitle");
 		  String reviewContent = multipartRequest.getParameter("reviewContent");
 		  int reviewRevNo = Integer.parseInt(multipartRequest.getParameter("reviewRevNo")) ;
 		  
 		  //REVIEW
 		  ReviewDTO review = ReviewDTO.builder()
+				  .memberId(memberId)
 				  .reviewTitle(reviewTitle)
 				  .reviewContent(reviewContent)
 				  .reviewRevNo(reviewRevNo)
@@ -347,13 +348,14 @@ public class ReviewServiceImpl implements ReviewService {
 	  
 	  @Override
 	public void changeReview(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
-		
+		  String memberId = multipartRequest.getParameter("memberId");
 		  Long reviewNo = Long.parseLong(multipartRequest.getParameter("reviewNo"));
 		  String reviewTitle = multipartRequest.getParameter("reviewTitle");
 		  String reviewContent = multipartRequest.getParameter("reviewContent");
 		  Integer reviewRevNo = Integer.parseInt(multipartRequest.getParameter("reviewRevNo"));
 		  
 		  ReviewDTO review = ReviewDTO.builder()
+				  .memberId(memberId)
 				  .reviewNo(reviewNo)
 				  .reviewTitle(reviewTitle)
 				  .reviewContent(reviewContent)

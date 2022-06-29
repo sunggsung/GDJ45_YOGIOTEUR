@@ -12,10 +12,30 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
+
+	$(function(){
+		fnTextareaLimit();
+	})
+	
+	function fnTextareaLimit(){
+		$('#replyContent').on('keyup', function(){
+			$('#replyContent_cnt').html("(" + $(this).val().length+" / 500)");
+			
+			if($(this).val().length > 500){
+				$(this).val($(this).val().substring(0,500));
+				$('#replyContent_cnt').html("(500 / 500)" );
+			}
+			
+		})
+	}
+	
 	
 	
 </script>
+<style type="text/css">
 
+
+</style>
 
 </head>
 <body>
@@ -39,6 +59,7 @@
 	<form id="replyChangeData"  action="${contextPath}/review/reviewReplyChange" method="post">
 		<input type="hidden" name="replyNo" value="${reviewReply.replyNo}">		
 		<textarea rows="10" cols="50" id="replyContent" name="replyContent" >${reviewReply.replyContent}</textarea>
+		<div id="replyContent_cnt">(0 / 500)</div>
 		<button>댓글 수정</button>
 	</form>
    
