@@ -8,18 +8,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <!-- jquery CDN -->
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
-  <!-- fullcalendar CDN -->
-  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
-  <!-- fullcalendar 언어 CDN -->
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
-
+<meta charset="UTF-8">
+<!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
+<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"> -->
+<!-- jquery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
+<!-- fullcalendar CDN -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+<!-- fullcalendar 언어 CDN -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <style>
 
   /* body 스타일 */
@@ -28,13 +27,13 @@
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
   } */
-  /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
-  .fc-header-toolbar {
-    padding-top: 1em;
-    padding-left: 1em;
-    padding-right: 1em;
-  }
-
+	/* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
+	.fc-header-toolbar {
+	  padding-top: 1em;
+	  padding-left: 1em;
+	  padding-right: 1em;
+	}  
+  
 </style>
 <link rel="stylesheet" href="../resources/css/admin.css">
 <script>
@@ -68,8 +67,7 @@
 			nowIndicator: true, // 현재 시간 마크
 			dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
 			locale: 'ko', // 한국어 설정
-			timeZone: 'Asia/Seoul',
-			
+			//timeZone: 'Asia/Seoul',
 			eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
 			  console.log(obj);
 			},
@@ -99,19 +97,20 @@
 					type: 'GET',
 					dataType: 'json',
 					success: function(obj) {
-						console.log(obj)
-						var arr = [];
+						console.log(obj.reservations)
+						let arr = [];
 						$.each(obj.reservations, function(i, reservation) {
 							arr.push({
 								title: reservation.roomNo + '번 객실'
 								, start: reservation.reserCheckin
-								, end : reservation.reserCheckout
+								, end : reservation.reserCheckout + (1000 * 60 * 60 * 24) // 체크아웃날짜까지 포함시켜서 표시
 								, extendedProps : {
 									reserNo: reservation.reserNo
 									, reserStatus: reservation.reserStatus
 									, reserPeople: reservation.reserPeople
 									, reserFood: reservation.reserFood
-								}
+								},
+								allDay : true
 							})
 						})
 						successCallback(arr);
@@ -133,9 +132,9 @@
 	
 	}); //페이지로드이벤트
 	
-     var childWindow;
-     let popupX = (window.screen.width / 2) - 640/2;
-	 let popupY = (window.screen.height / 2) - 480/2;
+     let childWindow;
+     const popupX = (window.screen.width / 2) - 640/2;
+	 const popupY = (window.screen.height / 2) - 480/2;
      function openChild(reserNo){
          childWindow = open('${contextPath}/admin/reserDetail?reserNo=' + reserNo
         		 , '', 'width=640, height=480, top=' + popupY + ', left=' + popupX);

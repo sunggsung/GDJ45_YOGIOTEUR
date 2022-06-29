@@ -23,10 +23,10 @@
 				$('#items').empty();
 				$.each(obj.reservation, function(i, reservation) {
 					var tr = '<tr>';
-					tr += '<td>' + reservation.roomNo + '</td>';
 					tr += '<td>' + reservation.reserNo + '</td>';
-					tr += '<td>' + reservation.reserCheckin + '</td>';
-					tr += '<td>' + reservation.reserCheckout + '</td>';
+					tr += '<td>' + reservation.roomNo + '</td>';
+					tr += '<td>' + formatDate(reservation.reserCheckin) + '</td>';
+					tr += '<td>' + formatDate(reservation.reserCheckout) + '</td>';
 					tr += '<td>' + reservation.reserPeople + '</td>';
 					tr += '</tr>';
 					$('#items').append(tr);
@@ -34,6 +34,21 @@
 			}
 			
 		})
+	}
+	
+	// 타임스탬프 형식을 yyyy/MM/dd 로 반환
+	function formatDate(date) {
+	    var d = new Date(date),
+	        month = '' + (d.getMonth() + 1),
+	        day = '' + d.getDate(),
+	        year = d.getFullYear();
+
+	    if (month.length < 2) 
+	        month = '0' + month;
+	    if (day.length < 2) 
+	        day = '0' + day;
+
+	    return [year, month, day].join('/');
 	}
 	
 </script>

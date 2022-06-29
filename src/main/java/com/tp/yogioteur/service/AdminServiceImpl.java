@@ -384,7 +384,6 @@ public class AdminServiceImpl implements AdminService {
 		Map<String, Object> map = new HashMap<>();
 		
 		List<MemberDTO> reservations = adminMapper.selectReservationList();
-		System.out.println(reservations);
 		map.put("reservations", reservations);
 		
 		return map;
