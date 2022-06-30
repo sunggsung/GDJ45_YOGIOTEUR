@@ -31,9 +31,12 @@
 	
     <form>
         예약번호: ${reservation.reserNo}<br>
-        객실번호: ${reservation.roomNo}<br>
+        객실번호: ${room.roomNo}<br>
         체크인: ${reservation.reserCheckin}<br>
         체크아웃: ${reservation.reserCheckout}<br>
+        예약자 이름: ${member.memberName}<br>
+        예약자 아이디: ${member.memberId}<br>
+        예약자 전화번호: ${member.memberPhone}<br>
         <input type="button" id="btnModify" value="수정">
         <input type="button" id="close" value="닫기">
     </form>

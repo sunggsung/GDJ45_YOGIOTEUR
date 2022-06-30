@@ -17,8 +17,13 @@ public class ReservationDTO {
 	private Long memberNo;
 	private Long roomNo;
 	private Long nonNo;
+	private Integer reserStatus;
 	private Date reserCheckin;
 	private Date reserCheckout;
 	private Integer reserPeople;
 	private Integer reserFood;
+	
+	// 조인시 사용
+	private RoomDTO room;
+	private MemberDTO member;
 }

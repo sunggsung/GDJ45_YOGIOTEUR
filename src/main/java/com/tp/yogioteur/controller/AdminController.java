@@ -1,6 +1,7 @@
 package com.tp.yogioteur.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.tp.yogioteur.domain.ReservationDTO;
 import com.tp.yogioteur.service.AdminService;
 import com.tp.yogioteur.service.OpenAPIService;
 
@@ -29,7 +29,7 @@ public class AdminController {
 	@GetMapping("/admin/adminPage")
 	public String adminPage() {
 		return "admin/adminPage";
-	}
+	}	
 	
 	@GetMapping("/admin/tourPage")
 	public String tourPage() {
@@ -80,6 +80,11 @@ public class AdminController {
 		adminService.removeRoom(request, response);
 	}
 	
+	@ResponseBody
+	@GetMapping(value = "/admin/findRoomByStatus", produces = "application/json")
+	public Map<String, Object> findRoomByStatus(@RequestParam int roomStatus) {
+		return adminService.findRoomByStatus(roomStatus);
+	}
 
 	/* 회원 관리 */
 	@GetMapping("/admin/member")
@@ -103,19 +108,20 @@ public class AdminController {
 	
 	@GetMapping("/admin/reserDetail")
 	public String reserDetail(HttpServletRequest request, Model model) {
-		ReservationDTO reservation = adminService.findReservationByReserNo(request);
-		model.addAttribute("reservation", reservation);
+		adminService.findReservationByReserNo(request, model);
 		return "admin/reserDetail";
 	}
 	
+	// calendar.jsp
 	@ResponseBody
 	@GetMapping(value = "/admin/reserList", produces = "application/json")
 	public Map<String, Object> reserList() {
 		return adminService.findReservations();
 	}
 	
+	// memberDetail.jsp
 	@ResponseBody
-	@GetMapping("/admin/reservation")
+	@GetMapping("/admin/memberReserList")
 	public Map<String, Object> reservation(HttpServletRequest request, Model model) {
 		return adminService.findReservationByMemberNo(request, model);
 	}

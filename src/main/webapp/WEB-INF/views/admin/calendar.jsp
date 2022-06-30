@@ -32,10 +32,30 @@
 	  padding-top: 1em;
 	  padding-left: 1em;
 	  padding-right: 1em;
-	}  
+	}
+	.container {
+	display: flex;
+	margin-top: 50px;
+	margin-left: 10%;
+	margin-right: 10%;
+	}
+	
+	.grid_item {
+		text-align: center;
+		width: 80%;
+	}
+	
+	.table {
+		display: inline-block;
+	}
+	
+	.grid_item.index {
+		text-align: center;
+		width: 20%;
+		background-color: silver;
+	}
   
 </style>
-<link rel="stylesheet" href="../resources/css/admin.css">
 <script>
 
 	var diaLogOpt = {
