@@ -58,12 +58,12 @@
 	
 	function fnReviewAddCheck(){
 		
-		$('#reviewAdd').on('submit', function(event){
-			if($('#reviewTitle').val() == null || $('#reviewContent').val() == null || $('input:radio[name="reviewRevNo"]').is(':checked').val() == false){
+		$('#reviewAdd').on('submit', function(ev){
+			if($('#reviewTitle').val() == '' || $('#review_textarea').val() == '' || $('input:radio[name="reviewRevNo"]').is(':checked').val() == false){
 				
 				
 				alert('작성된 내용이 없습니다.');
-				event.preventDefault();
+				ev.preventDefault();
 				return false;
 			}
 			

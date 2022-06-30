@@ -39,7 +39,7 @@
 				event.preventDefault();
 				return false;
 			}
-			else if($('#reviewTitle').val() == null || $('#reviewContent').val() == null ){
+			else if($('#reviewTitle').val() == '' || $('#review_textarea').val() == null ){
 				
 				
 				alert('리뷰제목 또는 리뷰내용이 없습니다.');

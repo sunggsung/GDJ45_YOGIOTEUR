@@ -15,6 +15,7 @@
 
 	$(function(){
 		fnTextareaLimit();
+		fnReviewReplyModifyCheck();
 	})
 	
 	function fnTextareaLimit(){
@@ -26,6 +27,29 @@
 				$('#replyContent_cnt').html("(500 / 500)" );
 			}
 			
+		})
+	}
+	
+	function fnReviewReplyModifyCheck(){
+		
+		$('#replyChangeData').on('submit', function(event){
+			if($('#replyContent').val() == '${reviewReply.replyContent}'){
+				
+				alert('변경된 내용이 없습니다.');
+				event.preventDefault();
+				return false;
+			}
+			else if($('#replyContent').val() == '' ){
+				
+				
+				alert('댓글내용이 없습니다.');
+				event.preventDefault();
+				return false;
+			}
+			
+			
+			
+			return true;
 		})
 	}
 	

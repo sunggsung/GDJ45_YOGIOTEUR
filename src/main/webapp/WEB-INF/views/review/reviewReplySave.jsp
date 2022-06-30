@@ -15,6 +15,7 @@
 	
 	$(function(){
 		fnTextareaLimit();
+		fnReviewReplyAddCheck();
 	})
 	
 	function fnTextareaLimit(){
@@ -28,6 +29,23 @@
 			
 		})
 	}
+	
+	function fnReviewReplyAddCheck(){
+		
+		$('#replydata').on('submit', function(event){
+			if($('#replyContent').val() == '' ){
+				
+				
+				alert('작성된 내용이 없습니다.');
+				event.preventDefault();
+				return false;
+			}
+			
+			
+			return true;
+		})
+	}
+	
 	
 </script>
 
