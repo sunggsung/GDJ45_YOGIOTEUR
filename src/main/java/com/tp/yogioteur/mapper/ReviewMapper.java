@@ -21,8 +21,7 @@ public interface ReviewMapper {
 		// 리뷰 사진가져오기
 		public ReImageDTO selectReImage(Long reviewNo);
 	  
-		public ReImageDTO selectReviewByNo(Long reImage);
-		
+		public ReviewDTO selectReviewByNo(Long reviewNo);
 		
 		
 		// 리뷰 추가

@@ -31,17 +31,7 @@ public class MainController {
 	public String adminPage() {
 		return "admin/index";
 	}
-	
-	@GetMapping("/faq/faqPage")
-	public String faqPage() {
-		return "faq/faqSearch";
-	}
-	
-	@GetMapping("/review/reviewPage")
-	public String reviewPage() {
-		return "review/reviewList";
-	}
-	 
+		 
 	
 		//form 정보 전달
 		@PostMapping("/room/roomList")
@@ -49,10 +39,10 @@ public class MainController {
 			roomService.roomList(request, model); 
 		}
 		
-		@PostMapping("/room/saveRoom")
-		public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
-			roomService.saveRoom(request, response);
-		}
+//		@PostMapping("/room/saveRoom")
+//		public void saveRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
+//			roomService.saveRoom(request, response);
+//		}
 		
 		@ResponseBody
 		@GetMapping(value = "/room/findRooms", produces = "application/json")
