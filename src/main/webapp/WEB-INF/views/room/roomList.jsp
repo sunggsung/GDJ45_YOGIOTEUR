@@ -9,25 +9,30 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
-	
 </script>
 </head>
 <body>
-	
+		
 	<table>
 			
 		<tbody>
+			
 			<c:forEach items="${roomList}" var="room">
-				<tr>
-					<td><a href="${contextPath}/room/detail?roomNo=${room.roomNo}"><img src="${contextPath}/room/view?roomNo=${room.roomNo}" width="300px"></a></td>
-					<td><a href="${contextPath}/room/detail?roomNo=${room.roomNo}">${room.roomName}</a></td>			
-					<td><input type="button" id="reservation" value="${room.roomPrice}KRW"></td>
-				</tr>
+				<form id="reservationPost" name="reservationPost" action="/reservation/reservationPage" method="post" >
+					<tr>
+						<td>
+						<input type= "hidden" value="${room.roomNo}"><a href="${contextPath}/room/detail?roomNo=${room.roomNo}"><img src="${contextPath}/room/view?roomNo=${room.roomNo}" width="300px"></a>
+						</td>
+						<td><input type= "hidden" value="${room.roomName}"><a href="${contextPath}/room/detail?roomNo=${room.roomNo}">${room.roomName}</a>
+						</td>			
+						<td><input type="submit" id="reservation" name="reservation" value="${room.roomPrice}KRW"></td>
+					</tr>
+				</form>
+				
 			</c:forEach>
+			
 		</tbody>
 		
 	</table>
-	
-	
 </body>
 </html>

@@ -91,8 +91,9 @@
 				이름 <input type="text" name="name" id="name" value="ksj" readonly><br>
 				연락처 <input type="text" name="tel" id="tel" value="01012345678" readonly><br>
 				이메일 <input type="text" name="email" id="email" value="rlawo32@naver.com" readonly><br>
-				체크인 <input type="text" name="checkin" id="checkin" value="" readonly>
-				체크아웃 <input type="text" name="checkout" id="checkout" value="" readonly>
+				체크인 <input type="text" name="roomcheckIn" id="roomcheckIn" value="${roomCheckIn}" readonly>
+				체크아웃 <input type="text" name="roomcheckOut" id="roomcheckOut" value="${roomCheckOut}" readonly>
+				체크 <input type="text" name="check" id="check" value="${date}" readonly>
 			</div>
 		</c:if>
 		<c:if test="${session != null }">

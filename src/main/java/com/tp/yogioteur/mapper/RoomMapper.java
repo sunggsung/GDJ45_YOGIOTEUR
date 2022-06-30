@@ -14,7 +14,9 @@ public interface RoomMapper {
 	public int insertRoom(RoomDTO room);
 	public int insertImage(ImageDTO image);
 	
-
+	//객실 상세
+	public RoomDTO selectRoomTypeByNo(Long roomNo);
+	
 	//객실조회	
 	public List<RoomDTO> checkInRoomList(Map<String, Object> map);
 	

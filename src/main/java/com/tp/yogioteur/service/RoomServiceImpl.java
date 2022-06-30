@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,11 +40,23 @@ public class RoomServiceImpl implements RoomService {
 	 */
 
 	@Override
-	public void roomList(HttpServletRequest request, Model model) {
+	public List<RoomDTO> roomList(HttpServletRequest request) {
+		
+		
+		
+		/*
+		 * Date checkIn = Date.valueOf(request.getParameter("checkIn"));
+		 * Date checkOut =Date.valueOf(request.getParameter("checkOut"));
+		 */
+		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("checkIn", request.getParameter("checkIn"));
-		map.put("checkOut", request.getParameter("checkOut"));
-		model.addAttribute("roomList", roomMapper.checkInRoomList(map));
+		map.put("roomCheckIn", request.getParameter("roomCheckIn").replaceAll("/", "-"));
+		map.put("roomCheckOut", request.getParameter("roomCheckOut").replaceAll("/", "-"));
+		List<RoomDTO> roomList = roomMapper.checkInRoomList(map);
+		
+		return roomList;
+		
+		
 	}
 	
 	@Override
@@ -76,5 +87,16 @@ public class RoomServiceImpl implements RoomService {
 			
 			return entity;
 	}
-
+	
+	//객실 상세
+	@Override
+	public void findRoomTypeByNo(HttpServletRequest request, Model model) {
+		
+		Long roomNo = Long.parseLong(request.getParameter("roomNo"));
+		
+		model.addAttribute("rn", roomMapper.selectRoomTypeByNo(roomNo));
+		//객실 정보 가져와서 model에 저장
+		
+	}
+	
 }
