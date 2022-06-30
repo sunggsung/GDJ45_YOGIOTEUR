@@ -351,6 +351,16 @@ public class AdminServiceImpl implements AdminService {
 		}
 	}
 	
+	@Override
+	public Map<String, Object> findRoomByStatus(int roomStatus) {
+		List<RoomDTO> rooms = adminMapper.selectRoomByStatus(roomStatus);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("rooms", rooms);
+		
+		return map;
+	}
+	
 	
 	@Override
 	public void findMembers(HttpServletRequest request, Model model) {
@@ -399,10 +409,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public ReservationDTO findReservationByReserNo(HttpServletRequest request) {
+	public Model findReservationByReserNo(HttpServletRequest request, Model model) {
 		Long reserNo = Long.parseLong(request.getParameter("reserNo"));
 		ReservationDTO reservation = adminMapper.selectReservationByReserNo(reserNo);
-		return reservation;
+		model.addAttribute("reservation", reservation);
+		model.addAttribute("member", reservation.getMember());
+		model.addAttribute("room", reservation.getRoom());
+		return model;
 	}
 	
 }

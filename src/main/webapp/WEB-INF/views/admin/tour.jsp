@@ -23,33 +23,31 @@
 			dataType: 'json',
 			success: function(responseText){
 				console.log(responseText);
-				var items = responseText.response.body.items.item;
+				//var items = responseText.response.body.items.item;
 				$('#items').empty();
-				$.each(items, function(i, item){
-					if(item.thema = '자연/힐링') {
-						var tr = '<tr>';
-						tr += '<td>' + item.tm + '</td>';
-						tr += '<td>' + item.courseName + '</td>';
-						tr += '<td>' + item.spotName + '</td>';
-						tr += '<td>' + item.thema + '</td>';
-						var sky;
-						switch(item.sky){
-						case 1: sky = '맑음'; break;
-						case 2: sky = '구름조금'; break;
-						case 3: sky = '구름많음'; break;
-						case 4: sky = '흐림'; break;
-						case 5: sky = '비'; break;
-						case 6: sky = '비눈'; break;
-						case 7: sky = '눈비'; break;
-						case 8: sky = '눈'; break;
-						default: sky = '모름';
-						}
-						tr += '<td>' + sky + '</td>';
-						tr += '<td>' + item.th3 + '</td>';
-						tr += '<td>' + item.rhm + '%</td>';
-						tr += '<td>' + item.pop + '%</td>';
-						$('#items').append(tr);
+				$.each(responseText, function(i, item){
+					var tr = '<tr>';
+					tr += '<td>' + item.tm + '</td>';
+					tr += '<td>' + item.courseName + '</td>';
+					tr += '<td>' + item.spotName + '</td>';
+					tr += '<td>' + item.thema + '</td>';
+					var sky;
+					switch(item.sky){
+					case 1: sky = '맑음'; break;
+					case 2: sky = '구름조금'; break;
+					case 3: sky = '구름많음'; break;
+					case 4: sky = '흐림'; break;
+					case 5: sky = '비'; break;
+					case 6: sky = '비눈'; break;
+					case 7: sky = '눈비'; break;
+					case 8: sky = '눈'; break;
+					default: sky = '모름';
 					}
+					tr += '<td>' + sky + '</td>';
+					tr += '<td>' + item.th3 + '</td>';
+					tr += '<td>' + item.rhm + '%</td>';
+					tr += '<td>' + item.pop + '%</td>';
+					$('#items').append(tr);
 				})
 			}
 		})
@@ -58,7 +56,7 @@
 </script>
 </head>
 <body>
-
+	
 	<table border="1">
 		<thead>
 			<tr>
