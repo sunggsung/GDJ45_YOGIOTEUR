@@ -317,10 +317,14 @@
 		
 		<label for="memberPromoAdd">
 			이메일 수신여부<br>
-			<input type="radio" name="memberPromoAdd" value="yes" id="agree_yes">
-            <label for="agree_yes">동의함</label>
-            <input type="radio" name="memberPromoAdd" value="no" id="agree_no">
-            <label for="agree_no">동의안함</label>
+			
+            <label for="agree_yes">
+            	<input type="radio" name="memberPromoAdd" value="yes" id="agree_yes">동의함
+            </label>
+        
+            <label for="agree_no">
+            	<input type="radio" name="memberPromoAdd" value="no" id="agree_no">동의안함
+            </label>
 		</label>
 		<br><br>
 		

@@ -72,6 +72,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateMember" parameterType="MemberDTO">
 	UPDATE MEMBER
 	   SET MEMBER_PHONE = #{memberPhone}
+	    , MEMBER_POST_CODE = #{memberPostCode}
+	    , MEMBER_ROAD_ADDRESS = #{memberRoadAddr}
+	    , MEMBER_GENDER = #{memberGender}
 	    , MEMBER_EMAIL = #{memberEmail}
 	 WHERE MEMBER_ID = #{memberId}
 	</update>

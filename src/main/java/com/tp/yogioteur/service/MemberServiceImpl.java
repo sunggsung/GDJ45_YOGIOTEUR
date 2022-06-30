@@ -245,21 +245,28 @@ public class MemberServiceImpl implements MemberService {
 
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
 		String memberName = SecurityUtils.xss(request.getParameter("memberName")); 
-		String memberPhone = request.getParameter("memberPhone");    
-		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
 		String memberBirth = request.getParameter("memberBirth");  
+		String memberPhone = request.getParameter("memberPhone");    
+		String memberPostcode = request.getParameter("memberPostcode");
+		String memberRoadAddress = request.getParameter("memberRoadAddress");
+		String memberGender = request.getParameter("memberGender");
+		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
+		String memberPromoAdd = SecurityUtils.xss(request.getParameter("memberPromoAdd")); 
 		
 		MemberDTO member = MemberDTO.builder()
 				.memberId(memberId)
 				.memberName(memberName)
-				.memberPhone(memberPhone)
-				.memberEmail(memberEmail)
 				.memberBirth(memberBirth)
+				.memberPhone(memberPhone)
+				.memberPostCode(memberPostcode)
+				.memberRoadAddr(memberRoadAddress)
+				.memberGender(memberGender)
+				.memberEmail(memberEmail)
+				.memberPromoAdd(memberPromoAdd)
 				.build();
 		
 		System.out.println(member);
 		int res = memberMapper.updateMember(member);
-		System.out.println(res);
 		try {
 			response.setContentType("text/html; charset=UTF-8");
 			HttpSession session = request.getSession();
@@ -334,6 +341,8 @@ public class MemberServiceImpl implements MemberService {
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail"));
 		Integer agreeState = Integer.parseInt(request.getParameter("agreeState"));
 		
+		
+		
 		// MemberDTO
 		MemberDTO member = MemberDTO.builder()
 				.memberPw(memberPw)
@@ -343,7 +352,8 @@ public class MemberServiceImpl implements MemberService {
 				.memberEmail(memberEmail)
 				.agreeState(agreeState)
 				.build();
-
+		
+		
 		// MEMBER 테이블에 member 저장
 		int res1 = memberMapper.reSignInMember(member);
 		int res2 = memberMapper.removeSignOutMember(memberId);
