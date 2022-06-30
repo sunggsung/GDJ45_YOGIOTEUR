@@ -242,6 +242,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
 
+<<<<<<< HEAD
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
 		String memberName = request.getParameter("memberName");   
 		String memberPhone =request.getParameter("memberPhone");    
@@ -251,14 +252,30 @@ public class MemberServiceImpl implements MemberService {
 		String memberRoadAddr = request.getParameter("memberRoadAddr");
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
 		String memberPromoAdd = request.getParameter("memberPromoAdd");
+=======
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
+		String memberName = SecurityUtils.xss(request.getParameter("memberName")); 
+		String memberBirth = request.getParameter("memberBirth");  
+		String memberPhone = request.getParameter("memberPhone");    
+		String memberPostcode = request.getParameter("memberPostcode");
+		String memberRoadAddress = request.getParameter("memberRoadAddress");
+		String memberGender = request.getParameter("memberGender");
+		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
+		String memberPromoAdd = SecurityUtils.xss(request.getParameter("memberPromoAdd")); 
+>>>>>>> jae
 		
 		MemberDTO member = MemberDTO.builder()
 				.memberId(memberId)
 				.memberName(memberName)
 				.memberBirth(memberBirth)
 				.memberPhone(memberPhone)
+<<<<<<< HEAD
 				.memberPostCode(memberPostCode)
 				.memberRoadAddr(memberRoadAddr)
+=======
+				.memberPostCode(memberPostcode)
+				.memberRoadAddr(memberRoadAddress)
+>>>>>>> jae
 				.memberGender(memberGender)
 				.memberEmail(memberEmail)
 				.memberPromoAdd(memberPromoAdd)
@@ -328,6 +345,60 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.selectSignOutMemberByMemberId(memberId);
 	}
 	
+<<<<<<< HEAD
 	
 	
+=======
+	// 재가입
+	@Transactional
+	@Override
+	public void reSignIn(HttpServletRequest request, HttpServletResponse response) {
+		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
+		String memberName = SecurityUtils.xss(request.getParameter("memberName"));
+		Long memberNo = Long.parseLong(request.getParameter("memberNo"));
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
+		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail"));
+		Integer agreeState = Integer.parseInt(request.getParameter("agreeState"));
+		
+		
+		
+		// MemberDTO
+		MemberDTO member = MemberDTO.builder()
+				.memberPw(memberPw)
+				.memberName(memberName)
+				.memberNo(memberNo)
+				.memberId(memberId)
+				.memberEmail(memberEmail)
+				.agreeState(agreeState)
+				.build();
+		
+		
+		// MEMBER 테이블에 member 저장
+		int res1 = memberMapper.reSignInMember(member);
+		int res2 = memberMapper.removeSignOutMember(memberId);
+		
+		// 응답
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(res1 == 1 && res2 == 1) {
+				out.println("<script>");
+				out.println("alert('다시 모든 서비스를 이용할 수 있습니다.')");
+				out.println("location.href='" + request.getContextPath() + "'");		// 첫 페이지(인덱스) 이동
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('재가입에 실패했습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+>>>>>>> jae
 }

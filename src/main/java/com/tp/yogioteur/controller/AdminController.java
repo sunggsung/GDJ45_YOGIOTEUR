@@ -30,6 +30,19 @@ public class AdminController {
 		return "admin/adminPage";
 	}
 	
+<<<<<<< HEAD
+=======
+	@GetMapping("/admin/reservation")
+	public String reservation() {
+		return "admin/reservation";
+	}
+	
+	@GetMapping("/admin/addRoomPage")
+	public String addRoomPage() {
+		return "admin/addRoom";
+	}
+	
+>>>>>>> jae
 	@GetMapping("/admin/weatherPage")
 	public String weatherPage() {
 		return "admin/weather";

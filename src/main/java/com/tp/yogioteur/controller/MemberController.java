@@ -69,13 +69,37 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member/login")
-	public void login(HttpServletRequest request, Model model) {
+	public String login(HttpServletRequest request, Model model) {
+		
+		String res = null;
 		
 		MemberDTO loginMember = memberService.login(request);
+		
+//		model.addAttribute("loginMember", loginMember);
+//		model.addAttribute("url", request.getParameter("url"));
+		
+		String url = request.getParameter("url");
+		
 		if(loginMember != null) {
-			model.addAttribute("loginMember", loginMember);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", loginMember);
+			
+			if(url.toString().isEmpty()) {
+				res = "/";
+			} else {							
+				res = url.toString();
+			}
 		} 
-		model.addAttribute("url", request.getParameter("url"));
+		else {
+			if(url.toString().isEmpty()) {		
+				res = "/member/loginPage";	
+			} else {
+				res = "/member/loginPage?url=" + url.toString();									
+			}
+		}
+		return "redirect:" + res;
+		
 	}
 	
 	// 로그아웃

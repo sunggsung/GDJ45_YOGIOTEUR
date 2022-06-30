@@ -53,7 +53,11 @@
 				return false;
 			}
 			else if(phonePass == false){
+<<<<<<< HEAD
 				alert('연락처를 확인하세요.');
+=======
+				alert('전화번호를 확인하세요.');
+>>>>>>> jae
 				event.preventDefault();
 				return false;
 			}
@@ -152,8 +156,15 @@
         new daum.Postcode({
             oncomplete: function(data) {
                 var roadAddr = data.roadAddress; 
+<<<<<<< HEAD
 	                $('#memberPostcode').val(data.zonecode);
 	                $('#memberRoadAddress').val(roadAddr);
+=======
+
+                $('#memberPostcode').val(data.zonecode);
+                $('#memberRoadAddress').val(roadAddr);
+                
+>>>>>>> jae
             }
         }).open();
     }
@@ -171,8 +182,14 @@
             	이름<input type="text" name="memberName" id="memberName" value="${loginMember.memberName}" readonly="readonly"><br>
 				생년월일
 				<input type="text" name="memberBirth" id="memberBirth" value="${loginMember.memberBirth}" readonly="readonly"><br>
+<<<<<<< HEAD
             	연락처
             	<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" maxlength="11"><br>
+=======
+				<span id="memberBirthMsg"></span>
+            	연락처
+            	<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}"><br>
+>>>>>>> jae
 				<span id="memberPhoneMsg"></span>
 				주소<br>
 				<input type="text" id="memberPostcode" name="memberPostCode" value="${loginMember.memberPostCode}">
