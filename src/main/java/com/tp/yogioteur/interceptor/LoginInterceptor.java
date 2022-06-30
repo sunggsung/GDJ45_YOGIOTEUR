@@ -1,5 +1,7 @@
 package com.tp.yogioteur.interceptor;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -41,28 +43,26 @@ public class LoginInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		
-//		Map<String, Object> map = modelAndView.getModel();
-//		Object loginMember = map.get("loginMember");
-//		Object url = map.get("url");
-//		
-//		if(loginMember != null) {
-//			
-//			HttpSession session = request.getSession();
-//			session.setAttribute("loginMember", loginMember);
-//			
-//			if(url.toString().isEmpty()) {
-//				System.out.println(session.getAttribute("loginMember"));
-//				response.sendRedirect(request.getContextPath());
-//			} else {							
-//				response.sendRedirect(url.toString());
-//			}
-//		} 
-//		else {
-//			if(url.toString().isEmpty()) {		
-//				response.sendRedirect(request.getContextPath() + "/member/loginPage");	
-//			} else {
-//				response.sendRedirect(request.getContextPath() + "/member/loginPage?url=" + url.toString());									
-//			}
-//		}
+		Map<String, Object> map = modelAndView.getModel();
+		Object loginMember = map.get("loginMember");
+		Object url = map.get("url");
+		
+		if(loginMember != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", loginMember);
+			
+			if(url.toString().isEmpty()) {		
+				response.sendRedirect(request.getContextPath());
+			} else {							
+				response.sendRedirect(url.toString());
+			}
+		} 
+		else {
+			if(url.toString().isEmpty()) {		
+				response.sendRedirect(request.getContextPath() + "/member/loginPage");	
+			} else {
+				response.sendRedirect(request.getContextPath() + "/member/loginPage?url=" + url.toString());									
+			}
+		}
 	}
 }
