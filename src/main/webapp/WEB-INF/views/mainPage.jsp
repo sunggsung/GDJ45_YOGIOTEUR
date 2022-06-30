@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@700&family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="resources/css/footer.css">
  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="https://kit.fontawesome.com/148c1051b1.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -159,7 +160,7 @@
 			if($('#roomCheckIn').val() == '' || $('#roomCheckOut').val() == ''){
 				alert('날짜를 선택해주세요.');
 				ev.preventDefault();
-			}
+		}
 			
 		})
 		
@@ -217,7 +218,7 @@
 	<jsp:include page="layout/header.jsp"></jsp:include>
 	
 	<div class="background">
-		<img src="resources/images/hotel.jpg" alt="main" width="100%" height="850px">
+		<img src="resources/image/hotel.jpg" alt="main" width="100%" height="850px">
 	</div>
 	
 	<div class="center">
@@ -266,8 +267,24 @@
 		</div>
 	</div>
 
+	<div class="footer">
+			<div class="end_title">
+				YOGIOTEUR
+				<hr>
+					<div class="info">
+						(주)여기오떼르
+						제주특별자치도 서귀포시 비자림로 2074 63616
+								<nav>
+									<ul>
+										<li><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-square"></i></a></li>
+										<li><a href="https://twitter.com/"><i class="fa-brands fa-twitter-square"></i></a></li>
+										<li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
+									</ul>
+								
+								</nav>
+					</div>
+			</div>
+		</div>
 
-	<jsp:include page="layout/footer.jsp"></jsp:include>
-	
 </body>
 </html>

@@ -66,6 +66,7 @@
 	<div class="footer">
 		<div class="end_title">
 			YOGIOTEUR
+			<a href="${contextPath}/reservation/reservationPage">예약</a>
 			<hr>
 				<div class="info">
 					(주)여기오떼르

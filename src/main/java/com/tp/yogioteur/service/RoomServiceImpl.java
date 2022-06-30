@@ -53,7 +53,10 @@ public class RoomServiceImpl implements RoomService {
 		map.put("roomCheckIn", request.getParameter("roomCheckIn").replaceAll("/", "-"));
 		map.put("roomCheckOut", request.getParameter("roomCheckOut").replaceAll("/", "-"));
 		List<RoomDTO> roomList = roomMapper.checkInRoomList(map);
-		
+		map.put("roomCheckIn", request.getParameter("roomCheckIn"));
+		map.put("roomCheckOut", request.getParameter("roomCheckOut"));
+		List<RoomDTO> roomList = roomMapper.checkInRoomList(map);
+		System.out.println(roomList);
 		return roomList;
 		
 		

@@ -20,7 +20,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tp.yogioteur.domain.MemberDTO;
 import com.tp.yogioteur.domain.SignOutMemberDTO;
@@ -180,8 +179,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberDTO findId(HttpServletRequest request) {
 		
-		String memberName = request.getParameter("memberName");
-		String memberEmail = request.getParameter("memberEmail");
+		String memberName = SecurityUtils.xss(request.getParameter("memberName")); 
+		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail"));
 		MemberDTO member = MemberDTO.builder()
 				.memberName(memberName)
 				.memberEmail(memberEmail)
@@ -201,7 +200,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void changePw(HttpServletRequest request, HttpServletResponse response) {
-		String memberId = request.getParameter("memberId");
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
 		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
 		
 		MemberDTO member = MemberDTO.builder()
@@ -217,7 +216,7 @@ public class MemberServiceImpl implements MemberService {
 			if(res == 1) {
 				out.println("<script>");
 				out.println("alert('비밀번호가 수정되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/member/loginPage'");
+				out.println("location.href='" + request.getContextPath() + "/'");
 				out.println("</script>");
 				out.close();
 			} else {
@@ -243,23 +242,29 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
 
-		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
-		String memberName = SecurityUtils.xss(request.getParameter("memberName")); 
-		String memberPhone = request.getParameter("memberPhone");    
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
+		String memberName = request.getParameter("memberName");   
+		String memberPhone =request.getParameter("memberPhone");    
+		String memberBirth = request.getParameter("memberBirth");   
+		String memberGender = request.getParameter("memberGender");
+		String memberPostCode = request.getParameter("memberPostCode");
+		String memberRoadAddr = request.getParameter("memberRoadAddr");
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
-		String memberBirth = request.getParameter("memberBirth");  
+		String memberPromoAdd = request.getParameter("memberPromoAdd");
 		
 		MemberDTO member = MemberDTO.builder()
 				.memberId(memberId)
 				.memberName(memberName)
-				.memberPhone(memberPhone)
-				.memberEmail(memberEmail)
 				.memberBirth(memberBirth)
+				.memberPhone(memberPhone)
+				.memberPostCode(memberPostCode)
+				.memberRoadAddr(memberRoadAddr)
+				.memberGender(memberGender)
+				.memberEmail(memberEmail)
+				.memberPromoAdd(memberPromoAdd)
 				.build();
 		
-		System.out.println(member);
 		int res = memberMapper.updateMember(member);
-		System.out.println(res);
 		try {
 			response.setContentType("text/html; charset=UTF-8");
 			HttpSession session = request.getSession();
@@ -283,16 +288,13 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 	}
-	
-	
-	
+
 	// 탈퇴
 	@Override
 	public void signOut(HttpServletRequest request, HttpServletResponse response) {
 		
-		Optional<String> opt = Optional.ofNullable(request.getParameter("memberNo"));
-		Long memberNo = Long.parseLong(opt.orElse("0"));
-		int res = memberMapper.removeMember(memberNo);
+		String memberId = request.getParameter("memberId");
+		int res = memberMapper.removeMember(memberId);
 
 		try {
 			response.setContentType("text/html");
@@ -322,53 +324,22 @@ public class MemberServiceImpl implements MemberService {
 	public SignOutMemberDTO findSignOutMember(String memberId) {
 		return memberMapper.selectSignOutMemberByMemberId(memberId);
 	}
-	
-	// 재가입
-	@Transactional
-	@Override
-	public void reSignIn(HttpServletRequest request, HttpServletResponse response) {
-		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
-		String memberName = SecurityUtils.xss(request.getParameter("memberName"));
-		Long memberNo = Long.parseLong(request.getParameter("memberNo"));
-		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
-		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail"));
-		Integer agreeState = Integer.parseInt(request.getParameter("agreeState"));
-		
-		// MemberDTO
-		MemberDTO member = MemberDTO.builder()
-				.memberPw(memberPw)
-				.memberName(memberName)
-				.memberNo(memberNo)
-				.memberId(memberId)
-				.memberEmail(memberEmail)
-				.agreeState(agreeState)
-				.build();
 
-		// MEMBER 테이블에 member 저장
-		int res1 = memberMapper.reSignInMember(member);
-		int res2 = memberMapper.removeSignOutMember(memberId);
+	@Override
+	public MemberDTO pwCheck(HttpServletRequest request, HttpServletResponse response) {
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
+		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));    
+
+		MemberDTO member = new MemberDTO();
+		member.setMemberId(memberId);
+		member.setMemberPw(memberPw);
 		
-		// 응답
-		try {
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			if(res1 == 1 && res2 == 1) {
-				out.println("<script>");
-				out.println("alert('다시 모든 서비스를 이용할 수 있습니다.')");
-				out.println("location.href='" + request.getContextPath() + "'");		// 첫 페이지(인덱스) 이동
-				out.println("</script>");
-				out.close();
-			} else {
-				out.println("<script>");
-				out.println("alert('재가입에 실패했습니다.')");
-				out.println("history.back()");
-				out.println("</script>");
-				out.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		MemberDTO memberInfo= memberMapper.selectMemberByIdPw(member);
 		
+		return memberInfo;
 		
 	}
+	
+	
+	
 }

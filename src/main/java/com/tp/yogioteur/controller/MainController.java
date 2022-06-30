@@ -26,5 +26,5 @@ public class MainController {
 	public String reviewPage() {
 		return "review/reviewList";
 	}
-	 
+
 }

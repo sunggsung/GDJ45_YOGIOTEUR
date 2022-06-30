@@ -25,21 +25,10 @@ public class RoomController {
 
 	// 객실 조회
 	@PostMapping("/room/roomList")
-	public ModelAndView roomList(HttpServletRequest request, Model model) {
-		
-		
-		 ModelAndView mv = new ModelAndView(); 
-			  mv.addObject("roomCheckIn",request.getParameter("roomCheckIn")); 
-			  mv.addObject("roomCheckOut",request.getParameter("roomCheckOut")); // 데이터
-			  mv.setViewName("/room/roomList"); //데이터랑 같이 반환하는 jsp 경로
-			  
-		
-		 List<RoomDTO> roomList = roomService.roomList(request);
-		 
-		 mv.addObject("roomList", roomList);
-		 
-		 return mv;
-		
+	public String roomList(HttpServletRequest request, Model model) {
+		model.addAttribute("roomList", roomService.roomList(request));
+		System.out.println(roomService.roomList(request));
+		return "room/roomList";
 	}
 
 	// 이미지 보여주기
