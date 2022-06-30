@@ -31,6 +31,7 @@ public class AdminController {
 	}
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	@GetMapping("/admin/reservation")
 	public String reservation() {
@@ -42,6 +43,8 @@ public class AdminController {
 		return "admin/addRoom";
 	}
 	
+>>>>>>> jae
+=======
 >>>>>>> jae
 	@GetMapping("/admin/weatherPage")
 	public String weatherPage() {

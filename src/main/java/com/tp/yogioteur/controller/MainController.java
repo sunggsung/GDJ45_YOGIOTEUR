@@ -1,24 +1,12 @@
 package com.tp.yogioteur.controller;
 
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.tp.yogioteur.service.RoomService;
 
 @Controller
 public class MainController {
 	
-	@Autowired
-	private RoomService roomService;
 	
 	@GetMapping("/")
 	public String index() {
@@ -31,6 +19,7 @@ public class MainController {
 	}
 		 
 	
+<<<<<<< HEAD
 		//form 정보 전달
 		@PostMapping("/room/roomList")
 		public void list(HttpServletRequest request, Model model) {
@@ -51,4 +40,6 @@ public class MainController {
 			return roomService.findRooms();
 		}
 	
+=======
+>>>>>>> jae
 }

@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	<!-- 로그인 -->
+	<!-- 로그인 / 비밀번호 검증 -->
 	<select id="selectMemberByIdPw" parameterType="MemberDTO" resultType="MemberDTO">
 	SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_BIRTH, MEMBER_GENDER, MEMBER_PROMO_ADD, MEMBER_POST_CODE, MEMBER_ROAD_ADDR, AGREE_STATE, SIGN_IN, MEMBER_SESSIONID
 		FROM MEMBER
@@ -74,9 +74,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   SET MEMBER_PHONE = #{memberPhone}
 	    , MEMBER_POST_CODE = #{memberPostCode}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    , MEMBER_ROAD_ADDR = #{memberRoadAddr}
 =======
 	    , MEMBER_ROAD_ADDRESS = #{memberRoadAddr}
+>>>>>>> jae
+=======
+	    , MEMBER_ROAD_ADDR = #{memberRoadAddr}
 >>>>>>> jae
 	    , MEMBER_GENDER = #{memberGender}
 	    , MEMBER_EMAIL = #{memberEmail}
@@ -84,6 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 WHERE MEMBER_ID = #{memberId}
 	</update>
 	
+
 	
 
 	<!-- 탈퇴 -->	
@@ -106,5 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM SIGN_OUT_MEMBER
 		 WHERE ID = #{id}
 	</delete>
+	
+
 	
 </mapper>

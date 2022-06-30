@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tp.yogioteur.domain.MemberDTO;
 import com.tp.yogioteur.service.MemberService;
+import com.tp.yogioteur.service.ReservationService;
 
 @Controller
 public class MemberController {
@@ -23,6 +24,9 @@ public class MemberController {
 	// 회원가입
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ReservationService reservationService; //
 	
 	@GetMapping("/member/agreePage")
 	public String agreePage() {
@@ -69,37 +73,13 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member/login")
-	public String login(HttpServletRequest request, Model model) {
-		
-		String res = null;
+	public void login(HttpServletRequest request, Model model) {
 		
 		MemberDTO loginMember = memberService.login(request);
-		
-//		model.addAttribute("loginMember", loginMember);
-//		model.addAttribute("url", request.getParameter("url"));
-		
-		String url = request.getParameter("url");
-		
 		if(loginMember != null) {
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("loginMember", loginMember);
-			
-			if(url.toString().isEmpty()) {
-				res = "/";
-			} else {							
-				res = url.toString();
-			}
+			model.addAttribute("loginMember", loginMember);
 		} 
-		else {
-			if(url.toString().isEmpty()) {		
-				res = "/member/loginPage";	
-			} else {
-				res = "/member/loginPage?url=" + url.toString();									
-			}
-		}
-		return "redirect:" + res;
-		
+		model.addAttribute("url", request.getParameter("url"));
 	}
 	
 	// 로그아웃
@@ -147,18 +127,6 @@ public class MemberController {
 	}
 
 	
-	// 회원 정보
-	@GetMapping("/member/memberPage")
-	public String memberPage(){
-		return "member/memberInfo";
-	}
-	
-	// 회원 수정
-	@PostMapping("/member/modifyMember")
-	public void modifyMember(HttpServletRequest request, HttpServletResponse response){
-		memberService.changeMember(request, response);
-	}
-	
 	// 회원 탈퇴
 	@GetMapping("/member/signOut")
 	public void signOut(HttpServletRequest request, HttpServletResponse response) {
@@ -171,6 +139,7 @@ public class MemberController {
 		return "member/reSignIn";
 	}
 	
+<<<<<<< HEAD
 	// 회원비밀번호 조회 검사페이지
 	@PostMapping("/member/pwModifyPage")
 	public String pwModifyPage() {
@@ -179,4 +148,48 @@ public class MemberController {
 	
 	
 
+=======
+	// 회원 정보
+	@GetMapping("/member/memberPage")
+	public String memberPage(HttpServletRequest request, Model model){ //
+		reservationService.reserList(request, model); //
+		return "member/memberInfo";
+	}
+	@GetMapping("/member/memberInfo")
+	public String memberInfo(){
+		System.out.println();
+		return "member/memberInfo";
+	}
+	// 회원 수정
+	@PostMapping("/member/modifyMember")
+	public void modifyMember(HttpServletRequest request, HttpServletResponse response){
+		memberService.changeMember(request, response);
+	}
+	
+	
+	// 비밀번호 재설정 페이지 이동
+	@GetMapping(value = "/member/modifyPwPage")
+	public String modifyPwPage() {
+		return "member/modifyPw";
+	}
+	//회원비밀번호 재설정
+	@PostMapping("/member/modifyPw")
+	public void modifyPw(HttpServletRequest request, HttpServletResponse response) {
+		memberService.changePw(request, response);
+	}
+	
+	//예약내역
+	@GetMapping("/member/confoirmReserPage")
+	public String confoirmReserPage() {
+		return "member/confirmReser";
+	}
+	// 문의내역REVIEW FAQ
+	@GetMapping("/member/confirmFaqPage")
+	public String confirmFaqPage() {
+		return "member/confirmFaq";
+	}
+	
+	
+	
+>>>>>>> jae
 }

@@ -216,7 +216,7 @@ public class MemberServiceImpl implements MemberService {
 			if(res == 1) {
 				out.println("<script>");
 				out.println("alert('비밀번호가 수정되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/member/loginPage'");
+				out.println("location.href='" + request.getContextPath() + "/'");
 				out.println("</script>");
 				out.close();
 			} else {
@@ -243,10 +243,14 @@ public class MemberServiceImpl implements MemberService {
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> jae
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
 		String memberName = request.getParameter("memberName");   
 		String memberPhone =request.getParameter("memberPhone");    
 		String memberBirth = request.getParameter("memberBirth");   
+<<<<<<< HEAD
 		String memberGender = request.getParameter("memberGender");
 		String memberPostCode = request.getParameter("memberPostCode");
 		String memberRoadAddr = request.getParameter("memberRoadAddr");
@@ -259,9 +263,17 @@ public class MemberServiceImpl implements MemberService {
 		String memberPhone = request.getParameter("memberPhone");    
 		String memberPostcode = request.getParameter("memberPostcode");
 		String memberRoadAddress = request.getParameter("memberRoadAddress");
+=======
+>>>>>>> jae
 		String memberGender = request.getParameter("memberGender");
+		String memberPostCode = request.getParameter("memberPostCode");
+		String memberRoadAddr = request.getParameter("memberRoadAddr");
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
+<<<<<<< HEAD
 		String memberPromoAdd = SecurityUtils.xss(request.getParameter("memberPromoAdd")); 
+>>>>>>> jae
+=======
+		String memberPromoAdd = request.getParameter("memberPromoAdd");
 >>>>>>> jae
 		
 		MemberDTO member = MemberDTO.builder()
@@ -270,18 +282,22 @@ public class MemberServiceImpl implements MemberService {
 				.memberBirth(memberBirth)
 				.memberPhone(memberPhone)
 <<<<<<< HEAD
+<<<<<<< HEAD
 				.memberPostCode(memberPostCode)
 				.memberRoadAddr(memberRoadAddr)
 =======
 				.memberPostCode(memberPostcode)
 				.memberRoadAddr(memberRoadAddress)
 >>>>>>> jae
+=======
+				.memberPostCode(memberPostCode)
+				.memberRoadAddr(memberRoadAddr)
+>>>>>>> jae
 				.memberGender(memberGender)
 				.memberEmail(memberEmail)
 				.memberPromoAdd(memberPromoAdd)
 				.build();
 		
-		System.out.println(member);
 		int res = memberMapper.updateMember(member);
 		try {
 			response.setContentType("text/html; charset=UTF-8");
@@ -306,9 +322,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 	}
-	
-	
-	
+
 	// 탈퇴
 	@Override
 	public void signOut(HttpServletRequest request, HttpServletResponse response) {
@@ -344,6 +358,7 @@ public class MemberServiceImpl implements MemberService {
 	public SignOutMemberDTO findSignOutMember(String memberId) {
 		return memberMapper.selectSignOutMemberByMemberId(memberId);
 	}
+<<<<<<< HEAD
 	
 <<<<<<< HEAD
 	
@@ -351,54 +366,28 @@ public class MemberServiceImpl implements MemberService {
 =======
 	// 재가입
 	@Transactional
+=======
+
+>>>>>>> jae
 	@Override
-	public void reSignIn(HttpServletRequest request, HttpServletResponse response) {
-		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
-		String memberName = SecurityUtils.xss(request.getParameter("memberName"));
-		Long memberNo = Long.parseLong(request.getParameter("memberNo"));
-		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
-		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail"));
-		Integer agreeState = Integer.parseInt(request.getParameter("agreeState"));
+	public MemberDTO pwCheck(HttpServletRequest request, HttpServletResponse response) {
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
+		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));    
+
+		MemberDTO member = new MemberDTO();
+		member.setMemberId(memberId);
+		member.setMemberPw(memberPw);
 		
+		MemberDTO memberInfo= memberMapper.selectMemberByIdPw(member);
 		
-		
-		// MemberDTO
-		MemberDTO member = MemberDTO.builder()
-				.memberPw(memberPw)
-				.memberName(memberName)
-				.memberNo(memberNo)
-				.memberId(memberId)
-				.memberEmail(memberEmail)
-				.agreeState(agreeState)
-				.build();
-		
-		
-		// MEMBER 테이블에 member 저장
-		int res1 = memberMapper.reSignInMember(member);
-		int res2 = memberMapper.removeSignOutMember(memberId);
-		
-		// 응답
-		try {
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			if(res1 == 1 && res2 == 1) {
-				out.println("<script>");
-				out.println("alert('다시 모든 서비스를 이용할 수 있습니다.')");
-				out.println("location.href='" + request.getContextPath() + "'");		// 첫 페이지(인덱스) 이동
-				out.println("</script>");
-				out.close();
-			} else {
-				out.println("<script>");
-				out.println("alert('재가입에 실패했습니다.')");
-				out.println("history.back()");
-				out.println("</script>");
-				out.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		return memberInfo;
 		
 	}
+<<<<<<< HEAD
+>>>>>>> jae
+=======
+	
+	
+	
 >>>>>>> jae
 }

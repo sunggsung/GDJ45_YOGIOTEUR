@@ -63,13 +63,14 @@
 </style>
 </head>
 <body>
-	
+
 	<div class="head">
+	
 		<div class="header">
 				<a href="${contextPath}/review/reviewList">REVIEW</a>
 				<a href="${contextPath}/faq/faqList">FAQ</a>
 		</div>
-		로그인 <%= session.getAttribute("loginMember") %>
+		
 		<div class="title">
 			<a href="http://localhost:9090/yogioteur/">YOGIOTEUR</a>
 		</div>

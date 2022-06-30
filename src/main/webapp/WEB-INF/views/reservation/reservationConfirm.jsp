@@ -26,27 +26,25 @@
 	투숙인원${reservation.reserPeople}
 	투숙객 이름
 	투숙객 전화번호
-	이름 <input type="text" name="name" id="name" value="${user.id}" readonly><br>
-				연락처 <input type="text" name="tel" id="tel" value="${user.phone}" readonly><br>
-				이메일 <input type="text" name="email" id="email" value="${user.email}" readonly><br>
-		<c:if test="${loginMember ne null}">
+	<c:if test="${loginMember ne null }">
 			<div>
-				이름 <input type="text" name="name" id="name" value="${loginMember.memberId}" readonly><br>
+				이름 <input type="text" name="name" id="name" value="${loginMember.memberName}" readonly><br>
 				연락처 <input type="text" name="tel" id="tel" value="${loginMember.memberPhone}" readonly><br>
 				이메일 <input type="text" name="email" id="email" value="${loginMember.memberEmail}" readonly><br>
 				체크인 <input type="text" name="checkin" id="checkin" value="" readonly>
 				체크아웃 <input type="text" name="checkout" id="checkout" value="" readonly>
 			</div>
 		</c:if>
-		<c:if test="${session != null }">
+		<c:if test="${loginMember eq null }">
 			<div>
 				비회원 이름 <input type="text" name="nonName" id="nonName" value="${session.nonName}" readonly>
 				비회원 연락처 <input type="text" name="nonTel" id="nonTel" value="${session.nonTel}" readonly><br>
 			</div>
 		</c:if>
 	
-	총 결제 금액
-	결제 금액 세부사항(조식비 + 객실비)
+	총 결제 금액 ${money.totalPrice}
+	결제 금액 세부사항(조식비 + 실비) 
+	<div><a href="${contextPath}">메인페이지로 돌아가기</a></div>
 
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>

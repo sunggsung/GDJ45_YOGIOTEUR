@@ -66,6 +66,7 @@
 	<div class="footer">
 		<div class="end_title">
 			YOGIOTEUR
+			<a href="${contextPath}/reservation/reservationPage">예약</a>
 			<hr>
 				<div class="info">
 					(주)여기오떼르
@@ -75,14 +76,11 @@
 									<li><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-square"></i></a></li>
 									<li><a href="https://twitter.com/"><i class="fa-brands fa-twitter-square"></i></a></li>
 									<li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
-									<a href="reservation/reservationPage">예약</a>
 								</ul>
 							
 							</nav>
 				</div>
 		</div>
 	</div>
-	
-	
 </body>
 </html>

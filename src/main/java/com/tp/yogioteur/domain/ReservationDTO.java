@@ -26,6 +26,11 @@ public class ReservationDTO {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date reserCheckout;
 	
+<<<<<<< HEAD
+=======
+	private Integer reserStatus;
+>>>>>>> jae
 	private Integer reserPeople;
 	private Integer reserFood;
+	private String reserRequest;
 }
