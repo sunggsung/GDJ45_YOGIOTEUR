@@ -9,9 +9,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class TourStnInfoService implements OpenAPIService {
 
@@ -25,7 +30,7 @@ public class TourStnInfoService implements OpenAPIService {
 		try {
 			sb.append("http://apis.data.go.kr/1360000/TourStnInfoService/getTourStnVilageFcst");
 			sb.append("?serviceKey=").append(URLEncoder.encode(serviceKey, "UTF-8"));
-			sb.append("&numOfRows=").append(URLEncoder.encode("20", "UTF-8"));
+			sb.append("&numOfRows=").append(URLEncoder.encode("16", "UTF-8"));
 			sb.append("&pageNo=").append(URLEncoder.encode("1", "UTF-8"));
 			sb.append("&CURRENT_DATE=").append(URLEncoder.encode("2022062601", "UTF-8"));
 			sb.append("&HOUR=").append(URLEncoder.encode("12", "UTF-8"));
@@ -74,10 +79,26 @@ public class TourStnInfoService implements OpenAPIService {
 		} catch (IOException e) {
 			e.printStackTrace();  // API 응답이 실패하였다.
 		}
+		JSONObject obj = new JSONObject(sb2.toString());
+		JSONObject items = obj.getJSONObject("response").getJSONObject("body").getJSONObject("items");
+		JSONArray item = items.getJSONArray("item");
+		int length = item.length();
+		
+		// 원하는 지점의 날씨정보만 추출
+		List<JSONObject> list = new ArrayList<>();
+		for(int i = 0; i < length; i++) {
+			String spotName = item.getJSONObject(i).getString("spotName");
+			String thema = item.getJSONObject(i).getString("thema");
+			if((spotName.equals("(서귀포)성산일출봉") == true ||
+					spotName.equals("(제주)제주해녀박물관") == true ||
+						spotName.equals("(제주)토끼섬") == true) && thema.equals("자연/힐링"))  {
+				list.add(item.getJSONObject(i));
+			}
+		}
+		
 		response.setContentType("application/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		System.out.println(sb2.toString());
-		out.write(sb2.toString());
+		out.write(list.toString());
 		out.flush();
 		out.close();
 	}

@@ -21,6 +21,7 @@ public interface AdminMapper {
 	public int selectRoomCount();
 	public RoomDTO selectRoomByNo(Long RoomNo);
 	public ImageDTO selectImageByNo(Long imageNo);
+	public List<RoomDTO> selectRoomByStatus(int roomStatus);
 	
 	public List<ImageDTO> selectImageListInTheRoom(Long roomNo);
 	public int deleteRoom(Long roomNo);

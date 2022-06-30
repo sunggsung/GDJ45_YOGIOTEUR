@@ -16,7 +16,7 @@
 	
 	function fnReservationList() {
 		$.ajax({
-			url: '${contextPath}/admin/reservation?memberNo=' + ${member.memberNo},
+			url: '${contextPath}/admin/memberReserList?memberNo=' + ${member.memberNo},
 			type: 'GET',
 			dataType: 'json',
 			success: function(obj) {
