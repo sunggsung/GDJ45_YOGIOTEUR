@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.tp.yogioteur.domain.ReservationDTO;
 import com.tp.yogioteur.service.AdminService;
 import com.tp.yogioteur.service.OpenAPIService;
 
@@ -30,13 +31,13 @@ public class AdminController {
 		return "admin/adminPage";
 	}
 	
-	@GetMapping("/admin/weatherPage")
-	public String weatherPage() {
-		return "admin/weather";
+	@GetMapping("/admin/tourPage")
+	public String tourPage() {
+		return "admin/tour";
 	}
 	
-	@GetMapping("/admin/weather")
-	public void weather(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	@GetMapping("/admin/tour")
+	public void tour(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		openAPIService.execute(request, response);
 	}
 	
@@ -59,8 +60,8 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/room/display")
-	public ResponseEntity<byte[]> display(Long imageNo, @RequestParam(value = "type", required = false, defaultValue = "image") String type) {
+	@GetMapping("/room/displayImage")
+	public ResponseEntity<byte[]> displayImage(Long imageNo, @RequestParam(value = "type", required = false, defaultValue = "image") String type) {
 		return adminService.display(imageNo, type);
 	}
 	
@@ -74,7 +75,7 @@ public class AdminController {
 		adminService.changeRoom(request, response);
 	}
 	
-	@GetMapping("/room/remove")
+	@GetMapping("/room/removeRoom")
 	public void removeRoom(HttpServletRequest request, HttpServletResponse response) {
 		adminService.removeRoom(request, response);
 	}
@@ -97,8 +98,20 @@ public class AdminController {
 	/* 예약 관리 */
 	@GetMapping("/admin/reservationList")
 	public String reservationList(HttpServletRequest request, Model model) {
-		adminService.findReservations(request, model);
-		return "admin/reservation";
+		return "admin/calendar";
+	}
+	
+	@GetMapping("/admin/reserDetail")
+	public String reserDetail(HttpServletRequest request, Model model) {
+		ReservationDTO reservation = adminService.findReservationByReserNo(request);
+		model.addAttribute("reservation", reservation);
+		return "admin/reserDetail";
+	}
+	
+	@ResponseBody
+	@GetMapping(value = "/admin/reserList", produces = "application/json")
+	public Map<String, Object> reserList() {
+		return adminService.findReservations();
 	}
 	
 	@ResponseBody
