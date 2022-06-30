@@ -43,14 +43,6 @@
 				event.preventDefault();
 				return false;
 			}
-<<<<<<< HEAD
-			else if(phonePass == false){
-<<<<<<< HEAD
-				alert('연락처를 확인하세요.');
-=======
-				alert('전화번호를 확인하세요.');
->>>>>>> jae
-=======
 			else if($('#memberPostCode').val() == ''){
 				alert('우편번호를 확인하세요.');
 				event.preventDefault();
@@ -66,7 +58,6 @@
 		$('#modifyPwForm').on('submit', function(event){
 			if(pwPass == false || rePwPass == false){
 				alert('비밀번호를 확인하세요.');
->>>>>>> jae
 				event.preventDefault();
 				return false;
 			}
@@ -118,20 +109,8 @@
         new daum.Postcode({
             oncomplete: function(data) {
                 var roadAddr = data.roadAddress; 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	                $('#memberPostcode').val(data.zonecode);
 	                $('#memberRoadAddress').val(roadAddr);
-=======
-
-                $('#memberPostcode').val(data.zonecode);
-                $('#memberRoadAddress').val(roadAddr);
-                
->>>>>>> jae
-=======
-	                $('#memberPostcode').val(data.zonecode);
-	                $('#memberRoadAddress').val(roadAddr);
->>>>>>> jae
             }
         }).open();
     }
@@ -185,19 +164,8 @@
             	이름<input type="text" name="memberName" id="memberName" value="${loginMember.memberName}" readonly="readonly"><br>
 				생년월일
 				<input type="text" name="memberBirth" id="memberBirth" value="${loginMember.memberBirth}" readonly="readonly"><br>
-<<<<<<< HEAD
-<<<<<<< HEAD
             	연락처
             	<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" maxlength="11"><br>
-=======
-				<span id="memberBirthMsg"></span>
-            	연락처
-            	<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}"><br>
->>>>>>> jae
-=======
-            	연락처
-            	<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" maxlength="11"><br>
->>>>>>> jae
 				<span id="memberPhoneMsg"></span>
 				주소<br>
 				<input type="text" id="memberPostcode" name="memberPostCode" value="${loginMember.memberPostCode}">
@@ -224,11 +192,7 @@
 					<input type="radio" name="memberPromoAdd" value="no" <c:if test="${loginMember.memberPromoAdd eq 'no'}">checked="checked"</c:if>/>
 				</label>
            		<br>
-<<<<<<< HEAD
-				<button>수정하기</button>
-=======
 				<button>수정</button>
->>>>>>> jae
 				<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/signOut?memberId=${loginMember.memberId}'">
             </form>
     </div>
@@ -285,11 +249,6 @@
 
 	<hr>
 	
-<<<<<<< HEAD
-		<!-- 비밀번호 변경 -->
-		<div class="content">
-			<a href="{contextPath}/member/pwModifyPage">비밀번호변경</a>
-=======
 	<div class="content">
 		<h3>문의내역 확인</h3>
 			<table class="fag" border="1">
@@ -308,7 +267,6 @@
 						</tr>
 				</tbody>
 			</table>
->>>>>>> jae
 		</div>
 
 

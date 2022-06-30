@@ -27,9 +27,6 @@ public class ReservationController {
 	@Autowired
 	private PaymentService paymentService;
 	
-	@Autowired
-	private RoomService roomService;
-	
 	@PostMapping("reservation/reservationPage")
 	public String reservationPage(HttpServletRequest request, Model model) throws IOException {
 
@@ -44,10 +41,7 @@ public class ReservationController {
 		
 		model.addAttribute("roomInfo", roomInfo);
 		
-		System.out.println(roomInfo);
-		
 		String token = paymentService.getToken();
-		System.out.println(token);
 		
 		return "reservation/reservationPage";
 	}

@@ -30,7 +30,6 @@ public class ReservationServiceImpl implements ReservationService {
 	public void reserToken(HttpServletRequest request, Model model) {
 		String no = ReservationUtils.reservataionCode(8).trim();
 		String reserNo = "RN_" + no;
-		System.out.println(reserNo);
 		model.addAttribute("reserNo", reserNo);
 	}
 	
@@ -50,7 +49,6 @@ public class ReservationServiceImpl implements ReservationService {
 		String req = opt.orElse("요청 사항 없음");
 		
 		Integer people = adult + child;
-		System.out.println(reserNo);
 		
 		ReservationDTO reservation = ReservationDTO.builder()
 				.reserNo(reserNo)
@@ -107,6 +105,14 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		model.addAttribute("reservation", reservationMapper.reservationSelectConfirm(no));
 		model.addAttribute("money", reservationMapper.priceSelectConfirm(no));
+		
+		ReservationDTO reservation = reservationMapper.reservationSelectConfirm(no);
+		Long rNo = reservation.getRoomNo();
+		model.addAttribute("room", reservationMapper.reservationRoomSelectConfirm(rNo));
+		
+		System.out.println(reservation);
+		System.out.println(rNo);
+		System.out.println(reservationMapper.reservationRoomSelectConfirm(rNo));
 		
 //		System.out.println(reservationMapper.reservationSelectConfirm(no));
 //		System.out.println(reservationMapper.priceSelectConfirm(no));

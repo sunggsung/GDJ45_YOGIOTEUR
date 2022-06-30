@@ -242,57 +242,23 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> jae
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
 		String memberName = request.getParameter("memberName");   
 		String memberPhone =request.getParameter("memberPhone");    
 		String memberBirth = request.getParameter("memberBirth");   
-<<<<<<< HEAD
 		String memberGender = request.getParameter("memberGender");
 		String memberPostCode = request.getParameter("memberPostCode");
 		String memberRoadAddr = request.getParameter("memberRoadAddr");
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
 		String memberPromoAdd = request.getParameter("memberPromoAdd");
-=======
-		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
-		String memberName = SecurityUtils.xss(request.getParameter("memberName")); 
-		String memberBirth = request.getParameter("memberBirth");  
-		String memberPhone = request.getParameter("memberPhone");    
-		String memberPostcode = request.getParameter("memberPostcode");
-		String memberRoadAddress = request.getParameter("memberRoadAddress");
-=======
->>>>>>> jae
-		String memberGender = request.getParameter("memberGender");
-		String memberPostCode = request.getParameter("memberPostCode");
-		String memberRoadAddr = request.getParameter("memberRoadAddr");
-		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
-<<<<<<< HEAD
-		String memberPromoAdd = SecurityUtils.xss(request.getParameter("memberPromoAdd")); 
->>>>>>> jae
-=======
-		String memberPromoAdd = request.getParameter("memberPromoAdd");
->>>>>>> jae
 		
 		MemberDTO member = MemberDTO.builder()
 				.memberId(memberId)
 				.memberName(memberName)
 				.memberBirth(memberBirth)
 				.memberPhone(memberPhone)
-<<<<<<< HEAD
-<<<<<<< HEAD
 				.memberPostCode(memberPostCode)
 				.memberRoadAddr(memberRoadAddr)
-=======
-				.memberPostCode(memberPostcode)
-				.memberRoadAddr(memberRoadAddress)
->>>>>>> jae
-=======
-				.memberPostCode(memberPostCode)
-				.memberRoadAddr(memberRoadAddr)
->>>>>>> jae
 				.memberGender(memberGender)
 				.memberEmail(memberEmail)
 				.memberPromoAdd(memberPromoAdd)
@@ -358,17 +324,7 @@ public class MemberServiceImpl implements MemberService {
 	public SignOutMemberDTO findSignOutMember(String memberId) {
 		return memberMapper.selectSignOutMemberByMemberId(memberId);
 	}
-<<<<<<< HEAD
-	
-<<<<<<< HEAD
-	
-	
-=======
-	// 재가입
-	@Transactional
-=======
 
->>>>>>> jae
 	@Override
 	public MemberDTO pwCheck(HttpServletRequest request, HttpServletResponse response) {
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
@@ -383,11 +339,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberInfo;
 		
 	}
-<<<<<<< HEAD
->>>>>>> jae
-=======
 	
 	
 	
->>>>>>> jae
 }

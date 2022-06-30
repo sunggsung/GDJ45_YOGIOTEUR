@@ -42,4 +42,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE MEMBER_NO = #{memberNo}
 	</select>
 	
+	<select id="reservationRoomSelectConfirm" parameterType="Long" resultType="RoomDTO">
+		SELECT ROOM_NO, RT_NO, ROOM_NAME, ROOM_STATUS, ROOM_CHECKIN, ROOM_CHECKOUT, ROOM_PRICE 
+		  FROM ROOM
+		 WHERE ROOM_NO = #{roomNo}
+	</select>
+	
 </mapper>

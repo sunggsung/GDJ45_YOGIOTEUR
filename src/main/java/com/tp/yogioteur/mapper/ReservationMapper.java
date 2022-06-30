@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.tp.yogioteur.domain.PriceDTO;
 import com.tp.yogioteur.domain.ReservationDTO;
+import com.tp.yogioteur.domain.RoomDTO;
 
 @Mapper
 public interface ReservationMapper {
@@ -16,4 +17,5 @@ public interface ReservationMapper {
 	public List<ReservationDTO> reservationMemberSelectConfirm(Long memberNo);
 	public int priceInsert(PriceDTO price);	
 	public PriceDTO priceSelectConfirm(String priceNo);
+	public RoomDTO reservationRoomSelectConfirm(Long roomNo); 
 }

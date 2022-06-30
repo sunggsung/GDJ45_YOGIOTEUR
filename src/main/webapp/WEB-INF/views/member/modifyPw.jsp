@@ -12,32 +12,6 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
 
-<<<<<<< HEAD
-		$(function(){
-			
-		})
-		
-		function fnPwModify(){
-			$.ajax({
-				url: '${contextPath}/member/pwModify',
-				type: 'POST',
-				data: 'memberPw=' + $('#memberPw').val(),
-				dataType: 'json',
-				success: function(obj){
-					
-				},
-				error: function(jqXHR){
-					alert('일치하는 회원이 존재하지 않습니다.');
-				}
-			})
-		}
-		
-		
-</script>
-<style>
-	
-</style>
-=======
 $('#modifyPwForm').on('submit', function(event){
 	if(pwPass == false || rePwPass == false){
 		alert('비밀번호를 확인하세요.');
@@ -75,31 +49,10 @@ function fnPwConfirm(){
 	})
 }
 </script>
->>>>>>> jae
 </head>
 <body>
 		
 	<jsp:include page="../layout/header.jsp"></jsp:include>
-<<<<<<< HEAD
-			
-		<h3>비밀번호 변경</h3>
-		<table>
-			<thead>
-				<tr>
-					<td>현재 비밀번호</td>
-					<td><input type="text" name="memberPw" id="memberPw"></td>
-				</tr>
-			</thead>
-		</table>
-	<!--  
-	<form id="findPwForm" action="${contextPath}/member/modifyPw" method="post"></form>
-	신규 비밀번호<input type="password" name="memberPw" id="memberPw" placeholder="새 비밀번호">
-	<span id="pwMsg"></span><br>
-	신규 비밀번호 확인<input type="password" id="memberRePw" placeholder="새 비밀번호 확인">
-	<span id="rePwMsg"></span><br>
-	-->
-	
-=======
 	
 	비밀번호 수정
 	<div class="container">
@@ -115,7 +68,6 @@ function fnPwConfirm(){
 					<input type="button" value="취소" onclick="location.href='${contextPath}/'">
 				</form>
 	    </div>
->>>>>>> jae
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
 
 </body>

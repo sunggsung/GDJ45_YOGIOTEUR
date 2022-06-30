@@ -280,13 +280,13 @@
 		
 		<label for="memberPhone">
 			연락처<br>
-			<input type="text" name="memberPhone" id="memberPhone" placeholder="전화번호는 하이픈(-)을 제외한 숫자만 입력해주세요" maxlength="11"><br>
+			<input type="text" name="memberPhone" id="memberPhone" placeholder="전화번호는 하이픈(-)을 제외한 숫자만 입력해주세요"><br>
 			<span id="memberPhoneMsg"></span>
 		</label><br>
 		
 		<label for="memberBirth">
 			생년월일<br>
-			<input type="text" name="memberBirth" id="memberBirth" placeholder="생년월일(6자)을 입력하세요" maxlength="6"><br>
+			<input type="text" name="memberBirth" id="memberBirth" placeholder="생년월일(6자)을 입력하세요"><br>
 			<span id="memberBirthMsg"></span>
 		</label><br>
 		

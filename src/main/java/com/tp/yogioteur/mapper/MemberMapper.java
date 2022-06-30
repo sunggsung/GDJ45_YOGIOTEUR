@@ -26,10 +26,4 @@ public interface MemberMapper {
 
 	public int updateMember(MemberDTO member);
 	
-<<<<<<< HEAD
-	public int removeMember(String memberId);
-	public SignOutMemberDTO selectSignOutMemberByMemberId(String memberId);
-
-=======
->>>>>>> jae
 }

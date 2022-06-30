@@ -33,8 +33,8 @@
 				alert('취소하셨습니다.');
 				return false;
 			} else {
-				// document.getElementById('f').submit();
-				paymentData();
+				document.getElementById('f').submit();
+				// paymentData();
 			}
 		}
 	}

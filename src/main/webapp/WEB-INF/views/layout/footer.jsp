@@ -30,7 +30,7 @@
 		float: left;
 		margin-left: 10px;
 		margin-top: 3px;
-	
+		
 	
 	}
 	
@@ -58,7 +58,7 @@
 		display: block;
 	
 	}
-
+	
 </style>
 </head>
 <body>

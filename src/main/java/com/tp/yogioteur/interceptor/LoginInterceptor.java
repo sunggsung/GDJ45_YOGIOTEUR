@@ -1,16 +1,7 @@
 package com.tp.yogioteur.interceptor;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-import java.io.PrintWriter;
 import java.util.Map;
 
-=======
->>>>>>> jae
-=======
-import java.util.Map;
-
->>>>>>> jae
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,17 +30,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 		
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
 		
-		// 탈퇴한 회원
 		SignOutMemberDTO member = memberService.findSignOutMember(memberId);
 		if(member != null) {
-//			request.setAttribute("member", member);
-//			request.getRequestDispatcher("/member/reSignInPage").forward(request, response);
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('이미 탈퇴된 회원입니다.')");
-			out.println("location.href='" + request.getContextPath() + "'");
-			out.println("</script>");
+			request.setAttribute("member", member);
+			request.getRequestDispatcher("/member/reSignInPage").forward(request, response);
 			return false;
 		}
 		return true;

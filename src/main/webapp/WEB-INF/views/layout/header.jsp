@@ -67,8 +67,8 @@
 	<div class="head">
 	
 		<div class="header">
-				<a href="${contextPath}/review/reviewList">REVIEW</a>
-				<a href="${contextPath}/faq/faqList">FAQ</a>
+				<a href="${contextPath}/review/reviewPage">REVIEW</a>
+				<a href="${contextPath}/faq/faqPage">FAQ</a>
 		</div>
 		
 		<div class="title">

@@ -19,7 +19,7 @@
 	<h1>예약 확인</h1>
 	
 	객실 이미지        객실 이름 및 타입
-	
+					${room.roomName}
 	체크인             체크아웃
 	
 	예약번호${reservation.reserNo}

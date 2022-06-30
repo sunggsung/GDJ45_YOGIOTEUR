@@ -139,16 +139,6 @@ public class MemberController {
 		return "member/reSignIn";
 	}
 	
-<<<<<<< HEAD
-	// 회원비밀번호 조회 검사페이지
-	@PostMapping("/member/pwModifyPage")
-	public String pwModifyPage() {
-		return "member/pwModify";
-	}
-	
-	
-
-=======
 	// 회원 정보
 	@GetMapping("/member/memberPage")
 	public String memberPage(HttpServletRequest request, Model model){ //
@@ -191,5 +181,4 @@ public class MemberController {
 	
 	
 	
->>>>>>> jae
 }
