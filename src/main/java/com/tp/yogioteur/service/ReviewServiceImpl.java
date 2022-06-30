@@ -52,7 +52,6 @@ public class ReviewServiceImpl implements ReviewService {
 		  
 		  List<ReviewDTO> reviews = reviewMapper.selectReviewList(map);
 		  
-		  
 		  model.addAttribute("totalRecrod", totalRecord);
 		  model.addAttribute("reviews", reviews);
 		  model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtils.getRecordPerPage() );

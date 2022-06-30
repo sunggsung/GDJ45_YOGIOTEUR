@@ -12,75 +12,6 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
-
-	$(function(){
-		/* fnAdminReply(); */
-		fnAdminReplySave();
-		/*fnAdminReplyRemove();*/
-		fnInit();
-	})
-	
-	/* function fnAdminReply(){
-		$.ajax({
-			url:'${contextPath}/reply/reviewReplyList',
-			type: 'get',
-			data: 'reviewNo=${reviewNo}',
-			dataType: 'json',
-			sucess:function(obj){
-				$.each(obj.replies, function(i, reply){
-					var ul = $('<ul>')
-					.append($('<li>').text(reply.replyContent))
-					.append($('<li>').text(reply.replyCreated));
-						
-					$(ul).appendTO('#adminReplyList');
-				})
-			}
-		}) */
-		
-	}
-	
-	
-	function fnAdminReplySave(){
-		$('#replyAdd').on('click', function(){
-			$.ajax({
-				url:'${contextPath}/reply/reviewReplySave',
-				type: 'post',
-				data: $('#replydata').serialize(),
-				dataType: 'json',
-				sucess:function(obj){
-					if(obj.res > 0){
-						alert('댓글이 등록되었습니다');
-						fnInit();
-					}
-				}
-			})
-		})
-	}
-	
-	function fnAdminReplyRemove(){
-		$('#removeReplyLink').on('click',function(){
-			if(confirm('삭제할까요?')){
-				$.ajax({
-					url: '${contextPath}/reply/replyRemove',
-					type: 'get',
-					date: 'replyNo=' + $(this).data('reply_no'),
-					dataType: 'json',
-					success: function(obj){
-						if(obj.res > 0){
-							alert('댓글이 삭제되었습니다.');
-							fnAdminReply();
-							fnInit();
-						}
-					}
-				})
-			}
-		})
-	}
-	
-	function fnInit(){
-		$('#replyContent').val('');
-	}
-	
 	 function fnReviewRemove(rn){      
 	       if(confirm('삭제할까요?')){
 	          location.href='${contextPath}/review/reviewRemove?reviewNo=' + $(rn).data('review_no');
@@ -112,19 +43,26 @@
    			<div class="memberReview">
    				<div class="reviewbox"> 
    					별점 : ${review.reviewRevNo}<br>
+
    					<c:forEach var="i" begin="1" end="5">
+   						
    						<c:if test="${review.reviewRevNo ge i}">
 	   						<span id="staro">★</span>					
    						</c:if>
    						<c:if test="${review.reviewRevNo lt i}">
 	   						<span id="staro">☆</span>					
-   						</c:if>	
+   						</c:if>
+	   										
    					</c:forEach>
    					
    					
    					리뷰제목 : ${review.reviewTitle}<br>
    					리뷰 내용 : ${review.reviewContent}<br>
-   					<div><img src="${contextPath}/review/display?reviewNo=${review.reviewNo}" width="300px" onerror="this.style.display='none'"></div>				
+   					
+   					
+	
+					
+						<div><img src="${contextPath}/review/display?reviewNo=${review.reviewNo}" width="300px" onerror="this.style.display='none'"></div>				
 					
 					
 					
@@ -135,26 +73,12 @@
 		   			
    				</div>
    			</div>
-   			
+   			<c:if test="">
 	   			<div class="adminReply">
-		   			
-		   				관리자 댓글 :
-		   				<div id="adminReplyList" data-review_no="${review.reviewNo}">
-		   				
-		   				</div>
-		   				
-		   				<input type="button" id="removeReplyLink" value="댓글 삭제">
-
-		   			<form id="replydata" action="${contextPath}/reply/replySave">
-		   				<input type="hidden" name="reviewNo" value="${review.reviewNo}">
-		   				<textarea rows="10" cols="50" id="replyContent" name="replyContent"></textarea>
-		   				<button type="button" id="replyAdd">댓글 등록</button>
-		   			</form>
-		   		
-	   			
+	   				  			
 	   			
 	   			</div>
-   			
+   			</c:if>
    		</div>
    </c:forEach>
    

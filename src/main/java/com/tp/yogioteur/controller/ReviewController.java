@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.tp.yogioteur.service.ReviewReplyService;
 import com.tp.yogioteur.service.ReviewService;
 
 
@@ -23,13 +22,9 @@ public class ReviewController {
 	@Autowired
 	public ReviewService reviewService;
 	
-	@Autowired
-	private ReviewReplyService reviewReplyService;
-	
 	@GetMapping("/review/reviewList")
 	public String reviewList(HttpServletRequest request, Model model) {
 		reviewService.ReviewList(request, model);
-		reviewReplyService.ReviewReplyList(request, model);
 		return "review/reviewList";
 	}
 	

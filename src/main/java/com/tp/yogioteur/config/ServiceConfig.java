@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import com.tp.yogioteur.service.MemberService;
 import com.tp.yogioteur.service.MemberServiceImpl;
 import com.tp.yogioteur.service.OpenAPIService;
+import com.tp.yogioteur.service.PaymentService;
+import com.tp.yogioteur.service.PaymentServiceImpl;
 import com.tp.yogioteur.service.RoomService;
 import com.tp.yogioteur.service.RoomServiceImpl;
 import com.tp.yogioteur.service.TourStnInfoService;
@@ -26,6 +28,10 @@ public class ServiceConfig {
 	@Bean
 	public OpenAPIService openAPIService() {
 		return new TourStnInfoService();
+	}
+	@Bean
+	public PaymentService paymentService() {
+		return new PaymentServiceImpl();
 	}
 	
 }
