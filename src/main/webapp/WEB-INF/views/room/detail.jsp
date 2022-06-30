@@ -20,6 +20,7 @@
 				<div>
 				${rn.roomName}
 				</div>
+				<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="300px";>
 			</c:when>
 			<c:when test="${rn.rtNo eq 2}">
 				<div>

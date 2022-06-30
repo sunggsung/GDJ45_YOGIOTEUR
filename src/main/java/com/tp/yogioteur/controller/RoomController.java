@@ -1,7 +1,5 @@
 package com.tp.yogioteur.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.tp.yogioteur.service.RoomService;
 
@@ -24,21 +21,9 @@ public class RoomController {
 
 	// 객실 조회
 	@PostMapping("/room/roomList")
-	public ModelAndView roomList(HttpServletRequest request, Model model) {
-		
-		
-		 ModelAndView mv = new ModelAndView(); 
-			  mv.addObject("roomCheckIn",request.getParameter("roomCheckIn")); 
-			  mv.addObject("roomCheckOut",request.getParameter("roomCheckOut")); // 데이터
-			  mv.setViewName("/room/roomList"); //데이터랑 같이 반환하는 jsp 경로
-			  
-		
-		 List roomList = roomService.roomList(request);
-		 
-		 mv.addObject("roomList", roomList);
-		 
-		 return mv;
-		
+	public String roomList(HttpServletRequest request, Model model) {
+		 model.addAttribute("roomList", roomService.roomList(request));
+		 return "room/roomList";
 	}
 
 	// 이미지 보여주기
@@ -47,6 +32,12 @@ public class RoomController {
 	public ResponseEntity<byte[]> view(Long roomNo,
 			@RequestParam(value = "type", required = false, defaultValue = "image") String type) {
 		return roomService.view(roomNo, type);
+	}
+	@ResponseBody
+	@GetMapping("/room/detailView")
+	public ResponseEntity<byte[]> detailView(Long roomNo,
+			@RequestParam(value = "type", required = false, defaultValue = "image") String type) {
+		return roomService.detailView(roomNo, type);
 	}
 
 	// 객실 상세

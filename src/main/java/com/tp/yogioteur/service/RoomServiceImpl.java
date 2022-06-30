@@ -50,8 +50,8 @@ public class RoomServiceImpl implements RoomService {
 		 */
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("roomCheckIn", request.getParameter("roomCheckIn").replaceAll("/", "-"));
-		map.put("roomCheckOut", request.getParameter("roomCheckOut").replaceAll("/", "-"));
+		map.put("roomCheckIn", request.getParameter("roomCheckIn"));
+		map.put("roomCheckOut", request.getParameter("roomCheckOut"));
 		List<RoomDTO> roomList = roomMapper.checkInRoomList(map);
 		
 		return roomList;
@@ -97,6 +97,36 @@ public class RoomServiceImpl implements RoomService {
 		model.addAttribute("rn", roomMapper.selectRoomTypeByNo(roomNo));
 		//객실 정보 가져와서 model에 저장
 		
+	}
+	
+	//객실 상세 이미지
+	@Override
+	public ResponseEntity<byte[]> detailView(Long roomNo, String type) {
+		
+		
+		ImageDTO image = roomMapper.detailImageByNo(roomNo);
+				
+		// 보내줘야 할 이미지
+		File file = null;
+		switch(type) {
+			case "thumb":
+				file = new File(image.getImagePath(), "s_" + image.getImageSaved());
+				break;
+			case "image":
+				file = new File(image.getImagePath(), image.getImageSaved());
+				break;
+		}
+			// ResponseEntity
+			ResponseEntity<byte[]> entity = null;
+			try {
+				HttpHeaders headers = new HttpHeaders();
+				headers.add("Content-Type", Files.probeContentType(file.toPath()));
+				entity = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return entity;
 	}
 	
 }

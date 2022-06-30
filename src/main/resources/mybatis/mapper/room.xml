@@ -33,12 +33,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="checkInRoomList" parameterType="Map" resultMap="RoomDTOMap">
+		 <![CDATA[
 		SELECT ROOM_NO, RT_NO, ROOM_NAME, ROOM_STATUS, ROOM_CHECKIN, ROOM_CHECKOUT, ROOM_PRICE 
 		  FROM ROOM
-		 <![CDATA[
 			 WHERE ROOM_CHECKIN <= #{roomCheckIn, jdbcType=VARCHAR} AND ROOM_CHECKOUT >= #{roomCheckOut, jdbcType=VARCHAR}
-		 ]]>
 	 	   AND ROOM_STATUS = 0
+		 ]]>
 	</select>
 		
 	<select id="selectImageByNo" parameterType="Long" resultType="ImageDTO">
@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>	
 	
 	<select id="selectRoomTypeByNo" parameterType="Long" resultMap="RoomDTOMap">
-		SELECT T.RT_NO, T.RT_TYPE, T.RT_MAX, R.ROOM_NAME
+		SELECT T.RT_NO, T.RT_TYPE, T.RT_MAX, R.ROOM_NAME, R.ROOM_NO
 		  FROM ROOM R INNER JOIN ROOM_TYPE T
 		    ON R.RT_NO = T.RT_NO
 		 WHERE R.ROOM_NO = #{roomNo}
@@ -59,6 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT ROOM_NO, IMAGE_NO, IMAGE_ORIGIN, IMAGE_PATH, IMAGE_SAVED
 		  FROM IMAGE
 		 WHERE ROOM_NO = #{roomNo}
+		   
 	</select>
 	
 </mapper>
