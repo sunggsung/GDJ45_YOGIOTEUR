@@ -30,6 +30,8 @@
 </head>
 <body>
    
+   <jsp:include page="../layout/header.jsp"></jsp:include>
+   
   <h1>QnA 게시판</h1>
   
   <a href="${contextPath}/qna/qnaSavePage">새글작성</a>
@@ -49,7 +51,7 @@
   	<tbody>
   			<c:forEach items="${qnas}" var="qna">
   				<tr id="qna_${qna.qnaNo}">
-  					<td>${qna.qnaNo}</td>
+  					<td>${totalRecord + 1 - qna.qnaNo}</td>
   					<td><a href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
   					<td>${qna.memberId}</td>
   					<td>${qna.qnaCreated}</td>
@@ -60,5 +62,8 @@
   </table>
   
   	<div>${paging}</div>
+  	
+  	<jsp:include page="../layout/footer.jsp"></jsp:include>
+  	
 </body>
 </html>
