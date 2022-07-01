@@ -11,14 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ReviewDTO {
-	
-	private Long rnc;
-	private Long reviewNo;
+public class QnaDTO {
+
+	private Long qnr;
+	private Long qnaNo;
 	private String memberId;
-	private Long reserNo;
-	private String reviewTitle;
-	private String reviewContent;
-	private Date reviewCreated;
-	private Integer reviewRevNo;
+	private String qnaTitle;
+	private String qnaContent;
+	private Date qnaCreated;
+	
+	
+	
 }
