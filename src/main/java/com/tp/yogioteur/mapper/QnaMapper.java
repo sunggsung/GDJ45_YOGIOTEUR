@@ -41,5 +41,6 @@ public interface QnaMapper {
 	
 	// 게시글 삭제
 	public int deleteQna(Long qnaNo);
+	public int deleteQnaAndReply(Long qnaNo);
 	
 }

@@ -229,12 +229,13 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public void removeQna(HttpServletRequest request, HttpServletResponse response) {
 		Long qnaNo = Long.parseLong(request.getParameter("qnaNo"));
+		int removeQnaReplyRes = qnaMapper.deleteQnaAndReply(qnaNo);
 		int removeQnaRes = qnaMapper.deleteQna(qnaNo);
 		
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			if(removeQnaRes == 1) {
+			if(removeQnaRes == 1 && removeQnaReplyRes >= 1) {
 				out.println("<script>");
 				out.println("alert('게시글이 삭제되었습니다.')");
 				out.println("location.href='" + request.getContextPath() + "/qna/qnaList'");

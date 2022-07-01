@@ -28,7 +28,7 @@
   
   
    <form id="QnaAdd" method="post" action="${contextPath}/qna/qnaSave">
-   		<input type="hidden" name="memberId" value="TEST123"> 
+   		<input type="hidden" name="memberId" value="${loginMember.memberId}"> 
    		제목 : <input type="text" id="qnaTitle" name="qnaTitle"><br>
    		내용 : <textarea rows="20" cols="50" name="qnaContent"></textarea>
    		<button>등록하기</button>

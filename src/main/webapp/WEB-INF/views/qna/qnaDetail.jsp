@@ -51,7 +51,7 @@
 		 	
 		 	<form id="qnaReplyData" method="post" action="${contextPath}/qnaReply/qnaReplySave">
 		 		<input type="hidden" name="qnaNo" value="${qna.qnaNo}">
-			  	<input type="hidden" name="memberId" value="admintest">		  
+			  	<input type="hidden" name="memberId" value="${loginMember.memberId}">		  
 			  	<textarea rows="10" cols="50" name="qnaReplyContent"></textarea>
 			  	<button>댓글 달기</button>
 			</form>
@@ -103,7 +103,7 @@
 							<td >
 								<form action="${contextPath}/qnaReply/qnaReplySaveSecond" method="post">
 									<input type="hidden" name="qnaNo" value="${qna.qnaNo}" >
-									<input type="text" name="memberId" value="member123" size="7" readonly>
+									<input type="text" name="memberId" value="${loginMember.memberId}" size="7" readonly>
 									<input type="text" name="qnaReplyContent">
 					
 									<!-- 원글의 Depth, GroupNo, GroupOrd -->

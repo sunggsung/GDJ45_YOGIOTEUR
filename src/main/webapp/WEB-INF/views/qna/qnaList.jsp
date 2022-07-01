@@ -40,8 +40,13 @@
    
   <h1>QnA 게시판</h1>
   
-  <a href="${contextPath}/qna/qnaSavePage">새글작성</a>
   
+   <c:if test = "${loginMember.memberId eq null}">
+	   	로그인 후 작성가능합니다.
+   </c:if> 
+   <c:if test = "${loginMember.memberId ne null}">
+	   	<a href="${contextPath}/qna/qnaSavePage">새글작성</a>
+   </c:if> 
   
   <hr>
   
@@ -51,7 +56,9 @@
   			<td>제목</td>
   			<td>작성자</td>
   			<td>작성일자</td>
+  			<c:if test = "${loginMember.memberId ne null}">
   			<td>삭제</td>
+  			</c:if>
   		</tr>
   	</thead>
   	<tbody>
@@ -60,7 +67,9 @@
 	  					<td><a href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
 	  					<td>${qna.memberId}</td>
 	  					<td>${qna.qnaCreated}</td>
-	  					<td><input type="button" value="삭제" data-qna_no = "${qna.qnaNo}" onclick="fnRemove(this)"></td>
+	  					
+	  						<td><input type="button" value="삭제" data-qna_no = "${qna.qnaNo}" onclick="fnRemove(this)"></td>
+	  					
 	  				</tr>
   			</c:forEach>
   		
