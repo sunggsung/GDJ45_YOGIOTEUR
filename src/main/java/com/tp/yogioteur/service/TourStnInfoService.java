@@ -32,7 +32,7 @@ public class TourStnInfoService implements OpenAPIService {
 			sb.append("?serviceKey=").append(URLEncoder.encode(serviceKey, "UTF-8"));
 			sb.append("&numOfRows=").append(URLEncoder.encode("16", "UTF-8"));
 			sb.append("&pageNo=").append(URLEncoder.encode("1", "UTF-8"));
-			sb.append("&CURRENT_DATE=").append(URLEncoder.encode("2022062601", "UTF-8"));
+			sb.append("&CURRENT_DATE=").append(URLEncoder.encode("2022062801", "UTF-8"));
 			sb.append("&HOUR=").append(URLEncoder.encode("12", "UTF-8"));
 			sb.append("&COURSE_ID=").append(URLEncoder.encode("389", "UTF-8"));
 			sb.append("&dataType=").append(URLEncoder.encode("JSON", "UTF-8"));

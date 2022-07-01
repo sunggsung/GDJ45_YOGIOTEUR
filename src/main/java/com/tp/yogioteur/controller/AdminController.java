@@ -1,7 +1,6 @@
 package com.tp.yogioteur.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -124,6 +123,12 @@ public class AdminController {
 	@GetMapping("/admin/memberReserList")
 	public Map<String, Object> reservation(HttpServletRequest request, Model model) {
 		return adminService.findReservationByMemberNo(request, model);
+	}
+	
+	@ResponseBody
+	@GetMapping("/admin/removeReser")
+	public Map<String, Object> removeReser(@RequestParam Long reserNo) {
+		return adminService.removeReservation(reserNo);
 	}
 
 }

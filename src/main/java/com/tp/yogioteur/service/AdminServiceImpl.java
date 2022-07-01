@@ -418,4 +418,13 @@ public class AdminServiceImpl implements AdminService {
 		return model;
 	}
 	
+	@Override
+	public Map<String, Object> removeReservation(Long reserNo){
+		int res = adminMapper.deleteReservation(reserNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("res", res);
+		
+		return map;
+	}
+	
 }
