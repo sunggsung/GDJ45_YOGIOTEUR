@@ -153,7 +153,11 @@
 		<li><a href="${contextPath}/member/memberInfo">내정보</a></li>
 		<li><a href="${contextPath}/member/modifyPwPage">비밀번호 변경</a></li>
 		<li><a href="${contextPath}/member/confoirmReserPage">예약내역</a></li>
+<<<<<<< HEAD
+		<li><a href="${contextPath}/member/confirmQnaPage">문의내역</a></li>
+=======
 		<li><a href="${contextPath}/member/confirmFaqPage">문의내역</a></li>
+>>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 	</ul>
 	
 	<br>
@@ -193,6 +197,11 @@
 				</label>
            		<br>
 				<button>수정</button>
+<<<<<<< HEAD
+				<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/confirm'">
+            </form>
+    </div>
+=======
 				<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/signOut?memberId=${loginMember.memberId}'">
             </form>
     </div>
@@ -269,6 +278,7 @@
 			</table>
 		</div>
 
+>>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 
 	
 </body>

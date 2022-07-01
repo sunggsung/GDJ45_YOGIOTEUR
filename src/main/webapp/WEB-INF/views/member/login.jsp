@@ -121,31 +121,24 @@
 			$('#rememberId').prop('checked', false);
 		}
 	}
-	
-	function fnNonMemberLogin() {
-		$('#nonLoginForm').on('submit', function(e){
-			if($('#nonName').val() == '' || $('#nonBirth').val() == '' || $('#nonPhone').val() == '') {
-				alert('필수정보를 입력하세요.');
-				e.preventDefault();
-				return false;
-			}
-			return true;
-		})
-	}
-	
-	function fnNonMemberForm() {
-		$('#find').on('click', function() {
-			$('#')
-			
-		})
-		
-	}
 
 </script>
+<style>
+	.links > a {
+			color : gray;
+	}
+    .container {
+        	margin: auto;
+    }
+    .text {
+    	text-align: center;
+    }
+</style>
 </head>
 <body>
 
 	<jsp:include page="../layout/header.jsp"></jsp:include>
+	
 	<div class="tab">
 	<div class="text">
 	<h1>YOGIOTEUR 호텔에 오신 것을 환영합니다.</h1>
@@ -153,18 +146,9 @@
 	   <p>YOGIOTEUR 호텔 회원이되시면 회원만을 위한 다양한 서비스와 혜택을 받으실 수 있습니다.</p>
 	</div>
 
-	<div class="container">
-
-        <!-- 상단 탭 메뉴 -->
-        <input type="radio" name="tabmenu" id="member" checked="checked">
-        <input type="radio" name="tabmenu" id="nonMember">
-        <div class="info">
-            <label for="member">회원</label>
-            <label for="nonMember">비회원</label>
-        </div>
-
         <!-- 메뉴1 내용 -->
         <div class="content">
+        <h3>로그인</h3>
             <form id="Loginform" action="${contextPath}/member/login" method="post">
 				<input type="hidden" name="url" value="${url}">
 				<input type="text" id="memberId" name="memberId" placeholder="아이디"><br>
@@ -181,37 +165,11 @@
 				<a href="${contextPath}/member/findPwPage">비밀번호 찾기</a> |
 				<a href="${contextPath}/member/agreePage">회원가입</a> 
 			</div>
+			
+			<!-- 네이버 아이디 로그인 -->
+			<a href="${apiURL}"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+		
 		</div>
 
-        <!-- 메뉴2 내용 -->
-        <div class="content">
-	        <input type="radio" name="nonMenu" id="login" checked="checked">
-	        <input type="radio" name="nonMenu" id="find">
-	        <div class="nonMemInfo">
-	            <label for="login">비회원 로그인</label> | 
-	            <label for="find">비회원 예약확인</label>
-	        </div>
-        	<form id="nonLoginForm" action="${contextPath}/nonMember/login" method="post">
-        		<input type="hidden" name="url" value="${url}">
-	            이름 <input type="text" name="nonName" id="nonName" placeholder="이름을 입력해 주세요"><br>
-	            생년월일 <input type="text" name="nonBirth" id="nonBirth" maxlength="6" placeholder="생년월일(6자)을 입력해 주세요"><br>
-	            휴대폰번호 <input type="text" name="nonPhone" id="nonPhone" maxlength="11" placeholder="휴대폰 번호(- 생략)를 입력해 주세요"><br>
-	            <button>로그인</button>
-        	</form>
-        	<form id="findNonMemberReser" action="${contextPath}/nonMember/findReser" method="post">
-        		이름 <input type="text" name="nonName" id="nonName" placeholder="이름을 입력해 주세요"><br>
-        		휴대폰번호 <input type="text" name="nonPhone" id="nonPhone" maxlength="11" placeholder="휴대폰 번호(- 생략)를 입력해 주세요"><br>
-        		<button>예약확인</button>
-        	</form>
-        </div>
-        
-        
-		
-    </div>
-    </div>
-    <br><br>
-    
-    <jsp:include page="../layout/footer.jsp"></jsp:include>
-    
 </body>
 </html>

@@ -23,10 +23,12 @@
 	
 	<context:component-scan base-package="com.tp.yogioteur" />
 	
+	
 	<beans:bean class="com.tp.yogioteur.interceptor.LoginInterceptor" id="LoginInterceptor"></beans:bean>
 	<beans:bean class="com.tp.yogioteur.interceptor.RequiredLoginInterceptor" id="RequiredLoginInterceptor"></beans:bean>
 	<beans:bean class="com.tp.yogioteur.interceptor.PreventLoginInterceptor" id="PreventLoginInterceptor"></beans:bean>
-	<beans:bean class="com.tp.yogioteur.interceptor.NonMemberInterceptor" id="NonMemberInterceptor"></beans:bean>
+	<beans:bean class="com.tp.yogioteur.interceptor.NaverInterceptor" id="NaverInterceptor"></beans:bean>
+	
 	
 	<interceptors>
 		<interceptor>
@@ -34,10 +36,7 @@
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 		<interceptor>
-			<mapping path="/nonMember/login"/>
-			<beans:ref bean="NonMemberInterceptor"/>
-		</interceptor>
-		<interceptor>
+		<!-- 리뷰작성 버튼으로 나중에 수정필요. -->
 			<mapping path="/review/reviewPage"/>
 			<mapping path="/faq/faqPage"/>
 			<mapping path="reservation/reservationPage"/>
@@ -49,8 +48,13 @@
 			<mapping path="/member/signInPage"/>
 			<beans:ref bean="PreventLoginInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/member/naver/login"/>
+			<beans:ref bean="NaverInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->	
 	
 	
 	

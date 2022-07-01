@@ -19,42 +19,33 @@
 <body>
 		
 	<jsp:include page="../layout/header.jsp"></jsp:include>
-			
+	
 	<ul>
 		<li><a href="${contextPath}/member/memberInfo">내정보</a></li>
 		<li><a href="${contextPath}/member/modifyPwPage">비밀번호 변경</a></li>
 		<li><a href="${contextPath}/member/confoirmReserPage">예약내역</a></li>
 		<li><a href="${contextPath}/member/confirmQnaPage">문의내역</a></li>
 	</ul>
-			
-	<div class="container">
-       <h3>예약 확인</h3>
-			<table class="reser" border="1">
+	
+	<div class="content">
+		<h3>문의내역 확인</h3>
+			<table class="qna" border="1">
 				<thead>
 					<tr>
-						<td>예약번호</td>
-						<td>객실이름</td>
-						<td>회원이름</td>
-						<td>체크인날짜</td>
-						<td>체크아웃날짜</td>
-						<td>예약인원</td>
-						<td>예약상태</td>
+						<td>게시글번호</td>
+						<td>제목</td>
+						<td>작성일</td>
 					</tr>
 				</thead>
-				<tbody id="confirmReser">
+				<tbody id="confirmQna">
 						<tr>
-							<td>${reservation.reserNo}</td>
-							<td>${reservation.roomNo}</td>
-							<td>${loginMember.memberName}</td>
-							<td>${reservation.reserCheckin}</td>
-							<td>${reservation.reserCheckout}</td>
-							<td>${reservation.reserPeople}</td>
-							<td>예약상태</td>
+							<td>${faq.faqNo}</td>
+							<td>${faq.faqTitle}</td>
+							<td>${faq.faqCreated}</td>
 						</tr>
 				</tbody>
 			</table>
-    </div>
-
+		</div>
 
 </body>
 </html>
