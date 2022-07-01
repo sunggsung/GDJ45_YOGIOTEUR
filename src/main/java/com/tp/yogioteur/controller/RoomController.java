@@ -34,13 +34,6 @@ public class RoomController {
 		return roomService.view(roomNo, type);
 	}
 	
-	@ResponseBody
-	@GetMapping("/room/detailView")
-	public ResponseEntity<byte[]> detailView(Long roomNo,
-			@RequestParam(value = "type", required = false, defaultValue = "image") String type) {
-		return roomService.detailView(roomNo, type);
-	}
-
 	// 객실 상세
 	@GetMapping("/room/detail")
 	public String detail(HttpServletRequest request, Model model) {

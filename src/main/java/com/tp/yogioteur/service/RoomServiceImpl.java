@@ -99,38 +99,4 @@ public class RoomServiceImpl implements RoomService {
 		
 	}
 	
-	//객실 상세 이미지 리스트
-	@Override
-	public void findDetailRoomByNo(HttpServletRequest request, Model model) {
-		Long roomNo = Long.parseLong(request.getParameter("roomNo"));
-		List<ImageDTO> images = roomMapper.detailImageList(roomNo);
-		model.addAttribute("image", images);
-		System.out.println(roomMapper.detailImageList(roomNo));
-	}
-	
-	//객실 상세 이미지
-	@Override
-	public ResponseEntity<byte[]> detailView(Long roomNo, String type) {
-		
-		
-		List<ImageDTO> image = roomMapper.detailImageList(roomNo);
-				
-		int imageSize = image.size();
-		ResponseEntity<byte[]> entity = null;
-		for(int i=0; i < imageSize; i++) {
-			if(image != null) {
-				File file = new File(image.get(i).getImageOrigin(), image.get(i).getImageOrigin());
-				
-				// ResponseEntity
-				try {
-					HttpHeaders headers = new HttpHeaders();
-					headers.add("Content-Type", Files.probeContentType(file.toPath()));
-					entity = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	return entity;
-	}
 }
