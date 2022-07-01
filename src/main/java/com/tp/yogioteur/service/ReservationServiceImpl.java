@@ -1,7 +1,9 @@
 package com.tp.yogioteur.service;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +25,6 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	private ReservationMapper reservationMapper;
-	
-	
 	
 	@Override
 	public void reserToken(HttpServletRequest request, Model model) {
@@ -110,12 +110,18 @@ public class ReservationServiceImpl implements ReservationService {
 		Long rNo = reservation.getRoomNo();
 		model.addAttribute("room", reservationMapper.reservationRoomSelectConfirm(rNo));
 		
-		System.out.println(reservation);
-		System.out.println(rNo);
-		System.out.println(reservationMapper.reservationRoomSelectConfirm(rNo));
-		
 //		System.out.println(reservationMapper.reservationSelectConfirm(no));
 //		System.out.println(reservationMapper.priceSelectConfirm(no));
+	}
+	
+	@Override
+	public void confirmsPopUp(String no, HttpServletRequest request, Model model) {
+		model.addAttribute("reservation", reservationMapper.reservationSelectConfirm(no));
+		model.addAttribute("money", reservationMapper.priceSelectConfirm(no));
+		
+		ReservationDTO reservation = reservationMapper.reservationSelectConfirm(no);
+		Long rNo = reservation.getRoomNo();
+		model.addAttribute("room", reservationMapper.reservationRoomSelectConfirm(rNo));
 	}
 	
 	@Override
@@ -127,5 +133,14 @@ public class ReservationServiceImpl implements ReservationService {
 		List<ReservationDTO> resers = reservationMapper.reservationMemberSelectConfirm(no);
 		
 		model.addAttribute("reservations", resers);
+	}
+	
+	@Override
+	public Map<String, Object> removeReservation(String resNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("res1", reservationMapper.deleteReservation(resNo));
+		map.put("res2", reservationMapper.deletePayments(resNo));
+		map.put("res3", reservationMapper.deletePrice(resNo));
+		return map;
 	}
 }
