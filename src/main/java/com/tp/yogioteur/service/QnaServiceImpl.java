@@ -193,7 +193,64 @@ public class QnaServiceImpl implements QnaService {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 	
+	
+	@Override
+	public void removeReply(HttpServletRequest request, HttpServletResponse response) {
+		Long qnaReplyNo = Long.parseLong(request.getParameter("qnaReplyNo"));
+		int removeReplyRes = qnaMapper.deleteQnaReply(qnaReplyNo);
+		
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(removeReplyRes == 1) {
+				out.println("<script>");
+				out.println("alert('댓글이 삭제되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "/qna/qnaList'");
+				out.println("</script>");
+				out.close();
+			}else {
+				out.println("<script>");
+				out.println("alert('댓글이 삭제되지 않았습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@Override
+	public void removeQna(HttpServletRequest request, HttpServletResponse response) {
+		Long qnaNo = Long.parseLong(request.getParameter("qnaNo"));
+		int removeQnaRes = qnaMapper.deleteQna(qnaNo);
+		
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(removeQnaRes == 1) {
+				out.println("<script>");
+				out.println("alert('게시글이 삭제되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "/qna/qnaList'");
+				out.println("</script>");
+				out.close();
+			}else {
+				out.println("<script>");
+				out.println("alert('게시글이 삭제되지 않았습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

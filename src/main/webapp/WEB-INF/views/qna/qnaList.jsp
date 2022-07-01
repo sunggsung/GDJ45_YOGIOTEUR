@@ -25,6 +25,12 @@
  		});
  	}
     
+ 	function fnRemove(no){      
+        if(confirm('게시글을 삭제할까요?')){
+           location.href='${contextPath}/qna/qnaRemove?qnaNo=' + $(no).data('qna_no');
+        }
+  }
+ 	
 </script>
 
 </head>
@@ -42,19 +48,19 @@
   <table border="1">
   	<thead>
   		<tr>
-  			<td>번호</td>
   			<td>제목</td>
   			<td>작성자</td>
   			<td>작성일자</td>
+  			<td>삭제</td>
   		</tr>
   	</thead>
   	<tbody>
   			<c:forEach items="${qnas}" var="qna">
 	  				<tr id="qna_${qna.qnaNo}">
-	  					<td>${totalRecord + 1 - qna.qnaNo}</td>
 	  					<td><a href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
 	  					<td>${qna.memberId}</td>
 	  					<td>${qna.qnaCreated}</td>
+	  					<td><input type="button" value="삭제" data-qna_no = "${qna.qnaNo}" onclick="fnRemove(this)"></td>
 	  				</tr>
   			</c:forEach>
   		

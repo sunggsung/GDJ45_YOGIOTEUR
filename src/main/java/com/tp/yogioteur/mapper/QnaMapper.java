@@ -36,4 +36,10 @@ public interface QnaMapper {
 	public int insertQnaReplySecond(QnaReplyDTO qnaReply);
 	
 	
+	// 댓글 삭제
+	public int deleteQnaReply(Long qnaReplyNo);
+	
+	// 게시글 삭제
+	public int deleteQna(Long qnaNo);
+	
 }

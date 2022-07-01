@@ -20,9 +20,10 @@
 		$('.reply_link').on('click', function(){
 			$('.reply_form').addClass('blind');
 	    	$(this).parent().parent().next().removeClass('blind');
-		})
-	
+		});
 	})
+	
+	
     
 </script>
 <style>
@@ -65,7 +66,8 @@
 		 		<c:forEach items="${qnaReplies}" var="qnaReply">
 			 		<c:if test="${qnaReply.qnaReplyState == -1}">
 						<tr>
-							<td>삭제된 게시글입니다</td>
+							<td></td>
+							<td>삭제된 댓글입니다</td>
 						</tr>
 					</c:if>
 					<c:if test="${qnaReply.qnaReplyState == 1}">
@@ -89,10 +91,12 @@
 							</td>
 							<td>${qnaReply.qnaReplyCreated}</td>
 							<td>
-								
-									<a data-free_qnaReply_no="${qnaReply.qnaReplyNo}" onclick="fnRemove(this)">
+								${qnaReply.qnaReplyNo}
+									<a href="${contextPath}/qnaReply/qnaReplyRemove?qnaReplyNo=${qnaReply.qnaReplyNo}">
 										<i class="fa-solid fa-trash-can"></i>
 									</a>
+										
+									
 							</td>
 						</tr>
 						<tr class="reply_form blind">
@@ -128,8 +132,7 @@
 					
 		 
 	   <br><br>
-	   
-		
+	  
 	  	
 	    
   		

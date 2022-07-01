@@ -51,5 +51,15 @@ public class QnaController {
 		
 	}
 	
+	@GetMapping("/qnaReply/qnaReplyRemove")
+	public void qnaReplyRemove(HttpServletRequest request, HttpServletResponse response) {
+		qnaService.removeReply(request, response);
+	}
+	
+	@GetMapping("/qna/qnaRemove")
+	public void qnaRemove(HttpServletRequest request, HttpServletResponse response) {
+		qnaService.removeQna(request, response);
+	}
+	
 	
 }

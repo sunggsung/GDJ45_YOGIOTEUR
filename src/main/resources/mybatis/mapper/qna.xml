@@ -75,4 +75,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(QNA_REPLY_NO_SEQ.NEXTVAL, #{qnaNo}, #{memberId}, #{qnaReplyContent}, SYSDATE, 1, #{qnaReplyDepth}, #{qnaReplyGroupNo}, #{qnaReplyGroupOrd})
 	</insert>
 	
+	<!-- 댓글 삭제 -->
+	<update id="deleteQnaReply" parameterType="Long">
+		UPDATE QNA_REPLY
+		   SET QNA_REPLY_STATE = -1
+		 WHERE QNA_REPLY_NO = #{qnaReplyNo}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteQna" parameterType="Long">
+		DELETE
+		  FROM QNA
+		 WHERE QNA_NO = #{qnaNo}
+	</delete>
 </mapper>

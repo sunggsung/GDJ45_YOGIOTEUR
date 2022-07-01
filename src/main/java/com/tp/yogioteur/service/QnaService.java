@@ -20,4 +20,12 @@ public interface QnaService {
 	public void selectQnaReplies(Long qnaNo, Model model);
 	
 	public void saveReplySecond(HttpServletRequest request, HttpServletResponse response);
+
+	//댓글 삭제
+	public void removeReply(HttpServletRequest request, HttpServletResponse response);
+	
+	// 게시글 삭제
+	public void removeQna(HttpServletRequest request, HttpServletResponse response);
+	
+	
 }
