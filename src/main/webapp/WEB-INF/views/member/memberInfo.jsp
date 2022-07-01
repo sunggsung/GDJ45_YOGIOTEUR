@@ -153,7 +153,11 @@
 		<li><a href="${contextPath}/member/memberInfo">내정보</a></li>
 		<li><a href="${contextPath}/member/modifyPwPage">비밀번호 변경</a></li>
 		<li><a href="${contextPath}/member/confoirmReserPage">예약내역</a></li>
+<<<<<<< HEAD
 		<li><a href="${contextPath}/member/confirmQnaPage">문의내역</a></li>
+=======
+		<li><a href="${contextPath}/member/confirmFaqPage">문의내역</a></li>
+>>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 	</ul>
 	
 	<br>
@@ -193,9 +197,88 @@
 				</label>
            		<br>
 				<button>수정</button>
+<<<<<<< HEAD
 				<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/confirm'">
             </form>
     </div>
+=======
+				<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/signOut?memberId=${loginMember.memberId}'">
+            </form>
+    </div>
+    
+    <hr>
+    
+    <div class="container">
+    	<h3>비밀번호 변경</h3>
+        <p>주기적인 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요.</p>
+			<form id="modifyPwForm" action="${contextPath}/member/modifyPw" method="post">
+				<input type="password" name="memberPw" id="memberPw" placeholder="새 비밀번호"><br>
+				<span id="pwMsg"></span><br>
+				<input type="password" id="memberRePw" placeholder="새 비밀번호 확인"><br>
+				<span id="rePwMsg"></span><br>
+				<input type="hidden" name="memberId" value="${loginMember.memberId}">
+				<button>변경</button>
+				<input type="button" value="취소" onclick="location.href='${contextPath}/'">
+			</form>
+    </div>
+    
+    <hr>
+    
+    <div class="container">
+       <h3>예약 확인</h3>
+			<table class="reser" border="1">
+				<thead>
+					<tr>
+						<td>예약번호</td>
+						<td>객실이름</td>
+						<td>회원이름</td>
+						<td>체크인날짜</td>
+						<td>체크아웃날짜</td>
+						<td>예약인원</td>
+						<td>예약상태</td>
+						<td>예약취소</td> <!--  -->
+					</tr>
+				</thead>
+				<tbody id="confirmReser">
+					<c:forEach items="${reservations}" var="reservation"> <!--  -->
+						<tr>
+							<td>${reservation.reserNo}</td>
+							<td>${reservation.roomNo}</td>
+							<td>${loginMember.memberName}</td>
+							<td>${reservation.reserCheckin}</td>
+							<td>${reservation.reserCheckout}</td>
+							<td>${reservation.reserPeople}</td>
+							<td>예약상태</td>
+							<td><input type="button" value="예약취소" onclick="location.href='${contextPath}/reservation/reservationCancel?reserNo=${reservation.reserNo}'"></td>
+						</tr>
+					</c:forEach> <!--  -->
+				</tbody>
+			</table>
+    </div>
+
+	<hr>
+	
+	<div class="content">
+		<h3>문의내역 확인</h3>
+			<table class="fag" border="1">
+				<thead>
+					<tr>
+						<td>게시글번호</td>
+						<td>제목</td>
+						<td>작성일</td>
+					</tr>
+				</thead>
+				<tbody id="confirmFaq">
+						<tr>
+							<td>${faq.faqNo}</td>
+							<td>${faq.faqTitle}</td>
+							<td>${faq.faqCreated}</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+
+>>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 
 	
 </body>

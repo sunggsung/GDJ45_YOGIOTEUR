@@ -4,17 +4,69 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	body{
+			margin: 0;
+			font-family: 'Kdam Thmor Pro', sans-serif;
+		}
+		
+	a{
+		text-decoration: none;
+		color: white;
+	}	
+		
+	ul {
+		
+		 list-style:none;
+		 text-align: left;
+	}
+	
+	li{
+		
+		float: left;
+		margin-left: 10px;
+		margin-top: 3px;
+		
+	
+	}
+	
+	nav {
+		  float: right;
+		}
+	
+	
+	.footer{
+		background-color: silver;
+		height: 170px;
+	
+	}
+	
+	.end_title{
+		font-size: 20px;
+		width: 1200px;
+		margin: 0 auto;
+		color: white;
+		
+	}
+	
+	.info{
+		
+		display: block;
+	
+	}
+	
+</style>
 </head>
 <body>
 	
 	<div class="footer">
 		<div class="end_title">
 			YOGIOTEUR
+			<a href="${contextPath}/reservation/reservationPage">예약</a>
 			<hr>
 				<div class="info">
 					(주)여기오떼르

@@ -61,11 +61,9 @@
    </form>
    
    <br><br>
-  
    
-    <jsp:include page="../faq/faqList.jsp"></jsp:include>
-        
-	<jsp:include page="../layout/footer.jsp"></jsp:include>
+   <%@ include file="faqList.jsp" %>
    
+   <jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>

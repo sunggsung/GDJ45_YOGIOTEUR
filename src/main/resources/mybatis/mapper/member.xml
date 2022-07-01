@@ -121,5 +121,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 WHERE QNA_NO = #{qnaNo}
 	</select>	
 	-->
+
 	
 </mapper>

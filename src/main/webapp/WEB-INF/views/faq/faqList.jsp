@@ -47,16 +47,16 @@
     
 </script>
 <style>
-   .ul{
+   ul{
       list-style-type: none;   
-   } 
+   }
    .faqDetailBtn{
       cursor: pointer;
        border: none;
        outline: none;
        background: none;
    }
-   .faqUl {
+   #faqUl {
       
       font-size: 25px;
    }
@@ -70,11 +70,11 @@
    }
    a {
       box-sizing: border-box;
-      display: inline-block; 
+      display: inline-block;  /* 같은 줄에 둘 수 있고, width, height 등 크기 지정 속성을 지정할 수 있다. */
       padding: 10px;
       margin: 5px;
       border: 1px solid white;
-      text-decoration: none; 
+      text-decoration: none;  /* 링크 밑줄 없애기 */
       color: gray;
    }
    .noList {
@@ -91,7 +91,7 @@
    <a href="${contextPath}/faq/faqSavePage">새글작성</a>
    
    <input type="button" value="목록보기" id="faqListSel">
-   <div class="faqUl">
+   <div id="faqUl">
       <ul>
             <c:forEach items="${faqs}" var="faq">
                <li class="listOne">
@@ -101,15 +101,13 @@
                      <button type="button" class="faqDetailBtn" id="que-${faq.faqNo}" data-faq_detail_no = "${faq.faqNo}" onclick="fnOpenCloseAnswer(this)" value = "상세내용 보기"><i class="fa-solid fa-angle-down"></i></button>               
                   </div>
                   <div class ="answer" id="ans-${faq.faqNo}" style="display:none;">${faq.faqContent}</div>
-               <li>
-             
+               <li>               
             </c:forEach>
       </ul>
    </div>
-   
+      
+            
          <div class="noList">${paging}</div>
             
-
-	
 </body>
 </html>

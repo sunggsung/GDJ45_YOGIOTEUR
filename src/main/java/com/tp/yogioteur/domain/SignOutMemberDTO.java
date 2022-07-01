@@ -21,5 +21,5 @@ public class SignOutMemberDTO {
 	private Integer agreeState;
 	private Date signIn;
 	private Date signOut;
-	
+
 }
