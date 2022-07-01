@@ -16,13 +16,15 @@ public interface RoomMapper {
 	
 	//객실 상세
 	public RoomDTO selectRoomTypeByNo(Long roomNo);
-	//상세 이미지
-	public ImageDTO detailImageByNo(Long roomNo);
 	
 	//객실조회	
 	public List<RoomDTO> checkInRoomList(Map<String, Object> map);
 	
 	//이미지 보여주기
 	public ImageDTO selectImageByNo(Long roomNo);
+	//상세 이미지
+	public ImageDTO detailImageByNo(Long imageNo);
+	//상세 이미지 리스트
+	public List<ImageDTO> detailImageList(Long roomNo);
 	
 }

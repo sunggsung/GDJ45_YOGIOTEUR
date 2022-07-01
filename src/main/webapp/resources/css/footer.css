@@ -1,8 +1,9 @@
 @charset "UTF-8";
-body{
-			margin: 0;
-			font-family: 'Kdam Thmor Pro', sans-serif;
-		}
+	
+	body{
+				margin: 0;
+				font-family: 'Kdam Thmor Pro', sans-serif;
+			}
 		
 	a{
 		text-decoration: none;

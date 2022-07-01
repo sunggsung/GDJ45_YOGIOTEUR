@@ -17,10 +17,10 @@
 		
 		<c:choose>
 			<c:when test="${rn.rtNo eq 1}">
-				<div>
+				<c:forEach  items="${image}" var="img">
+					<img src="${contextPath}/room/detailView?roomNo=${img.roomNo}" width="500px;">
+				</c:forEach>
 				${rn.roomName}
-				</div>
-				<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="300px";>
 			</c:when>
 			<c:when test="${rn.rtNo eq 2}">
 				<div>

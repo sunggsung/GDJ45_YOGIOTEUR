@@ -33,6 +33,7 @@ public class RoomController {
 			@RequestParam(value = "type", required = false, defaultValue = "image") String type) {
 		return roomService.view(roomNo, type);
 	}
+	
 	@ResponseBody
 	@GetMapping("/room/detailView")
 	public ResponseEntity<byte[]> detailView(Long roomNo,

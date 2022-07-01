@@ -32,11 +32,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	
-	<select id="checkInRoomList" parameterType="Map" resultMap="RoomDTOMap">
-		 <![CDATA[
+	<select id="checkInRoomList" parameterType="Map" resultType="RoomDTO">
+		<![CDATA[
 		SELECT ROOM_NO, RT_NO, ROOM_NAME, ROOM_STATUS, ROOM_CHECKIN, ROOM_CHECKOUT, ROOM_PRICE 
 		  FROM ROOM
-			 WHERE ROOM_CHECKIN <= #{roomCheckIn, jdbcType=VARCHAR} AND ROOM_CHECKOUT >= #{roomCheckOut, jdbcType=VARCHAR}
+		 WHERE TO_DATE(ROOM_CHECKIN, 'YY/MM/DD') <= TO_DATE(#{roomCheckIn},'YYYY/MM/DD')
+		   AND TO_DATE(ROOM_CHECKOUT, 'YY/MM/DD') >= TO_DATE(#{roomCheckOut},'YYYY/MM/DD')
 	 	   AND ROOM_STATUS = 0
 		 ]]>
 	</select>
@@ -55,11 +56,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE R.ROOM_NO = #{roomNo}
 	</select>
 	
-	<select id="detailImageByNo" parameterType="Long" resultType="ImageDTO">
-		SELECT ROOM_NO, IMAGE_NO, IMAGE_ORIGIN, IMAGE_PATH, IMAGE_SAVED
+	<!-- <select id="detailImageByNo" parameterType="Long" resultType="ImageDTO">
+		SELECT IMAGE_NO, ROOM_NO, IMAGE_ORIGIN, IMAGE_PATH, IMAGE_SAVED
+		  FROM IMAGE
+		 WHERE IMAGE_NO = #{imageNo}
+	</select> -->
+	
+	<select id="detailImageList" parameterType="Long" resultType="ImageDTO">
+		SELECT IMAGE_NO, ROOM_NO, IMAGE_PATH, IMAGE_SAVED, IMAGE_ORIGIN
 		  FROM IMAGE
 		 WHERE ROOM_NO = #{roomNo}
-		   
 	</select>
 	
 </mapper>
