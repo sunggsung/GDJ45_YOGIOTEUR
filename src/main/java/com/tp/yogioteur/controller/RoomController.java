@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tp.yogioteur.domain.RoomDTO;
 import com.tp.yogioteur.service.RoomService;
 
 @Controller
