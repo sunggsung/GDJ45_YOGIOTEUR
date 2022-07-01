@@ -56,16 +56,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE R.ROOM_NO = #{roomNo}
 	</select>
 	
-	<!-- <select id="detailImageByNo" parameterType="Long" resultType="ImageDTO">
-		SELECT IMAGE_NO, ROOM_NO, IMAGE_ORIGIN, IMAGE_PATH, IMAGE_SAVED
-		  FROM IMAGE
-		 WHERE IMAGE_NO = #{imageNo}
-	</select> -->
-	
-	<select id="detailImageList" parameterType="Long" resultType="ImageDTO">
-		SELECT IMAGE_NO, ROOM_NO, IMAGE_PATH, IMAGE_SAVED, IMAGE_ORIGIN
-		  FROM IMAGE
-		 WHERE ROOM_NO = #{roomNo}
-	</select>
-	
 </mapper>

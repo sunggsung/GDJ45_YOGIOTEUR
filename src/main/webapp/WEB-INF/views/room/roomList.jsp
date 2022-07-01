@@ -17,6 +17,12 @@
 	
 		color: black;
 	}
+	
+	table{
+		
+		width: 1200px;
+		margin: auto;
+	}
 
 </style>
 <script type="text/javascript">
