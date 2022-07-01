@@ -29,10 +29,10 @@ public class VilageFcstInfoService implements OpenAPIService {
 			sb.append("&numOfRows=").append(URLEncoder.encode("14", "UTF-8"));
 			sb.append("&pageNo=").append(URLEncoder.encode("1", "UTF-8"));
 			sb.append("&dataType=").append(URLEncoder.encode("JSON", "UTF-8"));
-			sb.append("&base_date=").append(URLEncoder.encode("20220622", "UTF-8"));
-			sb.append("&base_time=").append(URLEncoder.encode("0200", "UTF-8"));
-			sb.append("&nx=").append(URLEncoder.encode("55", "UTF-8"));
-			sb.append("&ny=").append(URLEncoder.encode("127", "UTF-8"));
+			sb.append("&base_date=").append(URLEncoder.encode("20220627", "UTF-8"));
+			sb.append("&base_time=").append(URLEncoder.encode("1400", "UTF-8"));
+			sb.append("&nx=").append(URLEncoder.encode("59", "UTF-8"));
+			sb.append("&ny=").append(URLEncoder.encode("38", "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

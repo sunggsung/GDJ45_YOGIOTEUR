@@ -280,18 +280,18 @@
 		
 		<label for="memberPhone">
 			연락처<br>
-			<input type="text" name="memberPhone" id="memberPhone" placeholder="전화번호는 하이픈(-)을 제외한 숫자만 입력해주세요"><br>
+			<input type="text" name="memberPhone" id="memberPhone" placeholder="전화번호는 하이픈(-)을 제외한 숫자만 입력해주세요" maxlength="11"><br>
 			<span id="memberPhoneMsg"></span>
 		</label><br>
 		
 		<label for="memberBirth">
 			생년월일<br>
-			<input type="text" name="memberBirth" id="memberBirth" placeholder="생년월일(6자)을 입력하세요"><br>
+			<input type="text" name="memberBirth" id="memberBirth" placeholder="생년월일(6자)을 입력하세요" maxlength="6"><br>
 			<span id="memberBirthMsg"></span>
 		</label><br>
 		
 		<label for="memberGender">
-			성별<br>
+			성별
 			<input type="radio" name="memberGender" id="male" value="male">남
 			<input type="radio" name="memberGender" id="female" value="female">여
 		</label>
@@ -316,7 +316,7 @@
 		
 		
 		<label for="memberPromoAdd">
-			이메일 수신여부<br>
+			이메일 수신여부
 			<input type="radio" name="memberPromoAdd" value="yes" id="agree_yes">
             <label for="agree_yes">동의함</label>
             <input type="radio" name="memberPromoAdd" value="no" id="agree_no">

@@ -1,6 +1,8 @@
 package com.tp.yogioteur.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,26 +29,22 @@ public class AdminController {
 	@GetMapping("/admin/adminPage")
 	public String adminPage() {
 		return "admin/adminPage";
+	}	
+	
+	@GetMapping("/admin/tourPage")
+	public String tourPage() {
+		return "admin/tour";
 	}
 	
-	@GetMapping("/admin/reservation")
-	public String reservation() {
-		return "admin/reservation";
+	@GetMapping("/admin/tour")
+	public void tour(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		openAPIService.execute(request, response);
 	}
 	
+	/* 객실 관리 */
 	@GetMapping("/admin/addRoomPage")
 	public String addRoomPage() {
 		return "admin/addRoom";
-	}
-	
-	@GetMapping("/admin/weatherPage")
-	public String weatherPage() {
-		return "admin/weather";
-	}
-	
-	@GetMapping("/admin/weather")
-	public void weather(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		openAPIService.execute(request, response);
 	}
 	
 	@GetMapping("/admin/room")
@@ -62,8 +60,8 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/room/display")
-	public ResponseEntity<byte[]> display(Long imageNo, @RequestParam(value = "type", required = false, defaultValue = "image") String type) {
+	@GetMapping("/room/displayImage")
+	public ResponseEntity<byte[]> displayImage(Long imageNo, @RequestParam(value = "type", required = false, defaultValue = "image") String type) {
 		return adminService.display(imageNo, type);
 	}
 	
@@ -77,16 +75,55 @@ public class AdminController {
 		adminService.changeRoom(request, response);
 	}
 	
-	@GetMapping("/room/remove")
+	@GetMapping("/room/removeRoom")
 	public void removeRoom(HttpServletRequest request, HttpServletResponse response) {
 		adminService.removeRoom(request, response);
 	}
 	
+	@ResponseBody
+	@GetMapping(value = "/admin/findRoomByStatus", produces = "application/json")
+	public Map<String, Object> findRoomByStatus(@RequestParam int roomStatus) {
+		return adminService.findRoomByStatus(roomStatus);
+	}
+
+	/* 회원 관리 */
 	@GetMapping("/admin/member")
 	public String member(HttpServletRequest request, Model model) {
 		adminService.findMembers(request, model);
 		return "admin/member";
 	}
 	
+	@GetMapping("/admin/memberDetail")
+	public String memberDetail(HttpServletRequest request, Model model) {
+		adminService.findMemberByNo(request, model);
+		return "admin/memberDetail";
+	}
+	
+	
+	/* 예약 관리 */
+	@GetMapping("/admin/reservationList")
+	public String reservationList(HttpServletRequest request, Model model) {
+		return "admin/calendar";
+	}
+	
+	@GetMapping("/admin/reserDetail")
+	public String reserDetail(HttpServletRequest request, Model model) {
+		adminService.findReservationByReserNo(request, model);
+		return "admin/reserDetail";
+	}
+	
+	// calendar.jsp
+	@ResponseBody
+	@GetMapping(value = "/admin/reserList", produces = "application/json")
+	public Map<String, Object> reserList() {
+		return adminService.findReservations();
+	}
+	
+	// memberDetail.jsp
+	@ResponseBody
+	@GetMapping("/admin/memberReserList")
+	public Map<String, Object> reservation(HttpServletRequest request, Model model) {
+		return adminService.findReservationByMemberNo(request, model);
+	}
 
 }
