@@ -1,10 +1,9 @@
 package com.tp.yogioteur.service;
 
-import java.io.PrintWriter;
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,74 +19,31 @@ public class ReviewReplyServiceImpl implements ReviewReplyService {
 	@Autowired
 	private ReviewReplyMapper reviewReplyMapper;
 	
-	
-
 	@Override
-	public void ReviewReplySave(HttpServletRequest request, HttpServletResponse response) {
-		Long reviewNo = Long.parseLong(request.getParameter("reviewNo"));
-		String replyContent = request.getParameter("replyContent");
-		
-		
-		ReviewReplyDTO reviewReply = ReviewReplyDTO.builder()
-				.reviewNo(reviewNo)
-				.replyContent(replyContent)
-				.build();
-
-		int reviewReplyResult = reviewReplyMapper.insertReviewReply(reviewReply);
-		
-		try {
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			if(reviewReplyResult == 1) {
-				out.println("<script>");
-				out.println("alert('리뷰가 등록되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/review/reviewList'");
-				out.println("</script>");
-				out.close();
-			} else {
-				out.println("<script>");
-				out.println("alert('리뷰가 등록되지 않았습니다.')");
-				out.println("history.back()");
-				out.println("</script>");
-				out.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
+	public Map<String, Object> ReviewReplyList(Long reviewNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("reviewReply", reviewReplyMapper.selectReviewReplyList(reviewNo));
+		return map;
 	}
 
 	@Override
-	public void ReviewReplyRemove(HttpServletRequest request, HttpServletResponse response) {
-		 Optional<String> opt = Optional.ofNullable(request.getParameter("replyNo"));
-		 Long replyNo = Long.parseLong(opt.orElse("0"));
+	public Map<String, Object> ReviewReplySave(HttpServletRequest request) {
+		ReviewReplyDTO reviewReply = ReviewReplyDTO.builder()
+				.reviewNo(Long.parseLong(request.getParameter("reviewNo")))
+				.replyContent(request.getParameter("replyContent"))
+				.build();
 		
-		int replyRemoveResult = reviewReplyMapper.deleteReviewReply(replyNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("res", reviewReplyMapper.insertReviewReply(reviewReply));
 		
-		try {
-			  
-			  response.setContentType("text/html");
-			  PrintWriter out = response.getWriter();
-			  if(replyRemoveResult ==1 ) {
-				  out.println("<script>");
-				  out.println("alert('리뷰가 삭제되었습니다')");
-				  out.println("location.href='" + request.getContextPath() + "/review/reviewList'");
-				  out.println("</script>");
-				  out.close();
-			  } else {
-				  out.println("<script>");
-				  out.println("alert('리뷰가 삭제되지 않았습니다')");
-				  out.println("history.back()");
-				  out.println("</script>");
-				  out.close();
-			  }
-			  
-			  
-		  }catch (Exception e) {
-			  e.printStackTrace();
-		  }
-		
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> ReviewReplyRemove(Long replyNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("res", reviewReplyMapper.deleteReviewReply(replyNo));
+		return map;
 	}
 	
 	@Override
