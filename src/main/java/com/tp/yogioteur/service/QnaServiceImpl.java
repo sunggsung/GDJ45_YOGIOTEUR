@@ -254,4 +254,38 @@ public class QnaServiceImpl implements QnaService {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void modifyQna(HttpServletRequest request, HttpServletResponse response) {
+		Long qnaNo = Long.parseLong(request.getParameter("qnaNo"));
+		String qnaContent = request.getParameter("qnaContent");
+		
+		QnaDTO qna = QnaDTO.builder()
+				.qnaNo(qnaNo)
+				.qnaContent(qnaContent)
+				.build();
+		
+		int modifyQnaRes = qnaMapper.updateQna(qna);
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(modifyQnaRes == 1 ) {
+				out.println("<script>");
+				out.println("alert('게시글이 수정되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "/qna/qnaList'");
+				out.println("</script>");
+				out.close();
+			}else {
+				out.println("<script>");
+				out.println("alert('게시글이 수정되지 않았습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

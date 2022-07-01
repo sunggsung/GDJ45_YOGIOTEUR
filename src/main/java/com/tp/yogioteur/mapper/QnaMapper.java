@@ -43,4 +43,8 @@ public interface QnaMapper {
 	public int deleteQna(Long qnaNo);
 	public int deleteQnaAndReply(Long qnaNo);
 	
+	
+	//게시글 수정
+	public int updateQna(QnaDTO qna);
+	
 }

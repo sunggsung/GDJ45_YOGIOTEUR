@@ -46,6 +46,8 @@
 		  		제목	: ${qna.qnaTitle}<br>
 		  		아이디 	: ${qna.memberId}<br>
 		  		내용 	: ${qna.qnaContent}<br>
+		 		
+		 		<a href="${contextPath}/qna/qnaUpdatePage?qnaNo=${qna.qnaNo}">수정하기</a>
 		 	
 		 	<br><br>
 		 	

@@ -27,5 +27,7 @@ public interface QnaService {
 	// 게시글 삭제
 	public void removeQna(HttpServletRequest request, HttpServletResponse response);
 	
+	// 게시글 수정
+	public void modifyQna(HttpServletRequest request, HttpServletResponse response);
 	
 }

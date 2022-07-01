@@ -61,5 +61,15 @@ public class QnaController {
 		qnaService.removeQna(request, response);
 	}
 	
+	@GetMapping("/qna/qnaUpdatePage")
+	public String qnaUpdatePage(Long qnaNo, Model model) {
+		qnaService.selectDetailQna(qnaNo, model);
+		return "qna/qnaUpdate";
+	}
+	
+	@PostMapping("/qna/qnaUpdate")
+	public void qnaUpdate(HttpServletRequest request, HttpServletResponse response) {
+		qnaService.modifyQna(request, response);
+	}
 	
 }
