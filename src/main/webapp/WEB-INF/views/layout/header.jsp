@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	body{
+	/* body{
 		margin: 0;
 		font-family: 'Kdam Thmor Pro', sans-serif;
 	}
@@ -59,7 +59,7 @@
 		
 		color: #999;
 		
-	}
+	} */
 </style>
 </head>
 <body>

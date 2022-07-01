@@ -54,8 +54,7 @@
 		</interceptor>
 	</interceptors>
 	
-	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->	
-	
+	<resources mapping="/resources/**" location="/resources/" /> 
 	
 	
 </beans:beans>

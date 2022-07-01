@@ -4,10 +4,21 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
+<link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@700&family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="${contextPath}/resources/css/footer.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
+<style>
+	
+	.roomNo{
+	
+		color: black;
+	}
+
+</style>
 <script type="text/javascript">
 	function goPost() {
 		let f = document.createElement('form');
@@ -31,7 +42,7 @@
 </script>
 </head>
 <body>
-		
+		<jsp:include page="../layout/header.jsp"></jsp:include>
 	<table>
 			
 		<tbody>
@@ -44,7 +55,7 @@
 						</td>
 						<td>
 						   <input type="hidden" id="roomName" name="roomName" value="${room.roomName}">
-						   <a href="${contextPath}/room/detail?roomNo=${room.roomNo}">${room.roomName}</a>
+						   <a href="${contextPath}/room/detail?roomNo=${room.roomNo}" class="roomNo">${room.roomName}</a>
 						</td>	
 						<td>
 						   <input type="hidden" id="roomPr" name="roomPr" value="${room.roomPrice}">
@@ -58,5 +69,6 @@
 		</tbody>
 		
 	</table>
+		<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>
