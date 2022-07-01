@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.tp.yogioteur.domain.QnaDTO;
+import com.tp.yogioteur.domain.QnaReplyDTO;
 import com.tp.yogioteur.mapper.QnaMapper;
 import com.tp.yogioteur.util.PageUtils;
 
@@ -93,6 +95,104 @@ public class QnaServiceImpl implements QnaService {
 			e.printStackTrace();
 		}
 		
+		
+	}
+	
+	@Override
+	public void saveReply(HttpServletRequest request, HttpServletResponse response) {
+		Long qnaNo = Long.parseLong(request.getParameter("qnaNo"));
+		String memberId = request.getParameter("memberId");
+		String qnaReplyContent =request.getParameter("qnaReplyContent");
+		
+		QnaReplyDTO qnaReply = QnaReplyDTO.builder()
+				.qnaNo(qnaNo)
+				.memberId(memberId)
+				.qnaReplyContent(qnaReplyContent)
+				.build();
+		
+		int AddQnaReply = qnaMapper.insertQnaReply(qnaReply);
+		
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(AddQnaReply == 1) {
+				out.println("<script>");
+				out.println("alert('댓글이 등록되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "/qna/qnaList'");
+				out.println("</script>");
+				out.close();
+			}else {
+				out.println("<script>");
+				out.println("alert('댓글이 등록되지 않았습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	@Override
+	public void selectQnaReplies(Long qnaNo, Model model) {
+		List<QnaReplyDTO> qnaReplies = qnaMapper.selectQnaReplyByNo(qnaNo);
+		
+		model.addAttribute("qnaReplies", qnaReplies);
+		
+	}
+
+	@Override
+	public void saveReplySecond(HttpServletRequest request, HttpServletResponse response) {
+		Long qnaNo = Long.parseLong(request.getParameter("qnaNo"));
+		String memberId = request.getParameter("memberId");
+		String qnaReplyContent =request.getParameter("qnaReplyContent");
+		
+		int qnaReplyDepth = Integer.parseInt(request.getParameter("qnaReplyDepth"));
+		Long qnaReplyGroupNo = Long.parseLong(request.getParameter("qnaReplyGroupNo"));
+		int qnaReplyGroupOrd = Integer.parseInt(request.getParameter("qnaReplyGroupOrd"));
+		
+		QnaReplyDTO qnaReply = new QnaReplyDTO();
+		qnaReply.setQnaReplyGroupNo(qnaReplyGroupNo);
+		qnaReply.setQnaReplyGroupOrd(qnaReplyGroupOrd);
+		qnaMapper.updatPreviousReply(qnaReply);
+		
+		QnaReplyDTO qnaReplySec = QnaReplyDTO.builder()
+				.qnaNo(qnaNo)
+				.memberId(memberId)
+				.qnaReplyContent(qnaReplyContent)
+				.qnaReplyDepth(qnaReplyDepth +1)
+				.qnaReplyGroupNo(qnaReplyGroupNo)
+				.qnaReplyGroupOrd(qnaReplyGroupOrd +1)
+				.build();
+		
+		int AddQnaReply = qnaMapper.insertQnaReplySecond(qnaReplySec);
+		
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(AddQnaReply == 1) {
+				out.println("<script>");
+				out.println("alert('댓글이 등록되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "/qna/qnaList'");
+				out.println("</script>");
+				out.close();
+			}else {
+				out.println("<script>");
+				out.println("alert('댓글이 등록되지 않았습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

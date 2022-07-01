@@ -26,6 +26,7 @@ public class QnaController {
 	@GetMapping("/qna/qnaDetailPage")
 	public String qnaDetailPage(Long qnaNo, Model model) {
 		qnaService.selectDetailQna(qnaNo, model);
+		qnaService.selectQnaReplies(qnaNo, model);
 		return "qna/qnaDetail";
 	}
 	
@@ -38,5 +39,17 @@ public class QnaController {
 	public void qnaSave(HttpServletRequest request, HttpServletResponse response) {
 		qnaService.AddQna(request, response);
 	}
+	
+	@PostMapping("/qnaReply/qnaReplySave")
+	public void qnaReplySave(HttpServletRequest request, HttpServletResponse response) {
+		qnaService.saveReply(request ,response);
+	}
+	
+	@PostMapping("/qnaReply/qnaReplySaveSecond")
+	public void qnaReplySaveSecond(HttpServletRequest request, HttpServletResponse response){
+		qnaService.saveReplySecond(request, response);
+		
+	}
+	
 	
 }

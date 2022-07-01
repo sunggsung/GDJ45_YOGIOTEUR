@@ -13,4 +13,11 @@ public interface QnaService {
 	public void selectDetailQna(Long qnaNo, Model model);
 	
 	public void AddQna(HttpServletRequest request, HttpServletResponse response);
+
+	public void saveReply(HttpServletRequest request, HttpServletResponse response);
+	
+	// 댓글 조회
+	public void selectQnaReplies(Long qnaNo, Model model);
+	
+	public void saveReplySecond(HttpServletRequest request, HttpServletResponse response);
 }

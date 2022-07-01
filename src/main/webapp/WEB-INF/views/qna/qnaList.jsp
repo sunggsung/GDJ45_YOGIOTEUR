@@ -50,12 +50,12 @@
   	</thead>
   	<tbody>
   			<c:forEach items="${qnas}" var="qna">
-  				<tr id="qna_${qna.qnaNo}">
-  					<td>${totalRecord + 1 - qna.qnaNo}</td>
-  					<td><a href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
-  					<td>${qna.memberId}</td>
-  					<td>${qna.qnaCreated}</td>
-  				</tr>
+	  				<tr id="qna_${qna.qnaNo}">
+	  					<td>${totalRecord + 1 - qna.qnaNo}</td>
+	  					<td><a href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
+	  					<td>${qna.memberId}</td>
+	  					<td>${qna.qnaCreated}</td>
+	  				</tr>
   			</c:forEach>
   		
   	</tbody>

@@ -6,15 +6,34 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.tp.yogioteur.domain.QnaDTO;
+import com.tp.yogioteur.domain.QnaReplyDTO;
 
 @Mapper
 public interface QnaMapper {
 
+	// 목록가져오기
 	public List<QnaDTO> selectQnaList(Map<String, Object> map);
 	public int selelctQnaCount();
 	public int updateQnaHit(Long qnaNo);
 	
+	
+	// 디테일 정보 가져오기
 	public QnaDTO selectQnaByNo(Long qnaNo);
 	
+	// qna 추가
 	public int insertQna(QnaDTO qna);
+	
+	// 댓글 전 처리
+	public int updatPreviousReply(QnaReplyDTO qnaReply);
+	
+	// 댓글 추가
+	public int insertQnaReply(QnaReplyDTO qnaReply);
+	
+	// 댓글 조회
+	public List<QnaReplyDTO> selectQnaReplyByNo(Long qnaNo);
+	
+	// 댓글두번쨰추가
+	public int insertQnaReplySecond(QnaReplyDTO qnaReply);
+	
+	
 }
