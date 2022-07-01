@@ -17,7 +17,6 @@ public class ReservationDTO {
 	private Long memberNo;
 	private Long roomNo;
 	private Long nonNo;
-	private Integer reserStatus;
 	private Date reserCheckin;
 	private Date reserCheckout;
 	private Integer reserStatus;
