@@ -14,7 +14,7 @@
 <style>
    #faqUl{
       list-style-type: none;   
-   } 
+   }
    .faqDetailBtn{
       cursor: pointer;
        border: none;
@@ -35,11 +35,11 @@
    }
    #faqAdd {
       box-sizing: border-box;
-      display: inline-block; 
+      display: inline-block;  /* 같은 줄에 둘 수 있고, width, height 등 크기 지정 속성을 지정할 수 있다. */
       padding: 10px;
       margin: 5px;
       border: 1px solid white;
-      text-decoration: none; 
+      text-decoration: none;  /* 링크 밑줄 없애기 */
       color: gray;
    }
    .noList {
@@ -114,7 +114,5 @@
    
          <div class="noList">${paging}</div>
             
-
-	
 </body>
 </html>

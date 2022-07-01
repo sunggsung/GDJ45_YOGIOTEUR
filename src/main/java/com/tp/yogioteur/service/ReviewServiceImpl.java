@@ -23,9 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tp.yogioteur.domain.ReImageDTO;
 import com.tp.yogioteur.domain.ReviewDTO;
-import com.tp.yogioteur.domain.ReviewReplyDTO;
 import com.tp.yogioteur.mapper.ReviewMapper;
-import com.tp.yogioteur.mapper.ReviewReplyMapper;
 import com.tp.yogioteur.util.MyFileUtils;
 import com.tp.yogioteur.util.PageUtils;
 
@@ -35,9 +33,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	  @Autowired
 	  private ReviewMapper reviewMapper;
-	  
-	  @Autowired
-	  private ReviewReplyMapper reviewReplyMapper;
 	  
 	 
 	  // 목록보기

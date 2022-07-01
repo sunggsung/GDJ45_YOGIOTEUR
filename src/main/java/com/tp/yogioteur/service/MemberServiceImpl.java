@@ -1,9 +1,18 @@
 package com.tp.yogioteur.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -17,10 +26,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
 
 import com.tp.yogioteur.domain.MemberDTO;
 import com.tp.yogioteur.domain.SignOutMemberDTO;
@@ -66,7 +75,6 @@ public class MemberServiceImpl implements MemberService {
 		});
 		
 		try {
-			
 			Message message = new MimeMessage(session);
 			
 			message.setHeader("Content-Type", "text/plain; charset=UTF-8");
@@ -180,8 +188,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberDTO findId(HttpServletRequest request) {
 		
-		String memberName = request.getParameter("memberName");
-		String memberEmail = request.getParameter("memberEmail");
+		String memberName = SecurityUtils.xss(request.getParameter("memberName")); 
+		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail"));
 		MemberDTO member = MemberDTO.builder()
 				.memberName(memberName)
 				.memberEmail(memberEmail)
@@ -191,7 +199,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberConfirm;
 	}
 
-	
+	// 비밀번호 찾기
 	@Override
 	public Map<String, Object> idEmailCheck(MemberDTO member) {
 		Map<String, Object> map = new HashMap<>();
@@ -201,7 +209,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void changePw(HttpServletRequest request, HttpServletResponse response) {
-		String memberId = request.getParameter("memberId");
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
 		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
 		
 		MemberDTO member = MemberDTO.builder()
@@ -217,7 +225,7 @@ public class MemberServiceImpl implements MemberService {
 			if(res == 1) {
 				out.println("<script>");
 				out.println("alert('비밀번호가 수정되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/member/loginPage'");
+				out.println("location.href='" + request.getContextPath() + "/'");
 				out.println("</script>");
 				out.close();
 			} else {
@@ -230,7 +238,6 @@ public class MemberServiceImpl implements MemberService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	// 회원정보
@@ -243,23 +250,29 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
 
-		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
-		String memberName = SecurityUtils.xss(request.getParameter("memberName")); 
-		String memberPhone = request.getParameter("memberPhone");    
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
+		String memberName = request.getParameter("memberName");   
+		String memberPhone =request.getParameter("memberPhone");    
+		String memberBirth = request.getParameter("memberBirth");   
+		String memberGender = request.getParameter("memberGender");
+		String memberPostCode = request.getParameter("memberPostCode");
+		String memberRoadAddr = request.getParameter("memberRoadAddr");
 		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail")); 
-		String memberBirth = request.getParameter("memberBirth");  
+		String memberPromoAdd = request.getParameter("memberPromoAdd");
 		
 		MemberDTO member = MemberDTO.builder()
 				.memberId(memberId)
 				.memberName(memberName)
-				.memberPhone(memberPhone)
-				.memberEmail(memberEmail)
 				.memberBirth(memberBirth)
+				.memberPhone(memberPhone)
+				.memberPostCode(memberPostCode)
+				.memberRoadAddr(memberRoadAddr)
+				.memberGender(memberGender)
+				.memberEmail(memberEmail)
+				.memberPromoAdd(memberPromoAdd)
 				.build();
 		
-		System.out.println(member);
 		int res = memberMapper.updateMember(member);
-		System.out.println(res);
 		try {
 			response.setContentType("text/html; charset=UTF-8");
 			HttpSession session = request.getSession();
@@ -281,18 +294,20 @@ public class MemberServiceImpl implements MemberService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
-	
+
 	// 탈퇴
 	@Override
 	public void signOut(HttpServletRequest request, HttpServletResponse response) {
 		
-		Optional<String> opt = Optional.ofNullable(request.getParameter("memberNo"));
-		Long memberNo = Long.parseLong(opt.orElse("0"));
-		int res = memberMapper.removeMember(memberNo);
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
+		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
+		
+		MemberDTO member = MemberDTO.builder()
+				.memberId(memberId)
+				.memberPw(memberPw)
+				.build();
+		int res = memberMapper.removeMember(member);
 
 		try {
 			response.setContentType("text/html");
@@ -314,7 +329,6 @@ public class MemberServiceImpl implements MemberService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	// 탈퇴확인
@@ -322,53 +336,116 @@ public class MemberServiceImpl implements MemberService {
 	public SignOutMemberDTO findSignOutMember(String memberId) {
 		return memberMapper.selectSignOutMemberByMemberId(memberId);
 	}
-	
-	// 재가입
-	@Transactional
-	@Override
-	public void reSignIn(HttpServletRequest request, HttpServletResponse response) {
-		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
-		String memberName = SecurityUtils.xss(request.getParameter("memberName"));
-		Long memberNo = Long.parseLong(request.getParameter("memberNo"));
-		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
-		String memberEmail = SecurityUtils.xss(request.getParameter("memberEmail"));
-		Integer agreeState = Integer.parseInt(request.getParameter("agreeState"));
-		
-		// MemberDTO
-		MemberDTO member = MemberDTO.builder()
-				.memberPw(memberPw)
-				.memberName(memberName)
-				.memberNo(memberNo)
-				.memberId(memberId)
-				.memberEmail(memberEmail)
-				.agreeState(agreeState)
-				.build();
 
-		// MEMBER 테이블에 member 저장
-		int res1 = memberMapper.reSignInMember(member);
-		int res2 = memberMapper.removeSignOutMember(memberId);
+	
+	@Override
+	public void loginPage(HttpServletRequest request, Model model) {
 		
-		// 응답
 		try {
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			if(res1 == 1 && res2 == 1) {
-				out.println("<script>");
-				out.println("alert('다시 모든 서비스를 이용할 수 있습니다.')");
-				out.println("location.href='" + request.getContextPath() + "'");		// 첫 페이지(인덱스) 이동
-				out.println("</script>");
-				out.close();
-			} else {
-				out.println("<script>");
-				out.println("alert('재가입에 실패했습니다.')");
-				out.println("history.back()");
-				out.println("</script>");
-				out.close();
-			}
+			String clientId = "fdXdRAviHENtwQcHVArh";
+		    String redirectURI = URLEncoder.encode("http://localhost:9090/" + request.getContextPath() + "/member/naver/login", "UTF-8");
+		    SecureRandom random = new SecureRandom();
+		    String state = new BigInteger(130, random).toString();
+		    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+		    apiURL += "&client_id=" + clientId;
+		    apiURL += "&redirect_uri=" + redirectURI;
+		    apiURL += "&state=" + state;
+		    request.getSession().setAttribute("state", state);
+		    model.addAttribute("apiURL", apiURL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
+	
+	@Override
+	public String getAccessToken(HttpServletRequest request, HttpServletResponse response) {
+		StringBuffer res = new StringBuffer();
+		try {
+			String clientId = "fdXdRAviHENtwQcHVArh";
+			String clientSecret = "izECEfZOzv";
+			String code = request.getParameter("code");
+			String state = request.getParameter("state");
+			String redirectURI = URLEncoder.encode("http://localhost:9090/" + request.getContextPath() + "/member/naver/login", "UTF-8");
+			String apiURL;
+			apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
+			apiURL += "client_id=" + clientId;
+			apiURL += "&client_secret=" + clientSecret;
+			apiURL += "&redirect_uri=" + redirectURI;
+			apiURL += "&code=" + code;
+			apiURL += "&state=" + state;
+	        URL url = new URL(apiURL);
+	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
+	        con.setRequestMethod("GET");
+	        int responseCode = con.getResponseCode();
+	        BufferedReader br;
+	        if(responseCode==200) { 
+	        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	      } else {  
+	        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+	      }
+	      String inputLine;
+	      while ((inputLine = br.readLine()) != null) {
+	        res.append(inputLine);
+	      }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		JSONObject obj = new JSONObject(res.toString());
+		return obj.getString("access_token");
+	}
+
+	@Override
+	public MemberDTO getMemberProfile(HttpServletRequest request, HttpServletResponse response, String token) {
+        String header = "Bearer " + token; 
+
+        String apiURL = "https://openapi.naver.com/v1/nid/me";
+        
+        Map<String, String> requestHeaders = new HashMap<>();
+        requestHeaders.put("Authorization", header);
+       
+        try {
+        	URL url = new URL(apiURL);
+        	HttpURLConnection con =  (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            for(Map.Entry<String, String> headers :requestHeaders.entrySet()) {
+                con.setRequestProperty(headers.getKey(), headers.getValue());
+            }
+            InputStream body = null;
+            int responseCode = con.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) { 
+                body = con.getInputStream();
+            } else { 
+                body = con.getErrorStream();
+            }
+            InputStreamReader streamReader = new InputStreamReader(body);
+            try( BufferedReader lineReader = new BufferedReader(streamReader) ){
+            	StringBuilder responseBody = new StringBuilder();
+            	String line;
+            	while ((line = lineReader.readLine()) != null) {
+            		responseBody.append(line);
+            	}
+            	JSONObject obj = new JSONObject(responseBody.toString());
+            	JSONObject profile = obj.getJSONObject("response");
+            	String id = profile.getString("id");
+            	String name = profile.getString("name");
+            	String email = profile.getString("email");
+            	String gender = profile.getString("gender");
+            	String phone = profile.getString("mobile");
+            	
+            	MemberDTO naver = MemberDTO.builder()
+            			.memberId(id)
+            			.memberName(name)
+            			.memberEmail(email)
+            			.memberGender(gender)
+            			.memberPhone(phone)
+            			.build();
+            	return naver;
+            }
+        } catch (MalformedURLException e) {
+        	throw new RuntimeException("API URL이 잘못되었습니다. : ", e);
+        } catch (IOException e) {
+        	throw new RuntimeException("API 요청과 응답을 읽는데 실패했습니다.", e);
+        }
+	}
+	
 }

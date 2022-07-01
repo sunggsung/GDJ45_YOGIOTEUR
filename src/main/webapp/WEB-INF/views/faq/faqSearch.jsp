@@ -63,11 +63,9 @@
    <br> 또 다른 문의사항이 있다면 <a href="${contextPath}/qna/qnaList">QnA 게시판</a>을 이용해주세요.
    
    <br><br>
-  
    
-    <jsp:include page="../faq/faqList.jsp"></jsp:include>
-        
-	<jsp:include page="../layout/footer.jsp"></jsp:include>
+   <%@ include file="faqList.jsp" %>
    
+   <jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>
 </html>

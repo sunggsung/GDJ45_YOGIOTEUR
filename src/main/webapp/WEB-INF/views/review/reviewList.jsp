@@ -24,11 +24,11 @@
 	}
 	// 리뷰삭제
 	 function fnReviewRemove(rn){      
-	       if(confirm('리뷰를 삭제할까요?')){
+	       if(confirm('삭제할까요?')){
 	          location.href='${contextPath}/review/reviewRemove?reviewNo=' + $(rn).data('review_no');
 	       }
 	 }
-	
+
 	//댓글 수정
 	function fnReviewReplyModify(mr){
 		location.href='${contextPath}/reply/reviewReplyChangePage?replyNo=' + $(mr).data('reply_no')+'&reviewNo='+$(mr).data('review_no') ;
@@ -39,7 +39,6 @@
 	          location.href='${contextPath}/reply/reviewReplyRemove?replyNo=' + $(rpn).data('reply_no');
 	       }
 	 }
-	 
 </script>
 
 </head>
