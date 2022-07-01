@@ -15,4 +15,7 @@ public class NaverLoginDTO {
 	private String memberGender;
 	private String memberPhone;
 	
+//	// 네이버 로그인 사용자 표시용
+//	private String naverIn;
+	
 }

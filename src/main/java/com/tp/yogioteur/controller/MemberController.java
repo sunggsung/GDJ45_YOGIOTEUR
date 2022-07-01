@@ -179,15 +179,15 @@ public class MemberController {
 	}
 	
 	//예약내역
-//	@GetMapping("/member/confoirmReserPage")
-//	public String confoirmReserPage() {
-//		return "member/confirmReser";
-//	}
+	@GetMapping("/member/confirmReserPage")
+	public String confirmReserPage() {
+		return "member/confirmReser";
+	}
 	
-//	// 문의내역(qna)
-//	@GetMapping("/member/confirmQnaPage")
-//	public String confirmFaqPage() {
-//		return "member/confirmQna";
-//	}
+	// 문의내역(qna)
+	@GetMapping("/member/confirmQnaPage")
+	public String confirmQnaPage() {
+		return "member/confirmQna";
+	}
 	
 }
