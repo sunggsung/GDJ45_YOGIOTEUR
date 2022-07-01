@@ -32,7 +32,7 @@
    		<input type="hidden" name="qnaNo" value="${qna.qnaNo}"> 
    		<input type="hidden" name="memberId" value="${qna.memberId}" readonly> 
    		제목 : <input type="text" id="qnaTitle" name="qnaTitle" value="${qna.qnaTitle}" readonly><br>
-   		내용 : <textarea rows="20" cols="50" name="qnaContent">${qna.qnaTitle}</textarea>
+   		내용 : <textarea rows="20" cols="50" name="qnaContent"></textarea>
    		<button>수정하기</button>
    </form>
   

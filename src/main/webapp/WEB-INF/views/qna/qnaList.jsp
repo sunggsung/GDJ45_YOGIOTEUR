@@ -34,6 +34,12 @@
 </script>
 
 </head>
+<style>
+	table {
+		width: 1200px;
+		margin: auto;
+	}
+</style>
 <body>
    
    <jsp:include page="../layout/header.jsp"></jsp:include>
