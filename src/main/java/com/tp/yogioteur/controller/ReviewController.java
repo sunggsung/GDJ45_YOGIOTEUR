@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.tp.yogioteur.service.ReviewReplyService;
 import com.tp.yogioteur.service.ReviewService;
 
 
@@ -22,7 +21,6 @@ public class ReviewController {
 
 	@Autowired
 	public ReviewService reviewService;
-	
 	
 	@GetMapping("/review/reviewList")
 	public String reviewList(HttpServletRequest request, Model model) {
@@ -35,8 +33,8 @@ public class ReviewController {
 		return"review/reviewSave";
 	}
 	
-	@PostMapping("/review/reviewSave") 
-	public void reviewSave(MultipartHttpServletRequest multiparRequest, HttpServletResponse response) {
+	@PostMapping("/review/reviewSave") public void
+	reviewSave(MultipartHttpServletRequest multiparRequest, HttpServletResponse response) {
 	
 		reviewService.ReviewSave(multiparRequest, response); 
 	

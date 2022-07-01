@@ -24,6 +24,4 @@ public interface ReviewService {
 		// 리뷰 삭제
 		public void removeReview(HttpServletRequest request, HttpServletResponse response);
 	
-		// 리뷰 하나
-		public void ReviewOne(Long reviewNo, Model medel);
 }

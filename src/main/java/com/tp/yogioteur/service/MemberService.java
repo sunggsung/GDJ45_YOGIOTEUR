@@ -5,6 +5,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.tp.yogioteur.domain.MemberDTO;
 import com.tp.yogioteur.domain.SignOutMemberDTO;
 
@@ -33,6 +36,8 @@ public interface MemberService {
 	public void signOut(HttpServletRequest request, HttpServletResponse response);
 	// 탈퇴확인
 	public SignOutMemberDTO findSignOutMember(String memberId);
-
+	
+	// 비밀번호 확인
+	public MemberDTO pwCheck(HttpServletRequest request, HttpServletResponse response);
 	
 }

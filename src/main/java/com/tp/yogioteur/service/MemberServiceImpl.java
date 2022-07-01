@@ -216,7 +216,7 @@ public class MemberServiceImpl implements MemberService {
 			if(res == 1) {
 				out.println("<script>");
 				out.println("alert('비밀번호가 수정되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/member/loginPage'");
+				out.println("location.href='" + request.getContextPath() + "/'");
 				out.println("</script>");
 				out.close();
 			} else {
@@ -264,7 +264,6 @@ public class MemberServiceImpl implements MemberService {
 				.memberPromoAdd(memberPromoAdd)
 				.build();
 		
-		System.out.println(member);
 		int res = memberMapper.updateMember(member);
 		try {
 			response.setContentType("text/html; charset=UTF-8");
@@ -289,9 +288,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 	}
-	
-	
-	
+
 	// 탈퇴
 	@Override
 	public void signOut(HttpServletRequest request, HttpServletResponse response) {
@@ -326,6 +323,21 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public SignOutMemberDTO findSignOutMember(String memberId) {
 		return memberMapper.selectSignOutMemberByMemberId(memberId);
+	}
+
+	@Override
+	public MemberDTO pwCheck(HttpServletRequest request, HttpServletResponse response) {
+		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
+		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));    
+
+		MemberDTO member = new MemberDTO();
+		member.setMemberId(memberId);
+		member.setMemberPw(memberPw);
+		
+		MemberDTO memberInfo= memberMapper.selectMemberByIdPw(member);
+		
+		return memberInfo;
+		
 	}
 	
 	

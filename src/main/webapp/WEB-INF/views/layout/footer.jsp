@@ -30,7 +30,7 @@
 		float: left;
 		margin-left: 10px;
 		margin-top: 3px;
-	
+		
 	
 	}
 	
@@ -58,7 +58,7 @@
 		display: block;
 	
 	}
-
+	
 </style>
 </head>
 <body>
@@ -66,6 +66,7 @@
 	<div class="footer">
 		<div class="end_title">
 			YOGIOTEUR
+			<a href="${contextPath}/reservation/reservationPage">예약</a>
 			<hr>
 				<div class="info">
 					(주)여기오떼르

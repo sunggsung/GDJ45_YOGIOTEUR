@@ -6,17 +6,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.tp.yogioteur.mapper.ReviewReplyMapper">
 
 	<!-- 댓글 목록 -->
-	<select id="selectReviewReplyList" resultType="ReviewReplyDTO">
-		SELECT REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED
-		  FROM REVIEW_REPLY
+	<select id="selectReviewReplyList" parameterType="Long" resultType="ReviewReplyDTO">
+		SELELCT REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED
+		  FROM REVEIW_REPLY
+		 WHERE REVIEW_NO = #{reviewNo}
 	</select>
 	
 	<!-- 댓글 추가 -->
 	<insert id="insertReviewReply" parameterType="ReviewReplyDTO">
-		INSERT INTO REVIEW_REPLY
+		INSERT INTO
 			(REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED)
 		VALUES
-			(REVIEW_REPLY_NO_SEQ.NEXTVAL, #{reviewNo}, #{replyContent}, SYSDATE)
+			(REVIEW_REPLY_NO_SEQ, #{reviewNo}, #{reviewContent}, SYSDATE)
 	</insert>
 	
 	<!-- 댓글 삭제 -->

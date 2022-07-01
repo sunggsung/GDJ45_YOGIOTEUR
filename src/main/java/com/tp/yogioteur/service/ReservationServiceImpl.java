@@ -1,14 +1,19 @@
 package com.tp.yogioteur.service;
 
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.tp.yogioteur.domain.MemberDTO;
+import com.tp.yogioteur.domain.PriceDTO;
 import com.tp.yogioteur.domain.ReservationDTO;
 import com.tp.yogioteur.mapper.ReservationMapper;
 import com.tp.yogioteur.util.ReservationUtils;
@@ -19,17 +24,31 @@ public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	private ReservationMapper reservationMapper;
 	
+	
+	
+	@Override
+	public void reserToken(HttpServletRequest request, Model model) {
+		String no = ReservationUtils.reservataionCode(8).trim();
+		String reserNo = "RN_" + no;
+		model.addAttribute("reserNo", reserNo);
+	}
+	
 	@Override
 	public void payments(HttpServletRequest request, HttpServletResponse response) {
 		
-		String no = ReservationUtils.reservataionCode(8).trim();
-		Long memberNo = Long.parseLong(request.getParameter("memberNo"));
-		Long roomNo = Long.parseLong(request.getParameter("roomNo"));
+		String reserNo = request.getParameter("resReserNo").trim();
+		Long memberNo = Long.parseLong(request.getParameter("resMemberNo"));
+		Long roomNo = Long.parseLong(request.getParameter("resRoomNo"));
 		Long nonNo = 1L;
-		Integer food = Integer.parseInt(request.getParameter("food"));
-		Integer people = Integer.parseInt(request.getParameter("people"));
+		Optional<String> optNo = Optional.ofNullable(request.getParameter("food"));
+		Integer food = Integer.parseInt(optNo.orElse("0"));
+		Integer adult = Integer.parseInt(request.getParameter("adult"));
+		Integer child = Integer.parseInt(request.getParameter("child"));
+		Integer status = 1; // 예약성공
+		Optional<String> opt = Optional.ofNullable(request.getParameter("req"));
+		String req = opt.orElse("요청 사항 없음");
 		
-		String reserNo = "RN_" + no;
+		Integer people = adult + child;
 		
 		ReservationDTO reservation = ReservationDTO.builder()
 				.reserNo(reserNo)
@@ -38,12 +57,27 @@ public class ReservationServiceImpl implements ReservationService {
 				.nonNo(nonNo)
 				.reserFood(food)
 				.reserPeople(people)
+				.reserStatus(status)
+				.reserRequest(req)
 				.build();
 		
 		int res = reservationMapper.reservationInsert(reservation);
-		// hit 형식
 		
-		// 응답
+		Integer totalPr = Integer.parseInt(request.getParameter("totalPrice"));
+		Integer roomPr = Integer.parseInt(request.getParameter("roomPrice"));
+		Integer foodPr = Integer.parseInt(request.getParameter("foodPrice"));
+		Integer tipPr = Integer.parseInt(request.getParameter("tipPrice"));
+		
+		PriceDTO price = PriceDTO.builder()
+				.priceNo(reserNo)
+				.totalPrice(totalPr)
+				.roomPrice(roomPr)
+				.foodPrice(foodPr)
+				.tipPrice(tipPr)
+				.build();
+		
+		int pri = reservationMapper.priceInsert(price);
+		
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
@@ -66,9 +100,32 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public void confirms(HttpServletRequest request, Model model) {
+	public void confirms(HttpServletRequest request, Model model) {		
 		String no = request.getParameter("reserNo");
 		
 		model.addAttribute("reservation", reservationMapper.reservationSelectConfirm(no));
+		model.addAttribute("money", reservationMapper.priceSelectConfirm(no));
+		
+		ReservationDTO reservation = reservationMapper.reservationSelectConfirm(no);
+		Long rNo = reservation.getRoomNo();
+		model.addAttribute("room", reservationMapper.reservationRoomSelectConfirm(rNo));
+		
+		System.out.println(reservation);
+		System.out.println(rNo);
+		System.out.println(reservationMapper.reservationRoomSelectConfirm(rNo));
+		
+//		System.out.println(reservationMapper.reservationSelectConfirm(no));
+//		System.out.println(reservationMapper.priceSelectConfirm(no));
+	}
+	
+	@Override
+	public void reserList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(); //
+		MemberDTO member = (MemberDTO) session.getAttribute("loginMember"); //
+		Long no = member.getMemberNo();
+		
+		List<ReservationDTO> resers = reservationMapper.reservationMemberSelectConfirm(no);
+		
+		model.addAttribute("reservations", resers);
 	}
 }

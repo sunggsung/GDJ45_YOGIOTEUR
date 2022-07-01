@@ -23,9 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tp.yogioteur.domain.ReImageDTO;
 import com.tp.yogioteur.domain.ReviewDTO;
-import com.tp.yogioteur.domain.ReviewReplyDTO;
 import com.tp.yogioteur.mapper.ReviewMapper;
-import com.tp.yogioteur.mapper.ReviewReplyMapper;
 import com.tp.yogioteur.util.MyFileUtils;
 import com.tp.yogioteur.util.PageUtils;
 
@@ -35,9 +33,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	  @Autowired
 	  private ReviewMapper reviewMapper;
-	  
-	  @Autowired
-	  private ReviewReplyMapper reviewReplyMapper;
 	  
 	 
 	  // 목록보기
@@ -56,12 +51,9 @@ public class ReviewServiceImpl implements ReviewService {
 		  map.put("endRecord", pageUtils.getEndRecord());
 		  
 		  List<ReviewDTO> reviews = reviewMapper.selectReviewList(map);
-		  List<ReviewReplyDTO> reviewReply = reviewReplyMapper.selectReviewReplyList();
-		  
 		  
 		  model.addAttribute("totalRecrod", totalRecord);
 		  model.addAttribute("reviews", reviews);
-		  model.addAttribute("reviewReplies", reviewReply);
 		  model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtils.getRecordPerPage() );
 		  model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/review/reviewList"));
 		  
@@ -299,14 +291,5 @@ public class ReviewServiceImpl implements ReviewService {
 		  
 	  }
 	  
-	  
-	  // 리뷰 하나 
-	  public void ReviewOne(Long reviewNo, Model model) {
-		  ReviewDTO review = reviewMapper.selectReviewByNo(reviewNo);
-		  ReImageDTO reImage = reviewMapper.selectReImage(reviewNo);
-		  
-		  model.addAttribute("review", review);
-		  model.addAttribute("reImage", reImage);
-	  }
 
 }

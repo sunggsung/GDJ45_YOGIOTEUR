@@ -10,8 +10,7 @@ import com.tp.yogioteur.domain.ReviewReplyDTO;
 public interface ReviewReplyMapper {
 	
 		// 리뷰댓글 목록
-		public List<ReviewReplyDTO> selectReviewReplyList();
-		
+		public List<ReviewReplyDTO> selectReviewReplyList(Long reviewNo);
 		
 		// 리뷰댓글 추가
 		public int insertReviewReply(ReviewReplyDTO reviewReply);
