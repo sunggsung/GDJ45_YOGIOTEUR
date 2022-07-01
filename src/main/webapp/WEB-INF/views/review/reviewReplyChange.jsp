@@ -12,10 +12,10 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
-	
+
 	$(function(){
 		fnTextareaLimit();
-		fnReviewReplyAddCheck();
+		fnReviewReplyModifyCheck();
 	})
 	
 	function fnTextareaLimit(){
@@ -30,16 +30,23 @@
 		})
 	}
 	
-	function fnReviewReplyAddCheck(){
+	function fnReviewReplyModifyCheck(){
 		
-		$('#replydata').on('submit', function(event){
-			if($('#replyContent').val() == '' ){
+		$('#replyChangeData').on('submit', function(event){
+			if($('#replyContent').val() == '${reviewReply.replyContent}'){
 				
-				
-				alert('작성된 내용이 없습니다.');
+				alert('변경된 내용이 없습니다.');
 				event.preventDefault();
 				return false;
 			}
+			else if($('#replyContent').val() == '' ){
+				
+				
+				alert('댓글내용이 없습니다.');
+				event.preventDefault();
+				return false;
+			}
+			
 			
 			
 			return true;
@@ -47,15 +54,20 @@
 	}
 	
 	
+	
 </script>
+<style type="text/css">
 
+
+</style>
 
 </head>
 <body>
 
 	<jsp:include page="../layout/header.jsp"></jsp:include>
    
-   <h1>댓글 작성하기</h1>
+   
+   <h1>댓글 수정하기</h1>
    
    	리뷰 번호 : ${review.reviewNo}<br>
     예약번호 : ${review.reserNo}<br>
@@ -68,11 +80,11 @@
 		<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px">					
 	</c:forEach>
    	
-	<form id="replydata"  action="${contextPath}/review/reviewReplySave" method="post">
-		<input type="hidden" name="reviewNo" value="${review.reviewNo}">
-		<textarea rows="10" cols="50" id="replyContent" name="replyContent"></textarea>
+	<form id="replyChangeData"  action="${contextPath}/review/reviewReplyChange" method="post">
+		<input type="hidden" name="replyNo" value="${reviewReply.replyNo}">		
+		<textarea rows="10" cols="50" id="replyContent" name="replyContent" >${reviewReply.replyContent}</textarea>
 		<div id="replyContent_cnt">(0 / 500)</div>
-		<button>댓글 등록</button>
+		<button>댓글 수정</button>
 	</form>
    
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
