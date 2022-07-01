@@ -127,12 +127,15 @@
 	
 	.weather_api{
 		
-		display: block;
+		display: flex;
 		width: 1300px;
 		height: 500px;
 		
 	}
 	
+	.image {
+		
+	}
 </style>
 </head>
 <script type="text/javascript">
@@ -162,7 +165,7 @@
 			
 		})
 		
-		
+		fnTour();
 
 	})
 	
@@ -174,6 +177,40 @@
 		 $('#roomCheckOut').datepicker('option', 'minDate','+1');//다음날부터 선택가능 특정날짜 키워드로 찾아보기
 		
 	} 
+	
+	function fnTour(){
+		$.ajax({
+			url: '${contextPath}/admin/tour',
+			type: 'get',
+			dataType: 'json',
+			success: function(responseText){
+				//var items = responseText.response.body.items.item;
+				$('#items').empty();
+				$.each(responseText, function(i, item){
+					var tr = '<tr>';
+					tr += '<td>' + item.tm + '</td>';
+					tr += '<td>' + item.spotName + '</td>';
+					var sky;
+					switch(item.sky){
+					case 1: sky = '맑음'; break;
+					case 2: sky = '구름조금'; break;
+					case 3: sky = '구름많음'; break;
+					case 4: sky = '흐림'; break;
+					case 5: sky = '비'; break;
+					case 6: sky = '비눈'; break;
+					case 7: sky = '눈비'; break;
+					case 8: sky = '눈'; break;
+					default: sky = '모름';
+					}
+					tr += '<td>' + sky + '</td>';
+					tr += '<td>' + item.th3 + '</td>';
+					tr += '<td>' + item.rhm + '%</td>';
+					tr += '<td>' + item.pop + '%</td>';
+					$('#items').append(tr);
+				})
+			}
+		})
+	}
   
   
 </script>
@@ -206,11 +243,30 @@
 		
 	</div>
 	
-		<div class="weather_api">
-		
-			날씨별관광지 추천
-			
+	<div class="weather_api">
+		<div class="image">
+			<img src="resources/image/mainPageImage1.jpg" alt="image1" width="90%" height="300px">
 		</div>
+		<div class="image">
+			<img src="resources/image/mainPageImage2.jpg" alt="image2" width="90%" height="300px">
+		</div>
+		<div>
+			<img src="resources/image/mainPageImage3.jpg" alt="image3" width="90%" height="300px">
+			<!-- <table border="1">
+				<thead>
+					<tr>
+						<td>예보시각</td>
+						<td>관광지명</td>
+						<td>날씨</td>
+						<td>기온</td>
+						<td>습도</td>
+						<td>강수확률</td>
+					</tr>
+				</thead>
+				<tbody id="items"></tbody>
+			</table> -->
+		</div>
+	</div>
 
 	<div class="footer">
 			<div class="end_title">

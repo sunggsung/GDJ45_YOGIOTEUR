@@ -21,11 +21,9 @@ public interface MemberMapper {
 	public MemberDTO selectMemberByIdEmail(MemberDTO member);
 	public int updatePw(MemberDTO member);
 	
+	public int removeMember(MemberDTO member);
+	public SignOutMemberDTO selectSignOutMemberByMemberId(String memberId);
+
 	public int updateMember(MemberDTO member);
 	
-	public int removeMember(Long memberNo);
-	public SignOutMemberDTO selectSignOutMemberByMemberId(String memberId);
-	
-	public int reSignInMember(MemberDTO member);
-	public int removeSignOutMember(String memberId);
 }
