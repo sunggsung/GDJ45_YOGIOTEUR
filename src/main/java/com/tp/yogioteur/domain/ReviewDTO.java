@@ -17,6 +17,8 @@ public class ReviewDTO {
 	private Long reviewNo;
 	private String memberId;
 	private Long reserNo;
+	private String roomName;
+	private String rtType;
 	private String reviewTitle;
 	private String reviewContent;
 	private Date reviewCreated;

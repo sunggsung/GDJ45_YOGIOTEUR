@@ -134,7 +134,11 @@
    
    <form id="reviewChange" action="${contextPath}/review/reviewChange" method="post" enctype="multipart/form-data">
    		
+   		
    		<input type="hidden" name="reviewNo" value="${review.reviewNo}">
+   		아이디 : <input type="text" id="memberId" name="memberId" value="${loginMember.memberId}" readonly> <br>
+   		<input type="text" id="roomName" name="roomName" value="방1" readonly> 
+	   	<input type="text" id="rtType" name="rtType" value="싱글" readonly> <br>
   		<input type="text" id="reviewTitle" name="reviewTitle" value="${review.reviewTitle}" ><br>
   		<textarea rows="10" cols="50" id="review_textarea" class="review_textarea" id="reviewContent" name="reviewContent" >${review.reviewContent}</textarea><br>
    		<div id="review_textarea_cnt">(0 / 500)</div>

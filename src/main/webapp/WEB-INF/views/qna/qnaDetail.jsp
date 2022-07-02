@@ -148,11 +148,11 @@
 							</td>
 							<td>${qnaReply.qnaReplyCreated}</td>
 							<td>
-								${qnaReply.qnaReplyNo}
+								<c:if test = "${loginMember.memberId eq qnaReply.memberId || loginMember.memberId eq 'admin123'}">
 									<a href="${contextPath}/qnaReply/qnaReplyRemove?qnaReplyNo=${qnaReply.qnaReplyNo}&qnaNo=${qna.qnaNo}">
 										<i class="fa-solid fa-trash-can"></i>
 									</a>
-										
+								</c:if>	
 									
 							</td>
 						</tr>

@@ -69,9 +69,9 @@
 	  					<td>${qna.memberId}</td>
 	  					<td>${qna.qnaCreated}</td>
 	  					<td>${qna.qnaHit}</td>	  					
-	  					
+	  					<c:if test = "${loginMember.memberId eq qna.memberId || loginMember.memberId eq 'admin123'}">
 	  						<td><input type="button" value="삭제" data-qna_no = "${qna.qnaNo}" onclick="fnRemove(this)"></td>
-	  					
+	  					</c:if>
 	  				</tr>
   			</c:forEach>
   		

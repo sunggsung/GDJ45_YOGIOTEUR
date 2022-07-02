@@ -75,7 +75,7 @@
 	   					<br>
 	   					
 	   					아이디 : ${review.memberId}<br>
-	   					
+	   					방 : ${review.roomName} ${review.rtType}<br>
 	   					리뷰 내용 : ${review.reviewContent}<br>
 	   					
 						

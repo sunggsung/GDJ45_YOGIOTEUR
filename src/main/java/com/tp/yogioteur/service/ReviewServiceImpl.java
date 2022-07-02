@@ -106,6 +106,8 @@ public class ReviewServiceImpl implements ReviewService {
 		  String memberId = multipartRequest.getParameter("memberId");
 		  String reviewTitle = multipartRequest.getParameter("reviewTitle");
 		  String reviewContent = multipartRequest.getParameter("reviewContent");
+		  String roomName = multipartRequest.getParameter("roomName");
+		  String rtType = multipartRequest.getParameter("rtType");
 		  int reviewRevNo = Integer.parseInt(multipartRequest.getParameter("reviewRevNo")) ;
 		  
 		  //REVIEW
@@ -113,6 +115,8 @@ public class ReviewServiceImpl implements ReviewService {
 				  .memberId(memberId)
 				  .reviewTitle(reviewTitle)
 				  .reviewContent(reviewContent)
+				  .roomName(roomName)
+				  .rtType(rtType)
 				  .reviewRevNo(reviewRevNo)
 				  .build();
 		  

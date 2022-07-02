@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<!-- 원글 수정 -->
  	<update id="updateQna" parameterType="QnaDTO">
  		UPDATE QNA
- 		   SET QNA_CONTENT = #{qnaContent}
+ 		   SET QNA_CONTENT = #{qnaContent} , QNA_MODIFIED = SYSDATE
  		 WHERE QNA_NO = #{qnaNo}
  	</update>
  		
