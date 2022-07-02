@@ -52,6 +52,7 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public void selectDetailQna(Long qnaNo, Model model) {
 		QnaDTO qna = qnaMapper.selectQnaByNo(qnaNo);
+		qnaMapper.updateQnaHit(qnaNo);
 		
 		model.addAttribute("qna", qna);
 		
@@ -111,6 +112,7 @@ public class QnaServiceImpl implements QnaService {
 				.build();
 		
 		int AddQnaReply = qnaMapper.insertQnaReply(qnaReply);
+		qnaMapper.updateQnaHitnotD(qnaNo);
 		
 		try {
 			response.setContentType("text/html");
@@ -141,7 +143,7 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public void selectQnaReplies(Long qnaNo, Model model) {
 		List<QnaReplyDTO> qnaReplies = qnaMapper.selectQnaReplyByNo(qnaNo);
-		
+		qnaMapper.updateQnaHitnotD(qnaNo);
 		model.addAttribute("qnaReplies", qnaReplies);
 		
 	}
@@ -171,7 +173,7 @@ public class QnaServiceImpl implements QnaService {
 				.build();
 		
 		int AddQnaReply = qnaMapper.insertQnaReplySecond(qnaReplySec);
-		
+		qnaMapper.updateQnaHitnotD(qnaNo);
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
@@ -199,9 +201,10 @@ public class QnaServiceImpl implements QnaService {
 	
 	@Override
 	public void removeReply(HttpServletRequest request, HttpServletResponse response) {
+		Long qnaNo = Long.parseLong(request.getParameter("qnaNo"));
 		Long qnaReplyNo = Long.parseLong(request.getParameter("qnaReplyNo"));
 		int removeReplyRes = qnaMapper.deleteQnaReply(qnaReplyNo);
-		
+		qnaMapper.updateQnaHitnotD(qnaNo);
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
@@ -231,7 +234,7 @@ public class QnaServiceImpl implements QnaService {
 		Long qnaNo = Long.parseLong(request.getParameter("qnaNo"));
 		int removeQnaReplyRes = qnaMapper.deleteQnaAndReply(qnaNo);
 		int removeQnaRes = qnaMapper.deleteQna(qnaNo);
-		
+		qnaMapper.updateQnaHitnotD(qnaNo);
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
@@ -266,6 +269,8 @@ public class QnaServiceImpl implements QnaService {
 				.build();
 		
 		int modifyQnaRes = qnaMapper.updateQna(qna);
+		qnaMapper.updateQnaHitnotD(qnaNo);
+		qnaMapper.updateQnaHitnotD(qnaNo);
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();

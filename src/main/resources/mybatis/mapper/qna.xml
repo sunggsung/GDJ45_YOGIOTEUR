@@ -41,10 +41,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE QNA_NO = #{qnaNo}
 	</select>
 	
-	<!-- 조회수 증가 -->
+	<!-- 디테일조회수 증가 -->
 	<update id="updateQnaHit" parameterType="Long">
 		UPDATE QNA
-		   SET QNA_HIT = QNA_HIT + 1
+		   SET QNA_HIT = QNA_HIT + 2
+		 WHERE QNA_NO = #{qnaNo}
+	</update>
+	
+	<!-- 디테일조회수 이외의 조회수 그대로 만들기 -->
+	<update id="updateQnaHitnotD" parameterType="Long">
+		UPDATE QNA
+		   SET QNA_HIT = QNA_HIT - 1
 		 WHERE QNA_NO = #{qnaNo}
 	</update>
 	

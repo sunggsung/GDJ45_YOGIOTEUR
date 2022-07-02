@@ -29,12 +29,10 @@ public class QnaController {
 	
 	@GetMapping("/qna/qnaDetailPage")
 	public String qnaDetailPage(Long qnaNo, Model model) {
+		
 		qnaService.selectDetailQna(qnaNo, model);
 		qnaService.selectQnaReplies(qnaNo, model);
-		String requestURI = "http//localhost:9090/yogioteur/qna/qnaDetail";
-		if(requestURI.endsWith("qnaDetail")) {
-			qnaMapper.updateQnaHit(qnaNo);
-		}
+		
 		return "qna/qnaDetail";
 	}
 	
@@ -72,6 +70,7 @@ public class QnaController {
 	@GetMapping("/qna/qnaUpdatePage")
 	public String qnaUpdatePage(Long qnaNo, Model model) {
 		qnaService.selectDetailQna(qnaNo, model);
+		qnaMapper.updateQnaHitnotD(qnaNo);
 		return "qna/qnaUpdate";
 	}
 	

@@ -95,7 +95,7 @@
 							<td>${qnaReply.qnaReplyCreated}</td>
 							<td>
 								${qnaReply.qnaReplyNo}
-									<a href="${contextPath}/qnaReply/qnaReplyRemove?qnaReplyNo=${qnaReply.qnaReplyNo}">
+									<a href="${contextPath}/qnaReply/qnaReplyRemove?qnaReplyNo=${qnaReply.qnaReplyNo}&qnaNo=${qna.qnaNo}">
 										<i class="fa-solid fa-trash-can"></i>
 									</a>
 										
