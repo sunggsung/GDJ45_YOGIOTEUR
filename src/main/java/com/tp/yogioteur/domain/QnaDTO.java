@@ -20,6 +20,7 @@ public class QnaDTO {
 	private Integer qnaHit;
 	private String qnaContent;
 	private Date qnaCreated;
+	private Date qnaModified;
 	
 	
 	

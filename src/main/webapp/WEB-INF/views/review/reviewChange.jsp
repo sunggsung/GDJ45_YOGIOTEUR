@@ -18,7 +18,7 @@
 		fnReviewList();
 		fnReviewModifyCheck();
 		fnRadioStar();
-		fnTextareaLimit();
+		fnReviewMLimit();
 	})
 	
 	function fnRadioStar(){
@@ -88,7 +88,7 @@
 		})
 	}
 		
-	function fnTextareaLimit(){
+	function fnReviewMLimit(){
 		$('#review_textarea').on('keyup', function(){
 			$('#review_textarea_cnt').html("(" + $(this).val().length+" / 500)");
 			

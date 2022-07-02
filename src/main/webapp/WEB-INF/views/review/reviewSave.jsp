@@ -15,7 +15,7 @@
 	
 	$(function(){
 		fnFileCheck();
-		fnTextareaLimit();
+		fnReivewAddLimit();
 		fnReviewAddCheck();
 	})
 	
@@ -44,7 +44,7 @@
 			}
 		})
 	}
-	function fnTextareaLimit(){
+	function fnReivewAddLimit(){
 		$('#review_textarea').on('keyup', function(){
 			$('#review_textarea_cnt').html("(" + $(this).val().length+" / 500)");
 			

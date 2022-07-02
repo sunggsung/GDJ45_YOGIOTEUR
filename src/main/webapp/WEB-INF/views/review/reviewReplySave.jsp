@@ -14,11 +14,11 @@
 <script>
 	
 	$(function(){
-		fnTextareaLimit();
+		fnReviewReplyAddLimit();
 		fnReviewReplyAddCheck();
 	})
 	
-	function fnTextareaLimit(){
+	function fnReviewReplyAddLimit(){
 		$('#replyContent').on('keyup', function(){
 			$('#replyContent_cnt').html("(" + $(this).val().length+" / 500)");
 			

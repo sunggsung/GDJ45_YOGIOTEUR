@@ -18,12 +18,62 @@
 	$(function(){
 		
 		$('.reply_link').on('click', function(){
-			$('.reply_form').addClass('blind');
-	    	$(this).parent().parent().next().removeClass('blind');
+			//$('.reply_form').addClass('blind');
+	    	$(this).parent().parent().next().toggleClass('blind');
 		});
+		
+		fnTextareaLimitQnaReply();
+		fnQnaReplyCheck();
 	})
 	
+	function fnTextareaLimitQnaReply(){
+		$('#qnaReplyData').on('keyup', function(){
+			$('#qnaReplyContent_cnt').html("(" + $(this).val().length+" / 300)");
+			
+			if($(this).val().length > 300){
+				$(this).val($(this).val().substring(0,300));
+				$('#qnaReplyContent_cnt').html("(300 / 300)" );
+			}
+			
+		})
+		
+		$('#replyadd').on('keyup', function(){
+			$('#qnaReplyContentAdd_cnt').html("(" + $(this).val().length+" / 300)");
+			
+			if($(this).val().length > 300){
+				$(this).val($(this).val().substring(0,300));
+				$('#qnaReplyContentAdd_cnt').html("(300 / 300)" );
+			}
+			
+		})
+		
+		
+	}
 	
+	function fnQnaReplyCheck(){
+		
+		$('#qnaReplyData').on('submit', function(ev){
+			if($('#qnaReplyContent').val() == ''){
+				alert('댓글을 작성해주세요');
+				ev.preventDefault();
+				return false;
+			}
+			
+			
+			return true;
+		})
+		
+		$('#replyadd').on('submit', function(ev){
+			if($('#qnaReplyContentAdd').val() == ''){
+				alert('댓글을 작성해주세요');
+				ev.preventDefault();
+				return false;
+			}
+			
+			
+			return true;
+		})
+	}
     
 </script>
 <style>
@@ -42,7 +92,10 @@
 	  <hr>
 		
 		 	
-		  		번호 	: ${qna.qnaNo}<br>
+		  		작성일 	: ${qna.qnaCreated}
+		  		<c:if test="${qna.qnaCreated < qna.qnaModified}<br>">
+		  			수정일 : ${qna.qnaModified}<br>
+		  		</c:if>
 		  		제목	: ${qna.qnaTitle}<br>
 		  		아이디 	: ${qna.memberId}<br>
 		  		내용 	: ${qna.qnaContent}<br>
@@ -55,7 +108,8 @@
 		 	<form id="qnaReplyData" method="post" action="${contextPath}/qnaReply/qnaReplySave">
 		 		<input type="hidden" name="qnaNo" value="${qna.qnaNo}">
 			  	<input type="hidden" name="memberId" value="${loginMember.memberId}">		  
-			  	<textarea rows="10" cols="50" name="qnaReplyContent"></textarea>
+			  	<textarea rows="10" cols="50" id="qnaReplyContent" name="qnaReplyContent"></textarea>
+			  	<div id="qnaReplyContent_cnt">(0 / 300)</div>
 			  	<button>댓글 달기</button>
 			</form>
 		 	
@@ -104,10 +158,11 @@
 						</tr>
 						<tr class="reply_form blind">
 							<td >
-								<form action="${contextPath}/qnaReply/qnaReplySaveSecond" method="post">
+								<form id="replyadd" action="${contextPath}/qnaReply/qnaReplySaveSecond" method="post">
 									<input type="hidden" name="qnaNo" value="${qna.qnaNo}" >
 									<input type="text" name="memberId" value="${loginMember.memberId}" size="7" readonly>
-									<input type="text" name="qnaReplyContent">
+									<input type="text" id="qnaReplyContentAdd" name="qnaReplyContent">
+									<div id="qnaReplyContentAdd_cnt">(0 / 300)</div>
 					
 									<!-- 원글의 Depth, GroupNo, GroupOrd -->
 									<input type="hidden" name="qnaReplyDepth" value="${qnaReply.qnaReplyDepth}">
