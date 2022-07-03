@@ -50,6 +50,7 @@
 
 </head>
 <body>
+   <jsp:include page="../layout/header.jsp"></jsp:include>
    
    <h1>QnA 문의사항 수정</h1>
   
@@ -66,7 +67,7 @@
    		<button>수정하기</button>
    </form>
   
-  
+  <jsp:include page="../layout/footer.jsp"></jsp:include>
   
   
 </body>

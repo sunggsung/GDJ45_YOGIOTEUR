@@ -75,7 +75,15 @@
 		})
 	}
     
+	function fnRemoveA(qnaReplyNo, qnaNo){      
+		
+        if(confirm('게시글을 삭제할까요?')){
+           location.href='${contextPath}/qnaReply/qnaReplyRemove?qnaReplyNo=' + qnaReplyNo +'&qnaNo=' +qnaNo;
+        }
+  }
+	
 </script>
+
 <style>
 	.blind {
 		display: none;
@@ -83,6 +91,8 @@
 </style>
 </head>
 <body>
+   
+   <jsp:include page="../layout/header.jsp"></jsp:include>
    
 	  <h1>QnA 상세보기</h1>
 	  
@@ -149,9 +159,9 @@
 							<td>${qnaReply.qnaReplyCreated}</td>
 							<td>
 								<c:if test = "${loginMember.memberId eq qnaReply.memberId || loginMember.memberId eq 'admin123'}">
-									<a href="${contextPath}/qnaReply/qnaReplyRemove?qnaReplyNo=${qnaReply.qnaReplyNo}&qnaNo=${qna.qnaNo}">
-										<i class="fa-solid fa-trash-can"></i>
-									</a>
+									
+							
+									<td><input type="button" value="삭제" onclick="fnRemoveA(${qnaReply.qnaReplyNo}, ${qna.qnaNo})"></td>
 								</c:if>	
 									
 							</td>
@@ -190,7 +200,7 @@
 					
 		 
 	   <br><br>
-	  
+	  <jsp:include page="../layout/footer.jsp"></jsp:include>
 	  	
 	    
   		

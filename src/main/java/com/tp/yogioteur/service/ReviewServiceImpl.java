@@ -428,7 +428,7 @@ public class ReviewServiceImpl implements ReviewService {
 			  try {
 					response.setContentType("text/html");
 					PrintWriter out = response.getWriter();
-					if(reviewChangeResult >= 1 && reviewImageResult >= files.size()) {
+					if(reviewChangeResult >= 1 && reviewImageResult >= 1) {
 						out.println("<script>");
 						out.println("alert('리뷰가 수정되었습니다.')");
 						out.println("location.href='" + multipartRequest.getContextPath() + "/review/reviewList'");

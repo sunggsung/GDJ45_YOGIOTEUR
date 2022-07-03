@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="../resources/css/reviewSave.css">
 <script>
 	
 	$(function(){
@@ -73,73 +74,7 @@
 	}
 	
 </script>
-<style type="text/css">
-	#reviewAdd fieldset{
-    display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
-    border: 0; /* 필드셋 테두리 제거 */
-	}
-	#reviewAdd input[type=radio]{
-	    display: none; /* 라디오박스 감춤 */
-	}
-	#reviewAdd label{
-    font-size: 3em; /* 이모지 크기 */
-    color: transparent; /* 기존 이모지 컬러 제거 */
-    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
-	}
-	#reviewAdd input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99); /* 마우스 클릭 체크 */
-}
-	#reviewAdd fieldset{
-    display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
-    direction: rtl; /* 이모지 순서 반전 */
-    border: 0; /* 필드셋 테두리 제거 */
-}
-	#reviewTitle {
-	  width: 500px;
-	  height: 45px;
-	  font-size: 15px;
-	  border: 0;
-	  border-radius: 10px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	  margin : 15px 0;
-	}
 
-	#review_textarea{
-	  width: 500px;
-	  height: 300px;
-	  font-size: 15px;
-	  border: 0;
-	  border-radius: 10px;
-	  outline: none;
-	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
-	  margin : 15px 0;
-	}
-	
-	.reviewAddWriter{
-		display:flex;
-		justify-content:center;
-	}
-	.reAddtitle{
-		text-align : center;
-	}
-	
-	#memberId{
-		border : none;
-	}
-	
-	#review_textarea_cnt{
-		display:flex;
-		justify-content:right;
-	}
-	#addBtn{
-		border : none;
-	}
-
-}
-</style>
 </head>
 <body>
 
@@ -169,7 +104,7 @@
 	   		<div id="review_textarea_cnt">(0 / 500)</div>
 	   		
 	   		
-		   		<input type="file" name="files" id="files" multiple="multiple"/>
+		   		<input type="file" name="files" id="files" multiple="multiple"/><br><br>
 		   		<button id="addBtn">등록</button>
 	   </form>
    </div>

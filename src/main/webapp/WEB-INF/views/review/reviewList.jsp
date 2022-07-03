@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="../resources/css/reviewList.css">
+<link rel="stylesheet" href="../resources/css/reviewList.css?afte">
 <script>
 
 	// 리뷰수정
@@ -23,9 +23,9 @@
 		location.href='${contextPath}/reply/reviewReplySavePage?reviewNo=' + $(bn).data('review_no');
 	}
 	// 리뷰삭제
-	 function fnReviewRemove(rn){      
+	 function fnReviewRemove(reviewNo){      
 	       if(confirm('리뷰를 삭제할까요?')){
-	          location.href='${contextPath}/review/reviewRemove?reviewNo=' + $(rn).data('review_no');
+	          location.href='${contextPath}/review/reviewRemove?reviewNo=' + reviewNo;
 	       }
 	 }
 	
@@ -47,9 +47,9 @@
 
    <jsp:include page="../layout/header.jsp"></jsp:include>
    
-   <h1>리뷰목록</h1>
+   <h1 class="rivewListTitle">리뷰목록</h1>
    
-   <div >
+   <div class="reviewListView">
    
    
 	   <c:if test = "${loginMember.memberId ne null}">
@@ -62,8 +62,9 @@
 	   		<div id = "ReviewListONE">
 	   			<div class="memberReview">
 	   				<div class="reviewbox"> 
-	   				리뷰제목 : ${review.reviewTitle}<br>
-	   					별점 : ${review.reviewRevNo}<br>
+	   				<span class="usericon"><i class="fa-solid fa-face-smile fa-2x"></i></span>  &nbsp; &nbsp;
+	   				<span class="reviewTitleName"> ${review.reviewTitle}</span><br>
+	   					<div class="ReviewNomal">
 	   					<c:forEach var="i" begin="1" end="5">
 	   						<c:if test="${review.reviewRevNo ge i}">
 		   						<span id="staro">★</span>					
@@ -72,11 +73,14 @@
 		   						<span id="staro">☆</span>					
 	   						</c:if>	
 	   					</c:forEach>
+	   					
 	   					<br>
 	   					
 	   					아이디 : ${review.memberId}<br>
-	   					방 : ${review.roomName} ${review.rtType}<br>
-	   					리뷰 내용 : ${review.reviewContent}<br>
+	   					${review.roomName} ${review.rtType}<br>
+	   					${review.reviewContent}<br>
+	   					${review.reviewCreated}<br>
+	   					</div>
 	   					
 						
 						<c:forEach var="reImage" items="${reImages}">
@@ -86,7 +90,7 @@
 						</c:forEach>
 						
 						<c:if test="${loginMember.memberId eq review.memberId || loginMember.memberId eq 'admin123'}">
-			   				<input type="button" value="삭제" name="reviewRemoveBtn" data-review_no="${review.reviewNo}" onclick="fnReviewRemove(this)">					
+			   				<input type="button" value="삭제" name="reviewRemoveBtn" data-review_no="${review.reviewNo}" onclick="fnReviewRemove(${review.reviewNo})">					
 						</c:if>
 						
 						<c:if test = "${loginMember.memberId eq review.memberId}">
@@ -102,11 +106,12 @@
 	   				</div>
 	   			</div>
 	   			
-		   			<div class="adminReply">		
 						<c:forEach items="${reviewReplies}" var="reviewReply">
 		   						<c:if test="${review.reviewNo eq reviewReply.reviewNo}">
+					   					<div class="adminicon">Yogioteur Hotel <i class="fa-solid fa-hotel fa-2x"></i> </div>
+					   			<div class="adminReply">		
 			   						<div id="adminReplyList" >
-					   					<div>관리자댓글
+					   					<div>
 											${reviewReply.replyContent}
 											<c:if test = "${loginMember.memberId eq 'admin123'}">			   					
 								   				<input type="button" id="reviewReplyRemoveBtn" value="댓글 삭제" data-reply_no="${reviewReply.replyNo}" onclick="fnReviewReplyRemove(this)">
@@ -114,9 +119,9 @@
 					   						</c:if>
 					   					</div>					
 					   				</div>		   					   						
+		   							</div>
 		   						</c:if>
 						</c:forEach>
-		   			</div>
 	   			
 	   		</div>
 	   		

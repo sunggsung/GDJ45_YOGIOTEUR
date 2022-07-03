@@ -211,7 +211,7 @@ public class QnaServiceImpl implements QnaService {
 			if(removeReplyRes == 1) {
 				out.println("<script>");
 				out.println("alert('댓글이 삭제되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/qna/qnaList'");
+				out.println("location.href='" + request.getContextPath() + "/qna/qnaDetailPage?qnaNo=" + qnaNo+"'");
 				out.println("</script>");
 				out.close();
 			}else {
