@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	<!-- 로그인 / 비밀번호 검증 -->
+	<!-- 로그인 -->
 	<select id="selectMemberByIdPw" parameterType="MemberDTO" resultType="MemberDTO">
 	SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_BIRTH, MEMBER_GENDER, MEMBER_PROMO_ADD, MEMBER_POST_CODE, MEMBER_ROAD_ADDR, AGREE_STATE, SIGN_IN
 		FROM MEMBER
@@ -117,10 +117,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- qna내역 
 	<select id="selectQnaInfo">
 	SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_BIRTH, MEMBER_GENDER, MEMBER_PROMO_ADD, MEMBER_POST_CODE, MEMBER_ROAD_ADDR, AGREE_STATE, SIGN_IN
-	  FROM MEMBER
-	 WHERE QNA_NO = #{qnaNo}
+	  FROM MEMEBER
+	 WHERE MEMBER_ID = #{memberId}
+	 	AND RESER_NO = #{reserNo}
 	</select>	
 	-->
+	<select id="selectNaverNo" parameterType="Map" resultType="Long">
+		SELECT NO
+		FROM users
+		where id = #{id}
+	</select>
 
+	<insert id="insertNaverMember" parameterType="Map">
+	INSERT INTO USERS(NO, ID, NAME, EMAIL, PHONE)
+		VALUES (NO_SEQ.NEXTVAL, #{id}, #{name}, #{email}, #{phone})
+	    <selectKey resultType="Long" keyProperty="id" order="AFTER">
+	      SELECT NO FROM USERS WHERE ID = #{id}
+	    </selectKey>
+ 	</insert>
+ 	
+ 	<insert id="insertNaverLog" parameterType="String">
+	INSERT INTO USER_LOG
+		(ID, LOG_DATE)
+	 VALUES
+	 	(#{ID}, TO_DATE(SYSDATE, 'yyyy-mm-dd'))
+	</insert>
+	
 	
 </mapper>

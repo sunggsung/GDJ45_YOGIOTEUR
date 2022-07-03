@@ -9,13 +9,11 @@ import lombok.Data;
 @Builder
 public class NaverLoginDTO {
 	
+	private Long memberNo;
 	private String memberId;
 	private String memberName;
 	private String memberEmail;
 	private String memberGender;
 	private String memberPhone;
-	
-//	// 네이버 로그인 사용자 표시용
-//	private String naverIn;
 	
 }

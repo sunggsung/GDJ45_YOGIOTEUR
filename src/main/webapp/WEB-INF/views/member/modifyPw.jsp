@@ -79,7 +79,6 @@
 		<li><a href="${contextPath}/member/memberInfo">내정보</a></li>
 		<li><a href="${contextPath}/member/modifyPwPage">비밀번호 변경</a></li>
 		<li><a href="${contextPath}/member/confirmReserPage">예약내역</a></li>
-		<li><a href="${contextPath}/member/confirmQnaPage">문의내역</a></li>
 	</ul>
 	<br>		
 		<div class="container">

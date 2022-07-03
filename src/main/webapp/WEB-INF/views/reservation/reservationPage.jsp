@@ -10,56 +10,6 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-<<<<<<< HEAD
-
-<script>
-	$(document).ready(function(){
-		$('#f').on('submit', function(event){
-			if($('#privacy').is(':checked') == false){
-				alert('필수 약관에 동의하세요.')
-				event.preventDefault();
-				return false;
-			}
-			return true;
-		})
-	})
-	
-	function count(type) {
-		const cntElement1 = document.getElementById('cnt1');
-		const cntElement2 = document.getElementById('cnt2');
-		const sum1 = document.getElementById('sum');
-		
-		let number1 = cntElement1.value;
-		let number2 = cntElement2.value;
-		let sumVal = sum1.value; 
-		
-		if(type == 'plus1') {
-			number1 = parseInt(number1) + 1;
-			sumVal = parseInt(number1) * 45000;
-		} else if(type == 'minus1') { 
-			if(cntElement1.value != 0) {
-				number1 = parseInt(number1) - 1;
-				sumVal = parseInt(sumVal) - 45000;
-			}
-		}
-		$('#cnt1').attr('value', number1);
-		$('#sum').attr('value', sumVal);
-		
-		if(type == 'plus2') {
-			number2 = parseInt(number2) + 1;
-		} else if(type == 'minus2') { 
-			if(cntElement2.value != 0) {
-				number2 = parseInt(number2) - 1;
-			}
-		}
-		$('#cnt2').attr('value', number2);
-	}
-</script>
-<style>
-
-=======
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 <script>
 	$(document).ready(function(){
 		$('#total_price').attr('value', $('#room_price').val());
@@ -81,8 +31,8 @@
 				alert('취소하셨습니다.');
 				return false;
 			} else {
-				document.getElementById('f').submit();
-				// paymentData();
+				// document.getElementById('f').submit();
+				paymentData();
 			}
 		}
 	}
@@ -199,7 +149,7 @@
 	        pay_method: 'card',
 	        merchant_uid: data.merchant,
 	        name: data.roomName,
-	        amount: data.amount,
+	        amount: 103,
 	        buyer_email: data.userEmail,
 	        buyer_name: data.userName,
 	        buyer_tel: data.userTel,
@@ -208,22 +158,37 @@
 	    }, function (rsp) { // callback
             console.log(rsp);
 	        if (rsp.success) {
-	            var msg = '결제되었습니다.'
-	            var result = {
-	            		"imp_uid" : rsp.imp_uid,
-	            		"merchant_uid" : rsp.merchant_uid,
-	            		
-	            }
-                msg += '고유ID : ' + rsp.imp_uid;
-                msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '카드 승인번호 : ' + rsp.apply_num;
-	            document.getElementById('f').submit();
+	        	let payments = JSON.stringify(
+	    			{
+	    				impUid : rsp.imp_uid,
+		        		merchantUid : rsp.merchant_uid,
+		        		response : "",
+		        		amount : rsp.paid_amount
+	    			}		
+	    		);
+	        	$.ajax({
+	        		url: '${contextPath}/payment/complete',
+	        		type: 'POST',
+	        		data: payments,
+	        		contentType: 'application/json',
+	        	}).done(function(data) {
+	        		 var msg = '결제되었습니다.\n';
+	     	            
+	                 msg += '주분 번호 : ' + rsp.imp_uid + '\n';
+	                 msg += '예약 번호 : ' + rsp.merchant_uid + '\n';
+	                 msg += '결제 금액 : ' + rsp.paid_amount;
+	                 alert(msg); 
+	     	         document.getElementById('f').submit();
+	            })
+	            .fail(function() {
+	            	var msg = '결제에 실패하였습니다.';
+	                msg += '에러내용 : ' + rsp.error_msg;
+	                alert(msg);
+	            })
 	        } else {
-	        	var msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
+	        	
 	        }
-	        alert(msg);
+	        
 	    });
     }
 </script>
@@ -335,66 +300,10 @@
 		position: relative;
 		float: right;
 	}
->>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 </style>
 </head>
 <body>
 
-<<<<<<< HEAD
-	<h1>예약 페이지</h1>
-	<hr>
-	
-	<div>
-		<img src="../resources/img/unnamed.jpg" width="50px" height="50px">
-	</div>
-	
-	<hr>
-	
-	
-	
-	<h3>예약자 정보</h3>
-	
-	<form id="f" action="${contextPath}/payments" method="post">
-			<div>
-				조식 선택 <input type="button" value="+" onclick="count('plus1')">
-							<span><input type="text" id="cnt1" name="food" value="0" style="width:14px;border:none;border:0px" readonly></span>
-						  <input type="button" value="-" onclick="count('minus1')">
-						  	<input type="text" id="sum" name="sum" size="8" value="0" style="border:none;border:0px" readonly><br>
-				투숙 날짜 <br>
-				객실 인원 <input type="button" value="+" onclick="count('plus2')">
-							<span><input type="text" id="cnt2" name="people" value="0" style="width:14px;border:none;border:0px" readonly></span>
-						  <input type="button" value="-" onclick="count('minus2')"><br>
-			</div>
-		<c:if test="${session == null }">
-			<div>
-				<input type="hidden" name="memberNo" id="memberNo" value="1">
-				<input type="hidden" name="roomNo" id="roomNo" value="1">
-				이름 <input type="text" name="name" id="name" value="ksj" readonly><br>
-				연락처 <input type="text" name="tel" id="tel" value="01012345678" readonly><br>
-				이메일 <input type="text" name="email" id="email" value="rlawo32@naver.com" readonly><br>
-				체크인 <input type="text" name="checkin" id="checkin" value="" readonly>
-				체크아웃 <input type="text" name="checkout" id="checkout" value="" readonly>
-			</div>
-		</c:if>
-		<c:if test="${session != null }">
-			<div>
-				비회원 이름 <input type="text" name="nonName" id="nonName" value="${session.nonName}" readonly>
-				비회원 연락처 <input type="text" name="nonTel" id="nonTel" value="${session.nonTel}" readonly><br>
-			</div>
-		</c:if>
-		
-		<textarea readonly>개인정보보호법에 따라 ...</textarea><br>
-		
-		<input type="checkbox" id="privacy">
-		<label for="privacy" class="item">개인정보 수집에 동의합니다.</label><br>
-		<br><br>
-		
-		<input type="button" value="돌아가기" onclick="location.href='${contextPath}'">
-		<button id="payment">결제하기</button>
-	</form>
-	
-	
-=======
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 
 	<h1>예약 페이지</h1>
@@ -504,7 +413,6 @@
 	</div>
 	
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
->>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 	
 </body>
 </html>

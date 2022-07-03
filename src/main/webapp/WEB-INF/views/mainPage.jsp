@@ -229,9 +229,9 @@
 			
 			<div id="checkInOut" style= "padding-left: 200px;">
 			CHECK IN/OUT
-			<input type="text" id="roomCheckIn" name="roomCheckIn" style="padding-top: 8px;">
+			<input type="text" id="roomCheckIn" name="roomCheckIn" style="padding-top: 8px;" autocomplete="off">
 			~
-			<input type="text" id="roomCheckOut" name="roomCheckOut" style="padding-top: 8px;">
+			<input type="text" id="roomCheckOut" name="roomCheckOut" style="padding-top: 8px;" autocomplete="off">
 			</div>	
 			&nbsp;&nbsp;	
 			<button class="custom-btn btn-13" >검색</button>

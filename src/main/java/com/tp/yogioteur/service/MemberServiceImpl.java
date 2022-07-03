@@ -42,6 +42,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	// 아이디확인
 	@Override
 	public Map<String, Object> idCheck(String memberId) {
 		Map<String, Object> map = new HashMap<>();
@@ -50,7 +51,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
-	// 인증코드 발송
+	// 이메일 인증코드 발송
 	@Override
 	public Map<String, Object> sendAuthCode(String memberEmail) {
 		String authCode = SecurityUtils.authCode(6);  
@@ -78,10 +79,10 @@ public class MemberServiceImpl implements MemberService {
 			Message message = new MimeMessage(session);
 			
 			message.setHeader("Content-Type", "text/plain; charset=UTF-8");
-			message.setFrom(new InternetAddress(USERNAME, "인증코드관리자"));
+			message.setFrom(new InternetAddress(USERNAME, "YOGIOTEUR HOTEL"));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(memberEmail));
 			message.setSubject("인증 요청 메일입니다.");
-			message.setText("인증번호는 " + authCode + "입니다.");
+			message.setText("인증번호는 " + authCode + "입니다. ");
 			
 			Transport.send(message);
 			
@@ -94,6 +95,7 @@ public class MemberServiceImpl implements MemberService {
 		return map;
 	}
 	
+	// 이메일 확인
 	@Override
 	public Map<String, Object> emailCheck(String memberEmail) {
 		
@@ -102,6 +104,7 @@ public class MemberServiceImpl implements MemberService {
 		return map;
 	}
 	
+	// 회원가입
 	@Override
 	public void signIn(HttpServletRequest request, HttpServletResponse response) {
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
@@ -165,7 +168,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
-
+	// 기본 로그인
 	@Override
 	public MemberDTO login(HttpServletRequest request) {
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
@@ -181,8 +184,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return loginMember;
 	}
-	
-
 	
 	// 아이디찾기
 	@Override
@@ -207,6 +208,7 @@ public class MemberServiceImpl implements MemberService {
 		return map;
 	}
 	
+	// 비밀번호 찾기 후, 재설정
 	@Override
 	public void changePw(HttpServletRequest request, HttpServletResponse response) {
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
@@ -251,7 +253,7 @@ public class MemberServiceImpl implements MemberService {
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
 
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
-		String memberName = request.getParameter("memberName");   
+		String memberName = SecurityUtils.xss(request.getParameter("memberName"));   
 		String memberPhone =request.getParameter("memberPhone");    
 		String memberBirth = request.getParameter("memberBirth");   
 		String memberGender = request.getParameter("memberGender");
@@ -337,7 +339,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.selectSignOutMemberByMemberId(memberId);
 	}
 
-	
+	// 네이버 요청1
 	@Override
 	public void loginPage(HttpServletRequest request, Model model) {
 		
@@ -357,6 +359,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 	
+	// 네이버 요청2
 	@Override
 	public String getAccessToken(HttpServletRequest request, HttpServletResponse response) {
 		StringBuffer res = new StringBuffer();
@@ -393,7 +396,8 @@ public class MemberServiceImpl implements MemberService {
 		JSONObject obj = new JSONObject(res.toString());
 		return obj.getString("access_token");
 	}
-
+	
+	// 네이버 요청3
 	@Override
 	public MemberDTO getMemberProfile(HttpServletRequest request, HttpServletResponse response, String token) {
         String header = "Bearer " + token; 
@@ -429,14 +433,25 @@ public class MemberServiceImpl implements MemberService {
             	String id = profile.getString("id");
             	String name = profile.getString("name");
             	String email = profile.getString("email");
-            	String gender = profile.getString("gender");
             	String phone = profile.getString("mobile");
             	
+            	Map<String, String> userInfo = new HashMap<>();
+            	userInfo.put("id", profile.getString("id"));
+            	userInfo.put("name", profile.getString("name"));
+            	userInfo.put("email", profile.getString("email"));
+            	userInfo.put("phone", profile.getString("mobile"));
+            	
+            	Long no = memberMapper.selectNaverNo(userInfo);
+            	if(no == null) {
+            		no = memberMapper.insertNaverMember(userInfo);
+            	}
+            	memberMapper.insertNaverLog(id);
+            	System.out.println("member의 serviceImple에서의 memberNO : " + no);
             	MemberDTO naver = MemberDTO.builder()
+            			.memberNo(no)
             			.memberId(id)
             			.memberName(name)
             			.memberEmail(email)
-            			.memberGender(gender)
             			.memberPhone(phone)
             			.build();
             	return naver;

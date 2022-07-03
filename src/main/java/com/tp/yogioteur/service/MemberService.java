@@ -36,7 +36,7 @@ public interface MemberService {
 	// 탈퇴확인
 	public SignOutMemberDTO findSignOutMember(String memberId);
 	
-	// 네이버api
+	// 네이버api(1,2,3)
 	public void loginPage(HttpServletRequest request, Model model);
 	public String getAccessToken(HttpServletRequest request, HttpServletResponse response);
 	public MemberDTO getMemberProfile(HttpServletRequest request, HttpServletResponse response, String token);

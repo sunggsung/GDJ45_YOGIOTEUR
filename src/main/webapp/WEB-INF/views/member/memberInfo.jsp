@@ -68,7 +68,7 @@
 	let phonePass = false;
 	function fnPhoneCheck(){
 		$('#memberPhone').on('keyup', function(){
-			let regPhone = /^[0-9]{1,11}$/;
+			let regPhone = /^[0-9]{11}$/;
 			if(regPhone.test($('#memberPhone').val())==false){
 				$('#memberPhoneMsg').text('전화번호는 -없이 숫자로만 입력해주세요.').addClass('dont').removeClass('ok');
 				phonePass = false;
@@ -153,7 +153,6 @@
 		<li><a href="${contextPath}/member/memberInfo">내정보</a></li>
 		<li><a href="${contextPath}/member/modifyPwPage">비밀번호 변경</a></li>
 		<li><a href="${contextPath}/member/confirmReserPage">예약내역</a></li>
-		<li><a href="${contextPath}/member/confirmQnaPage">문의내역</a></li>
 	</ul>
 	
 	<br>
@@ -172,10 +171,10 @@
 				<input type="button" onclick="fnPostcode()" value="우편번호 찾기"><br>
 				<input type="text" id="memberRoadAddress" name="memberRoadAddr" value="${loginMember.memberRoadAddr}"><br>
 				성별
-				<label>남
+				<label>Male
 					<input type="radio" name="memberGender" value="male" <c:if test="${loginMember.memberGender eq 'male'}">checked="checked"</c:if>/>
 				</label>
-				<label>여
+				<label>Female
 				<input type="radio" name="memberGender" value="female" <c:if test="${loginMember.memberGender eq 'female'}">checked="checked"</c:if>/>
 				</label>
 				<br>

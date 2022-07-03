@@ -1,5 +1,7 @@
 package com.tp.yogioteur.mapper;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.tp.yogioteur.domain.MemberDTO;
@@ -25,5 +27,10 @@ public interface MemberMapper {
 	public SignOutMemberDTO selectSignOutMemberByMemberId(String memberId);
 
 	public int updateMember(MemberDTO member);
+	
+	
+	public Long selectNaverNo(Map user);
+	public Long insertNaverMember(Map user);
+	public int insertNaverLog(String id);
 	
 }

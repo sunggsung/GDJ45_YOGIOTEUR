@@ -36,7 +36,7 @@
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 		<interceptor>
-		<!-- 리뷰작성 버튼으로 나중에 수정필요. -->
+		<!-- 예약과리뷰 버튼으로 나중에 수정필요. -->
 			<mapping path="/review/reviewPage"/>
 			<mapping path="/faq/faqPage"/>
 			<mapping path="reservation/reservationPage"/>
@@ -53,9 +53,6 @@
 			<beans:ref bean="NaverInterceptor"/>
 		</interceptor>
 	</interceptors>
-	
-	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->	
-	
 	
 	
 </beans:beans>

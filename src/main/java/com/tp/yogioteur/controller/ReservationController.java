@@ -10,13 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tp.yogioteur.domain.PaymentDTO;
 import com.tp.yogioteur.service.PaymentService;
 import com.tp.yogioteur.service.ReservationService;
-import com.tp.yogioteur.service.RoomService;
 
 @Controller
 public class ReservationController {
@@ -28,8 +31,9 @@ public class ReservationController {
 	private PaymentService paymentService;
 	
 	@PostMapping("reservation/reservationPage")
-	public String reservationPage(HttpServletRequest request, Model model) throws IOException {
-
+	public String reservationPage(HttpServletRequest request, Model model) {
+		System.out.println("reservationPage에서의 회원정보 : " + request.getSession().getAttribute("loginMember").toString());;
+		System.out.println("reservationPage에서의 resMemberNo(memberNo)-controller : " + request.getParameter("resMemberNo"));
 		reservationService.reserToken(request, model);
 		
 		Map<String, Object> roomInfo = new HashMap<>();
@@ -40,15 +44,13 @@ public class ReservationController {
 		roomInfo.put("roomPrice", request.getParameter("roomPr"));
 		
 		model.addAttribute("roomInfo", roomInfo);
-		
-		String token = paymentService.getToken();
-		
 		return "reservation/reservationPage";
 	}
 	
 	@GetMapping("reservation/reservationConfirm")
 	public String reservationConfirm(HttpServletRequest request, Model model) {
 		reservationService.confirms(request, model);
+		System.out.println("reservationConfirm에서의 resMemberNo(memberNo)-controller : " + request.getParameter("resMemberNo"));
 		return "reservation/reservationConfirm";
 	}
 	
@@ -57,11 +59,29 @@ public class ReservationController {
 		reservationService.payments(request, response);
 	}
 	
-	@GetMapping("/reservation/reservationCancel")
-	public String reservationCancel(@PathVariable String reserNo) {
-		
+	@GetMapping("/reservation/reservationCancel/{no}")
+	public String reservationCancel(@PathVariable String no, HttpServletRequest request, Model model){
+		reservationService.confirmsPopUp(no, request, model);
 		return "reservation/reservationCancel";
 	}
 	
+	@ResponseBody
+	@PostMapping(value="/payment/complete", produces="application/json")
+	public Map<String, Object> paymentComplete(@RequestBody PaymentDTO payments) throws IOException {
+		return paymentService.paymentSave(payments);
+	}
+	
+	@ResponseBody
+	@DeleteMapping(value="/reserRemove/{resNo}", produces="application/json")
+	public Map<String, Object> removeReservation(@PathVariable String resNo) throws IOException{
+		String token = paymentService.getToken();
+		String impUid = paymentService.paymentSearch(resNo);
+		
+		int amount = paymentService.paymentInfo(impUid, token);
+		
+		paymentService.paymentCancle(resNo, token, amount, "취소");
+		
+		return reservationService.removeReservation(resNo);
+	}
 	
 }
