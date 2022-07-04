@@ -37,7 +37,8 @@ public interface MemberService {
 	// 탈퇴확인
 	public SignOutMemberDTO findSignOutMember(String memberId);
 	
-	// 비밀번호 확인
-	public MemberDTO pwCheck(HttpServletRequest request, HttpServletResponse response);
-	
+	// 네이버api
+	public void loginPage(HttpServletRequest request, Model model);
+	public String getAccessToken(HttpServletRequest request, HttpServletResponse response);
+	public MemberDTO getMemberProfile(HttpServletRequest request, HttpServletResponse response, String token);
 }

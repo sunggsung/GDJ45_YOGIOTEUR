@@ -11,7 +11,8 @@
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@700&family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/footer.css">
- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="resources/css/header.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="https://kit.fontawesome.com/148c1051b1.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
@@ -229,9 +230,9 @@
 			
 			<div id="checkInOut" style= "padding-left: 200px;">
 			CHECK IN/OUT
-			<input type="text" id="roomCheckIn" name="roomCheckIn" style="padding-top: 8px;">
+			<input type="text" id="roomCheckIn" name="roomCheckIn" style="padding-top: 8px;" autocomplete="off">
 			~
-			<input type="text" id="roomCheckOut" name="roomCheckOut" style="padding-top: 8px;">
+			<input type="text" id="roomCheckOut" name="roomCheckOut" style="padding-top: 8px;" autocomplete="off">
 			</div>	
 			&nbsp;&nbsp;	
 			<button class="custom-btn btn-13" >검색</button>

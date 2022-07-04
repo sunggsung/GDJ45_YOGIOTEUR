@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	body{
+	/* body{
 		margin: 0;
 		font-family: 'Kdam Thmor Pro', sans-serif;
 	}
@@ -59,7 +59,7 @@
 		
 		color: #999;
 		
-	}
+	} */
 </style>
 </head>
 <body>
@@ -84,7 +84,7 @@
 		
 			<!-- 로그인 이후 -->
 			<c:if test="${loginMember ne null}">
-				${loginMember.memberId}
+				 ${loginMember.memberName}님 
 				<a href ="${contextPath}/member/logout">로그아웃</a>
 				<a href ="${contextPath}/member/memberPage">마이페이지</a>		
 			</c:if>
