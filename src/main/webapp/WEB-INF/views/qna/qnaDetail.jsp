@@ -88,39 +88,79 @@
 	.blind {
 		display: none;
 	}
+	
+	
+	.qnaDtailA{
+		color : blue;
+	}
+	.qnaDetailOne{
+		width : 850px;
+		margin : 0 auto;
+	
+	}
+	
+	h1 {
+		text-align : center;
+	}
+	
+	#qnaReplyContent{
+	  width: 850px;
+	  height: 100px;
+	  font-size: 15px;
+	  border: 0;
+	  border-radius: 10px;
+	  outline: none;
+	  padding-left: 10px;
+	  background-color: rgb(233, 233, 233);
+	  margin : 15px auto;
+	  padding : 10px;
+	  
+	}
+	
+	.qnaReplyContent_cnt{
+		text-align : right;
+	}
+	
+	
+	
+	
 </style>
 </head>
 <body>
    
    <jsp:include page="../layout/header.jsp"></jsp:include>
    
+   <div class="qnaDetailOne">
+   
 	  <h1>QnA 상세보기</h1>
 	  
-	  <a href="${contextPath}/qna/qnaList">목록으로</a>
+	  <a class="qnaDtailA" href="${contextPath}/qna/qnaList">목록으로</a>
 	  
 	  
 	  <hr>
 		
 		 	
-		  		작성일 	: ${qna.qnaCreated}
 		  		<c:if test="${qna.qnaCreated < qna.qnaModified}<br>">
 		  			수정일 : ${qna.qnaModified}<br>
 		  		</c:if>
-		  		제목	: ${qna.qnaTitle}<br>
-		  		아이디 	: ${qna.memberId}<br>
-		  		내용 	: ${qna.qnaContent}<br>
-		  		조회수  : ${qna.qnaHit}<br>
+		  		제목	: ${qna.qnaTitle}
+		  		작성일 	: ${qna.qnaCreated}<br>
+		  		조회수  : ${qna.qnaHit}<br><br>
+		  		아이디 	: ${qna.memberId}<br><br>
+		  		내용 	: ${qna.qnaContent}<br><br><br>
 		 		
-		 		<a href="${contextPath}/qna/qnaUpdatePage?qnaNo=${qna.qnaNo}">수정하기</a>
+		 		<a class="qnaDtailA"  href="${contextPath}/qna/qnaUpdatePage?qnaNo=${qna.qnaNo}">수정하기</a>
 		 	
 		 	<br><br>
 		 	
 		 	<form id="qnaReplyData" method="post" action="${contextPath}/qnaReply/qnaReplySave">
 		 		<input type="hidden" name="qnaNo" value="${qna.qnaNo}">
 			  	<input type="hidden" name="memberId" value="${loginMember.memberId}">		  
-			  	<textarea rows="10" cols="50" id="qnaReplyContent" name="qnaReplyContent"></textarea>
-			  	<div id="qnaReplyContent_cnt">(0 / 300)</div>
-			  	<button>댓글 달기</button>
+			  	<textarea rows="10" cols="50" id="qnaReplyContent" name="qnaReplyContent"></textarea><br>
+			  	<div class ="qnaReplyContent_cnt">
+				  	<div id="qnaReplyContent_cnt">(0 / 300)</div><br>
+				  	<button>댓글 달기</button>
+			  	</div>
 			</form>
 		 	
 			
@@ -194,7 +234,7 @@
 		 			
 		 			
 				   			
-				   		
+		</div>		   		
 		 		 	
 		 			
 					

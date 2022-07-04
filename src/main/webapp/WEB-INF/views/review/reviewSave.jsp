@@ -104,7 +104,7 @@
 	   		<div id="review_textarea_cnt">(0 / 500)</div>
 	   		
 	   		
-		   		<input type="file" name="files" id="files" multiple="multiple"/><br><br>
+		   		<input type="file" name="files" id="files" multiple="multiple"/>
 		   		<button id="addBtn">등록</button>
 	   </form>
    </div>

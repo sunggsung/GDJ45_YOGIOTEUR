@@ -48,22 +48,32 @@
        background: none;
        size : 50px;
    }
+   
+   .faqA{
+   		color : blue;
+   }
+   
+   .faqSearch {
+   		text-align : center;
+   }
 </style>
 </head>
 <body>
    <jsp:include page="../layout/header.jsp"></jsp:include>
    
-   <h1>FAQ.자주묻는 질문</h1>
-   
-   <br>
-   
-      <input type="text" id="faqQuery" name="faqQuery" onkeyup="if(window.event.keyCode==13){fnSearchEnter()}">
-      <button type="button"  id="faqSearchBtn" name="faqSearchBtn" value="검색"><i class="fa-solid fa-magnifying-glass fa-3x"></i></button>
-   
-   <br> 또 다른 문의사항이 있다면 <a href="${contextPath}/qna/qnaList">QnA 게시판</a>을 이용해주세요.
-   
-   <br><br>
+   <div class="faqSearch">
+	   <h1>FAQ.자주묻는 질문</h1>
+	   
+	   <br>
+	   
+	      <input type="text" id="faqQuery" name="faqQuery" onkeyup="if(window.event.keyCode==13){fnSearchEnter()}">
+	      <button type="button"  id="faqSearchBtn" name="faqSearchBtn" value="검색"><i class="fa-solid fa-magnifying-glass fa-3x"></i></button>
+	   
+	   <br> 또 다른 문의사항이 있다면 <a class="faqA" href="${contextPath}/qna/qnaList">QnA 게시판</a>을 이용해주세요.
+	   
+	   <br><br>
   
+   </div>
    
     <jsp:include page="../faq/faqList.jsp"></jsp:include>
         

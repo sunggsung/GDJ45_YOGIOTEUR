@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="../resources/css/reviewList.css?afte">
+<link rel="stylesheet" href="../resources/css/reviewList.css?after">
 <script>
 
 	// 리뷰수정
@@ -53,9 +53,10 @@
    
    
 	   <c:if test = "${loginMember.memberId ne null}">
-	   		<a id="addRe" href="${contextPath}/review/reviewSavePage">새 리뷰 작성하기</a>
+	   		<a class="addRe" href="${contextPath}/review/reviewSavePage">새 리뷰 작성하기</a>
 	   </c:if> 
 	  
+	  <br><br>
 	   
 	   <c:forEach items="${reviews}" var="review">
 	   		
@@ -82,6 +83,7 @@
 	   					${review.reviewCreated}<br>
 	   					</div>
 	   					
+	   					<br><br>
 						
 						<c:forEach var="reImage" items="${reImages}">
 							<c:if test="${review.reviewNo eq reImage.reviewNo}">

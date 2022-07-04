@@ -21,4 +21,43 @@
     border: 0; /* 필드셋 테두리 제거 */
 }
 
-}
+	.reviewChangeOne {
+		width : 850px;
+		margin : 0 auto;
+		text-align : center;
+	}
+	
+	.reChangetitle{
+		text-align : center;
+	}
+	
+	#reviewTitle{
+		width: 500px;
+	  height: 45px;
+	  font-size: 15px;
+	  border: 0;
+	  border-radius: 10px;
+	  outline: none;
+	  padding-left: 10px;
+	  background-color: rgb(233, 233, 233);
+	  margin : 15px 0;
+	}
+	
+	#review_textarea{
+	  width: 500px;
+	  height: 300px;
+	  font-size: 15px;
+	  border: 0;
+	  border-radius: 10px;
+	  outline: none;
+	  padding-left: 10px;
+	  background-color: rgb(233, 233, 233);
+	  margin : 15px 0;
+	  padding : 10px;
+	
+	}
+
+	#memberId, #roomName, #rtType{
+		border : none;
+	}
+

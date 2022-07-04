@@ -34,14 +34,35 @@
 </script>
 <style>
   table {
-    width: 100%;
+    width: 1200px;
+    margin : 0 auto;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
   th, td {
     border-bottom: 1px solid #444444;
     padding: 10px;
+    text-align : center;
   }
+  
+  thead tr {
+    background-color: rgb(233, 233, 233);
+    
+  }
+  
+  .qnaNameA{
+  	color : black;
+  }
+  
+  h1 {
+  	text-align : center;
+  }
+  
+  .qnaAddA {
+ 	 color : black;
+ 	 margin : 400px;
+  }
+  
 </style>
 </head>
 <body>
@@ -55,7 +76,7 @@
 	   	로그인 후 작성가능합니다.
    </c:if> 
    <c:if test = "${loginMember.memberId ne null}">
-	   	<a href="${contextPath}/qna/qnaSavePage">새글작성</a>
+	   	<a class="qnaAddA" href="${contextPath}/qna/qnaSavePage">새글작성</a>
    </c:if> 
   
   <hr>
@@ -75,7 +96,7 @@
   	<tbody>
   			<c:forEach items="${qnas}" var="qna">
 	  				<tr id="qna_${qna.qnaNo}">
-	  					<td><a href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
+	  					<td><a class="qnaNameA" href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
 	  					<td>${qna.memberId}</td>
 	  					<td>${qna.qnaCreated}</td>
 	  					<td>${qna.qnaHit}</td>	  					
