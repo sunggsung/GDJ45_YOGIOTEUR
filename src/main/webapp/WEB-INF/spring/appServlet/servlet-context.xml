@@ -37,9 +37,8 @@
 		</interceptor>
 		<interceptor>
 		<!-- 예약과리뷰 버튼으로 나중에 수정필요. -->
-			<mapping path="/review/reviewPage"/>
-			<mapping path="/faq/faqPage"/>
-			<mapping path="reservation/reservationPage"/>
+			<mapping path="/review/reviewSavePage"/>
+			<mapping path="/reservation/reservationPage"/>
 			<beans:ref bean="RequiredLoginInterceptor"/>
 		</interceptor>
 		<interceptor>

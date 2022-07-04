@@ -114,14 +114,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
  	-->
 
-	<!-- qna내역 
-	<select id="selectQnaInfo">
-	SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_BIRTH, MEMBER_GENDER, MEMBER_PROMO_ADD, MEMBER_POST_CODE, MEMBER_ROAD_ADDR, AGREE_STATE, SIGN_IN
-	  FROM MEMEBER
-	 WHERE MEMBER_ID = #{memberId}
-	 	AND RESER_NO = #{reserNo}
-	</select>	
-	-->
 	<select id="selectNaverNo" parameterType="Map" resultType="Long">
 		SELECT NO
 		FROM users

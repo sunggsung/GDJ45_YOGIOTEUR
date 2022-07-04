@@ -392,7 +392,7 @@
 						<div class="InputArea_con">
 							<input type="text" name="memberPostCode" id="memberPostcode" class="boxes" placeholder="우편번호">
 							<input type="button" onclick="fnPostcode()" value="우편번호 찾기">
-							<input type="text" name="memberRoadAddress" id="memberRoadAddress" class="boxes"  placeholder="도로명주소">
+							<input type="text" name="memberRoadAddr" id="memberRoadAddress" class="boxes"  placeholder="도로명주소">
 						</div>
 				</div>
 				

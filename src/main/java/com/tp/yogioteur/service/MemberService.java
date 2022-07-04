@@ -12,6 +12,7 @@ import com.tp.yogioteur.domain.SignOutMemberDTO;
 
 public interface MemberService {
 	
+	// 회원가입
 	public Map<String, Object> idCheck(String memberId);
 	public Map<String, Object> sendAuthCode(String memberEmail);
 	public Map<String, Object> emailCheck(String memberEmail);
