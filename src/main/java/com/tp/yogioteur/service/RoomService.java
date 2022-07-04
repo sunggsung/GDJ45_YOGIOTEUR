@@ -1,6 +1,7 @@
 package com.tp.yogioteur.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,7 +16,7 @@ public interface RoomService {
 	
 
 	//객실 조회
-	public List<RoomDTO> roomList(HttpServletRequest request);
+	public List<RoomDTO> roomList(Map param);
 	//객실 이미지
 	public ResponseEntity<byte[]> view(Long roomNo, String type);
 	
