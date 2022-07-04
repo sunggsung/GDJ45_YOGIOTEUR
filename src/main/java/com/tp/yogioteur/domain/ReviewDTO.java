@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ReviewDTO {
 	
-	private Long rnc;
+	
 	private Long reviewNo;
 	private String memberId;
 	private Long reserNo;

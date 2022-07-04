@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class QnaDTO {
 
-	private Long qnr;
+	
 	private Long qnaNo;
 	private String memberId;
 	private String qnaTitle;

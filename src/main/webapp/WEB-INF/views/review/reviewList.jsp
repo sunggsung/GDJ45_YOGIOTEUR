@@ -52,9 +52,9 @@
    <div class="reviewListView">
    
    
-	   <c:if test = "${loginMember.memberId ne null}">
+	   <%-- <c:if test = "${loginMember.memberId ne null}"> --%>
 	   		<a class="addRe" href="${contextPath}/review/reviewSavePage">새 리뷰 작성하기</a>
-	   </c:if> 
+	   <%-- </c:if>  --%>
 	  
 	  <br><br>
 	   
@@ -91,17 +91,17 @@
 							</c:if>
 						</c:forEach>
 						
-						<c:if test="${loginMember.memberId eq review.memberId || loginMember.memberId eq 'admin123'}">
+						<%-- <c:if test="${loginMember.memberId eq review.memberId || loginMember.memberId eq 'admin123'}"> --%>
 			   				<input type="button" value="삭제" name="reviewRemoveBtn" onclick="fnReviewRemove(${review.reviewNo})">					
-						</c:if>
+						<%-- </c:if> --%>
 						
-						<c:if test = "${loginMember.memberId eq review.memberId}">
+						<%-- <c:if test = "${loginMember.memberId eq review.memberId}"> --%>
 							<input type="button" value="리뷰 수정" name="reviewModifyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewModify(this)">
-			   			</c:if>
+			   			<%-- </c:if> --%>
 			   			
-			   			<c:if test = "${loginMember.memberId eq 'admin123'}">
+			   			<%-- <c:if test = "${loginMember.memberId eq 'admin123'}"> --%>
 			   				<input type="button" value="댓글달기" id ="reviewReplyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewReply(this)">
-			   			</c:if>
+			   			<%-- </c:if> --%>
 			   			
 			   			
 			   			
@@ -115,10 +115,10 @@
 			   							<div id="adminReplyList" >
 					   						<div>
 												${reviewReply.replyContent}
-												<c:if test = "${loginMember.memberId eq 'admin123'}">			   					
+												<%-- <c:if test = "${loginMember.memberId eq 'admin123'}"> --%>			   					
 								   					<input type="button" id="reviewReplyRemoveBtn" value="댓글 삭제" data-reply_no="${reviewReply.replyNo}" onclick="fnReviewReplyRemove(this)">
 								   					<input type="button" id="reviewReplyModifyBtn" value="댓글 수정" data-reply_no="${reviewReply.replyNo}" data-review_no="${review.reviewNo}" onclick="fnReviewReplyModify(this)">
-					   							</c:if>
+					   							<%-- </c:if> --%>
 					   						</div>					
 					   					</div>		   					   						
 		   							</div>

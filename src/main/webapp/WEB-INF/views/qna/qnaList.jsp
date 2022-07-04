@@ -75,9 +75,9 @@
    <c:if test = "${loginMember.memberId eq null}">
 	   	로그인 후 작성가능합니다.
    </c:if> 
-   <c:if test = "${loginMember.memberId ne null}">
+   <%-- <c:if test = "${loginMember.memberId ne null}"> --%>
 	   	<a class="qnaAddA" href="${contextPath}/qna/qnaSavePage">새글작성</a>
-   </c:if> 
+   <%-- </c:if>  --%>
   
   <hr>
   
@@ -100,9 +100,9 @@
 	  					<td>${qna.memberId}</td>
 	  					<td>${qna.qnaCreated}</td>
 	  					<td>${qna.qnaHit}</td>	  					
-	  					<c:if test = "${loginMember.memberId eq qna.memberId || loginMember.memberId eq 'admin123'}">
+	  					<%-- <c:if test = "${loginMember.memberId eq qna.memberId || loginMember.memberId eq 'admin123'}"> --%>
 	  						<td><input type="button" value="삭제" data-qna_no = "${qna.qnaNo}" onclick="fnRemove(this)"></td>
-	  					</c:if>
+	  					<%-- </c:if> --%>
 	  				</tr>
   			</c:forEach>
   		

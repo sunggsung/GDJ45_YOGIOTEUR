@@ -23,9 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertFaq" parameterType="FaqDTO">
 		INSERT INTO FAQ
-			(FAQ_NO, FAQ_TITLE, FAQ_CONTENT, FAQ_CREATED)
+			(FAQ_TITLE, FAQ_CONTENT, FAQ_CREATED)
 		VALUES
-			(FAQ_SEQ.NEXTVAL, #{faqTitle}, #{faqContent}, NOW())
+			(#{faqTitle}, #{faqContent}, NOW())
 	</insert>
 	
 	
@@ -49,7 +49,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 SELECT FAQ_NO, FAQ_TITLE, FAQ_CONTENT, FAQ_CREATED
   		   FROM FAQ
  		  WHERE FAQ_TITLE LIKE CONCAT('%' , IFNULL(#{faqQuery}, '') , '%')
-		  LIMIT 0, 5
+		  ORDER BY FAQ_NO DESC
+          LIMIT #{beginRecord}, #{recordPerPage}
 	</select>
 	
 </mapper>

@@ -99,9 +99,9 @@
 </head>
 <body>
    <div class="faqListOne">
-	   <c:if test = "${loginMember.memberId eq 'admin123'}">
+	   <%-- <c:if test = "${loginMember.memberId eq 'admin123'}"> --%>
 		   <a class="faqA" href="${contextPath}/faq/faqSavePage">새글작성</a>   	
-	   </c:if>
+	   <%-- </c:if> --%>
 	   
 	   <input type="button" value="목록보기" id="faqListSel">
 	   
@@ -110,9 +110,9 @@
 	               <div class="listOne">
 	                  <div class = "question" >
 	                     ${faq.faqTitle}
-	                     	<c:if test = "${loginMember.memberId eq 'admin123'}">
+	                     	<%-- <c:if test = "${loginMember.memberId eq 'admin123'}"> --%>
 	                     		<input type="button" value="삭제" data-faq_no = "${faq.faqNo}" onclick="fnRemove(this)">
-	                     	</c:if>
+	                     	<%-- </c:if> --%>
 	                     <button type="button" class="faqDetailBtn" id="que_${faq.faqNo}" data-faq_detail_no = "${faq.faqNo}" onclick="fnOpenCloseAnswer(this)" value = "상세내용 보기"><i class="fa-solid fa-angle-down"></i></button>               
 	                  </div>
 	                  <div class ="answer" id="ans_${faq.faqNo}" style="display:none;">${faq.faqContent}</div>

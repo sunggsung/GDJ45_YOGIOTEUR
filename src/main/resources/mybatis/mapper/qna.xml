@@ -13,24 +13,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 목록 -->
 	<select id="selectQnaList" parameterType="Map" resultType="QnaDTO">
-		SELECT Q.QRN, Q.QNA_NO, Q.MEMBER_ID, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_HIT, Q.QNA_CREATED, Q.QNA_MODIFIED
-		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY QNA_NO DESC) AS QRN, QNA_NO, MEMBER_ID, QNA_TITLE, QNA_CONTENT, QNA_HIT, QNA_CREATED, QNA_MODIFIED
-		  		  FROM QNA) Q
-		 WHERE Q.QRN BETWEEN #{beginRecord} AND #{endRecord}
+		SELECT QNA_NO, MEMBER_ID, QNA_TITLE, QNA_CONTENT, QNA_HIT, QNA_CREATED, QNA_MODIFIED
+		  FROM QNA
+		  ORDER BY QNA_NO DESC
+		 LIMIT #{beginRecord}, #{recordPerPage}
 	</select>
 	
 
  	<!-- qna원글 삽입 -->
  	<insert id="insertQna" parameterType="QnaDTO">
  		INSERT INTO QNA
- 			(QNA_NO, MEMBER_ID, QNA_TITLE, QNA_CONTENT, QNA_HIT, QNA_CREATED ,QNA_MODIFIED)
+ 			(MEMBER_ID, QNA_TITLE, QNA_CONTENT, QNA_HIT, QNA_CREATED ,QNA_MODIFIED)
  		VALUES
- 			(QNA_NO_SEQ.NEXTVAL, #{memberId}, #{qnaTitle},#{qnaContent}, 0, SYSDATE ,SYSDATE)
+ 			(#{memberId}, #{qnaTitle},#{qnaContent}, 0, NOW() ,NOW())
  	</insert>
  	<!-- 원글 수정 -->
  	<update id="updateQna" parameterType="QnaDTO">
  		UPDATE QNA
- 		   SET QNA_CONTENT = #{qnaContent} , QNA_MODIFIED = SYSDATE
+ 		   SET QNA_CONTENT = #{qnaContent} , QNA_MODIFIED = NOW()
  		 WHERE QNA_NO = #{qnaNo}
  	</update>
  		
@@ -69,25 +69,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 댓글 처음 삽입 -->
 	<insert id="insertQnaReply" parameterType="QnaReplyDTO">
 		INSERT INTO QNA_REPLY
-			(QNA_REPLY_NO, QNA_NO, MEMBER_ID, QNA_REPLY_CONTENT, QNA_REPLY_CREATED, QNA_REPLY_STATE, QNA_REPLY_DEPTH, QNA_REPLY_GROUP_NO, QNA_REPLY_GROUP_ORD)
+			(QNA_NO, MEMBER_ID, QNA_REPLY_CONTENT, QNA_REPLY_CREATED, QNA_REPLY_STATE, QNA_REPLY_DEPTH, QNA_REPLY_GROUP_NO, QNA_REPLY_GROUP_ORD)
 		VALUES
-			(QNA_REPLY_NO_SEQ.NEXTVAL, #{qnaNo}, #{memberId}, #{qnaReplyContent}, SYSDATE, 1, 0, QNA_REPLY_NO_SEQ.CURRVAL, 0)
+			(#{qnaNo}, #{memberId}, #{qnaReplyContent}, NOW(), 1, 0, (select *from (select max(QNA_REPLY_NO)+1 from QNA_REPLY) next), 0)
 	</insert>
 
 	<!-- 댓글 조회 -->
 	<select id="selectQnaReplyByNo" parameterType="Long" resultType="QnaReplyDTO">
-		SELECT QR.QRNS ,QR.QNA_REPLY_NO, QR.QNA_NO, QR.MEMBER_ID, QR.QNA_REPLY_CONTENT, QR.QNA_REPLY_CREATED, QR.QNA_REPLY_STATE, QR.QNA_REPLY_DEPTH,QR.QNA_REPLY_GROUP_NO, QR.QNA_REPLY_GROUP_ORD
-		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY QNA_REPLY_GROUP_NO DESC, QNA_REPLY_GROUP_ORD ) AS QRNS, QNA_REPLY_NO, QNA_NO, MEMBER_ID, QNA_REPLY_CONTENT, QNA_REPLY_CREATED, QNA_REPLY_STATE, QNA_REPLY_DEPTH,QNA_REPLY_GROUP_NO, QNA_REPLY_GROUP_ORD
-		  		  FROM QNA_REPLY) QR
+		SELECT QNA_REPLY_NO, QNA_NO, MEMBER_ID, QNA_REPLY_CONTENT, QNA_REPLY_CREATED, QNA_REPLY_STATE, QNA_REPLY_DEPTH, QNA_REPLY_GROUP_NO, QNA_REPLY_GROUP_ORD
+		  FROM QNA_REPLY
 		 WHERE QNA_NO = #{qnaNo}
+		 ORDER BY QNA_REPLY_GROUP_NO DESC,  QNA_REPLY_GROUP_ORD
 	</select>
 	
 	<!-- 댓글 2번째 이상 삽입 -->
 	<insert id="insertQnaReplySecond" parameterType="QnaReplyDTO">
 		INSERT INTO QNA_REPLY
-			(QNA_REPLY_NO, QNA_NO, MEMBER_ID, QNA_REPLY_CONTENT, QNA_REPLY_CREATED, QNA_REPLY_STATE, QNA_REPLY_DEPTH, QNA_REPLY_GROUP_NO, QNA_REPLY_GROUP_ORD)
+			(QNA_NO, MEMBER_ID, QNA_REPLY_CONTENT, QNA_REPLY_CREATED, QNA_REPLY_STATE, QNA_REPLY_DEPTH, QNA_REPLY_GROUP_NO, QNA_REPLY_GROUP_ORD)
 		VALUES
-			(QNA_REPLY_NO_SEQ.NEXTVAL, #{qnaNo}, #{memberId}, #{qnaReplyContent}, SYSDATE, 1, #{qnaReplyDepth}, #{qnaReplyGroupNo}, #{qnaReplyGroupOrd})
+			(#{qnaNo}, #{memberId}, #{qnaReplyContent}, NOW(), 1, #{qnaReplyDepth}, #{qnaReplyGroupNo}, #{qnaReplyGroupOrd})
 	</insert>
 	
 	<!-- 댓글 삭제 -->

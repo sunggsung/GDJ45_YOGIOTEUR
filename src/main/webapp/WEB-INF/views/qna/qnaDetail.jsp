@@ -198,11 +198,11 @@
 							</td>
 							<td>${qnaReply.qnaReplyCreated}</td>
 							<td>
-								<c:if test = "${loginMember.memberId eq qnaReply.memberId || loginMember.memberId eq 'admin123'}">
+								<%-- <c:if test = "${loginMember.memberId eq qnaReply.memberId || loginMember.memberId eq 'admin123'}"> --%>
 									
 							
 									<td><input type="button" value="삭제" onclick="fnRemoveA(${qnaReply.qnaReplyNo}, ${qna.qnaNo})"></td>
-								</c:if>	
+								<%-- </c:if>	 --%>
 									
 							</td>
 						</tr>
