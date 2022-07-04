@@ -90,7 +90,7 @@
 						</c:forEach>
 						
 						<c:if test="${loginMember.memberId eq review.memberId || loginMember.memberId eq 'admin123'}">
-			   				<input type="button" value="삭제" name="reviewRemoveBtn" data-review_no="${review.reviewNo}" onclick="fnReviewRemove(${review.reviewNo})">					
+			   				<input type="button" value="삭제" name="reviewRemoveBtn" onclick="fnReviewRemove(${review.reviewNo})">					
 						</c:if>
 						
 						<c:if test = "${loginMember.memberId eq review.memberId}">
@@ -108,17 +108,17 @@
 	   			
 						<c:forEach items="${reviewReplies}" var="reviewReply">
 		   						<c:if test="${review.reviewNo eq reviewReply.reviewNo}">
-					   					<div class="adminicon">Yogioteur Hotel <i class="fa-solid fa-hotel fa-2x"></i> </div>
-					   			<div class="adminReply">		
-			   						<div id="adminReplyList" >
-					   					<div>
-											${reviewReply.replyContent}
-											<c:if test = "${loginMember.memberId eq 'admin123'}">			   					
-								   				<input type="button" id="reviewReplyRemoveBtn" value="댓글 삭제" data-reply_no="${reviewReply.replyNo}" onclick="fnReviewReplyRemove(this)">
-								   				<input type="button" id="reviewReplyModifyBtn" value="댓글 수정" data-reply_no="${reviewReply.replyNo}" data-review_no="${review.reviewNo}" onclick="fnReviewReplyModify(this)">
-					   						</c:if>
-					   					</div>					
-					   				</div>		   					   						
+					   			<div class="adminicon">Yogioteur Hotel <i class="fa-solid fa-hotel fa-2x"></i> </div>
+					   				<div class="adminReply">		
+			   							<div id="adminReplyList" >
+					   						<div>
+												${reviewReply.replyContent}
+												<c:if test = "${loginMember.memberId eq 'admin123'}">			   					
+								   					<input type="button" id="reviewReplyRemoveBtn" value="댓글 삭제" data-reply_no="${reviewReply.replyNo}" onclick="fnReviewReplyRemove(this)">
+								   					<input type="button" id="reviewReplyModifyBtn" value="댓글 수정" data-reply_no="${reviewReply.replyNo}" data-review_no="${review.reviewNo}" onclick="fnReviewReplyModify(this)">
+					   							</c:if>
+					   						</div>					
+					   					</div>		   					   						
 		   							</div>
 		   						</c:if>
 						</c:forEach>

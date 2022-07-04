@@ -238,7 +238,7 @@ public class QnaServiceImpl implements QnaService {
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			if(removeQnaRes == 1 && removeQnaReplyRes >= 1) {
+			if(removeQnaRes == 1 || removeQnaReplyRes >= 1) {
 				out.println("<script>");
 				out.println("alert('게시글이 삭제되었습니다.')");
 				out.println("location.href='" + request.getContextPath() + "/qna/qnaList'");

@@ -35,7 +35,7 @@ public class ReviewController {
 		return"review/reviewSave";
 	}
 	
-	@GetMapping("/review/reviewSave") 
+	@PostMapping("/review/reviewSave") 
 	public void reviewSave(MultipartHttpServletRequest multiparRequest, HttpServletResponse response) {
 	
 		reviewService.ReviewSave(multiparRequest, response); 
