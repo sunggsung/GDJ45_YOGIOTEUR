@@ -13,11 +13,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 댓글 추가 -->
-	<insert id="insertReviewReply" parameterType="ReviewReplyDTO">
+	<insert id="insertReviewReply" parameterType="ReviewReplyDTO" useGeneratedKeys="true" keyProperty="replyNo">
 		INSERT INTO
-			(REPLY_NO, REVIEW_NO, REPLY_CONTENT, REPLY_CREATED)
+			(REVIEW_NO, REPLY_CONTENT, REPLY_CREATED)
 		VALUES
-			(REVIEW_REPLY_NO_SEQ, #{reviewNo}, #{reviewContent}, SYSDATE)
+			(#{reviewNo}, #{reviewContent}, SYSDATE)
 	</insert>
 	
 	<!-- 댓글 삭제 -->

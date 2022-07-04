@@ -35,23 +35,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	<!-- 리뷰 추가 -->
-	<insert id="insertReview" parameterType="ReviewDTO">
-		<selectKey keyProperty="reviewNo" resultType="Long" order="BEFORE">
-			SELECT REVIEW_NO_SEQ.NEXTVAL
-			  FROM DUAL
-		</selectKey>
+	<insert id="insertReview" parameterType="ReviewDTO" useGeneratedKeys="true" keyProperty="reviewNo">
 		INSERT INTO REVIEW
-			(REVIEW_NO, MEMBER_NO, RESER_NO, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_CREATED, REVIEW_REV_NO)
+			(MEMBER_NO, RESER_NO, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_CREATED, REVIEW_REV_NO)
 		VALUES
-			(#{reviewNo}, MEMBER_NO_SEQ.NEXTVAL, RESER_NO_SEQ.NEXTVAL, #{reviewTitle}, #{reviewContent}, SYSDATE, #{reviewRevNo})
+			(MEMBER_NO_SEQ.NEXTVAL, RESER_NO_SEQ.NEXTVAL, #{reviewTitle}, #{reviewContent}, SYSDATE, #{reviewRevNo})
 	</insert>
 	
 	<!-- 리뷰 이미지 저장 -->
-	<insert id="insertReImage" parameterType="ReImageDTO">
+	<insert id="insertReImage" parameterType="ReImageDTO" useGeneratedKeys="true" keyProperty="reImageNo">
 		INSERT INTO RE_IMAGE
-			(RE_IMAGE_NO, REVIEW_NO, RE_IMAGE_PATH, RE_IMAGE_SAVED, RE_IMAGE_ORIGIN)
+			(REVIEW_NO, RE_IMAGE_PATH, RE_IMAGE_SAVED, RE_IMAGE_ORIGIN)
 		VALUES
-			(RE_IMAGE_NO_SEQ.NEXTVAL, #{reviewNo}, #{reImagePath}, #{reImageSaved}, #{reImageOrigin})
+			(#{reviewNo}, #{reImagePath}, #{reImageSaved}, #{reImageOrigin})
 	</insert>
 	
 	<!-- 리뷰 삭제 -->

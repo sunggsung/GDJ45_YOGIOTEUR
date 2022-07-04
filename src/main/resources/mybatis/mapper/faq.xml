@@ -21,11 +21,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 삽입 -->
 	
-	<insert id="insertFaq" parameterType="FaqDTO">
+	<insert id="insertFaq" parameterType="FaqDTO" useGeneratedKeys="true" keyProperty="faqNo">
 		INSERT INTO FAQ
-			(FAQ_NO, FAQ_TITLE, FAQ_CONTENT, FAQ_CREATED)
+			(FAQ_TITLE, FAQ_CONTENT, FAQ_CREATED)
 		VALUES
-			(FAQ_SEQ.NEXTVAL, #{faqTitle}, #{faqContent}, SYSDATE)
+			(#{faqTitle}, #{faqContent}, NOW())
 	</insert>
 	
 	
