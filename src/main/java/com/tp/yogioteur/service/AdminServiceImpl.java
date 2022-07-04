@@ -96,7 +96,6 @@ public class AdminServiceImpl implements AdminService {
 						Thumbnails.of(file)
 							.size(96, 54)
 							.toFile(new File(dir, "s_" + saved));
-						
 						ImageDTO image = ImageDTO.builder()
 								.imagePath(path)
 								.imageOrigin(origin)

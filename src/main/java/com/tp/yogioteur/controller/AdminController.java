@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.tp.yogioteur.batch.UpdateAPI;
 import com.tp.yogioteur.service.AdminService;
 import com.tp.yogioteur.service.OpenAPIService;
 
@@ -37,6 +38,7 @@ public class AdminController {
 	
 	@GetMapping("/admin/tour")
 	public void tour(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		openAPIService.setDate();
 		openAPIService.execute(request, response);
 	}
 	

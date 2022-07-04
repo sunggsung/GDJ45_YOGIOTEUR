@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-@ComponentScan(basePackages = {"com.tp.yogioteur.batch"})
+@ComponentScan(basePackages = {"com.tp.yogioteur.batch", "com.tp.yogioteur.service"})
 @EnableScheduling
 
 // @Mapper를 사용하고 있습니다. 여기에서 Mapper를 찾으세요
