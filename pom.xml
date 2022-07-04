@@ -16,6 +16,15 @@
 	
 	<dependencies>
 	
+	
+		<!-- mysql 연동 -->
+      <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+      <dependency>
+         <groupId>mysql</groupId>
+         <artifactId>mysql-connector-java</artifactId>
+         <version>8.0.29</version>
+      </dependency>
+	
 		<!-- 암호화/복호화 -->
 		<dependency>
 		    <groupId>commons-codec</groupId>

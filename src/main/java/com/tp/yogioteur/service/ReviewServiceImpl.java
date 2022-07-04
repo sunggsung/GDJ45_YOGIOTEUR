@@ -50,8 +50,8 @@ public class ReviewServiceImpl implements ReviewService {
 		pageUtils.setPageEntity(totalRecord, page);
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("beginRecord", pageUtils.getBeginRecord());
-		map.put("endRecord", pageUtils.getEndRecord());
+		map.put("beginRecord", pageUtils.getBeginRecord()-1);
+		map.put("recordPerPage", pageUtils.getRecordPerPage());
 
 		List<ReviewDTO> reviews = reviewMapper.selectReviewList(map);
 		List<ReImageDTO> reImages = reviewMapper.selectReImageList();

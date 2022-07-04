@@ -37,8 +37,10 @@ public class FaqServiceImpl implements FaqService {
 		pageUtils.setPageEntity(totalRecord, page);
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("beginRecord", pageUtils.getBeginRecord());
-		map.put("endRecord", pageUtils.getEndRecord());
+		map.put("beginRecord", pageUtils.getBeginRecord()-1);
+		//System.out.println(pageUtils.getBeginRecord());
+		map.put("recordPerPage", pageUtils.getRecordPerPage());
+		//System.out.println(pageUtils.getRecordPerPage());
 		
 		List<FaqDTO> faqs = faqMapper.selectFaqList(map);
 		model.addAttribute("faqs", faqs);

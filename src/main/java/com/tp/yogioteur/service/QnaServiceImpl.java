@@ -38,7 +38,7 @@ public class QnaServiceImpl implements QnaService {
 		pageUtils.setPageEntity(totalRecord, page);
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("beginRecord", pageUtils.getBeginRecord());
+		map.put("beginRecord", pageUtils.getBeginRecord() -1);
 		map.put("endRecord", pageUtils.getEndRecord());
 		
 		List<QnaDTO> qnas = qnaMapper.selectQnaList(map);
