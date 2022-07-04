@@ -15,7 +15,7 @@ public class ReviewDTO {
 	
 	private Long rnc;
 	private Long reviewNo;
-	private Long memberNo;
+	private String memberId;
 	private Long reserNo;
 	private String reviewTitle;
 	private String reviewContent;

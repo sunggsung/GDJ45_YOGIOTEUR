@@ -23,7 +23,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tp.yogioteur.domain.ReImageDTO;
 import com.tp.yogioteur.domain.ReviewDTO;
+import com.tp.yogioteur.domain.ReviewReplyDTO;
 import com.tp.yogioteur.mapper.ReviewMapper;
+import com.tp.yogioteur.mapper.ReviewReplyMapper;
 import com.tp.yogioteur.util.MyFileUtils;
 import com.tp.yogioteur.util.PageUtils;
 
@@ -33,6 +35,9 @@ public class ReviewServiceImpl implements ReviewService {
 
 	  @Autowired
 	  private ReviewMapper reviewMapper;
+	  
+	  @Autowired
+	  private ReviewReplyMapper reviewReplyMapper;
 	  
 	 
 	  // 목록보기
@@ -51,9 +56,14 @@ public class ReviewServiceImpl implements ReviewService {
 		  map.put("endRecord", pageUtils.getEndRecord());
 		  
 		  List<ReviewDTO> reviews = reviewMapper.selectReviewList(map);
+		  List<ReImageDTO> reImages = reviewMapper.selectReImageList();
+		  List<ReviewReplyDTO> reviewReply = reviewReplyMapper.selectReviewReplyList();
+		  
 		  
 		  model.addAttribute("totalRecrod", totalRecord);
 		  model.addAttribute("reviews", reviews);
+		  model.addAttribute("reImages", reImages);		  
+		  model.addAttribute("reviewReplies", reviewReply);
 		  model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtils.getRecordPerPage() );
 		  model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/review/reviewList"));
 		  
@@ -63,10 +73,10 @@ public class ReviewServiceImpl implements ReviewService {
 
 	  
 	  @Override
-	  public ResponseEntity<byte[]> display(Long reviewNo, String type) {
+	  public ResponseEntity<byte[]> display(Long reImageNo, String type) {
 		
 		  // 보내줘야 할 이미지 정보(path, saved)읽기
-		  ReImageDTO reImage = reviewMapper.selectReImage(reviewNo);
+		  ReImageDTO reImage = reviewMapper.selectReImageByNo(reImageNo);
 		  ResponseEntity<byte[]> entity = null;
 		  
 		  // 보내줘야 할 이미지
@@ -93,13 +103,14 @@ public class ReviewServiceImpl implements ReviewService {
 	  //리뷰 저장
 	  @Override
 	  public void ReviewSave(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
-
+		  String memberId = multipartRequest.getParameter("memberId");
 		  String reviewTitle = multipartRequest.getParameter("reviewTitle");
 		  String reviewContent = multipartRequest.getParameter("reviewContent");
 		  int reviewRevNo = Integer.parseInt(multipartRequest.getParameter("reviewRevNo")) ;
 		  
 		  //REVIEW
 		  ReviewDTO review = ReviewDTO.builder()
+				  .memberId(memberId)
 				  .reviewTitle(reviewTitle)
 				  .reviewContent(reviewContent)
 				  .reviewRevNo(reviewRevNo)
@@ -206,90 +217,233 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		  
 		  
-		  ReImageDTO reImage = reviewMapper.selectReImage(reviewNo);
+		  List<ReImageDTO> reImage = reviewMapper.selectReImage(reviewNo);
 		  
 
-		  if(reImage != null) {
-			  
-			  File file = new File(reImage.getReImagePath(), reImage.getReImageSaved());
-			  
-			  try {
+		  int reImageSize = reImage.size();
+		  for(int i = 0 ; i< reImageSize; i++) {
+		  
+			  if(reImage != null) {
 				  
-				  String contentType = Files.probeContentType(file.toPath());
-				  if(contentType.startsWith("image")) {
+				  File file = new File(reImage.get(i).getReImageOrigin(), reImage.get(i).getReImageOrigin());
+				  
+				  try {
 					  
-					  if(file.exists()) {
-						  file.delete();
+					  String contentType = Files.probeContentType(file.toPath());
+					  if(contentType.startsWith("image")) {
+						  
+						  if(file.exists()) {
+							  file.delete();
+						  }
+						  
+					  }
+					   
+				  }catch (Exception e) {
+					  e.printStackTrace();
+				  }
+				  
+				  
+				  
+				  int resImg = reviewMapper.deleteReImageByReviewNo(reviewNo);
+					 
+				  int resRev = reviewMapper.deleteReview(reviewNo);
+				  
+				  try {
+					  
+					  response.setContentType("text/html");
+					  PrintWriter out = response.getWriter();
+					  if(resImg>=1 && resRev >=1 ) {
+						  out.println("<script>");
+						  out.println("alert('리뷰가 삭제되었습니다')");
+						  out.println("location.href='" + request.getContextPath() + "/review/reviewList'");
+						  out.println("</script>");
+						  out.close();
+					  } else {
+						  out.println("<script>");
+						  out.println("alert('리뷰가 삭제되지 않았습니다')");
+						  out.println("history.back()");
+						  out.println("</script>");
+						  out.close();
 					  }
 					  
-				  }
-				   
-			  }catch (Exception e) {
-				  e.printStackTrace();
-			  }
-			  
-			  
-			  
-			  int resImg = reviewMapper.deleteReImage(reviewNo);
-				 
-			  int resRev = reviewMapper.deleteReview(reviewNo);
-			  
-			  try {
-				  
-				  response.setContentType("text/html");
-				  PrintWriter out = response.getWriter();
-				  if(resImg==1 && resRev ==1 ) {
-					  out.println("<script>");
-					  out.println("alert('리뷰가 삭제되었습니다')");
-					  out.println("location.href='" + request.getContextPath() + "/review/reviewList'");
-					  out.println("</script>");
-					  out.close();
-				  } else {
-					  out.println("<script>");
-					  out.println("alert('리뷰가 삭제되지 않았습니다')");
-					  out.println("history.back()");
-					  out.println("</script>");
-					  out.close();
+					  
+				  }catch (Exception e) {
+					  e.printStackTrace();
 				  }
 				  
 				  
-			  }catch (Exception e) {
-				  e.printStackTrace();
-			  }
-			  
-			  
-			  
-		  } else {
-			  
-			  int resRev = reviewMapper.deleteReview(reviewNo);
-			  
-			  try {
 				  
-				  response.setContentType("text/html");
-				  PrintWriter out = response.getWriter();
-				  if(resRev == 1 ) {
-					  out.println("<script>");
-					  out.println("alert('리뷰가 삭제되었습니다')");
-					  out.println("location.href='" + request.getContextPath() + "/review/reviewList'");
-					  out.println("</script>");
-					  out.close();
-				  } else {
-					  out.println("<script>");
-					  out.println("alert('리뷰가 삭제되지 않았습니다')");
-					  out.println("history.back()");
-					  out.println("</script>");
-					  out.close();
+			  } else {
+				  
+				  int resRev = reviewMapper.deleteReview(reviewNo);
+				  
+				  try {
+					  
+					  response.setContentType("text/html");
+					  PrintWriter out = response.getWriter();
+					  if(resRev == 1 ) {
+						  out.println("<script>");
+						  out.println("alert('리뷰가 삭제되었습니다')");
+						  out.println("location.href='" + request.getContextPath() + "/review/reviewList'");
+						  out.println("</script>");
+						  out.close();
+					  } else {
+						  out.println("<script>");
+						  out.println("alert('리뷰가 삭제되지 않았습니다')");
+						  out.println("history.back()");
+						  out.println("</script>");
+						  out.close();
+					  }
+					  
+					  
+				  }catch (Exception e) {
+					  e.printStackTrace();
 				  }
 				  
-				  
-			  }catch (Exception e) {
-				  e.printStackTrace();
 			  }
-			  
 		  }
-		    
 		  
 	  }
 	  
+	  
+	  // 리뷰 하나 
+	  public void ReviewOne(Long reviewNo, Model model) {
+		  ReviewDTO review = reviewMapper.selectReviewByNo(reviewNo);
+		  List<ReImageDTO> reImage = reviewMapper.selectReImage(reviewNo);
+		  
+		  
+		  
+		  model.addAttribute("review", review);
+		  model.addAttribute("reImage", reImage);
+		  
+		  
+	  }
+	  
+	  @Override
+	public void removeReImage(Long reImageNo) {
+		ReImageDTO reImage = reviewMapper.selectReImageByNo(reImageNo);
+		
+		File file = new File(reImage.getReImagePath(), reImage.getReImageSaved());
+		try {
+			
+			String contentType = Files.probeContentType(file.toPath());
+			if(contentType.startsWith("image")) {
+			
+				// 원본 이미지 삭제
+				if(file.exists()) {
+					file.delete();
+				}
+				
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		reviewMapper.deleteReImage(reImageNo);
+		
+		
+	}
+	  
+	  @Override
+	public void changeReview(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
+		  String memberId = multipartRequest.getParameter("memberId");
+		  Long reviewNo = Long.parseLong(multipartRequest.getParameter("reviewNo"));
+		  String reviewTitle = multipartRequest.getParameter("reviewTitle");
+		  String reviewContent = multipartRequest.getParameter("reviewContent");
+		  Integer reviewRevNo = Integer.parseInt(multipartRequest.getParameter("reviewRevNo"));
+		  
+		  ReviewDTO review = ReviewDTO.builder()
+				  .memberId(memberId)
+				  .reviewNo(reviewNo)
+				  .reviewTitle(reviewTitle)
+				  .reviewContent(reviewContent)
+				  .reviewRevNo(reviewRevNo)
+				  .build();
+		  
+		  int reviewChangeResult = reviewMapper.updateReview(review);
+		  
+		  List<MultipartFile> files = multipartRequest.getFiles("files");
+		  
+		  int reviewImageResult;
+		  if(files.get(0).getOriginalFilename().isEmpty()) {
+			  reviewImageResult = 1;
+		  } else {
+			  reviewImageResult = 0;
+		  }
+		  
+		  for(MultipartFile multipartFile : files) {
+			  
+			  try {
+				  
+				  if(multipartFile != null && multipartFile.isEmpty() == false) {
+					  
+					  String reviewOrigin = multipartFile.getOriginalFilename();
+					  reviewOrigin = reviewOrigin.substring(reviewOrigin.lastIndexOf("\\") + 1);
+					  
+					  String reviewSaved = MyFileUtils.getUuidName(reviewOrigin);
+					  
+					  String reviewPath = MyFileUtils.getTodayPath();
+					  
+					  File dir = new File(reviewPath);
+					  if(dir.exists() == false) {
+						  dir.mkdirs();
+					  }
+					  
+					  File file = new File(dir, reviewSaved);
+					  
+					  String contentType = Files.probeContentType(file.toPath());  // 이미지의 Content-Type(image/jpeg, image/png, image/gif)
+						if(contentType.startsWith("image")) {
+							
+							// 첨부파일 서버에 저장(업로드)
+							multipartFile.transferTo(file);
+							
+							
+							
+							// FileAttachDTO
+							ReImageDTO reImage = ReImageDTO.builder()
+									.reImagePath(reviewPath)
+									.reImageOrigin(reviewOrigin)
+									.reImageSaved(reviewSaved)
+									.reviewNo(reviewNo)
+									.build();
+							
+							// FileAttach INSERT 수행
+							reviewImageResult += reviewMapper.insertReImage(reImage);
+							
+						}
+					  
+				  }
+				  
+				  
+			  }catch (Exception e) {
+				e.printStackTrace();
+			  }
+			  
+			  try {
+					response.setContentType("text/html");
+					PrintWriter out = response.getWriter();
+					if(reviewChangeResult >= 1 && reviewImageResult >= files.size()) {
+						out.println("<script>");
+						out.println("alert('리뷰가 수정되었습니다.')");
+						out.println("location.href='" + multipartRequest.getContextPath() + "/review/reviewList'");
+						out.println("</script>");
+						out.close();
+					} else {
+						out.println("<script>");
+						out.println("alert('리뷰가 수정되지 않았습니다.')");
+						out.println("history.back()");
+						out.println("</script>");
+						out.close();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			  
+			  
+		  }
+		
+	}
 
 }

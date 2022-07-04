@@ -26,12 +26,13 @@
 			if($('#memberName').val() == '' || $('#memberEmail').val() == ''){
 				alert('이름과 이메일을 입력해주세요.');
 				e.preventDefault();
+				return;
 			}
 			let regEmail = /^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,}){1,2}$/;  
 			if(regEmail.test($('#memberEmail').val())==false){
 				alert('잘못된 형식의 이메일입니다.');
 				$('#memberEmail').focus();
-				return;
+				return false;
 			}
 		})
 	}
