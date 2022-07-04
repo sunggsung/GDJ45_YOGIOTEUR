@@ -48,6 +48,8 @@ public class ReservationServiceImpl implements ReservationService {
 		Optional<String> opt = Optional.ofNullable(request.getParameter("req"));
 		String req = opt.orElse("요청 사항 없음");
 		
+		System.out.println("reservationServiceImpl에서의 resMemberNo(memberNo) : " + memberNo);
+		
 		Integer people = adult + child;
 		
 		ReservationDTO reservation = ReservationDTO.builder()
@@ -60,6 +62,8 @@ public class ReservationServiceImpl implements ReservationService {
 				.reserStatus(status)
 				.reserRequest(req)
 				.build();
+		
+		System.out.println("reservation : " + reservation);
 		int res = reservationMapper.reservationInsert(reservation);
 		
 		Integer totalPr = Integer.parseInt(request.getParameter("totalPrice"));
@@ -131,6 +135,7 @@ public class ReservationServiceImpl implements ReservationService {
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember"); //
 		Long no = member.getMemberNo();
 		
+		System.out.println("reservationServiceImpl에서의 memberNo : " + no);
 		List<ReservationDTO> resers = reservationMapper.reservationMemberSelectConfirm(no);
 		
 		model.addAttribute("reservations", resers);

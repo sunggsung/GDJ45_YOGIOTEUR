@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tp.yogioteur.domain.MemberDTO;
 import com.tp.yogioteur.service.MemberService;
+import com.tp.yogioteur.service.ReservationService;
 
 @Controller
 public class MemberController {
@@ -23,6 +24,9 @@ public class MemberController {
 	// 회원가입
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ReservationService reservationService; //
 	
 	@GetMapping("/member/agreePage")
 	public String agreePage() {
@@ -181,7 +185,8 @@ public class MemberController {
 	
 	//예약내역
 	@GetMapping("/member/confirmReserPage")
-	public String confirmReserPage() {
+	public String confirmReserPage(HttpServletRequest request, Model model) {
+		reservationService.reserList(request, model);
 		return "member/confirmReser";
 	}
 	

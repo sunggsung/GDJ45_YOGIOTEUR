@@ -105,14 +105,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM SIGN_OUT_MEMBER
 		 WHERE ID = #{id}
 	</delete>
-	
-	<!-- 예약내역 
-	<select id="selectReserInfo">
-	SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_BIRTH, MEMBER_GENDER, MEMBER_PROMO_ADD, MEMBER_POST_CODE, MEMBER_ROAD_ADDR, AGREE_STATE, SIGN_IN
-	  FROM MEMEBER
-	 WHERE RESER_NO = #{reserNo}
-	</select>
- 	-->
+
 
 	<select id="selectNaverNo" parameterType="Map" resultType="Long">
 		SELECT NO
@@ -128,11 +121,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    </selectKey>
  	</insert>
  	
- 	<insert id="insertNaverLog" parameterType="String">
+ 	<insert id="insertNaverLog" parameterType="Long">
 	INSERT INTO USER_LOG
-		(ID, LOG_DATE)
+		(NO, LOG_DATE)
 	 VALUES
-	 	(#{ID}, TO_DATE(SYSDATE, 'yyyy-mm-dd'))
+	 	(#{no}, TO_DATE(SYSDATE, 'yyyy-mm-dd'))
 	</insert>
 	
 	
