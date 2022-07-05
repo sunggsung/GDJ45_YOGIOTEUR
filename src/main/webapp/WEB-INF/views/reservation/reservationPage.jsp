@@ -10,7 +10,6 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-<<<<<<< HEAD
 
 <script>
 	$(document).ready(function(){
@@ -56,8 +55,6 @@
 	}
 </script>
 <style>
-
-=======
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 <script>
@@ -335,12 +332,10 @@
 		position: relative;
 		float: right;
 	}
->>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 </style>
 </head>
 <body>
 
-<<<<<<< HEAD
 	<h1>예약 페이지</h1>
 	<hr>
 	
@@ -394,8 +389,6 @@
 		<button id="payment">결제하기</button>
 	</form>
 	
-	
-=======
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 
 	<h1>예약 페이지</h1>
@@ -505,7 +498,6 @@
 	</div>
 	
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
->>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 	
 </body>
 </html>

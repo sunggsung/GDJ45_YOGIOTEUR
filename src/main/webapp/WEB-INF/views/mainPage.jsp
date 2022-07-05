@@ -21,9 +21,10 @@
 	
 	
 	body{
-		margin: 0;
-		font-family: 'Kdam Thmor Pro', sans-serif;
-	}
+			margin: 0;
+			font-family: 'Kdam Thmor Pro', sans-serif;
+		}
+		
 	
 	a{
 		text-decoration: none;
@@ -105,6 +106,8 @@
 
 	})
 	
+	document.oncontextmenu = function(){return false;}
+	
   //함수
   
    function fnDate(){
@@ -150,7 +153,8 @@
   
   
 </script>
-<body>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+
 
 	<jsp:include page="layout/header.jsp"></jsp:include>
 	

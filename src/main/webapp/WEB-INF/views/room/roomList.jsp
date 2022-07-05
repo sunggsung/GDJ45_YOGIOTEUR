@@ -7,12 +7,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@700&family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${contextPath}/resources/css/footer.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
+<script src="https://kit.fontawesome.com/148c1051b1.js" crossorigin="anonymous"></script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <style>
 	
+		
 	.roomNo{
 		color: black;
 		padding: 20px;
@@ -25,6 +27,11 @@
 		margin: auto;
 	}
 	
+	.rommNo{
+		
+		text-align: center;
+		
+	}
 	
 	input{
 	  margin: 63px;
@@ -69,6 +76,8 @@ function openChild(var roomNo)
             "childForm", "width=570, height=350, resizable = no, scrollbars = no");    
 } */
 	
+	document.oncontextmenu = function(){return false;}
+	
 	function goPost() {
 		let f = document.createElement('form');
 		const chkIn = document.getElementById('chkIn');
@@ -91,7 +100,7 @@ function openChild(var roomNo)
 </script>
 </head>
 		<jsp:include page="../layout/header.jsp"></jsp:include>
-<body>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
 	<table>
 			
 		<tbody>

@@ -21,6 +21,34 @@
 	
 	}
 	
+	img{
+		
+		margin: auto;
+		
+	}
+	
+	dl, dd, dt{
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		
+	}
+	
+	dt{
+		
+		display: block;
+		
+		
+	}
+	
+	
+/* 	dt { 
+	
+	float: left;
+	font-weight: bold;
+	
+	 } */
+	
 	.btn-15 {
 	  background: #000;
 	  color: #fff;
@@ -50,10 +78,10 @@
 
 </style>
 <script>
-	
+	document.oncontextmenu = function(){return false;}
 </script>
 		<jsp:include page="../layout/header.jsp"></jsp:include>
-<body>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
 	<div class="detailSize">
 	
 	 <button class="custom-btn btn-15" onclick="history.back()">뒤로가기</button>
@@ -66,10 +94,11 @@
 				<br><br>
 				<span>※상기 객실 이미지는 실제 제공되는 객실과 다를 수 있습니다.</span><br>
 				<hr>
-				객실타입 : ${rn.roomTypeDTO.rtType} <br>
-				객실 정원수 : ${rn.roomTypeDTO.rtMax} <br>
-				객실 면적 : 34.4~37 ㎡ <br>
-				
+				<dl>
+				<dt >객실타입 :</dt> <dd>${rn.roomTypeDTO.rtType}</dd> 
+				<dt>객실 정원수 :</dt> <dd>${rn.roomTypeDTO.rtMax}</dd> 
+				<dt>객실 면적 :</dt> <dd>22.8 ㎡</dd> 
+				</dl>
 				</div>
 			</c:when>
 			<c:when test="${rn.rtNo eq 2}">
@@ -79,8 +108,11 @@
 				<span>현대적 세련미와 은은한 불빛이 조화롭게 어우러진 객실로, 비즈니스 여행객과 레저 여행객 모두에게 아늑한 숙박을 제공 합니다.</span>
 				<br><hr>
 				<span>※상기 객실 이미지는 실제 제공되는 객실과 다를 수 있습니다.</span><br>
-				객실타입 : ${rn.roomTypeDTO.rtType} <br>
-				객실 정원수 : ${rn.roomTypeDTO.rtMax}
+				<dl>
+				<dt>객실타입 :</dt> <dd>${rn.roomTypeDTO.rtType}</dd> 
+				<dt>객실 정원수 :</dt> <dd>${rn.roomTypeDTO.rtMax}</dd> 
+				<dt>객실 면적 :</dt> <dd>30.2 ㎡</dd> 
+				</dl>
 				</div>
 			</c:when>
 			<c:when test="${rn.rtNo eq 3}">
@@ -90,11 +122,39 @@
 				<span>현대적 세련미와 은은한 불빛이 조화롭게 어우러진 객실로, 비즈니스 여행객과 레저 여행객 모두에게 아늑한 숙박을 제공 합니다.</span>
 				<br><hr>
 				<span>※상기 객실 이미지는 실제 제공되는 객실과 다를 수 있습니다.</span><br>
-				객실타입 : ${rn.roomTypeDTO.rtType} <br>
-				객실 정원수 : ${rn.roomTypeDTO.rtMax}
+				<dl>
+				<dt>객실타입 :</dt> <dd>${rn.roomTypeDTO.rtType}</dd> 
+				<dt>객실 정원수 :</dt> <dd>${rn.roomTypeDTO.rtMax}</dd> 
+				<dt>객실 면적 :</dt> <dd>33.5 ㎡</dd> 
+				</dl>
 				</div>
 			</c:when>
 		</c:choose>
+		<div class= "rInfo">
+			<h3>info</h3>
+				<div>
+				<dl>
+					<dt>라운지</dt>
+				<dd><img src="../resources/image/rounge.jpg" width="350px" height="300px"></dd>
+				</dl>
+				<dl>
+				<dt>피트니스센터</dt>
+					<dd><img src="../resources/image/gym.jpg" width="350px" height="300px"></dd>
+				</dl>				
+				</div>
+				<div>
+				
+				<dl>
+					<dt>레스토랑</dt>
+						<dd><img src="../resources/image/restaurant.jpg" width="350px" height="300px"></dd>
+				</dl>
+				<dl>
+					<dt>야외 수영장</dt>
+						<dd><img src="../resources/image/pool.jpg" width="350px" height="300px"></dd>
+				</dl>
+				 	
+				</div>
+		</div>
 	</div>
 </body>
 		<jsp:include page="../layout/footer.jsp"></jsp:include>

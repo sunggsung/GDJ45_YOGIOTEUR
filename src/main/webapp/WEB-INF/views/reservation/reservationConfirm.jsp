@@ -13,33 +13,24 @@
 </script>
 </head>
 <body>
-<<<<<<< HEAD
-=======
 
 	<jsp:include page="../layout/header.jsp"></jsp:include>
->>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 	
 	<h1>예약 확인</h1>
 	
 	객실 이미지        객실 이름 및 타입
-<<<<<<< HEAD
-	
-=======
 					${room.roomName}
->>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 	체크인             체크아웃
 	
 	예약번호${reservation.reserNo}
 	투숙인원${reservation.reserPeople}
 	투숙객 이름
 	투숙객 전화번호
-<<<<<<< HEAD
 	
 	
 	총 결제 금액
 	결제 금액 세부사항(조식비 + 객실비)
 
-=======
 	<c:if test="${loginMember ne null }">
 			<div>
 				이름 <input type="text" name="name" id="name" value="${loginMember.memberName}" readonly><br>
@@ -61,6 +52,5 @@
 	<div><a href="${contextPath}">메인페이지로 돌아가기</a></div>
 
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
->>>>>>> 693ef9452071204859545571ef789b83d6fc03b3
 </body>
 </html>

@@ -54,7 +54,11 @@
 		</interceptor>
 	</interceptors>
 	
-	<resources mapping="/resources/**" location="/resources/" /> 
+	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/css/**" location="/resources/css/" />	
+	<resources mapping="/js/**" location="/resources/js/" />	
+	<resources mapping="/image/**" location="/resources/image/" />
+
 	
 	
 </beans:beans>
