@@ -29,7 +29,6 @@
 	<beans:bean class="com.tp.yogioteur.interceptor.PreventLoginInterceptor" id="PreventLoginInterceptor"></beans:bean>
 	<beans:bean class="com.tp.yogioteur.interceptor.NaverInterceptor" id="NaverInterceptor"></beans:bean>
 	
-	
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/login"/>
@@ -37,7 +36,8 @@
 		</interceptor>
 		<interceptor>
 		<!-- 예약과리뷰 버튼으로 나중에 수정필요. -->
-			<mapping path="reservation/reservationPage"/>
+			<mapping path="/review/reviewSavePage"/>
+			<mapping path="/reservation/reservationPage"/>
 			<beans:ref bean="RequiredLoginInterceptor"/>
 		</interceptor>
 		<interceptor>
@@ -51,8 +51,6 @@
 			<beans:ref bean="NaverInterceptor"/>
 		</interceptor>
 	</interceptors>
-	
-	<resources mapping="/resources/**" location="/resources/" /> 
 	
 	
 </beans:beans>

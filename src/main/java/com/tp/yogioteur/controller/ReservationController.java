@@ -32,7 +32,7 @@ public class ReservationController {
 	
 	@PostMapping("reservation/reservationPage")
 	public String reservationPage(HttpServletRequest request, Model model) {
-
+		// System.out.println("reservationPage에서의 회원정보 : " + request.getSession().getAttribute("loginMember").toString());;
 		reservationService.reserToken(request, model);
 		
 		Map<String, Object> roomInfo = new HashMap<>();
@@ -43,18 +43,19 @@ public class ReservationController {
 		roomInfo.put("roomPrice", request.getParameter("roomPr"));
 		
 		model.addAttribute("roomInfo", roomInfo);
-		
 		return "reservation/reservationPage";
 	}
 	
 	@GetMapping("reservation/reservationConfirm")
 	public String reservationConfirm(HttpServletRequest request, Model model) {
 		reservationService.confirms(request, model);
+		System.out.println("reservationConfirm에서의 resMemberNo(memberNo)-controller : " + request.getParameter("resMemberNo"));
 		return "reservation/reservationConfirm";
 	}
 	
 	@PostMapping("/payments")
 	public void payments(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("payments에서의 resMemberNo(memberNo)-controller : " + request.getParameter("resMemberNo"));
 		reservationService.payments(request, response);
 	}
 	

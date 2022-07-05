@@ -39,7 +39,6 @@ public class ReservationServiceImpl implements ReservationService {
 		String reserNo = request.getParameter("resReserNo").trim();
 		Long memberNo = Long.parseLong(request.getParameter("resMemberNo"));
 		Long roomNo = Long.parseLong(request.getParameter("resRoomNo"));
-		Long nonNo = 1L;
 		Optional<String> optNo = Optional.ofNullable(request.getParameter("food"));
 		Integer food = Integer.parseInt(optNo.orElse("0"));
 		Integer adult = Integer.parseInt(request.getParameter("adult"));
@@ -48,19 +47,21 @@ public class ReservationServiceImpl implements ReservationService {
 		Optional<String> opt = Optional.ofNullable(request.getParameter("req"));
 		String req = opt.orElse("요청 사항 없음");
 		
+		System.out.println("reservationServiceImpl에서의 resMemberNo(memberNo) : " + memberNo);
+		
 		Integer people = adult + child;
 		
 		ReservationDTO reservation = ReservationDTO.builder()
 				.reserNo(reserNo)
 				.memberNo(memberNo)
 				.roomNo(roomNo)
-				.nonNo(nonNo)
 				.reserFood(food)
 				.reserPeople(people)
 				.reserStatus(status)
 				.reserRequest(req)
 				.build();
 		
+		System.out.println("reservation : " + reservation);
 		int res = reservationMapper.reservationInsert(reservation);
 		
 		Integer totalPr = Integer.parseInt(request.getParameter("totalPrice"));
@@ -100,7 +101,9 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public void confirms(HttpServletRequest request, Model model) {		
+	public void confirms(HttpServletRequest request, Model model) {
+//		MemberDTO member = (MemberDTO) request.getSession().getAttribute("loginMember");
+//		String no = member.getMemberNo().toString();
 		String no = request.getParameter("reserNo");
 		
 		model.addAttribute("reservation", reservationMapper.reservationSelectConfirm(no));
@@ -130,6 +133,7 @@ public class ReservationServiceImpl implements ReservationService {
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember"); //
 		Long no = member.getMemberNo();
 		
+		System.out.println("reservationServiceImpl에서의 memberNo : " + no);
 		List<ReservationDTO> resers = reservationMapper.reservationMemberSelectConfirm(no);
 		
 		System.out.println(resers);
