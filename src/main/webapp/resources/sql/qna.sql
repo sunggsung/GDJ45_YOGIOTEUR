@@ -1,38 +1,42 @@
-USE SCOTT;  -- 지금부터 spring 스키마에서 작업한다.
-
-DROP TABLE IF EXISTS QNA_REPLY;
-DROP TABLE IF EXISTS QNA;
-CREATE TABLE QNA
-(
-    QNA_NO BIGINT NOT NULL AUTO_INCREMENT,
-    MEMBER_ID VARCHAR(32) NOT NULL,
-    QNA_TITLE VARCHAR(100) NOT NULL,
-    QNA_CONTENT VARCHAR(1500),
-    QNA_HIT INT ,
-    QNA_CREATED DATETIME,
-    QNA_MODIFIED DATETIME,
-    CONSTRAINT QNA_PK PRIMARY KEY(QNA_NO)
-);
-CREATE TABLE QNA_REPLY
-(
-    QNA_REPLY_NO BIGINT NOT NULL AUTO_INCREMENT,
-    QNA_NO BIGINT NOT NULL,
-    MEMBER_ID VARCHAR(32) NOT NULL,
-    QNA_REPLY_TITLE VARCHAR(100),
-    QNA_REPLY_CONTENT VARCHAR(1500),
-    QNA_REPLY_CREATED DATETIME,
-    QNA_REPLY_STATE INT,
-    QNA_REPLY_DEPTH INT,
-    QNA_REPLY_GROUP_NO BIGINT,
-    QNA_REPLY_GROUP_ORD INT,
-    CONSTRAINT QNA_REPLY_NO_PK PRIMARY KEY(QNA_REPLY_NO)
-);
-ALTER TABLE QNA_REPLY 
-	ADD CONSTRAINT QNA_REPLY_QNA_FK
-		FOREIGN KEY(QNA_NO) REFERENCES QNA(QNA_NO)
-			ON DELETE CASCADE;
 
 
 
+--reviewcontroller
 
+@GetMapping("/review/reviewSavePage")
+	public String reviewSavePage(@RequestParam(value="roomNo", required=false) Long roomNo, HttpServletRequest request, Model model) {
+		
+		reviewService.ReviewReservation(roomNo, model);
+		return"review/reviewSave";
+	}
+
+--reviewService
+
+public void ReviewReservation(Long roomNo, Model model);
+
+--reviewServiceImpl
+// 예약 방 알아오기
+	@Override
+	public void ReviewReservation(Long roomNo, Model model) {
+		
+		RoomDTO room =  roomMapper.reservationReviewRoomName(roomNo);
+		model.addAttribute("room", room);
+	}
+
+-- roomMapper
+public RoomDTO reservationReviewRoomName(Long roomNo);
+
+--room.xml
+
+<select id="reservationReviewRoomName" parameterType="Long" resultMap="RoomDTOMap">
+		SELECT ROOM_NO, RT_NO, ROOM_NAME,ROOM_STATUS, ROOM_CHECKIN, ROOM_CHECKOUT
+		  FROM ROOM
+		 WHERE ROON_NO =#{roomNo}
+	</select>
+
+--reviewSave.jsp
+
+아이디 : <input type="text" id="memberId" name="memberId" value="${loginMember.memberId}" readonly> <br>
+	   		<input type="text" id="roomName" name="roomName" value="${room.roomName}" readonly> 
+	   		<input type="text" id="rtType" name="rtType" value="${room.roomTypeDTO.rtType}" readonly> <br>
 
