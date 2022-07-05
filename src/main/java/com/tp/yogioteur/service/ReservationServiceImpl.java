@@ -132,6 +132,8 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		List<ReservationDTO> resers = reservationMapper.reservationMemberSelectConfirm(no);
 		
+		System.out.println(resers);
+		
 		model.addAttribute("reservations", resers);
 	}
 	

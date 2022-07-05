@@ -18,16 +18,19 @@
 		<c:choose>
 			<c:when test="${rn.rtNo eq 1}">
 				<div>
+				<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="500px;">
 				${rn.roomName}
 				</div>
 			</c:when>
 			<c:when test="${rn.rtNo eq 2}">
 				<div>
+				<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="500px;">
 				${rn.roomName}
 				</div>
 			</c:when>
 			<c:when test="${rn.rtNo eq 3}">
 				<div>
+				<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="500px;">
 				${rn.roomName}
 				</div>
 			</c:when>

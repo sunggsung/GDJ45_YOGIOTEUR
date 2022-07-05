@@ -129,7 +129,7 @@
 	function paymentData() {
 		const data = {
 				merchant : $('#resReserNo').val(),
-				roomName : $('#resRoomNo').val(),
+				roomName : $('#resRoomName').val(),
 				amount : $('#total_price').val(),
 				userEmail : $('#userEmail').val(),
 				userName : $('#userName').val(),

@@ -36,8 +36,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 		SELECT ROOM_NO, RT_NO, ROOM_NAME, ROOM_STATUS, ROOM_CHECKIN, ROOM_CHECKOUT, ROOM_PRICE 
 		  FROM ROOM
-		 WHERE DATE_FORMAT(ROOM_CHECKIN,'%y/%m/%d') <= DATE_FORMAT(#{roomCheckIn},'%Y/%m/%d')
-		   AND DATE_FORMAT(ROOM_CHECKOUT,'%y/%m/%d') >= DATE_FORMAT(#{roomCheckOut},'%Y/%m/%d')
+		 WHERE ROOM_CHECKIN <= #{roomCheckIn}
+		   AND ROOM_CHECKOUT >= #{roomCheckOut}
 	 	   AND ROOM_STATUS = 0
 		 ]]>
 	</select>
