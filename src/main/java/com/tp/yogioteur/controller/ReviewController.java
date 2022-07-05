@@ -31,12 +31,14 @@ public class ReviewController {
 	
 	//리뷰 저장
 	@GetMapping("/review/reviewSavePage")
-	public String reviewSavePage() {
+	public String reviewSavePage(@RequestParam(value="roomNo", required = false) Long roomNo, HttpServletRequest request, Model model) {		
+		model.addAttribute("roomNo", roomNo);
+
 		return"review/reviewSave";
 	}
 	
-	@PostMapping("/review/reviewSave") public void
-	reviewSave(MultipartHttpServletRequest multiparRequest, HttpServletResponse response) {
+	@PostMapping("/review/reviewSave") 
+	public void reviewSave(MultipartHttpServletRequest multiparRequest, HttpServletResponse response) {
 	
 		reviewService.ReviewSave(multiparRequest, response); 
 	

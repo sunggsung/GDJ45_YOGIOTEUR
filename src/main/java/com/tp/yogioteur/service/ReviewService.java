@@ -18,6 +18,8 @@ public interface ReviewService {
 		public ResponseEntity<byte[]> display(Long reImageNo, String type);
 		
 		
+		
+		
 		// 리뷰 삽입
 		public void ReviewSave(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
 		

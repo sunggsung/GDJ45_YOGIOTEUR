@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO RESERVATION
 			(RESER_NO, MEMBER_NO, ROOM_NO, NON_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE, RESER_FOOD, RESER_STATUS, RESER_REQUEST)
 		VALUES
-			(#{reserNo}, #{memberNo}, #{roomNo}, #{nonNo}, SYSDATE, SYSDATE, #{reserPeople}, #{reserFood}, #{reserStatus}, #{reserRequest})
+			(#{reserNo}, #{memberNo}, #{roomNo}, #{nonNo}, NOW(), NOW(), #{reserPeople}, #{reserFood}, #{reserStatus}, #{reserRequest})
 	</insert>
 	
 	<select id="reservationSelect" resultType="ReservationDTO">
@@ -48,4 +48,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE ROOM_NO = #{roomNo}
 	</select>
 	
+	<delete id="deleteReservation" parameterType="String"> 
+		DELETE 
+		  FROM RESERVATION 
+		 WHERE RESER_NO = #{resNo} 
+	</delete>
+	
+	<delete id="deletePayments" parameterType="String"> 
+		DELETE 
+		  FROM Payments 
+		 WHERE RESER_NO = #{resNo} 
+	</delete>
+	
+	<delete id="deletePrice" parameterType="String"> 
+		DELETE 
+		  FROM Price 
+		 WHERE PRICE_NO = #{resNo} 
+	</delete>
+	
+	<insert id="paymentInsert" parameterType="PriceDTO">
+		INSERT INTO PAYMENTS
+			(RESER_NO, IMP_UID, RESPONSE, AMOUNT)
+		VALUES
+			(#{merchantUid}, #{impUid}, #{response}, #{amount})
+	</insert>
+	
+	<select id="paymentSelectByNo" parameterType="String" resultType="PaymentDTO">
+		SELECT RESER_NO, IMP_UID, RESPONSE, AMOUNT
+		  FROM PAYMENTS
+		 WHERE RESER_NO = #{resNo}
+	</select>
 </mapper>

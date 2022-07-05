@@ -36,9 +36,7 @@
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 		<interceptor>
-		<!-- 리뷰작성 버튼으로 나중에 수정필요. -->
-			<mapping path="/review/reviewPage"/>
-			<mapping path="/faq/faqPage"/>
+		<!-- 예약과리뷰 버튼으로 나중에 수정필요. -->
 			<mapping path="reservation/reservationPage"/>
 			<beans:ref bean="RequiredLoginInterceptor"/>
 		</interceptor>

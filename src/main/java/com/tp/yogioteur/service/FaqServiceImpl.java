@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tp.yogioteur.domain.FaqDTO;
 import com.tp.yogioteur.mapper.FaqMapper;
+import com.tp.yogioteur.mapper.RoomMapper;
 import com.tp.yogioteur.util.PageUtils;
 
 
@@ -34,13 +37,15 @@ public class FaqServiceImpl implements FaqService {
 		pageUtils.setPageEntity(totalRecord, page);
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("beginRecord", pageUtils.getBeginRecord());
-		map.put("endRecord", pageUtils.getEndRecord());
+		map.put("beginRecord", pageUtils.getBeginRecord()-1);
+		//System.out.println(pageUtils.getBeginRecord());
+		map.put("recordPerPage", pageUtils.getRecordPerPage());
+		//System.out.println(pageUtils.getRecordPerPage());
 		
 		List<FaqDTO> faqs = faqMapper.selectFaqList(map);
 		model.addAttribute("faqs", faqs);
 		model.addAttribute("totalRecord", totalRecord);
-		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/faq/faqList"));
+		model.addAttribute("paging", pageUtils.getPaging1(request.getContextPath() + "/faq/faqList"));
 	}
 
 	@Override
