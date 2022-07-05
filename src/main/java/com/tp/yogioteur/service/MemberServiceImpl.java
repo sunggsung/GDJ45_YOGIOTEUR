@@ -445,7 +445,7 @@ public class MemberServiceImpl implements MemberService {
             	if(no == null) {
             		no = memberMapper.insertNaverMember(userInfo);
             	}
-            	memberMapper.insertNaverLog(no);
+            	memberMapper.insertNaverLog(id);
             	MemberDTO naver = MemberDTO.builder()
             			.memberNo(no)
             			.memberId(id)
