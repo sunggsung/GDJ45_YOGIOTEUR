@@ -41,7 +41,32 @@
 	 }
 	 
 </script>
-
+<style>
+	.unlink, .link {
+		display: inline-block;  /* 같은 줄에 둘 수 있고, width, height 등 크기 지정 속성을 지정할 수 있다. */
+		padding: 10px;
+		margin: 5px;
+		border: 1px solid white;
+		text-align: center;
+		text-decoration: none;  /* 링크 밑줄 없애기 */
+		color: gray;
+	}
+	.link:hover {
+		border: 1px solid orange;
+		color: limegreen;
+	}
+	
+	.paging{
+		text-align: center;
+	}
+	input[type=button] { 	
+	 	color : white;
+		background-color : #696969;
+		padding : 10px;
+		border : none;
+	}
+	
+</style>
 </head>
 <body>
 
@@ -52,9 +77,9 @@
    <div class="reviewListView">
    
    
-	   <%-- <c:if test = "${loginMember.memberId ne null}"> --%>
+	  <c:if test = "${loginMember.memberId ne null}">
 	   		<a class="addRe" href="${contextPath}/review/reviewSavePage">새 리뷰 작성하기</a>
-	   <%-- </c:if>  --%>
+	   </c:if> 
 	  
 	  <br><br>
 	   
@@ -91,17 +116,18 @@
 							</c:if>
 						</c:forEach>
 						
-						<%-- <c:if test="${loginMember.memberId eq review.memberId || loginMember.memberId eq 'admin123'}"> --%>
+						<br>
+						<c:if test="${loginMember.memberId eq review.memberId || loginMember.memberId eq 'admin123'}">
 			   				<input type="button" value="삭제" name="reviewRemoveBtn" onclick="fnReviewRemove(${review.reviewNo})">					
-						<%-- </c:if> --%>
+						</c:if>
 						
-						<%-- <c:if test = "${loginMember.memberId eq review.memberId}"> --%>
+						<c:if test = "${loginMember.memberId eq review.memberId}">
 							<input type="button" value="리뷰 수정" name="reviewModifyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewModify(this)">
-			   			<%-- </c:if> --%>
+			   			</c:if>
 			   			
-			   			<%-- <c:if test = "${loginMember.memberId eq 'admin123'}"> --%>
+			   			<c:if test = "${loginMember.memberId eq 'admin123'}">
 			   				<input type="button" value="댓글달기" id ="reviewReplyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewReply(this)">
-			   			<%-- </c:if> --%>
+			   			</c:if>
 			   			
 			   			
 			   			
@@ -115,10 +141,10 @@
 			   							<div id="adminReplyList" >
 					   						<div>
 												${reviewReply.replyContent}
-												<%-- <c:if test = "${loginMember.memberId eq 'admin123'}"> --%>			   					
+												<c:if test = "${loginMember.memberId eq 'admin123'}">		   					
 								   					<input type="button" id="reviewReplyRemoveBtn" value="댓글 삭제" data-reply_no="${reviewReply.replyNo}" onclick="fnReviewReplyRemove(this)">
 								   					<input type="button" id="reviewReplyModifyBtn" value="댓글 수정" data-reply_no="${reviewReply.replyNo}" data-review_no="${review.reviewNo}" onclick="fnReviewReplyModify(this)">
-					   							<%-- </c:if> --%>
+					   							</c:if>
 					   						</div>					
 					   					</div>		   					   						
 		   							</div>
@@ -131,7 +157,7 @@
    </div>
    
    
-   <div class="noList">${paging}</div>
+   <div class="paging">${paging}</div>
    
    <jsp:include page="../layout/footer.jsp"></jsp:include>
    

@@ -63,6 +63,24 @@
  	 margin : 400px;
   }
   
+  .unlink, .link {
+		display: inline-block;  /* 같은 줄에 둘 수 있고, width, height 등 크기 지정 속성을 지정할 수 있다. */
+		padding: 10px;
+		margin: 5px;
+		border: 1px solid white;
+		text-align: center;
+		text-decoration: none;  /* 링크 밑줄 없애기 */
+		color: gray;
+	}
+	.link:hover {
+		border: 1px solid orange;
+		color: limegreen;
+	}
+	
+	.paging{
+		text-align: center;
+	}
+  
 </style>
 </head>
 <body>
@@ -109,7 +127,7 @@
   	</tbody>
   </table>
   
-  	<div>${paging}</div>
+  	<div class="paging">${paging}</div>
   	
   	<jsp:include page="../layout/footer.jsp"></jsp:include>
   	

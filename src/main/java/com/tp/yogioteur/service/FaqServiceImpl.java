@@ -45,7 +45,7 @@ public class FaqServiceImpl implements FaqService {
 		List<FaqDTO> faqs = faqMapper.selectFaqList(map);
 		model.addAttribute("faqs", faqs);
 		model.addAttribute("totalRecord", totalRecord);
-		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/faq/faqList"));
+		model.addAttribute("paging", pageUtils.getPaging1(request.getContextPath() + "/faq/faqList"));
 	}
 
 	@Override

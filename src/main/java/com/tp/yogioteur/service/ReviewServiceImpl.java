@@ -62,7 +62,7 @@ public class ReviewServiceImpl implements ReviewService {
 		model.addAttribute("reImages", reImages);
 		model.addAttribute("reviewReplies", reviewReply);
 		model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtils.getRecordPerPage());
-		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/review/reviewList"));
+		model.addAttribute("paging", pageUtils.getPaging1(request.getContextPath() + "/review/reviewList"));
 
 	}
 

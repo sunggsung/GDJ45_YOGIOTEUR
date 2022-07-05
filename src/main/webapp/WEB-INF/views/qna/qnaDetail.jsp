@@ -193,16 +193,17 @@
 									${qnaReply.qnaReplyContent}
 								</c:if>
 								<!-- 답글달기(if 있으면 1단 댓글만 허용, if 없으면 다단 댓글 허용) -->
-								<%-- <c:if test="${fb.depth eq 0}"> --%>
-									<a class="reply_link">답글</a>								
+								<c:if test="${fb.depth eq 0}">
+									<a class="reply_link">답글</a>	
+								</c:if>							
 							</td>
 							<td>${qnaReply.qnaReplyCreated}</td>
 							<td>
-								<%-- <c:if test = "${loginMember.memberId eq qnaReply.memberId || loginMember.memberId eq 'admin123'}"> --%>
+								<c:if test = "${loginMember.memberId eq qnaReply.memberId || loginMember.memberId eq 'admin123'}">
 									
 							
 									<td><input type="button" value="삭제" onclick="fnRemoveA(${qnaReply.qnaReplyNo}, ${qna.qnaNo})"></td>
-								<%-- </c:if>	 --%>
+								</c:if>
 									
 							</td>
 						</tr>

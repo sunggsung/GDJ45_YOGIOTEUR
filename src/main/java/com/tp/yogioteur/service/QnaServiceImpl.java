@@ -45,7 +45,7 @@ public class QnaServiceImpl implements QnaService {
 		
 		model.addAttribute("qnas", qnas);
 		model.addAttribute("totalRecord", totalRecord);
-		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/qna/qnaList"));
+		model.addAttribute("paging", pageUtils.getPaging1(request.getContextPath() + "/qna/qnaList"));
 		
 	}
 	
