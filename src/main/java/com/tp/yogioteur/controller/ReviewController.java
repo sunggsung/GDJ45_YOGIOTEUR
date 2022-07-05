@@ -32,8 +32,11 @@ public class ReviewController {
 	//리뷰 저장
 	@GetMapping("/review/reviewSavePage")
 	public String reviewSavePage(@RequestParam(value="roomNo", required = false) Long roomNo, HttpServletRequest request, Model model) {
+<<<<<<< HEAD
 		
 		model.addAttribute("roomNo", roomNo);
+=======
+>>>>>>> main
 		return"review/reviewSave";
 	}
 	
