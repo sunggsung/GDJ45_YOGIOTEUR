@@ -17,6 +17,7 @@
 		fnLogin();	
 		fnRememberId();
 	})
+
 	function fnLogin(){
 	
 		$('#Loginform').on('submit', function(e){
@@ -38,6 +39,7 @@
 			return true;
 		})
 	}
+
 	function fnRememberId(){
 		let rememberId = $.cookie('rememberId');
 		if(rememberId !=''){	
@@ -48,6 +50,7 @@
 			$('#rememberId').prop('checked', false);
 		}
 	}
+
 </script>
 <style>
 	form > a {
@@ -122,6 +125,7 @@
          padding: 19px 18px 0;
          color: #333;
      }
+
 </style>
 </head>
 <body>

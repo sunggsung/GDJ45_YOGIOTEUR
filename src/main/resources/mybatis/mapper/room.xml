@@ -54,5 +54,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE R.ROOM_NO = #{roomNo}
 	</select>
 	
+	<update id="updateRoomStatusOff" parameterType="RoomDTO"> 
+		UPDATE ROOM
+		   SET ROOM_STATUS = 1
+		 WHERE ROOM_NO = #{roomNo} 
+	</update>
+
+	<update id="updateRoomStatusOn" parameterType="RoomDTO"> 
+		UPDATE ROOM
+		   SET ROOM_STATUS = 0
+		 WHERE ROOM_NO = #{roomNo} 
+	</update>
+	
+	<select id="reservationReviewRoomName" parameterType="Long" resultMap="RoomDTOMap">
+      SELECT ROOM_NO, RT_NO, ROOM_NAME, ROOM_STATUS, ROOM_CHECKIN, ROOM_CHECKOUT
+        FROM ROOM
+       WHERE ROOM_NO = #{roomNo}
+   </select>
+	
 	
 </mapper>

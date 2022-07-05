@@ -27,5 +27,4 @@ public class MemberDTO {
 	private Integer agreeState;
 	private Date signIn;
 
-	
 }

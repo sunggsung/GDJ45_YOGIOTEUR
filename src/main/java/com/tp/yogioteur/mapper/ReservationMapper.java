@@ -26,6 +26,4 @@ public interface ReservationMapper {
 	public int deletePrice(String resNo);
 	public int paymentInsert(PaymentDTO payment);
 	public PaymentDTO paymentSelectByNo(String resNo);
-	
-	
 }

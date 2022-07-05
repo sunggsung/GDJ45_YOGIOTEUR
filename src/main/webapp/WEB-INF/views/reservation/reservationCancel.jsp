@@ -20,6 +20,7 @@ k<%@ page language="java" contentType="text/html; charset=UTF-8"
 			let reservation = JSON.stringify(
 					{
 						reserNo: $('#popUpReserNo').val(),
+						roomNo: $('#popUpRoomNo').val(),
 						reserStatus: $('#popUpReserStatus').val()
 					}		
 				);
@@ -56,6 +57,7 @@ k<%@ page language="java" contentType="text/html; charset=UTF-8"
 	
 	예약번호 ${reservation.reserNo}
 	<input type="hidden" name="popUpReserNo" id="popUpReserNo" value="${reservation.reserNo}">
+	<input type="hidden" name="popUpRoomNo" id="popUpRoomNo" value="${room.roomNo}">
 	<input type="hidden" name="popUpReserStatus" id="popUpReserStatus" value="${reservation.reserStatus}">
 	
 	이름 <input type="text" name="popUpName" id="popUpName" value="${loginMember.memberName}" readonly><br>
@@ -65,9 +67,10 @@ k<%@ page language="java" contentType="text/html; charset=UTF-8"
 	
 	옵션 금액
 	부가 금액
-	총 금액 ${money.totalPrice}
-	체크인 ${room.roomCheckIn} 
+	총 금액 ${money.totalPrice} 
+	체크인 ${room.roomCheckIn}  
 	체크아웃 ${room.roomCheckOut}
+
 	
 	<input type="button" id="removeReser" value="예약 취소">
 </body>

@@ -19,5 +19,10 @@ public class ReservationDTO {
 	private Integer reserStatus;
 	private Integer reserPeople;
 	private Integer reserFood;
+
+	// 조인시 사용
+	private RoomDTO room;
+	private MemberDTO member;
+  
 	private String reserRequest;
 }

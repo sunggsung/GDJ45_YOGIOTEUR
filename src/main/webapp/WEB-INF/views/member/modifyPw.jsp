@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
+
 	$(function(){
 		fnPwCheck();
 		fnPwConfirm();
@@ -31,6 +32,7 @@
 		})
 	}
 	
+
 	let rePwPass = false;
 	function fnPwConfirm(){
 		$('#memberRePw').on('keyup', function(){
@@ -44,6 +46,7 @@
 		})
 	}
 	
+
 	function fnChangePw(){
 		$('#modifyPwForm').on('submit', function(event){
 			if(pwPass == false || rePwPass == false){

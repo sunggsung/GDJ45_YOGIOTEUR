@@ -36,6 +36,7 @@
 			}
 		})
 	}
+
 </script>
 <style>
 	form > a {
@@ -107,6 +108,7 @@
          padding: 19px 18px 0;
          color: #333;
      }
+
 </style>
 </head>
 <body>

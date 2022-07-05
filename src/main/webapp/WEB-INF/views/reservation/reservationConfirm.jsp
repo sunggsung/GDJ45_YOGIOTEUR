@@ -22,7 +22,7 @@
 		<img src="${contextPath}/room/view?roomNo=${room.roomNo}" width="300px">
 		${room.roomName}
 	체크인             체크아웃
-		${room.roomCheckIn} ${room.roomCheckOut}
+		${room.roomCheckIn} ${room.roomCheckOut} ${room.roomStatus}
 	예약번호${reservation.reserNo}
 	투숙인원${reservation.reserPeople}
 	투숙객 이름${loginMember.memberName}

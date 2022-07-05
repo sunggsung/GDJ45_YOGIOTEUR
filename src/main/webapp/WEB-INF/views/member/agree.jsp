@@ -48,9 +48,11 @@
 		line-height: 30px;
 		margin: 0 0 20px 0;
 	}
+
 </style>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
+
 	$(function(){
 		
 		$('#checkAll').on('click', function(){
@@ -67,6 +69,7 @@
 		
 		$('.checkOne').on('click', function(){
 			let checkAll = true;							
+
 			$.each($('.checkOne'), function(i, checkOne){
 				if($(checkOne).is(':checked') == false){	
 					$('#checkAll').prop('checked', false);

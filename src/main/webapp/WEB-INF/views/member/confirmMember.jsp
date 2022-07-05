@@ -12,10 +12,12 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
 //비밀번호 정규식
+
 $(function(){
 		fnPwCheck();
 		fnConfirm();
 	})
+
 	$('#confirmPwForm').on('submit', function(e){
 		if($('#memberId').val() == ''){
 			alert('아이디를 입력하세요.');

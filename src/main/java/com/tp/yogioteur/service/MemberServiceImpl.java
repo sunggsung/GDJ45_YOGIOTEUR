@@ -42,6 +42,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	// 아이디확인
 	@Override
 	public Map<String, Object> idCheck(String memberId) {
 		Map<String, Object> map = new HashMap<>();
@@ -50,7 +51,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
-	// 인증코드 발송
+	// 이메일 인증코드 발송
 	@Override
 	public Map<String, Object> sendAuthCode(String memberEmail) {
 		String authCode = SecurityUtils.authCode(6);  
@@ -78,10 +79,10 @@ public class MemberServiceImpl implements MemberService {
 			Message message = new MimeMessage(session);
 			
 			message.setHeader("Content-Type", "text/plain; charset=UTF-8");
-			message.setFrom(new InternetAddress(USERNAME, "인증코드관리자"));
+			message.setFrom(new InternetAddress(USERNAME, "YOGIOTEUR HOTEL"));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(memberEmail));
 			message.setSubject("인증 요청 메일입니다.");
-			message.setText("인증번호는 " + authCode + "입니다.");
+			message.setText("인증번호는 " + authCode + "입니다. ");
 			
 			Transport.send(message);
 			
@@ -94,6 +95,7 @@ public class MemberServiceImpl implements MemberService {
 		return map;
 	}
 	
+	// 이메일 확인
 	@Override
 	public Map<String, Object> emailCheck(String memberEmail) {
 		
@@ -102,6 +104,7 @@ public class MemberServiceImpl implements MemberService {
 		return map;
 	}
 	
+	// 회원가입
 	@Override
 	public void signIn(HttpServletRequest request, HttpServletResponse response) {
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
@@ -165,7 +168,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
-
+	// 기본 로그인
 	@Override
 	public MemberDTO login(HttpServletRequest request) {
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
@@ -181,8 +184,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return loginMember;
 	}
-	
-
 	
 	// 아이디찾기
 	@Override
@@ -207,6 +208,7 @@ public class MemberServiceImpl implements MemberService {
 		return map;
 	}
 	
+	// 비밀번호 찾기 후, 재설정
 	@Override
 	public void changePw(HttpServletRequest request, HttpServletResponse response) {
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
@@ -251,7 +253,7 @@ public class MemberServiceImpl implements MemberService {
 	public void changeMember(HttpServletRequest request, HttpServletResponse response) {
 
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));        
-		String memberName = request.getParameter("memberName");   
+		String memberName = SecurityUtils.xss(request.getParameter("memberName"));   
 		String memberPhone =request.getParameter("memberPhone");    
 		String memberBirth = request.getParameter("memberBirth");   
 		String memberGender = request.getParameter("memberGender");
@@ -337,127 +339,127 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.selectSignOutMemberByMemberId(memberId);
 	}
 
-	
 	// 네이버 요청1
-		@Override
-		public void loginPage(HttpServletRequest request, Model model) {
-			
-			try {
-				String clientId = "fdXdRAviHENtwQcHVArh";
-			    String redirectURI = URLEncoder.encode("http://localhost:9090/" + request.getContextPath() + "/member/naver/login", "UTF-8");
-			    SecureRandom random = new SecureRandom();
-			    String state = new BigInteger(130, random).toString();
-			    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-			    apiURL += "&client_id=" + clientId;
-			    apiURL += "&redirect_uri=" + redirectURI;
-			    apiURL += "&state=" + state;
-			    request.getSession().setAttribute("state", state);
-			    model.addAttribute("apiURL", apiURL);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+	@Override
+	public void loginPage(HttpServletRequest request, Model model) {
 		
-		// 네이버 요청2
-		@Override
-		public String getAccessToken(HttpServletRequest request, HttpServletResponse response) {
-			StringBuffer res = new StringBuffer();
-			try {
-				String clientId = "fdXdRAviHENtwQcHVArh";
-				String clientSecret = "izECEfZOzv";
-				String code = request.getParameter("code");
-				String state = request.getParameter("state");
-				String redirectURI = URLEncoder.encode("http://localhost:9090/" + request.getContextPath() + "/member/naver/login", "UTF-8");
-				String apiURL;
-				apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
-				apiURL += "client_id=" + clientId;
-				apiURL += "&client_secret=" + clientSecret;
-				apiURL += "&redirect_uri=" + redirectURI;
-				apiURL += "&code=" + code;
-				apiURL += "&state=" + state;
-		        URL url = new URL(apiURL);
-		        HttpURLConnection con = (HttpURLConnection)url.openConnection();
-		        con.setRequestMethod("GET");
-		        int responseCode = con.getResponseCode();
-		        BufferedReader br;
-		        if(responseCode==200) { 
-		        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		      } else {  
-		        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-		      }
-		      String inputLine;
-		      while ((inputLine = br.readLine()) != null) {
-		        res.append(inputLine);
-		      }
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			JSONObject obj = new JSONObject(res.toString());
-			return obj.getString("access_token");
+		try {
+			String clientId = "fdXdRAviHENtwQcHVArh";
+		    String redirectURI = URLEncoder.encode("http://localhost:9090/" + request.getContextPath() + "/member/naver/login", "UTF-8");
+		    SecureRandom random = new SecureRandom();
+		    String state = new BigInteger(130, random).toString();
+		    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+		    apiURL += "&client_id=" + clientId;
+		    apiURL += "&redirect_uri=" + redirectURI;
+		    apiURL += "&state=" + state;
+		    request.getSession().setAttribute("state", state);
+		    model.addAttribute("apiURL", apiURL);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		// 네이버 요청3
-		@Override
-		public MemberDTO getMemberProfile(HttpServletRequest request, HttpServletResponse response, String token) {
-	        String header = "Bearer " + token; 
+	}
+	
+	// 네이버 요청2
+	@Override
+	public String getAccessToken(HttpServletRequest request, HttpServletResponse response) {
+		StringBuffer res = new StringBuffer();
+		try {
+			String clientId = "fdXdRAviHENtwQcHVArh";
+			String clientSecret = "izECEfZOzv";
+			String code = request.getParameter("code");
+			String state = request.getParameter("state");
+			String redirectURI = URLEncoder.encode("http://localhost:9090/" + request.getContextPath() + "/member/naver/login", "UTF-8");
+			String apiURL;
+			apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
+			apiURL += "client_id=" + clientId;
+			apiURL += "&client_secret=" + clientSecret;
+			apiURL += "&redirect_uri=" + redirectURI;
+			apiURL += "&code=" + code;
+			apiURL += "&state=" + state;
+	        URL url = new URL(apiURL);
+	        HttpURLConnection con = (HttpURLConnection)url.openConnection();
+	        con.setRequestMethod("GET");
+	        int responseCode = con.getResponseCode();
+	        BufferedReader br;
+	        if(responseCode==200) { 
+	        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	      } else {  
+	        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+	      }
+	      String inputLine;
+	      while ((inputLine = br.readLine()) != null) {
+	        res.append(inputLine);
+	      }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		JSONObject obj = new JSONObject(res.toString());
+		return obj.getString("access_token");
+	}
+	
+	// 네이버 요청3
+	@Override
+	public MemberDTO getMemberProfile(HttpServletRequest request, HttpServletResponse response, String token) {
+        String header = "Bearer " + token; 
 
-	        String apiURL = "https://openapi.naver.com/v1/nid/me";
-	        
-	        Map<String, String> requestHeaders = new HashMap<>();
-	        requestHeaders.put("Authorization", header);
-	       
-	        try {
-	        	URL url = new URL(apiURL);
-	        	HttpURLConnection con =  (HttpURLConnection)url.openConnection();
-	            con.setRequestMethod("GET");
-	            for(Map.Entry<String, String> headers :requestHeaders.entrySet()) {
-	                con.setRequestProperty(headers.getKey(), headers.getValue());
-	            }
-	            InputStream body = null;
-	            int responseCode = con.getResponseCode();
-	            if (responseCode == HttpURLConnection.HTTP_OK) { 
-	                body = con.getInputStream();
-	            } else { 
-	                body = con.getErrorStream();
-	            }
-	            InputStreamReader streamReader = new InputStreamReader(body);
-	            try( BufferedReader lineReader = new BufferedReader(streamReader) ){
-	            	StringBuilder responseBody = new StringBuilder();
-	            	String line;
-	            	while ((line = lineReader.readLine()) != null) {
-	            		responseBody.append(line);
-	            	}
-	            	JSONObject obj = new JSONObject(responseBody.toString());
-	            	JSONObject profile = obj.getJSONObject("response");
-	            	String id = profile.getString("id");
-	            	String name = profile.getString("name");
-	            	String email = profile.getString("email");
-	            	String phone = profile.getString("mobile");
-	            	
-	            	Map<String, String> userInfo = new HashMap<>();
-	            	userInfo.put("id", profile.getString("id"));
-	            	userInfo.put("name", profile.getString("name"));
-	            	userInfo.put("email", profile.getString("email"));
-	            	userInfo.put("phone", profile.getString("mobile"));
-	            	
-	            	Long no = memberMapper.selectNaverNo(userInfo);
-	            	if(no == null) {
-	            		no = memberMapper.insertNaverMember(userInfo);
-	            	}
-	            	memberMapper.insertNaverLog(id);
-	            	MemberDTO naver = MemberDTO.builder()
-	            			.memberNo(no)
-	            			.memberId(id)
-	            			.memberName(name)
-	            			.memberEmail(email)
-	            			.memberPhone(phone)
-	            			.build();
-	            	return naver;
-	            }
-	        } catch (MalformedURLException e) {
-	        	throw new RuntimeException("API URL이 잘못되었습니다. : ", e);
-	        } catch (IOException e) {
-	        	throw new RuntimeException("API 요청과 응답을 읽는데 실패했습니다.", e);
-	        }
-		}
+        String apiURL = "https://openapi.naver.com/v1/nid/me";
+        
+        Map<String, String> requestHeaders = new HashMap<>();
+        requestHeaders.put("Authorization", header);
+       
+        try {
+        	URL url = new URL(apiURL);
+        	HttpURLConnection con =  (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            for(Map.Entry<String, String> headers :requestHeaders.entrySet()) {
+                con.setRequestProperty(headers.getKey(), headers.getValue());
+            }
+            InputStream body = null;
+            int responseCode = con.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) { 
+                body = con.getInputStream();
+            } else { 
+                body = con.getErrorStream();
+            }
+            InputStreamReader streamReader = new InputStreamReader(body);
+            try( BufferedReader lineReader = new BufferedReader(streamReader) ){
+            	StringBuilder responseBody = new StringBuilder();
+            	String line;
+            	while ((line = lineReader.readLine()) != null) {
+            		responseBody.append(line);
+            	}
+            	JSONObject obj = new JSONObject(responseBody.toString());
+            	JSONObject profile = obj.getJSONObject("response");
+            	String id = profile.getString("id");
+            	String name = profile.getString("name");
+            	String email = profile.getString("email");
+            	String phone = profile.getString("mobile");
+            	
+            	Map<String, String> userInfo = new HashMap<>();
+            	userInfo.put("id", profile.getString("id"));
+            	userInfo.put("name", profile.getString("name"));
+            	userInfo.put("email", profile.getString("email"));
+            	userInfo.put("phone", profile.getString("mobile"));
+            	
+            	Long no = memberMapper.selectNaverNo(userInfo);
+            	if(no == null) {
+            		no = memberMapper.insertNaverMember(userInfo);
+            	}
+            	memberMapper.insertNaverLog(id);
+            	MemberDTO naver = MemberDTO.builder()
+            			.memberNo(no)
+            			.memberId(id)
+            			.memberName(name)
+            			.memberEmail(email)
+            			.memberPhone(phone)
+            			.build();
+            	return naver;
+            }
+        } catch (MalformedURLException e) {
+        	throw new RuntimeException("API URL이 잘못되었습니다. : ", e);
+        } catch (IOException e) {
+        	throw new RuntimeException("API 요청과 응답을 읽는데 실패했습니다.", e);
+        }
+	}
+	
 }

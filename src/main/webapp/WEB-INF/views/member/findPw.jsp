@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
+
 	$(function(){
 		fnPwCheck();
 		fnPwConfirm();
@@ -33,6 +34,7 @@
 		})
 	}
 	
+
 	let rePwPass = false;
 	function fnPwConfirm(){
 		$('#memberRePw').on('keyup', function(){
@@ -46,6 +48,7 @@
 		})
 	}
 	
+
 	function fnIdEmailCheck(){
 		return new Promise(function(resolve, reject){
 			let regEmail = /^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,}){1,2}$/;
@@ -53,6 +56,7 @@
 				alert('잘못된 형식의 이메일입니다.');
 				return;
 			}
+
 			$.ajax({
 				url: '${contextPath}/member/idEmailCheck',
 				type: 'get',
@@ -69,6 +73,7 @@
 		})
 	}
 	
+
 	function fnEmailAuth(){
 		$('#btnGetAuthCode').on('click', function(){
 			fnIdEmailCheck()
@@ -92,6 +97,7 @@
 		})
 	}
 	
+
 	let authCodePass = false;
 	function fnVerifyAuthCode(authCode){
 		$('#btnVerifyAuthCode').on('click', function(){
@@ -107,12 +113,14 @@
 		})
 	}
 	
+
 	function fnToUpperCase(){
 		$('#authCode').on('keyup', function(){
 			$('#authCode').val($('#authCode').val().toUpperCase());
 		})
 	}
 	
+
 	function fnChangePw(){
 		$('#findPwForm').on('submit', function(event){
 			if(pwPass == false || rePwPass == false){
