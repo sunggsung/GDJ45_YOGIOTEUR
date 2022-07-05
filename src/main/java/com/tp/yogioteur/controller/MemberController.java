@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tp.yogioteur.domain.MemberDTO;
-import com.tp.yogioteur.domain.NonMemberDTO;
 import com.tp.yogioteur.service.MemberService;
 import com.tp.yogioteur.service.ReservationService;
 
@@ -88,8 +87,7 @@ public class MemberController {
 	public String logout(HttpSession session, HttpServletResponse response) { 
 
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");	
-		NonMemberDTO nonMember = (NonMemberDTO) session.getAttribute("nonMember");
-		if (loginMember != null || nonMember != null) {
+		if (loginMember != null) {
 				session.invalidate(); 
 			}
 		return "redirect:/";
