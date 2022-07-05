@@ -53,13 +53,10 @@
 				event.preventDefault();
 				return false;
 			}
-			return true;
-		})
-		$('#modifyPwForm').on('submit', function(event){
-			if(pwPass == false || rePwPass == false){
-				alert('비밀번호를 확인하세요.');
-				event.preventDefault();
-				return false;
+			else if(pwPass == false || rePwPass == false){
+					alert('비밀번호를 확인하세요.');
+					event.preventDefault();
+					return false;
 			}
 			return true;
 		})
@@ -70,7 +67,7 @@
 		$('#memberPhone').on('keyup', function(){
 			let regPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
 			if(regPhone.test($('#memberPhone').val())==false){
-				$('#memberPhoneMsg').text('전화번호는 -없이 숫자로만 입력해주세요.').addClass('dont').removeClass('ok');
+				$('#memberPhoneMsg').text('전화번호는 -(하이픈)포함 입력해주세요.').addClass('dont').removeClass('ok');
 				phonePass = false;
 			} else {
 				$('#memberPhoneMsg').text('');

@@ -142,7 +142,7 @@
 		$('#memberPhone').on('keyup', function(e){
 			let regPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
 			if(regPhone.test($('#memberPhone').val())==false){
-				$('#memberPhoneMsg').text('전화번호는 -없이 숫자로만 입력해주세요.').addClass('dont').removeClass('ok');
+				$('#memberPhoneMsg').text('전화번호는 -(하이픈)포함 입력해주세요.').addClass('dont').removeClass('ok');
 				phonePass = false;
 			} else {
 				$('#memberPhoneMsg').text('');
@@ -358,7 +358,7 @@
 						<label for="memberPhone">연락처</label>
 					</h4>	
 						<div class="InputArea">
-							<input type="text" name="memberPhone" id="memberPhone" class="box" placeholder="하이픈(-)을 제외한 숫자만 입력" maxlength="13">
+							<input type="text" name="memberPhone" id="memberPhone" class="box" placeholder="하이픈(-)을 포함 입력" maxlength="13">
 						</div>
 						<span id="memberPhoneMsg"></span>
 				</div>

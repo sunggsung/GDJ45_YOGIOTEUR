@@ -29,8 +29,8 @@ public interface MemberMapper {
 	public int updateMember(MemberDTO member);
 	
 	
-	public Long selectNaverNo(Map user);
-	public Long insertNaverMember(Map user);
+	public Long selectNaverNo(Map<String, String> user);
+	public Long insertNaverMember(Map<String, String> user);
 	public int insertNaverLog(String id);
 	
 }
