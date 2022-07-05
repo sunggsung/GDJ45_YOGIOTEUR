@@ -68,10 +68,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 댓글 처음 삽입 -->
 	<insert id="insertQnaReply" parameterType="QnaReplyDTO">
+		<selectKey keyProperty="qnaReplyNo" order="BEFORE" resultType="Long">
+			SELECT LAST_INSERT_ID()+1
+		</selectKey>
 		INSERT INTO QNA_REPLY
 			(QNA_NO, MEMBER_ID, QNA_REPLY_CONTENT, QNA_REPLY_CREATED, QNA_REPLY_STATE, QNA_REPLY_DEPTH, QNA_REPLY_GROUP_NO, QNA_REPLY_GROUP_ORD)
 		VALUES
-			(#{qnaNo}, #{memberId}, #{qnaReplyContent}, NOW(), 1, 0, (select *from (select max(QNA_REPLY_NO)+1 from QNA_REPLY) next), 0)
+			(#{qnaNo}, #{memberId}, #{qnaReplyContent}, NOW(), 1, 0, #{qnaReplyNo}, 0)
 	</insert>
 
 	<!-- 댓글 조회 -->

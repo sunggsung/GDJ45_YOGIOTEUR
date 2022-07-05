@@ -37,9 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 리뷰 추가 -->
 	<insert id="insertReview" parameterType="ReviewDTO">
-		<selectKey keyProperty="reviewNo" resultType="Long" order="BEFORE">
-			SELECT (select *from (select max(REVIEW_NO)+1 from REVIEW) next)
-			  FROM DUAL
+		<selectKey keyProperty="reviewNo" resultType="Long" order="AFTER">
+			SELECT LAST_INSERT_ID()
 		</selectKey>
 		INSERT INTO REVIEW
 			(REVIEW_NO, MEMBER_ID, RT_TYPE, ROOM_NAME, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_CREATED, REVIEW_MODIFIED, REVIEW_REV_NO)

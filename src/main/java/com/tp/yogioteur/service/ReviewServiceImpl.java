@@ -95,6 +95,9 @@ public class ReviewServiceImpl implements ReviewService {
 	// 리뷰 저장
 	@Override
 	public void ReviewSave(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
+		Optional<String> opt = Optional.ofNullable(multipartRequest.getParameter("reviewNo"));
+		Long reviewNo = Long.parseLong(opt.orElse("0"));
+		
 		String memberId = multipartRequest.getParameter("memberId");
 		String reviewTitle = multipartRequest.getParameter("reviewTitle");
 		String reviewContent = multipartRequest.getParameter("reviewContent");
@@ -103,8 +106,15 @@ public class ReviewServiceImpl implements ReviewService {
 		int reviewRevNo = Integer.parseInt(multipartRequest.getParameter("reviewRevNo"));
 
 		// REVIEW
-		ReviewDTO review = ReviewDTO.builder().memberId(memberId).reviewTitle(reviewTitle).reviewContent(reviewContent)
-				.roomName(roomName).rtType(rtType).reviewRevNo(reviewRevNo).build();
+		ReviewDTO review = ReviewDTO.builder()
+				.reviewNo(reviewNo)
+				.memberId(memberId)
+				.reviewTitle(reviewTitle)
+				.reviewContent(reviewContent)
+				.roomName(roomName)
+				.rtType(rtType)
+				.reviewRevNo(reviewRevNo)
+				.build();
 
 		// REVIEW INSERT 수행
 		int ReviewResult = reviewMapper.insertReview(review);
@@ -157,7 +167,8 @@ public class ReviewServiceImpl implements ReviewService {
 						multipartFile.transferTo(file);
 
 						// ReImageDTO
-						ReImageDTO reImage = ReImageDTO.builder().reImagePath(path).reImageOrigin(origin)
+						ReImageDTO reImage = ReImageDTO.builder()
+								.reImagePath(path).reImageOrigin(origin)
 								.reImageSaved(saved).reviewNo(review.getReviewNo()).build();
 
 						// FileAttach INSERT 수행
