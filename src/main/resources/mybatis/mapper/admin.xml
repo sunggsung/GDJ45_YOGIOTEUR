@@ -81,6 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   SET ROOM_NAME = #{roomName}
 		     , ROOM_PRICE = #{roomPrice}
 		     , RT_NO = #{rtNo}
+		     , ROOM_STATUS = #{roomStatus}
 		 WHERE ROOM_NO = #{roomNo}
 	</update>
 	
