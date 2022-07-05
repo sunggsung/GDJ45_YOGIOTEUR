@@ -1,6 +1,7 @@
 package com.tp.yogioteur.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,5 +28,6 @@ public interface RoomService {
 	//객실 상세
 	public void findRoomTypeByNo(HttpServletRequest request, Model model);
 	
-	
+	public Map<String, Object> changeRoomStatusOff(Long roomNo);
+	public Map<String, Object> changeRoomStatusOn(Long roomNo);
 }
