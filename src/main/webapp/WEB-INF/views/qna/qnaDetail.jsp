@@ -27,7 +27,7 @@
 	})
 	
 	function fnTextareaLimitQnaReply(){
-		$('#qnaReplyData').on('keyup', function(){
+		$('#qnaReplyContent').on('keyup', function(){
 			$('#qnaReplyContent_cnt').html("(" + $(this).val().length+" / 300)");
 			
 			if($(this).val().length > 300){
@@ -37,7 +37,7 @@
 			
 		})
 		
-		$('#replyadd').on('keyup', function(){
+		$('#qnaReplyContentAdd').on('keyup', function(){
 			$('#qnaReplyContentAdd_cnt').html("(" + $(this).val().length+" / 300)");
 			
 			if($(this).val().length > 300){

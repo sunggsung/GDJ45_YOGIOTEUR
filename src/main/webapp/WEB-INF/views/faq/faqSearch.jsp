@@ -69,7 +69,7 @@
 	      <input type="text" id="faqQuery" name="faqQuery" onkeyup="if(window.event.keyCode==13){fnSearchEnter()}">
 	      <button type="button"  id="faqSearchBtn" name="faqSearchBtn" value="검색"><i class="fa-solid fa-magnifying-glass fa-3x"></i></button>
 	   
-	   <br> 또 다른 문의사항이 있다면 <a class="faqA" href="${contextPath}/qna/qnaList">QnA 게시판</a>을 이용해주세요.
+	   <br> 또 다른 문의사항이 있다면 <a class="faqA" href="${contextPath}/qna/qnaList">QnA 게시판(여기를 클릭하세요)</a>을 이용해주세요.
 	   
 	   <br><br>
   
