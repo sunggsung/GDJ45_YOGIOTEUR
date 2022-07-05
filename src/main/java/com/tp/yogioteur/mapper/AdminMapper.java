@@ -20,6 +20,7 @@ public interface AdminMapper {
 	public int selectRoomCount();
 	public RoomDTO selectRoomByNo(Long RoomNo);
 	public ImageDTO selectImageByNo(Long imageNo);
+	public List<RoomDTO> selectRoomByStatus(int roomStatus);
 	
 	public List<ImageDTO> selectImageListInTheRoom(Long roomNo);
 	public int deleteRoom(Long roomNo);
@@ -31,7 +32,12 @@ public interface AdminMapper {
 	public int selectMemberCount();
 	public MemberDTO selectMemberByNo(Long memberNo);
 	
-	public List<MemberDTO> selectReservationList(Map<String, Object> map);
+	public List<MemberDTO> selectReservationList();
 	public int selectReservationCount();
 	public List<ReservationDTO> selectReservationByMemberNo(Long memberNo);
+	
+	public ReservationDTO selectReservationByReserNo(Long reserNo);
+	public int deleteReservation(Long reserNo);
+	
+	public void updateRoomStatus(Long roomNo);
 }

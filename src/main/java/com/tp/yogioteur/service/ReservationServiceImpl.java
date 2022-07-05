@@ -39,7 +39,6 @@ public class ReservationServiceImpl implements ReservationService {
 		String reserNo = request.getParameter("resReserNo").trim();
 		Long memberNo = Long.parseLong(request.getParameter("resMemberNo"));
 		Long roomNo = Long.parseLong(request.getParameter("resRoomNo"));
-		Long nonNo = 1L;
 		Optional<String> optNo = Optional.ofNullable(request.getParameter("food"));
 		Integer food = Integer.parseInt(optNo.orElse("0"));
 		Integer adult = Integer.parseInt(request.getParameter("adult"));
@@ -56,7 +55,6 @@ public class ReservationServiceImpl implements ReservationService {
 				.reserNo(reserNo)
 				.memberNo(memberNo)
 				.roomNo(roomNo)
-				.nonNo(nonNo)
 				.reserFood(food)
 				.reserPeople(people)
 				.reserStatus(status)
@@ -137,6 +135,8 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		System.out.println("reservationServiceImpl에서의 memberNo : " + no);
 		List<ReservationDTO> resers = reservationMapper.reservationMemberSelectConfirm(no);
+		
+		System.out.println(resers);
 		
 		model.addAttribute("reservations", resers);
 	}

@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO RESERVATION
 			(RESER_NO, MEMBER_NO, ROOM_NO, NON_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE, RESER_FOOD, RESER_STATUS, RESER_REQUEST)
 		VALUES
-			(#{reserNo}, #{memberNo}, #{roomNo}, #{nonNo}, SYSDATE, SYSDATE, #{reserPeople}, #{reserFood}, #{reserStatus}, #{reserRequest})
+			(#{reserNo}, #{memberNo}, #{roomNo}, #{nonNo}, NOW(), NOW(), #{reserPeople}, #{reserFood}, #{reserStatus}, #{reserRequest})
 	</insert>
 	
 	<select id="reservationSelect" resultType="ReservationDTO">

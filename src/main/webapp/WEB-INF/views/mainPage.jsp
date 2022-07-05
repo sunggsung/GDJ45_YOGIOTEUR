@@ -10,18 +10,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@700&family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/footer.css">
- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/footer.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/header.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="https://kit.fontawesome.com/148c1051b1.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
 <style type="text/css">
 	
+	
 	body{
-		margin: 0;
-		font-family: 'Kdam Thmor Pro', sans-serif;
-	}
+			margin: 0;
+			font-family: 'Kdam Thmor Pro', sans-serif;
+		}
+		
 	
 	a{
 		text-decoration: none;
@@ -51,78 +54,7 @@
 		
 	}
 	
-	button {
-	  margin: 5px;
-	  outline: none;
-	}
-	.custom-btn {
-	  width: 122px;
-	  height: 45px;
-	  padding: 8px 20px;
-	  border: 2px solid #000;
-	  font-family: 'Lato', sans-serif;
-	  font-weight: 500;
-	  font-size: 18px;
-	  background: transparent;
-	  cursor: pointer;
-	  transition: all 0.3s ease;
-	  position: relative;
-	  display: inline-block;
-	}
 	
-	/* 13 */
-	.btn-13 {
-	  background: #000;
-	  color: #fff;
-	  z-index: 1;
-	}
-	.btn-13:after {
-	  position: absolute;
-	  content: "";
-	  width: 100%;
-	  height: 0;
-	  bottom: 0;
-	  left: 0;
-	  z-index: -1;
-	  background: #fff;
-	  transition: all 0.3s ease;
-	}
-	.btn-13:hover {
-	  color: #000;
-	}
-	.btn-13:hover:after {
-	  top: 0;
-	  height: 100%;
-	}
-	.btn-13:active {
-	  top: 2px;
-	}
-	.btn-14 {
-	  background: #000;
-	  color: #fff;
-	  z-index: 1;
-	}
-	.btn-14:after {
-	  position: absolute;
-	  content: "";
-	  width: 100%;
-	  height: 0;
-	  bottom: 0;
-	  left: 0;
-	  z-index: -1;
-	  background: #fff;
-	  transition: all 0.3s ease;
-	}
-	.btn-14:hover {
-	  color: #000;
-	}
-	.btn-14:hover:after {
-	  top: 0;
-	  height: 100%;
-	}
-	.btn-14:active {
-	  top: 2px;;
-	}
 	
 	.weather_api{
 		
@@ -158,15 +90,23 @@
 		$('#f').on('submit', (ev)=>{
 			
 			if($('#roomCheckIn').val() == '' || $('#roomCheckOut').val() == ''){
-				alert('날짜를 선택해주세요.');
+				alert('날짜를 선택하세요.');
 				ev.preventDefault();
 		}
-			
+			var date1 = new Date($('#roomCheckIn').datepicker('getDate'));
+			var date2 = new Date($('#roomCheckOut').datepicker('getDate'));
+			if(date2 - date1 < 0){
+				alert('날짜를 확인해주세요.')
+				return false;
+				
+			}
 		})
 		
 		fnTour();
 
 	})
+	
+	document.oncontextmenu = function(){return false;}
 	
   //함수
   
@@ -213,7 +153,8 @@
   
   
 </script>
-<body>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+
 
 	<jsp:include page="layout/header.jsp"></jsp:include>
 	
@@ -235,7 +176,7 @@
 			</div>	
 			&nbsp;&nbsp;	
 			<button class="custom-btn btn-13" >검색</button>
-			<button class="custom-btn btn-14" type="reset">초기화</button>
+			<button class="custom-btn btn-14" type="reset" id="reset">초기화</button>
 		</div>
 		
 		</form>

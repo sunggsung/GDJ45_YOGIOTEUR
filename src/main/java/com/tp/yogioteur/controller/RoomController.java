@@ -1,6 +1,8 @@
 package com.tp.yogioteur.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,9 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.tp.yogioteur.domain.RoomDTO;
 import com.tp.yogioteur.service.RoomService;
 
 @Controller
@@ -26,8 +26,19 @@ public class RoomController {
 	// 객실 조회
 	@PostMapping("/room/roomList")
 	public String roomList(HttpServletRequest request, Model model) {
-		model.addAttribute("roomList", roomService.roomList(request));
-		System.out.println(roomService.roomList(request));
+
+//		win + v => 윈도우 클립보드
+//		ctrl + alt + 아래 => 한 줄 복사
+//		ctrl + d => 한 줄 삭제 
+		
+		Map param = new HashMap();
+		
+		param.put("roomCheckIn", request.getParameter("roomCheckIn"));
+		param.put("roomCheckOut", request.getParameter("roomCheckOut"));
+				
+		List roomList = roomService.roomList(param);
+		
+		model.addAttribute("roomList",roomList);
 		return "room/roomList";
 	}
 
