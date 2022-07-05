@@ -68,7 +68,7 @@
 	let phonePass = false;
 	function fnPhoneCheck(){
 		$('#memberPhone').on('keyup', function(){
-			let regPhone = /^[0-9]{11}$/;
+			let regPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
 			if(regPhone.test($('#memberPhone').val())==false){
 				$('#memberPhoneMsg').text('전화번호는 -없이 숫자로만 입력해주세요.').addClass('dont').removeClass('ok');
 				phonePass = false;
@@ -164,7 +164,7 @@
 				생년월일
 				<input type="text" name="memberBirth" id="memberBirth" value="${loginMember.memberBirth}" readonly="readonly"><br>
             	연락처
-            	<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" maxlength="11"><br>
+            	<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" maxlength="13"><br>
 				<span id="memberPhoneMsg"></span>
 				주소<br>
 				<input type="text" id="memberPostcode" name="memberPostCode" value="${loginMember.memberPostCode}">
