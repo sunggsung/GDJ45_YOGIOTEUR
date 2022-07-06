@@ -54,20 +54,23 @@ public class MemberServiceImpl implements MemberService {
 	// 이메일 인증코드 발송
 	@Override
 	public Map<String, Object> sendAuthCode(String memberEmail) {
-		String authCode = SecurityUtils.authCode(6);  
+		
+		// 인증코드
+		String authCode = SecurityUtils.authCode(6);    // 6자리 인증코드
 		System.out.println(authCode);
 		
+		// 필수 속성
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com"); 
 		props.put("mail.smtp.port", "587");            
-		props.put("mail.smtp.auth", "true");           
-		props.put("mail.smtp.starttls.enable", "true"); 
+		props.put("mail.smtp.auth", "true");            
+		props.put("mail.smtp.starttls.enable", "true");
 		
-
+		// 메일을 보내는 사용자 정보
 		final String USERNAME = "forspringlec@gmail.com";
-		final String PASSWORD = "ukpiajijxfirdgcz";     
+		final String PASSWORD = "ukpiajijxfirdgcz";   
 		
-
+		// 사용자 정보를 javax.mail.Session에 저장
 		Session session = Session.getInstance(props, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -75,14 +78,16 @@ public class MemberServiceImpl implements MemberService {
 			}
 		});
 		
+	
 		try {
+			
 			Message message = new MimeMessage(session);
 			
 			message.setHeader("Content-Type", "text/plain; charset=UTF-8");
-			message.setFrom(new InternetAddress(USERNAME, "YOGIOTEUR HOTEL"));
+			message.setFrom(new InternetAddress(USERNAME, "인증코드관리자"));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(memberEmail));
-			message.setSubject("[YOGIOTEUR] 요청하신 인증번호 입니다.");
-			message.setText("인증번호는 " + authCode + "입니다. ");
+			message.setSubject("인증 요청 메일입니다.");
+			message.setText("인증번호는 " + authCode + "입니다.");
 			
 			Transport.send(message);
 			
