@@ -41,13 +41,25 @@ public class RoomServiceImpl implements RoomService {
 	 */
 
 	@Override
-	public List<RoomDTO> roomList(Map param) {
+	public List<RoomDTO> roomList(HttpServletRequest request, Model model) {
+		
+		
+		
 		/*
 		 * Date checkIn = Date.valueOf(request.getParameter("checkIn"));
 		 * Date checkOut =Date.valueOf(request.getParameter("checkOut"));
 		 */
 		
-		List<RoomDTO> roomList = roomMapper.checkInRoomList(param);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("roomCheckIn", request.getParameter("roomCheckIn"));
+		map.put("roomCheckOut", request.getParameter("roomCheckOut"));
+		
+		model.addAttribute("chkIn", request.getParameter("roomCheckIn"));
+		model.addAttribute("chkOut", request.getParameter("roomCheckOut"));
+		
+		List<RoomDTO> roomList = roomMapper.checkInRoomList(map);
+		
+		return roomList;
 		
 		//가공/수정
 		

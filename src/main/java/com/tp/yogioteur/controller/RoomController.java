@@ -26,20 +26,8 @@ public class RoomController {
 	// 객실 조회
 	@PostMapping("/room/roomList")
 	public String roomList(HttpServletRequest request, Model model) {
-
-//		win + v => 윈도우 클립보드
-//		ctrl + alt + 아래 => 한 줄 복사
-//		ctrl + d => 한 줄 삭제 
-		
-		Map param = new HashMap();
-		
-		param.put("roomCheckIn", request.getParameter("roomCheckIn"));
-		param.put("roomCheckOut", request.getParameter("roomCheckOut"));
-				
-		List roomList = roomService.roomList(param);
-		
-		model.addAttribute("roomList",roomList);
-		return "room/roomList";
+		 model.addAttribute("roomList", roomService.roomList(request, model));
+		 return "room/roomList";
 	}
 
 	// 이미지 보여주기

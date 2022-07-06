@@ -13,7 +13,7 @@ import com.tp.yogioteur.domain.RoomDTO;
 public interface ReservationMapper {
 	
 	public int reservationInsert(ReservationDTO reservation);
-	public List<ReservationDTO> reservationSelect(); 
+	public List<ReservationDTO> reservationSelectStatus(Integer reserStatus); 
 	public ReservationDTO reservationSelectConfirm(String reserNo);
 	public List<ReservationDTO> reservationMemberSelectConfirm(Long memberNo);
 	public int priceInsert(PriceDTO price);	
