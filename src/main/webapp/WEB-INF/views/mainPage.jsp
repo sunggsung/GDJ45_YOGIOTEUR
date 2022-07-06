@@ -12,9 +12,9 @@
 <script src="https://kit.fontawesome.com/148c1051b1.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@700&family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/footer.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 </head>
 <style type="text/css">
 	
@@ -215,7 +215,7 @@
 	<div class="mainImg">
 			<div><img class="post" src="resources/image/hotel.jpg" alt="main" ></div>
 			<div><img class="post" src="resources/image/rounge.jpg" alt="main"></div>
-			<div><img class="post" src="resources/image/pool.jpg" alt="main" ></div>
+			<div><img class="post" src="resources/image/pool.png" alt="main" ></div>
 			<div><img class="post" src="resources/image/restaurant.jpg" alt="main" ></div>
 	</div>
 	
@@ -249,40 +249,9 @@
 		</div>
 		<div>
 			<img src="resources/image/mainPageImage3.jpg" alt="image3" width="90%" height="300px">
-			<!-- <table border="1">
-				<thead>
-					<tr>
-						<td>예보시각</td>
-						<td>관광지명</td>
-						<td>날씨</td>
-						<td>기온</td>
-						<td>습도</td>
-						<td>강수확률</td>
-					</tr>
-				</thead>
-				<tbody id="items"></tbody>
-			</table> -->
 		</div>
 	</div>
 
-	<div class="footer">
-			<div class="end_title">
-				YOGIOTEUR
-				<hr>
-					<div class="info">
-						(주)여기오떼르
-						제주특별자치도 서귀포시 비자림로 2074 63616
-								<nav>
-									<ul>
-										<li><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-square"></i></a></li>
-										<li><a href="https://twitter.com/"><i class="fa-brands fa-twitter-square"></i></a></li>
-										<li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
-									</ul>
-								
-								</nav>
-					</div>
-			</div>
-		</div>
-
+	<jsp:include page="layout/footer.jsp"></jsp:include>
 </body>
 </html>
