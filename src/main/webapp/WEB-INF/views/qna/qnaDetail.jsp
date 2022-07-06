@@ -121,6 +121,9 @@
 		text-align : right;
 	}
 	
+	.reply_link {
+		color : green;
+	}
 	
 	
 	
@@ -149,7 +152,9 @@
 		  		아이디 	: ${qna.memberId}<br><br>
 		  		내용 	: ${qna.qnaContent}<br><br><br>
 		 		
-		 		<a class="qnaDtailA"  href="${contextPath}/qna/qnaUpdatePage?qnaNo=${qna.qnaNo}">수정하기</a>
+		 		<c:if test="${loginMember.memberId eq qnaReply.memberId}">	 		
+			 		<a class="qnaDtailA"  href="${contextPath}/qna/qnaUpdatePage?qnaNo=${qna.qnaNo}">수정하기</a>
+		 		</c:if>
 		 	
 		 	<br><br>
 		 	
