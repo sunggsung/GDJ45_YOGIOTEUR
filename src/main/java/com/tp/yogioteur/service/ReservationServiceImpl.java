@@ -34,20 +34,22 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 	
 	@Override
-	public void payments(HttpServletRequest request, HttpServletResponse response) {
+	public void payments(HttpServletRequest request, HttpServletResponse response){
 		
 		String reserNo = request.getParameter("resReserNo").trim();
 		Long memberNo = Long.parseLong(request.getParameter("resMemberNo"));
 		Long roomNo = Long.parseLong(request.getParameter("resRoomNo"));
+
+		String reserCheckIn = request.getParameter("resCheckIn");
+		String reserCheckOut = request.getParameter("resCheckOut");
+		
 		Optional<String> optNo = Optional.ofNullable(request.getParameter("food"));
 		Integer food = Integer.parseInt(optNo.orElse("0"));
 		Integer adult = Integer.parseInt(request.getParameter("adult"));
 		Integer child = Integer.parseInt(request.getParameter("child"));
 		Integer status = 1; // 예약성공
 		Optional<String> opt = Optional.ofNullable(request.getParameter("req"));
-		String req = opt.orElse("요청 사항 없음");
-		
-		System.out.println("reservationServiceImpl에서의 resMemberNo(memberNo) : " + memberNo);
+		String req = opt.orElse("요청사항없음");
 		
 		Integer people = adult + child;
 		
@@ -55,13 +57,14 @@ public class ReservationServiceImpl implements ReservationService {
 				.reserNo(reserNo)
 				.memberNo(memberNo)
 				.roomNo(roomNo)
+				.reserCheckIn(reserCheckIn)
+				.reserCheckOut(reserCheckOut)
 				.reserFood(food)
 				.reserPeople(people)
 				.reserStatus(status)
 				.reserRequest(req)
 				.build();
 		
-		System.out.println("reservation : " + reservation);
 		int res = reservationMapper.reservationInsert(reservation);
 		
 		Integer totalPr = Integer.parseInt(request.getParameter("totalPrice"));
@@ -101,9 +104,7 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public void confirms(HttpServletRequest request, Model model) {
-//		MemberDTO member = (MemberDTO) request.getSession().getAttribute("loginMember");
-//		String no = member.getMemberNo().toString();
+	public void confirms(HttpServletRequest request, Model model) {		
 		String no = request.getParameter("reserNo");
 		
 		model.addAttribute("reservation", reservationMapper.reservationSelectConfirm(no));
@@ -133,7 +134,6 @@ public class ReservationServiceImpl implements ReservationService {
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember"); //
 		Long no = member.getMemberNo();
 		
-		System.out.println("reservationServiceImpl에서의 memberNo : " + no);
 		List<ReservationDTO> resers = reservationMapper.reservationMemberSelectConfirm(no);
 		
 		System.out.println(resers);
@@ -148,5 +148,25 @@ public class ReservationServiceImpl implements ReservationService {
 		map.put("res2", reservationMapper.deletePayments(resNo));
 		map.put("res3", reservationMapper.deletePrice(resNo));
 		return map;
+	}
+	
+	@Override
+	public Map<String, Object> changeReservation(ReservationDTO reservation, HttpServletResponse response) {
+		try {
+			Map<String, Object> map = new HashMap<>();
+			map.put("res", reservationMapper.updateReservation(reservation));
+			return map;
+		} catch (Exception e) {
+			try {
+			response.setContentType("text/plain");
+			PrintWriter out = response.getWriter();
+			response.setStatus(503); 
+			out.println("잘못된 데이터가 전달되었습니다.");
+			out.close();
+			} catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return null;
 	}
 }

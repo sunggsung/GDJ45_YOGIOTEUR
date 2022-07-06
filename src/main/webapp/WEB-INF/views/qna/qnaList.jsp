@@ -32,9 +32,6 @@
   }
  	
 </script>
-<<<<<<< HEAD
-
-=======
 <style>
   table {
     width: 1200px;
@@ -85,7 +82,6 @@
 	}
   
 </style>
->>>>>>> yiseul
 </head>
 <body>
    
@@ -97,15 +93,9 @@
    <c:if test = "${loginMember.memberId eq null}">
 	   	로그인 후 작성가능합니다.
    </c:if> 
-<<<<<<< HEAD
    <c:if test = "${loginMember.memberId ne null}">
-	   	<a href="${contextPath}/qna/qnaSavePage">새글작성</a>
-   </c:if> 
-=======
-   <%-- <c:if test = "${loginMember.memberId ne null}"> --%>
 	   	<a class="qnaAddA" href="${contextPath}/qna/qnaSavePage">새글작성</a>
-   <%-- </c:if>  --%>
->>>>>>> yiseul
+   </c:if>
   
   <hr>
   
@@ -115,10 +105,7 @@
   			<td>제목</td>
   			<td>작성자</td>
   			<td>작성일자</td>
-<<<<<<< HEAD
-=======
   			<td>조회수</td>
->>>>>>> yiseul
   			<c:if test = "${loginMember.memberId ne null}">
   			<td>삭제</td>
   			</c:if>
@@ -127,33 +114,20 @@
   	<tbody>
   			<c:forEach items="${qnas}" var="qna">
 	  				<tr id="qna_${qna.qnaNo}">
-<<<<<<< HEAD
-	  					<td><a href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
-	  					<td>${qna.memberId}</td>
-	  					<td>${qna.qnaCreated}</td>
-	  					
-	  						<td><input type="button" value="삭제" data-qna_no = "${qna.qnaNo}" onclick="fnRemove(this)"></td>
-	  					
-=======
 	  					<td><a class="qnaNameA" href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
 	  					<td>${qna.memberId}</td>
 	  					<td>${qna.qnaCreated}</td>
 	  					<td>${qna.qnaHit}</td>	  					
-	  					<%-- <c:if test = "${loginMember.memberId eq qna.memberId || loginMember.memberId eq 'admin123'}"> --%>
+	  					<c:if test = "${loginMember.memberId eq qna.memberId || loginMember.memberId eq 'admin12'}">
 	  						<td><input type="button" value="삭제" data-qna_no = "${qna.qnaNo}" onclick="fnRemove(this)"></td>
-	  					<%-- </c:if> --%>
->>>>>>> yiseul
+	  					</c:if>
 	  				</tr>
   			</c:forEach>
   		
   	</tbody>
   </table>
   
-<<<<<<< HEAD
-  	<div>${paging}</div>
-=======
   	<div class="paging">${paging}</div>
->>>>>>> yiseul
   	
   	<jsp:include page="../layout/footer.jsp"></jsp:include>
   	

@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 </head>
 <body>
 
@@ -27,12 +28,12 @@
 			<!-- 로그인 이전 -->
 			<c:if test="${loginMember eq null}">
 				<a href ="${contextPath}/member/loginPage">로그인</a>
-				<a href ="${contextPath}/member/agreePage">회원가입</a>			
+				<a href ="${contextPath}/member/agreePage">회원가입</a>	
 			</c:if>
 		
 			<!-- 로그인 이후 -->
 			<c:if test="${loginMember ne null}">
-				 ${loginMember.memberName}님 
+				${loginMember.memberName}님
 				<a href ="${contextPath}/member/logout">로그아웃</a>
 				<a href ="${contextPath}/member/memberPage">마이페이지</a>		
 			</c:if>

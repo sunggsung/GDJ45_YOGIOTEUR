@@ -16,9 +16,6 @@
 <script>
  
  
-<<<<<<< HEAD
-    
-=======
  	$(function(){
  		fnTextareaLimitQna();
  		fnQnaAddCheck();
@@ -49,27 +46,10 @@
 				return true;
 			})
 		}
->>>>>>> yiseul
 </script>
 
 </head>
 <body>
-<<<<<<< HEAD
-   
-   <h1>QnA 문의사항</h1>
-  
-   
-  
-  
-   <form id="QnaAdd" method="post" action="${contextPath}/qna/qnaSave">
-   		<input type="hidden" name="memberId" value="${loginMember.memberId}"> 
-   		제목 : <input type="text" id="qnaTitle" name="qnaTitle"><br>
-   		내용 : <textarea rows="20" cols="50" name="qnaContent"></textarea>
-   		<button>등록하기</button>
-   </form>
-  
-  
-=======
    <jsp:include page="../layout/header.jsp"></jsp:include>
    
    <h1>QnA 문의사항</h1>
@@ -86,7 +66,6 @@
    </form>
   
   <jsp:include page="../layout/footer.jsp"></jsp:include>
->>>>>>> yiseul
   
   
 </body>

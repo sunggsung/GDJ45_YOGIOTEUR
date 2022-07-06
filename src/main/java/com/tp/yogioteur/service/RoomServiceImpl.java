@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 
 import com.tp.yogioteur.domain.ImageDTO;
+import com.tp.yogioteur.domain.ReservationDTO;
 import com.tp.yogioteur.domain.RoomDTO;
 import com.tp.yogioteur.mapper.RoomMapper;
 
@@ -40,17 +41,23 @@ public class RoomServiceImpl implements RoomService {
 	 */
 
 	@Override
-	public List<RoomDTO> roomList(Map param) {
+	public List<RoomDTO> roomList(HttpServletRequest request) {
+		
+		
+		
 		/*
 		 * Date checkIn = Date.valueOf(request.getParameter("checkIn"));
 		 * Date checkOut =Date.valueOf(request.getParameter("checkOut"));
 		 */
 		
-		List<RoomDTO> roomList = roomMapper.checkInRoomList(param);
-		
-		//가공/수정
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("roomCheckIn", request.getParameter("roomCheckIn"));
+		map.put("roomCheckOut", request.getParameter("roomCheckOut"));
+		List<RoomDTO> roomList = roomMapper.checkInRoomList(map);
 		
 		return roomList;
+		
+		
 	}
 	
 	@Override
@@ -92,5 +99,20 @@ public class RoomServiceImpl implements RoomService {
 		//객실 정보 가져와서 model에 저장
 		
 	}
+	
+	@Override
+	public Map<String, Object> changeRoomStatusOff(Long roomNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("res", roomMapper.updateRoomStatusOff(roomNo));
+		return map;
+	}
+	
+	@Override
+	public Map<String, Object> changeRoomStatusOn(Long roomNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("res", roomMapper.updateRoomStatusOn(roomNo));
+		return map;
+	}
+	
 	
 }

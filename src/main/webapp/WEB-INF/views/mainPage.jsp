@@ -10,8 +10,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@700&family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${contextPath}/resources/css/footer.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/header.css">
+<link rel="stylesheet" href="resources/css/footer.css">
+<link rel="stylesheet" href="resources/css/header.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="https://kit.fontawesome.com/148c1051b1.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -19,12 +19,10 @@
 
 <style type="text/css">
 	
-	
 	body{
-			margin: 0;
-			font-family: 'Kdam Thmor Pro', sans-serif;
-		}
-		
+		margin: 0;
+		font-family: 'Kdam Thmor Pro', sans-serif;
+	}
 	
 	a{
 		text-decoration: none;
@@ -54,7 +52,78 @@
 		
 	}
 	
+	button {
+	  margin: 5px;
+	  outline: none;
+	}
+	.custom-btn {
+	  width: 122px;
+	  height: 45px;
+	  padding: 8px 20px;
+	  border: 2px solid #000;
+	  font-family: 'Lato', sans-serif;
+	  font-weight: 500;
+	  font-size: 18px;
+	  background: transparent;
+	  cursor: pointer;
+	  transition: all 0.3s ease;
+	  position: relative;
+	  display: inline-block;
+	}
 	
+	/* 13 */
+	.btn-13 {
+	  background: #000;
+	  color: #fff;
+	  z-index: 1;
+	}
+	.btn-13:after {
+	  position: absolute;
+	  content: "";
+	  width: 100%;
+	  height: 0;
+	  bottom: 0;
+	  left: 0;
+	  z-index: -1;
+	  background: #fff;
+	  transition: all 0.3s ease;
+	}
+	.btn-13:hover {
+	  color: #000;
+	}
+	.btn-13:hover:after {
+	  top: 0;
+	  height: 100%;
+	}
+	.btn-13:active {
+	  top: 2px;
+	}
+	.btn-14 {
+	  background: #000;
+	  color: #fff;
+	  z-index: 1;
+	}
+	.btn-14:after {
+	  position: absolute;
+	  content: "";
+	  width: 100%;
+	  height: 0;
+	  bottom: 0;
+	  left: 0;
+	  z-index: -1;
+	  background: #fff;
+	  transition: all 0.3s ease;
+	}
+	.btn-14:hover {
+	  color: #000;
+	}
+	.btn-14:hover:after {
+	  top: 0;
+	  height: 100%;
+	}
+	.btn-14:active {
+	  top: 2px;;
+	}
 	
 	.weather_api{
 		
@@ -90,23 +159,15 @@
 		$('#f').on('submit', (ev)=>{
 			
 			if($('#roomCheckIn').val() == '' || $('#roomCheckOut').val() == ''){
-				alert('날짜를 선택하세요.');
+				alert('날짜를 선택해주세요.');
 				ev.preventDefault();
 		}
-			var date1 = new Date($('#roomCheckIn').datepicker('getDate'));
-			var date2 = new Date($('#roomCheckOut').datepicker('getDate'));
-			if(date2 - date1 < 0){
-				alert('날짜를 확인해주세요.')
-				return false;
-				
-			}
+			
 		})
 		
 		fnTour();
 
 	})
-	
-	document.oncontextmenu = function(){return false;}
 	
   //함수
   
@@ -124,11 +185,12 @@
 			dataType: 'json',
 			success: function(responseText){
 				//var items = responseText.response.body.items.item;
-				$('#items').empty();
+				//$('#items').empty();
+				var html = '';
+				console.log(responseText);
 				$.each(responseText, function(i, item){
-					var tr = '<tr>';
-					tr += '<td>' + item.tm + '</td>';
-					tr += '<td>' + item.spotName + '</td>';
+					html += '<td>' + item.tm + '</td>';
+					html += '<td>' + item.spotName + '</td>';
 					var sky;
 					switch(item.sky){
 					case 1: sky = '맑음'; break;
@@ -141,11 +203,12 @@
 					case 8: sky = '눈'; break;
 					default: sky = '모름';
 					}
-					tr += '<td>' + sky + '</td>';
-					tr += '<td>' + item.th3 + '</td>';
-					tr += '<td>' + item.rhm + '%</td>';
-					tr += '<td>' + item.pop + '%</td>';
-					$('#items').append(tr);
+					html += '<td>' + sky + '</td>';
+					html += '<td>' + item.th3 + '</td>';
+					html += '<td>' + item.rhm + '%</td>';
+					html += '<td>' + item.pop + '%</td>';
+					$('.index'+i).append(html);
+					html = '';
 				})
 			}
 		})
@@ -153,8 +216,7 @@
   
   
 </script>
-<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
-
+<body>
 
 	<jsp:include page="layout/header.jsp"></jsp:include>
 	
@@ -176,7 +238,7 @@
 			</div>	
 			&nbsp;&nbsp;	
 			<button class="custom-btn btn-13" >검색</button>
-			<button class="custom-btn btn-14" type="reset" id="reset">초기화</button>
+			<button class="custom-btn btn-14" type="reset">초기화</button>
 		</div>
 		
 		</form>
@@ -184,28 +246,27 @@
 	</div>
 	
 	<div class="weather_api">
-		<div class="image">
-			<img src="resources/image/mainPageImage1.jpg" alt="image1" width="90%" height="300px">
-		</div>
-		<div class="image">
-			<img src="resources/image/mainPageImage2.jpg" alt="image2" width="90%" height="300px">
-		</div>
-		<div>
-			<img src="resources/image/mainPageImage3.jpg" alt="image3" width="90%" height="300px">
-			<!-- <table border="1">
-				<thead>
-					<tr>
-						<td>예보시각</td>
-						<td>관광지명</td>
-						<td>날씨</td>
-						<td>기온</td>
-						<td>습도</td>
-						<td>강수확률</td>
-					</tr>
-				</thead>
-				<tbody id="items"></tbody>
-			</table> -->
-		</div>
+		
+		<table>
+			<tbody>
+				<tr>
+					<td><img src="resources/image/mainPageImage1.jpg" alt="image1" width="90%" height="300px"></td>
+					<td><img src="resources/image/mainPageImage2.jpg" alt="image2" width="90%" height="300px"></td>
+					<td><img src="resources/image/mainPageImage3.jpg" alt="image3" width="90%" height="300px"></td>
+				</tr>
+				<tr id="items">
+					<td class="index0"></td>
+					<td class="index1"></td>
+					<td class="index2"></td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 		<td>예보시각</td>
+					<td>관광지명</td>
+					<td>날씨</td>
+					<td>기온</td>
+					<td>습도</td>
+					<td>강수확률</td> -->
 	</div>
 
 	<div class="footer">

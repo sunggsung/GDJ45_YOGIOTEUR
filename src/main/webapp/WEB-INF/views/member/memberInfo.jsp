@@ -95,7 +95,6 @@
 			})
 		})
 	}
-
 	
 	function fnPostcode() {
         new daum.Postcode({

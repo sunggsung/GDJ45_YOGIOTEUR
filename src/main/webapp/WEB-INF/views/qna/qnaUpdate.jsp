@@ -15,10 +15,6 @@
 
 <script>
  
-<<<<<<< HEAD
- 
-    
-=======
 	$(function(){
 			fnTextareaLimitQnaM();
 			fnQnaAddMCheck();
@@ -50,29 +46,10 @@
 			})
 		}
 	    
->>>>>>> yiseul
 </script>
 
 </head>
 <body>
-<<<<<<< HEAD
-   
-   <h1>QnA 문의사항 수정</h1>
-  
-   
-  
-  
-   <form id="QnaAdd" method="post" action="${contextPath}/qna/qnaUpdate">
-   
-   		<input type="hidden" name="qnaNo" value="${qna.qnaNo}"> 
-   		<input type="hidden" name="memberId" value="${qna.memberId}" readonly> 
-   		제목 : <input type="text" id="qnaTitle" name="qnaTitle" value="${qna.qnaTitle}" readonly><br>
-   		내용 : <textarea rows="20" cols="50" name="qnaContent">${qna.qnaTitle}</textarea>
-   		<button>수정하기</button>
-   </form>
-  
-  
-=======
    <jsp:include page="../layout/header.jsp"></jsp:include>
    
    <h1>QnA 문의사항 수정</h1>
@@ -91,7 +68,6 @@
    </form>
   
   <jsp:include page="../layout/footer.jsp"></jsp:include>
->>>>>>> yiseul
   
   
 </body>

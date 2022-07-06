@@ -151,11 +151,11 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public void paymentCancle(String merchant_uid, String access_token, int amount, String reason) throws IOException {
-//		System.out.println("결제 취소");
-//		
-//		System.out.println(access_token);
-//		
-//		System.out.println(merchant_uid);
+		System.out.println("결제 취소");
+		
+		System.out.println(access_token);
+		
+		System.out.println(merchant_uid);
 		
 		HttpsURLConnection conn = null;
 		URL url = new URL("https://api.iamport.kr/payments/cancel");

@@ -22,7 +22,6 @@
 		deleteReser();
 		reviewPage();
 	})
-	
 	function popupOpen(){	
 		$(".cancelBtn").click(function(){ 
 			var cancelBtn = $(this);
@@ -83,12 +82,14 @@
 			var roomNo = td.eq(1).text();
 			
 			console.log(roomNo);
-		
+			/*
 			$.ajax({
 				url: '${contextPath}/review/reviewSavePage',
 				type: 'GET',
 				data: { "roomNo" : roomNo }
 			})
+			*/
+			location.href = '${contextPath}/review/reviewSavePage?roomNo=' + roomNo;
 		})
 	}
 </script>
@@ -115,7 +116,8 @@
 						<td>체크아웃날짜</td>
 						<td>예약인원</td>
 						<td>예약상태</td>
-						<td>예약취소</td> <!--  -->
+						<td>리뷰</td>
+						<td></td> <!--  -->
 					</tr>
 				</thead>
 				<tbody id="confirmReser">

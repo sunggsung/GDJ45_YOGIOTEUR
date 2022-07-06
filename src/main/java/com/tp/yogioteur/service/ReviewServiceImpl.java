@@ -24,8 +24,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.tp.yogioteur.domain.ReImageDTO;
 import com.tp.yogioteur.domain.ReviewDTO;
 import com.tp.yogioteur.domain.ReviewReplyDTO;
+import com.tp.yogioteur.domain.RoomDTO;
 import com.tp.yogioteur.mapper.ReviewMapper;
 import com.tp.yogioteur.mapper.ReviewReplyMapper;
+import com.tp.yogioteur.mapper.RoomMapper;
 import com.tp.yogioteur.util.MyFileUtils;
 import com.tp.yogioteur.util.PageUtils;
 
@@ -37,6 +39,9 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	private ReviewReplyMapper reviewReplyMapper;
+	
+	@Autowired
+	private RoomMapper roomMapper;
 
 	// 목록보기
 	@Override
@@ -92,6 +97,18 @@ public class ReviewServiceImpl implements ReviewService {
 		return entity;
 	}
 
+	// 예약 방 알아오기
+	@Override
+	public void ReviewReservation(Long roomNo, Model model) {
+		
+		RoomDTO room =  roomMapper.selectRoomTypeByNo(roomNo);
+		
+		model.addAttribute("room", room);
+		
+	}
+	
+	
+	
 	// 리뷰 저장
 	@Override
 	public void ReviewSave(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {

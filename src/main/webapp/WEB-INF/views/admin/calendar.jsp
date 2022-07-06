@@ -95,18 +95,6 @@
 			  console.log(obj);
 			},
 			
-			/* select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-				var title = prompt('Event Title:');
-				if (title) {
-					calendar.addEvent({
-						title: title,
-						start: arg.start,
-						end: arg.end,
-						allDay: arg.allDay
-					})
-				}
-				calendar.unselect()
-			}, */
 			// DB에 저장된 예약 정보들을 조회후 달력에 표시
 			events: function(info, successCallback, failureCallback) {
 				$.ajax({

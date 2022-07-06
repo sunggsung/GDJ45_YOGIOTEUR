@@ -74,7 +74,10 @@
 	}
 	
 </script>
-
+<style>
+	
+	
+</style>
 </head>
 <body>
 
@@ -86,8 +89,8 @@
 	   <form id="reviewAdd" action="${contextPath}/review/reviewSave" method="post" enctype="multipart/form-data">
 	   		
 	   		아이디 : <input type="text" id="memberId" name="memberId" value="${loginMember.memberId}" readonly> <br>
-	   		<input type="text" id="roomName" name="roomName" value="방1" readonly> 
-	   		<input type="text" id="rtType" name="rtType" value="싱글" readonly> <br>
+            <input type="text" id="roomName" name="roomName" value="${room.roomName}" readonly> 
+            <input type="text" id="rtType" name="rtType" value="${room.roomTypeDTO.rtType}" readonly> <br>
 	   		
 	  		별점 :
 	   		<fieldset>
