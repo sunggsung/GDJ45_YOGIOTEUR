@@ -81,12 +81,14 @@
 			var roomNo = td.eq(1).text();
 			
 			console.log(roomNo);
-		
+			/*
 			$.ajax({
 				url: '${contextPath}/review/reviewSavePage',
 				type: 'GET',
 				data: { "roomNo" : roomNo }
 			})
+			*/
+			location.href = '${contextPath}/review/reviewSavePage?roomNo=' + roomNo;
 		})
 	}
 </script>

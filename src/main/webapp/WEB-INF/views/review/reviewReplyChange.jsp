@@ -18,7 +18,7 @@
 		fnReviewReplyModifyCheck();
 	})
 	
-	function fnReviewReplyMLimit{
+	function fnReviewReplyMLimit(){
 		$('#replyContent').on('keyup', function(){
 			$('#replyContent_cnt').html("(" + $(this).val().length+" / 500)");
 			
