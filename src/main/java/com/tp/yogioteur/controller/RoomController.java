@@ -22,7 +22,7 @@ public class RoomController {
 	// 객실 조회
 	@PostMapping("/room/roomList")
 	public String roomList(HttpServletRequest request, Model model) {
-		 model.addAttribute("roomList", roomService.roomList(request));
+		 model.addAttribute("roomList", roomService.roomList(request, model));
 		 return "room/roomList";
 	}
 

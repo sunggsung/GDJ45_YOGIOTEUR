@@ -16,7 +16,7 @@ public interface RoomService {
 	
 
 	//객실 조회
-	public List<RoomDTO> roomList(HttpServletRequest request);
+	public List<RoomDTO> roomList(HttpServletRequest request, Model model);
 	//객실 이미지
 	public ResponseEntity<byte[]> view(Long roomNo, String type);
 	

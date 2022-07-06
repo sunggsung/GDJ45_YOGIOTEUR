@@ -115,8 +115,8 @@ function openChild(var roomNo)
 						</td>	
 						<td>
 						   <input type="hidden" id="roomPr" name="roomPr" value="${room.roomPrice}">
-						   <input type="hidden" id="chkIn" name="chkIn" value="${room.roomCheckIn}">
-						   <input type="hidden" id="chkOut" name="chkOut" value="${room.roomCheckOut}">	
+						   <input type="hidden" id="roomChkIn" name="roomChkIn" value="${room.roomCheckIn}">
+						   <input type="hidden" id="roomChkOut" name="roomChkOut" value="${room.roomCheckOut}">	
 						   <input type="button" class="custom-btn btn-16" value="${room.roomPrice}KRW" onclick="goPost()">
 						</td>
 					</tr>
@@ -126,6 +126,8 @@ function openChild(var roomNo)
 		
 	</table>
 	
+	<input type="hidden" id="chkIn" name="chkIn" value="${chkIn}">
+	<input type="hidden" id="chkOut" name="chkOut" value="${chkOut}">	
 </body>
 		<jsp:include page="../layout/footer.jsp"></jsp:include>
 </html>

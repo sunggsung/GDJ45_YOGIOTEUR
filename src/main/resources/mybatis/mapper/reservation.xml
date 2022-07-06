@@ -12,9 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(#{reserNo}, #{memberNo}, #{roomNo}, #{reserCheckIn}, #{reserCheckOut}, #{reserPeople}, #{reserFood}, #{reserStatus}, #{reserRequest})
 	</insert>
 	
-	<select id="reservationSelect" resultType="ReservationDTO">
+	<select id="reservationSelectStatus" parameterType="Integer" resultType="ReservationDTO">
 		SELECT RESER_NO, MEMBER_NO, ROOM_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE, RESER_FOOD, RESER_STATUS, RESER_REQUEST
 		  FROM RESERVATION
+		 WHERE RESER_STATUS = #{reserStatus}
 	</select>
 	
 	<select id="reservationSelectConfirm" parameterType="String" resultType="ReservationDTO">

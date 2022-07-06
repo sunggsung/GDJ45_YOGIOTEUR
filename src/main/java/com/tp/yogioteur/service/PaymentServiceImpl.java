@@ -157,6 +157,8 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		System.out.println(merchant_uid);
 		
+		reservationMapper.deletePayments(merchant_uid);
+		
 		HttpsURLConnection conn = null;
 		URL url = new URL("https://api.iamport.kr/payments/cancel");
  
