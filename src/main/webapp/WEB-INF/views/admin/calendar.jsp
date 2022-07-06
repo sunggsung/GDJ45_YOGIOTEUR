@@ -88,9 +88,6 @@
 			dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
 			locale: 'ko', // 한국어 설정
 			//timeZone: 'Asia/Seoul',
-			eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
-			  console.log(obj);
-			},
 			eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
 			  console.log(obj);
 			},
@@ -98,18 +95,6 @@
 			  console.log(obj);
 			},
 			
-			/* select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-				var title = prompt('Event Title:');
-				if (title) {
-					calendar.addEvent({
-						title: title,
-						start: arg.start,
-						end: arg.end,
-						allDay: arg.allDay
-					})
-				}
-				calendar.unselect()
-			}, */
 			// DB에 저장된 예약 정보들을 조회후 달력에 표시
 			events: function(info, successCallback, failureCallback) {
 				$.ajax({
@@ -120,6 +105,7 @@
 						console.log(obj.reservations)
 						let arr = [];
 						$.each(obj.reservations, function(i, reservation) {
+							var status = reservation.reserStatus;
 							arr.push({
 								title: reservation.roomNo + '번 객실'
 								, start: reservation.reserCheckin
@@ -129,8 +115,9 @@
 									, reserStatus: reservation.reserStatus
 									, reserPeople: reservation.reserPeople
 									, reserFood: reservation.reserFood
-								},
-								allDay : true
+								}
+								, allDay : true
+								, color: fnColor(status)
 							})
 						})
 						successCallback(arr);
@@ -164,6 +151,13 @@
         	 childWindow.$('#receive_msg').text($('#reserNo').val());
          }
      }
+    function fnColor(status) {
+    	if(status == 0) {
+			return 'blue';
+    	} else if(status == 1) {
+    		return 'red';
+    	}
+	}
 	
 </script>
 </head>

@@ -13,10 +13,11 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ReviewDTO {
 	
-	private Long rnc;
+	
 	private Long reviewNo;
-	private Long memberNo;
-	private Long reserNo;
+	private String memberId;
+	private String roomName;
+	private String rtType;
 	private String reviewTitle;
 	private String reviewContent;
 	private Date reviewCreated;

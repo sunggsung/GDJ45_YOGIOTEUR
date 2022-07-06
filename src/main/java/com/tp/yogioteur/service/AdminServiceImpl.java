@@ -36,7 +36,7 @@ import net.coobird.thumbnailator.Thumbnails;
 @Service
 public class AdminServiceImpl implements AdminService {
 	
-	@Autowired private AdminMapper adminMapper;
+@Autowired private AdminMapper adminMapper;
 	
 	@Override
 	@Transactional
@@ -96,7 +96,6 @@ public class AdminServiceImpl implements AdminService {
 						Thumbnails.of(file)
 							.size(96, 54)
 							.toFile(new File(dir, "s_" + saved));
-						
 						ImageDTO image = ImageDTO.builder()
 								.imagePath(path)
 								.imageOrigin(origin)
@@ -250,19 +249,20 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	@Transactional
 	public void changeRoom(MultipartHttpServletRequest request, HttpServletResponse response) {
 		String roomName = request.getParameter("roomName");
 		Integer roomPrice = Integer.parseInt(request.getParameter("roomPrice"));
 		Long rtNo = Long.parseLong(request.getParameter("rtNo"));
 		Long roomNo = Long.parseLong(request.getParameter("roomNo"));
+		Integer roomStatus = Integer.parseInt(request.getParameter("roomStatus"));
 		
-		
+		System.out.println(roomStatus);
 		RoomDTO room = RoomDTO.builder()
 				.roomNo(roomNo)
 				.roomName(roomName)
 				.roomPrice(roomPrice)
 				.rtNo(rtNo)
+				.roomStatus(roomStatus)
 				.build();
 		
 		int res = adminMapper.updateRoom(room);
@@ -416,6 +416,15 @@ public class AdminServiceImpl implements AdminService {
 		model.addAttribute("member", reservation.getMember());
 		model.addAttribute("room", reservation.getRoom());
 		return model;
+	}
+	
+	@Override
+	public Map<String, Object> removeReservation(Long reserNo){
+		int res = adminMapper.deleteReservation(reserNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("res", res);
+		
+		return map;
 	}
 	
 }
