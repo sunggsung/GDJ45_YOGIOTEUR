@@ -142,8 +142,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<resultMap type="ReservationDTO" id="ReservationMap">
 		<id column="RESER_NO" property="reserNo"/>
-		<result column="RESER_CHECKIN" property="reserCheckin"/>
-		<result column="RESER_CHECKOUT" property="reserCheckout"/>
+		<result column="RESER_CHECKIN" property="reserCheckIn"/>
+		<result column="RESER_CHECKOUT" property="reserCheckOut"/>
 		<result column="RESER_STATUS" property="reserStatus"/>
 		<result column="RESER_PEOPLE" property="reserPeople"/>
 		<result column="RESER_FOOD" property="reserFood"/>

@@ -102,14 +102,13 @@
 					type: 'GET',
 					dataType: 'json',
 					success: function(obj) {
-						console.log(obj.reservations)
 						let arr = [];
 						$.each(obj.reservations, function(i, reservation) {
 							var status = reservation.reserStatus;
 							arr.push({
 								title: reservation.roomNo + '번 객실'
-								, start: reservation.reserCheckin
-								, end : reservation.reserCheckout + (1000 * 60 * 60 * 24) // 체크아웃날짜까지 포함시켜서 표시
+								, start: reservation.reserCheckIn
+								, end : formatDate(reservation.reserCheckOut)
 								, extendedProps : {
 									reserNo: reservation.reserNo
 									, reserStatus: reservation.reserStatus
@@ -151,13 +150,28 @@
         	 childWindow.$('#receive_msg').text($('#reserNo').val());
          }
      }
-    function fnColor(status) {
-    	if(status == 0) {
-			return 'blue';
-    	} else if(status == 1) {
-    		return 'red';
-    	}
-	}
+     function fnColor(status) {
+     	if(status == 1) {
+ 			return 'blue';
+     	} else if(status == 0) {
+     		return 'red';
+     	}
+ 	}
+     
+ 	// 타임스탬프 형식을 yyyy-MM-dd 로 반환
+ 	function formatDate(date) {
+ 	    var d = new Date(date),
+ 	        month = '' + (d.getMonth() + 1),
+ 	        day = '' + (d.getDate() + 1), //체크아웃날짜까지 포함시켜서 표시(실제 DB는 안바뀜)
+ 	        year = d.getFullYear();
+
+ 	    if (month.length < 2) 
+ 	        month = '0' + month;
+ 	    if (day.length < 2) 
+ 	        day = '0' + day;
+
+ 	    return [year, month, day].join('-');
+ 	}
 	
 </script>
 </head>
@@ -169,11 +183,6 @@
 		<jsp:include page="index.jsp"></jsp:include>
 		<div id="calendar" class="grid_item"></div>
 	</div>
-	
-	<h1 id="receive_msg"></h1>
-    <form>
-        <input type="hidden" id="reserNo" value="">
-    </form>
 	
 </body>
 </html>
