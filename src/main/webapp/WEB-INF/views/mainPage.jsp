@@ -9,14 +9,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://kit.fontawesome.com/148c1051b1.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@700&family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${contextPath}/resources/css/footer.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<script src="https://kit.fontawesome.com/148c1051b1.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-
+</head>
 <style type="text/css">
 	
 	
@@ -38,11 +37,51 @@
 	
 	}
 	
-	.background{
-		
-		height: 850px;
+	.slick-prev, .slick-next {
+    font-size: 0;
+    position: absolute;
+    bottom: 20px;
+    color: #fff;;
+    border: 0;
+    background: none;
+    z-index: 1;
+    top: 20px;
+    cursor: pointer;
 	
 	}
+	 
+	.slick-prev {
+	    left: 20px;
+	}
+	 
+	.slick-prev:after {
+	      content: "\f104";
+	    font: 40px/1 'FontAwesome';
+	}
+	 
+	.slick-next {
+	    right: 20px;
+	    text-align: right;
+	}
+	 
+	.slick-next:after {
+	       content: "\f105";
+	     font: 40px/1 'FontAwesome';
+	}
+	 
+	.slick-prev:hover:after,
+	.slick-next:hover:after {
+	    color: #7e7e7e;
+	}
+	 
+	
+	.post{
+		
+		width: 100%;
+		height: 850px;
+		
+	}
+	
 	.searchBar{
 		display: flex;
 		align-items: center;
@@ -63,60 +102,62 @@
 		height: 500px;
 		
 	}
-	
-	.image {
-		
-	}
 </style>
-</head>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script type="text/javascript">
 	
+	var aa = jQuery.noConflict();
 	//페이지 로드 이벤트
-	
-	$(function(){
+	aa(function(){
 		
 		
-		 $("#roomCheckIn").datepicker({
+		 aa("#roomCheckIn").datepicker({
 			 dateFormat: 'yy/mm/dd'
 		    });
 		    
-		 $("#roomCheckOut").datepicker({
+		 aa("#roomCheckOut").datepicker({
 			 dateFormat: 'yy/mm/dd'
 		    });
 		 
 		 fnDate();
 		 
+		 
 		//폼의 서브밋 이벤트
-		$('#f').on('submit', (ev)=>{
+		aa('#f').on('submit', (ev)=>{
 			
-			if($('#roomCheckIn').val() == '' || $('#roomCheckOut').val() == ''){
+			if(aa('#roomCheckIn').val() == '' || aa('#roomCheckOut').val() == ''){
 				alert('날짜를 선택하세요.');
 				ev.preventDefault();
-		}
-			var date1 = new Date($('#roomCheckIn').datepicker('getDate'));
-			var date2 = new Date($('#roomCheckOut').datepicker('getDate'));
-			if(date2 - date1 < 0){
-				alert('날짜를 확인해주세요.')
 				return false;
-				
 			}
+			var date1 = new Date(aa('#roomCheckIn').datepicker('getDate'));
+			var date2 = new Date(aa('#roomCheckOut').datepicker('getDate'));
+			if(date2 - date1 < 0){
+				alert('날짜를 확인해주세요.');
+				return false;
+			}
+			
+			return true;
+			
 		})
 		
 		fnTour();
-
+	
 	})
 	
 	document.oncontextmenu = function(){return false;}
 	
-  //함수
-  
-   function fnDate(){
-		
-		 $('#roomCheckIn').datepicker('option', 'minDate','0');//오늘부터 선택가능
-		 $('#roomCheckOut').datepicker('option', 'minDate','+1');//다음날부터 선택가능 특정날짜 키워드로 찾아보기
+	 function fnDate(){
+			
+		 aa('#roomCheckIn').datepicker('option', 'minDate','0');//오늘부터 선택가능
+		 aa('#roomCheckOut').datepicker('option', 'minDate','+1');//다음날부터 선택가능 특정날짜 키워드로 찾아보기
 		
 	} 
-	
+</script>
+<script>	
+  //함수
+  
 	function fnTour(){
 		$.ajax({
 			url: '${contextPath}/admin/tour',
@@ -151,15 +192,31 @@
 		})
 	}
   
-  
+
+	
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+	
+	var bb = jQuery.noConflict();
+	bb(function(){
+	 bb('.mainImg').slick({
+		 autoplay: true,
+		 autoplaySpeed: 2000
+		
+		}); 
+	})
 </script>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
 
-
+	
 	<jsp:include page="layout/header.jsp"></jsp:include>
 	
-	<div class="background">
-		<img src="resources/image/hotel.jpg" alt="main" width="100%" height="850px">
+	<div class="mainImg">
+			<div><img class="post" src="resources/image/hotel.jpg" alt="main" ></div>
+			<div><img class="post" src="resources/image/rounge.jpg" alt="main"></div>
+			<div><img class="post" src="resources/image/pool.jpg" alt="main" ></div>
+			<div><img class="post" src="resources/image/restaurant.jpg" alt="main" ></div>
 	</div>
 	
 	<div class="center">
