@@ -31,6 +31,6 @@ public interface MemberMapper {
 	
 	public Long selectNaverNo(Map<String, String> user);
 	public Long insertNaverMember(Map<String, String> user);
-	public int insertNaverLog(String id);
+	public int insertNaverLog(Long no);
 	
 }

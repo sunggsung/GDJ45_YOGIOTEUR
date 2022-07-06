@@ -40,6 +40,7 @@
 			window.open(popUrl,"",popOption);	
 		})
 	}
+	
 	function deleteReser(){
 		$('.deleteBtn').click(function(){
 			var deleteBtn = $(this);

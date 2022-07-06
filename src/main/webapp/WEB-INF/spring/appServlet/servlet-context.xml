@@ -38,6 +38,8 @@
 		<!-- 예약과리뷰 버튼으로 나중에 수정필요. -->
 			<mapping path="/review/reviewSavePage"/>
 			<mapping path="/reservation/reservationPage"/>
+			<mapping path="/qnaReply/qnaReplySave"/>
+			<mapping path="/qnaReply/qnaReplySaveSecond"/>			
 			<beans:ref bean="RequiredLoginInterceptor"/>
 		</interceptor>
 		<interceptor>
@@ -51,6 +53,12 @@
 			<beans:ref bean="NaverInterceptor"/>
 		</interceptor>
 	</interceptors>
+	
+<!-- 	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/css/**" location="/resources/css/" />	
+	<resources mapping="/js/**" location="/resources/js/" />	
+	<resources mapping="/image/**" location="/resources/image/" /> -->
+
 	
 	
 </beans:beans>

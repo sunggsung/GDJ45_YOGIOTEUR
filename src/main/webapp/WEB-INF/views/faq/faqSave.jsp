@@ -43,6 +43,43 @@
 	
 	
 </script>
+<style type="text/css">
+	#faqSv {
+		width : 500px;
+		margin : 0 auto;
+	}
+	
+	h1 {
+		text-align : center;
+	}
+	
+	#faqTitle{
+		width: 500px;
+		height: 45px;
+		font-size: 15px;
+		border: 0;
+		border-radius: 10px;
+		outline: none;
+		padding-left: 10px;
+		background-color: rgb(233, 233, 233);
+		margin : 15px 0;
+		
+	}
+	
+	#faqContent {
+		width: 500px;
+	    height: 300px;
+	    font-size: 15px;
+	    border: 0;
+	    border-radius: 10px;
+	    outline: none;
+	    padding-left: 10px;
+	    background-color: rgb(233, 233, 233);
+	    margin : 15px 0;
+	    padding : 10px;
+	}
+	
+</style>
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>

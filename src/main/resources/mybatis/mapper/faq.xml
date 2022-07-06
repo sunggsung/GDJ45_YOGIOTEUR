@@ -50,7 +50,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		   FROM FAQ
  		  WHERE FAQ_TITLE LIKE CONCAT('%' , IFNULL(#{faqQuery}, '') , '%')
 		  ORDER BY FAQ_NO DESC
-          LIMIT #{beginRecord}, #{recordPerPage}
 	</select>
 	
 </mapper>
