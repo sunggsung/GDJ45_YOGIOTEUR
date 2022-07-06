@@ -64,7 +64,7 @@ public class MemberServiceImpl implements MemberService {
 		props.put("mail.smtp.starttls.enable", "true"); 
 		
 
-		final String USERNAME = "forspringlec@gmail.com";
+		final String USERNAME = "GlobalYogioteurHotel@gmail.com";
 		final String PASSWORD = "ukpiajijxfirdgcz";     
 		
 
@@ -81,7 +81,7 @@ public class MemberServiceImpl implements MemberService {
 			message.setHeader("Content-Type", "text/plain; charset=UTF-8");
 			message.setFrom(new InternetAddress(USERNAME, "YOGIOTEUR HOTEL"));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(memberEmail));
-			message.setSubject("인증 요청 메일입니다.");
+			message.setSubject("[YOGIOTEUR] 요청하신 인증번호 입니다.");
 			message.setText("인증번호는 " + authCode + "입니다. ");
 			
 			Transport.send(message);
@@ -151,7 +151,7 @@ public class MemberServiceImpl implements MemberService {
 			if(res == 1) {
 				out.println("<script>");
 				out.println("alert('회원 가입이 완료되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "'");
+				out.println("location.href='" + request.getContextPath() + "/member/loginPage'");
 				out.println("</script>");
 				out.close();
 			} else {

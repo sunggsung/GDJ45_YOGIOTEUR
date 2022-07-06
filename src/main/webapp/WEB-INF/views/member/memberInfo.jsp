@@ -100,7 +100,6 @@
 			})
 		})
 	}
-
 	
 	function fnPostcode() {
         new daum.Postcode({
@@ -126,7 +125,6 @@
 		})
 	}
 	
-
 	let rePwPass = false;
 	function fnPwConfirm(){
 		$('#memberRePw').on('keyup', function(){

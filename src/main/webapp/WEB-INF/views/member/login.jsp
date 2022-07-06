@@ -17,7 +17,6 @@
 		fnLogin();	
 		fnRememberId();
 	})
-
 	function fnLogin(){
 	
 		$('#Loginform').on('submit', function(e){
@@ -39,7 +38,6 @@
 			return true;
 		})
 	}
-
 	function fnRememberId(){
 		let rememberId = $.cookie('rememberId');
 		if(rememberId !=''){	

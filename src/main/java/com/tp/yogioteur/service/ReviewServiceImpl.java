@@ -25,7 +25,6 @@ import com.tp.yogioteur.domain.ReImageDTO;
 import com.tp.yogioteur.domain.ReviewDTO;
 import com.tp.yogioteur.domain.ReviewReplyDTO;
 import com.tp.yogioteur.domain.RoomDTO;
-import com.tp.yogioteur.domain.RoomTypeDTO;
 import com.tp.yogioteur.mapper.ReviewMapper;
 import com.tp.yogioteur.mapper.ReviewReplyMapper;
 import com.tp.yogioteur.mapper.RoomMapper;
