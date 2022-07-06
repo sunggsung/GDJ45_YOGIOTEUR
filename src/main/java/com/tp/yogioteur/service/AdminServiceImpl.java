@@ -143,8 +143,8 @@ public class AdminServiceImpl implements AdminService {
 		pageUtils.setPageEntity(totalRecord, page);
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("beginRecord", pageUtils.getBeginRecord());
-		map.put("endRecord", pageUtils.getEndRecord());
+		map.put("beginRecord", pageUtils.getBeginRecord() - 1);
+		map.put("recordPerPage", pageUtils.getRecordPerPage());
 		
 		List<RoomDTO> rooms = adminMapper.selectRoomList(map);
 		
@@ -372,8 +372,8 @@ public class AdminServiceImpl implements AdminService {
 		pageUtils.setPageEntity(totalRecord, page);
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("beginRecord", pageUtils.getBeginRecord());
-		map.put("endRecord", pageUtils.getEndRecord());
+		map.put("beginRecord", pageUtils.getBeginRecord() - 1);
+		map.put("recordPerPage", pageUtils.getRecordPerPage());
 		
 		List<MemberDTO> members = adminMapper.selectMemberList(map);
 		
@@ -410,7 +410,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public Model findReservationByReserNo(HttpServletRequest request, Model model) {
-		Long reserNo = Long.parseLong(request.getParameter("reserNo"));
+		String reserNo = request.getParameter("reserNo");
 		ReservationDTO reservation = adminMapper.selectReservationByReserNo(reserNo);
 		model.addAttribute("reservation", reservation);
 		model.addAttribute("member", reservation.getMember());

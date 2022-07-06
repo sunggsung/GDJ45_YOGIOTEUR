@@ -36,7 +36,7 @@ public interface AdminMapper {
 	public int selectReservationCount();
 	public List<ReservationDTO> selectReservationByMemberNo(Long memberNo);
 	
-	public ReservationDTO selectReservationByReserNo(Long reserNo);
+	public ReservationDTO selectReservationByReserNo(String reserNo);
 	public int deleteReservation(Long reserNo);
 	
 	public void updateRoomStatus(Long roomNo);

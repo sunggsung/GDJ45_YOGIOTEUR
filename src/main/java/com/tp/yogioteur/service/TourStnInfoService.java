@@ -84,7 +84,6 @@ public class TourStnInfoService implements OpenAPIService {
 		} catch (IOException e) {
 			e.printStackTrace();  // API 응답이 실패하였다.
 		}
-		System.out.println(sb2.toString());
 		JSONObject obj = new JSONObject(sb2.toString());
 		JSONObject items = obj.getJSONObject("response").getJSONObject("body").getJSONObject("items");
 		JSONArray item = items.getJSONArray("item");

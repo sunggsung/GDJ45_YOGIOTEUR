@@ -58,13 +58,6 @@
 </style>
 <script>
 
-	var diaLogOpt = {
-		modal:true        //모달대화상자
-		,resizable:false  //크기 조절 못하게
-		, width : "570px"   // dialog 넓이 지정
-		, height : "470px"  // dialog 높이 지정
-	};
-	
 	// 페이지 로드 이벤트
 	$(function(){
 		// calendar element 취득
@@ -107,7 +100,7 @@
 							var status = reservation.reserStatus;
 							arr.push({
 								title: reservation.roomNo + '번 객실'
-								, start: reservation.reserCheckIn
+								, start: replace(reservation.reserCheckIn)
 								, end : formatDate(reservation.reserCheckOut)
 								, extendedProps : {
 									reserNo: reservation.reserNo
@@ -116,7 +109,7 @@
 									, reserFood: reservation.reserFood
 								}
 								, allDay : true
-								, color: fnColor(status)
+								//, color: fnColor(status)
 							})
 						})
 						successCallback(arr);
@@ -172,6 +165,11 @@
 
  	    return [year, month, day].join('-');
  	}
+ 	
+ 	function replace(date) {
+ 		date = date.replace(/[/]/g,'-')
+ 		return date;
+	}
 	
 </script>
 </head>

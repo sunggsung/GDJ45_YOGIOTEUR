@@ -92,7 +92,7 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<td>번호</td>
+						<td>객실번호</td>
 						<td>이름</td>
 						<td>타입</td>
 						<td>가격</td>

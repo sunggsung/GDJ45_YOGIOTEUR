@@ -45,8 +45,7 @@
 				<tbody id="members">
 					<c:forEach items="${members}" var="member" varStatus="vs">
 						<tr>
-							<!-- <td>${beginNo - vs.index}</td> -->
-							<td>${member.memberNo}</td>
+							<td>${beginNo - vs.index}</td>
 							<td>${member.memberId}</td>
 							<td>${member.memberName}</td>
 							<td>${member.memberEmail}</td>
