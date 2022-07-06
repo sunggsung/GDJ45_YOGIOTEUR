@@ -53,24 +53,22 @@
 	function fnQnaReplyCheck(){
 		
 		$('#qnaReplyData').on('submit', function(ev){
+			
 			if($('#qnaReplyContent').val() == ''){
 				alert('댓글을 작성해주세요');
 				ev.preventDefault();
 				return false;
-			}
-			
-			
+			} 
 			return true;
 		})
 		
 		$('#replyadd').on('submit', function(ev){
+			 
 			if($('#qnaReplyContentAdd').val() == ''){
 				alert('댓글을 작성해주세요');
 				ev.preventDefault();
 				return false;
 			}
-			
-			
 			return true;
 		})
 	}
@@ -81,6 +79,8 @@
            location.href='${contextPath}/qnaReply/qnaReplyRemove?qnaReplyNo=' + qnaReplyNo +'&qnaNo=' +qnaNo;
         }
   }
+	
+
 	
 </script>
 
@@ -152,7 +152,7 @@
 		  		아이디 	: ${qna.memberId}<br><br>
 		  		내용 	: ${qna.qnaContent}<br><br><br>
 		 		
-		 		<c:if test="${loginMember.memberId eq qnaReply.memberId}">	 		
+		 		<c:if test="${loginMember.memberId eq qna.memberId}">	 		
 			 		<a class="qnaDtailA"  href="${contextPath}/qna/qnaUpdatePage?qnaNo=${qna.qnaNo}">수정하기</a>
 		 		</c:if>
 		 	
