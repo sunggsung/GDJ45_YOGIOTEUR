@@ -150,22 +150,9 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 	
 	@Override
-	public Map<String, Object> changeReservation(ReservationDTO reservation, HttpServletResponse response) {
-		try {
-			Map<String, Object> map = new HashMap<>();
-			map.put("res", reservationMapper.updateReservation(reservation));
-			return map;
-		} catch (Exception e) {
-			try {
-			response.setContentType("text/plain");
-			PrintWriter out = response.getWriter();
-			response.setStatus(503); 
-			out.println("잘못된 데이터가 전달되었습니다.");
-			out.close();
-			} catch(Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return null;
+	public Map<String, Object> changeReservation(ReservationDTO reservation) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("res", reservationMapper.updateReservation(reservation));
+		return map;
 	}
 }

@@ -35,9 +35,6 @@ k<%@ page language="java" contentType="text/html; charset=UTF-8"
 						} else {
 							alert('예약 정보가 수정되지 않았습니다.');
 						}
-					},
-					error: function(jqXHR){
-						alert('예외코드[' + jqXHR.status + ']' + jqXHR.responseText);
 					}
 				})
 				if(!confirm('예약을 취소하시겠습니까?')) {

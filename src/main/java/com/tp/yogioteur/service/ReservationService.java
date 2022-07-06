@@ -17,5 +17,5 @@ public interface ReservationService {
 	public void confirmsPopUp(String no, HttpServletRequest request, Model model);
 	
 	public Map<String, Object> removeReservation(String resNo);
-	public Map<String, Object> changeReservation(ReservationDTO reservation, HttpServletResponse response);
+	public Map<String, Object> changeReservation(ReservationDTO reservation);
 }

@@ -87,7 +87,7 @@ public class ReservationController {
 	
 	@ResponseBody
 	@PutMapping(value="/reserModify", produces="application/json")
-	public Map<String, Object> changeMember(@RequestBody ReservationDTO reservation, HttpServletResponse response)  throws IOException{ 
+	public Map<String, Object> changeMember(@RequestBody ReservationDTO reservation)  throws IOException{ 
 		String resNo = reservation.getReserNo();
 		Long rooNo = reservation.getRoomNo();
 		
@@ -100,7 +100,7 @@ public class ReservationController {
 		
 		paymentService.paymentCancle(resNo, token, amount, "취소");
 		
-		return reservationService.changeReservation(reservation, response);
+		return reservationService.changeReservation(reservation);
 	}
 	
 }
