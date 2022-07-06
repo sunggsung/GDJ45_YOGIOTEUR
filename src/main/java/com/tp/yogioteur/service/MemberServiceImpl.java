@@ -64,7 +64,7 @@ public class MemberServiceImpl implements MemberService {
 		props.put("mail.smtp.starttls.enable", "true"); 
 		
 
-		final String USERNAME = "GlobalYogioteurHotel@gmail.com";
+		final String USERNAME = "forspringlec@gmail.com";
 		final String PASSWORD = "ukpiajijxfirdgcz";     
 		
 
@@ -445,7 +445,7 @@ public class MemberServiceImpl implements MemberService {
             	if(no == null) {
             		no = memberMapper.insertNaverMember(userInfo);
             	}
-            	memberMapper.insertNaverLog(id);
+            	memberMapper.insertNaverLog(no);
             	MemberDTO naver = MemberDTO.builder()
             			.memberNo(no)
             			.memberId(id)

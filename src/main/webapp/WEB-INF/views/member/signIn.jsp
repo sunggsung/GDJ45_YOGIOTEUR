@@ -50,7 +50,7 @@
 		display: block;
 		position: relative;
 		width: 100%;
-		height: 80px;
+		height: 90px;
 		border: solid 1px #dadada;
 		padding: 10px 110px 10px 14px;
 		box-sizing: border-box;
@@ -96,29 +96,45 @@
 				event.preventDefault();
 				return false;
 			}
-			else if(pwPass == false || rePwPass == false){
+			if(pwPass == false || rePwPass == false){
 				alert('비밀번호를 확인하세요.');
 				event.preventDefault();
 				return false;
 			}
-			else if(authCodePass == false){
+			if(authCodePass == false){
 				alert('이메일 인증을 받아야 합니다.');
 				event.preventDefault();
 				return false;
 			}
-			else if(phonePass == false){
+			if(phonePass == false){
 				alert('전화번호를 확인하세요.');
 				event.preventDefault();
 				return false;
 			}
-			else if(birthPass == false){
+			if(birthPass == false){
 				alert('생년월일을 확인하세요.');
+				event.preventDefault();
+				return false;
+			}
+			if($('#memberPostCode').val() == ''){
+				alert('우편번호를 확인하세요.');
+				event.preventDefault();
+				return false;
+			}
+			if($('#memberRoadAddress').val() == ''){
+				alert('주소를 확인하세요.');
+				event.preventDefault();
+				return false;
+			}
+			if($('#memberName').val() == ''){
+				alert('이름을 확인하세요.');
 				event.preventDefault();
 				return false;
 			}
 			return true;
 		})
 	}
+	
 	
 	// 생년월일 정규식
 	let birthPass = false;
@@ -378,7 +394,7 @@
 						<label for="memberGender">성별</label>
 					</h4>	
 						<div class="InputArea">
-							<input type="radio" name="memberGender" id="male" value="male">
+							<input type="radio" name="memberGender" id="male" value="male" checked="checked">
 							<label for="male" >Male</label>
 							<input type="radio" name="memberGender" id="female" value="female">
 							<label for="female" >Female</label>
@@ -400,12 +416,10 @@
 					<h4 class="title">
 						<label for="memberEmail">이메일</label>
 					</h4>	
-						<div class="InputArea">
+						<div class="InputArea_con">
 							<input type="text" name="memberEmail" id="memberEmail" class="boxes" placeholder="이메일">
-							<input type="button" id="btnGetAuthCode" value="인증번호받기">
-						</div>
+							<input type="button" id="btnGetAuthCode" value="인증번호받기"><br>
 							<span id="memberEmailMsg"></span><br>
-						<div class="InputArea">
 							<input type="text" name="authCode" id="authCode" class="boxes" placeholder="인증코드를 입력하세요">
 							<input type="button" value="인증하기" id="btnVerifyAuthCode">
 						</div>
@@ -416,7 +430,7 @@
 						<label for="memberPromoAdd">이메일 수신여부</label>
 					</h4>	
 						<div class="InputArea">
-							<input type="radio" name="memberPromoAdd" id="agree_yes" value="yes">
+							<input type="radio" name="memberPromoAdd" id="agree_yes" value="yes" checked="checked">
 							<label for="agree_yes">동의함</label>
 							<input type="radio" name="memberPromoAdd" id="agree_no" value="no">
 							<label for="agree_no">동의안함</label>
@@ -431,7 +445,6 @@
 		</form>
 	</div>
 
-	<jsp:include page="../layout/footer.jsp"></jsp:include>
 
 </body>
 </html>

@@ -132,7 +132,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    </selectKey>
  	</insert>
  	
- 	<insert id="insertNaverLog" parameterType="String">
+ 	<insert id="insertNaverLog" parameterType="Long">
 	INSERT INTO NAVER_MEMBER_LOG
 		(NAVER_ID, NAVER_LOG_DATE)
 	 VALUES
