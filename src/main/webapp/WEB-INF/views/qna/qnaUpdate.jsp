@@ -61,6 +61,7 @@
    
    		<input type="hidden" name="qnaNo" value="${qna.qnaNo}"> 
    		<input type="hidden" name="memberId" value="${qna.memberId}" readonly> 
+   		<input type="text" name="memberName" value="${qna.memberName}" readonly> 
    		제목 : <input type="text" id="qnaTitleM" name="qnaTitle" value="${qna.qnaTitle}" readonly><br>
    		내용 : <textarea rows="20" cols="50" id="qnaContentM" name="qnaContent">${qna.qnaTitle}</textarea><br>
    		<div id="qnaContentM_cnt">(0 / 500)</div>

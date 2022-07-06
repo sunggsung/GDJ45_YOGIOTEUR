@@ -132,7 +132,8 @@
 	   		
 	   		
 	   		<input type="hidden" name="reviewNo" value="${review.reviewNo}">
-	   		아이디 : <input type="text" id="memberId" name="memberId" value="${loginMember.memberId}" readonly> <br>
+	   		<input type="text" id="memberId" name="memberId" value="${loginMember.memberId}" readonly> <br>
+	   		이름 : <input type="text" id="memberName" name="memberName" value="${loginMember.memberName}" readonly> <br>
 	   		<input type="text" id="roomName" name="roomName" value="방1" readonly> 
 		   	<input type="text" id="rtType" name="rtType" value="싱글" readonly> <br>
 	  		

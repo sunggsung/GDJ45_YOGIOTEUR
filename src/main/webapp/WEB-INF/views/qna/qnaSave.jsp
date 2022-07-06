@@ -59,6 +59,7 @@
   
    <form id="QnaAdd" method="post" action="${contextPath}/qna/qnaSave">
    		<input type="hidden" id="memberId" name="memberId" value="${loginMember.memberId}"> 
+   		<input type="hidden" id="memberName" name="memberName" value="${loginMember.memberName}"> 
    		제목 : <input type="text" id="qnaTitle" name="qnaTitle"><br>
    		내용 : <textarea rows="20" cols="50" id="qnaContent" name="qnaContent"></textarea><br>
    		<div id="qnaContent_cnt">(0 / 500)</div>

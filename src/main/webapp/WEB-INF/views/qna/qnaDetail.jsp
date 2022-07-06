@@ -53,8 +53,12 @@
 	function fnQnaReplyCheck(){
 		
 		$('#qnaReplyData').on('submit', function(ev){
-			
-			if($('#qnaReplyContent').val() == ''){
+			if($('#memberId').val() == '' ){
+				alert('로그인 후 작성가능합니다.');
+				ev.preventDefault();
+				return false;
+			} 
+			else if($('#qnaReplyContent').val() == ''){
 				alert('댓글을 작성해주세요');
 				ev.preventDefault();
 				return false;
@@ -64,7 +68,11 @@
 		
 		$('#replyadd').on('submit', function(ev){
 			 
-			if($('#qnaReplyContentAdd').val() == ''){
+			if($('#memberId').val() == '' ){
+				alert('로그인 후 작성가능합니다.');
+				ev.preventDefault();
+				return false;
+			} else if($('#qnaReplyContentAdd').val() == ''){
 				alert('댓글을 작성해주세요');
 				ev.preventDefault();
 				return false;
@@ -149,7 +157,7 @@
 		  		제목	: ${qna.qnaTitle}
 		  		작성일 	: ${qna.qnaCreated}<br>
 		  		조회수  : ${qna.qnaHit}<br><br>
-		  		아이디 	: ${qna.memberId}<br><br>
+		  		이름 	: ${qna.memberName}<br><br>
 		  		내용 	: ${qna.qnaContent}<br><br><br>
 		 		
 		 		<c:if test="${loginMember.memberId eq qna.memberId}">	 		
@@ -160,7 +168,8 @@
 		 	
 		 	<form id="qnaReplyData" method="post" action="${contextPath}/qnaReply/qnaReplySave">
 		 		<input type="hidden" name="qnaNo" value="${qna.qnaNo}">
-			  	<input type="hidden" name="memberId" value="${loginMember.memberId}">		  
+			  	<input type="hidden" id="memberId" name="memberId" value="${loginMember.memberId}">		  
+			  	<input type="hidden" name="memberName" value="${loginMember.memberName}">		  
 			  	<textarea rows="10" cols="50" id="qnaReplyContent" name="qnaReplyContent"></textarea><br>
 			  	<div class ="qnaReplyContent_cnt">
 				  	<div id="qnaReplyContent_cnt">(0 / 300)</div><br>
@@ -184,7 +193,7 @@
 					</c:if>
 					<c:if test="${qnaReply.qnaReplyState == 1}">
 						<tr>
-							<td>아이디 	: ${qnaReply.memberId}</td>
+							<td>아이디 	: ${qnaReply.memberName}</td>
 							<td>
 								<!-- Depth만큼 들여쓰기(Depth 1 == Space 2) -->
 								<c:forEach begin="1" end="${qnaReply.qnaReplyDepth}" step="1">&nbsp;&nbsp;&nbsp;&nbsp;</c:forEach>
@@ -215,7 +224,8 @@
 							<td >
 								<form id="replyadd" action="${contextPath}/qnaReply/qnaReplySaveSecond" method="post">
 									<input type="hidden" name="qnaNo" value="${qna.qnaNo}" >
-									<input type="text" name="memberId" value="${loginMember.memberId}" size="7" readonly>
+									<input type="hidden" id="memberId" name="memberId" value="${loginMember.memberId}" size="7" readonly>
+									<input type="text" name="memberName" value="${loginMember.memberName}">
 									<input type="text" id="qnaReplyContentAdd" name="qnaReplyContent">
 									<div id="qnaReplyContentAdd_cnt">(0 / 300)</div>
 					

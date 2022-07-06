@@ -115,7 +115,7 @@
   			<c:forEach items="${qnas}" var="qna">
 	  				<tr id="qna_${qna.qnaNo}">
 	  					<td><a class="qnaNameA" href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
-	  					<td>${qna.memberId}</td>
+	  					<td>${qna.memberName}</td>
 	  					<td>${qna.qnaCreated}</td>
 	  					<td>${qna.qnaHit}</td>	  					
 	  					<c:if test = "${loginMember.memberId eq qna.memberId || loginMember.memberId eq 'admin12'}">

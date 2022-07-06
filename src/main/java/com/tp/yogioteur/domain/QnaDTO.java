@@ -16,6 +16,7 @@ public class QnaDTO {
 	
 	private Long qnaNo;
 	private String memberId;
+	private String memberName;
 	private String qnaTitle;
 	private Integer qnaHit;
 	private String qnaContent;

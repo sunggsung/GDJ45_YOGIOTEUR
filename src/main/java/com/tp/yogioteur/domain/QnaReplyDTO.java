@@ -17,6 +17,7 @@ public class QnaReplyDTO {
 	private Long qnaReplyNo;
 	private Long qnaNo;
 	private String memberId;
+	private String memberName;
 	private String qnaReplyContent;
 	private Date qnaReplyCreated;
 	private Integer qnaReplyState;

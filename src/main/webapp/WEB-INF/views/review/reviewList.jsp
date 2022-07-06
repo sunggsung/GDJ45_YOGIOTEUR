@@ -100,7 +100,7 @@
 	   					
 	   					<br>
 	   					
-	   					아이디 : ${review.memberId}<br>
+	   					이름 : ${review.memberName}<br>
 	   					${review.roomName} ${review.rtType}<br>
 	   					${review.reviewContent}<br>
 	   					${review.reviewCreated}<br>

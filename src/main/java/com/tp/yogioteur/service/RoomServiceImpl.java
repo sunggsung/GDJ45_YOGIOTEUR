@@ -63,7 +63,7 @@ public class RoomServiceImpl implements RoomService {
 		
 		//가공/수정
 		
-		return roomList;
+		
 	}
 	
 	@Override

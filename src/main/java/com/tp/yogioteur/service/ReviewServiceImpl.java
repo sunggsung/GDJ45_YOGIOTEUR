@@ -116,6 +116,7 @@ public class ReviewServiceImpl implements ReviewService {
 		Long reviewNo = Long.parseLong(opt.orElse("0"));
 		
 		String memberId = multipartRequest.getParameter("memberId");
+		String memberName = multipartRequest.getParameter("memberName");
 		String reviewTitle = multipartRequest.getParameter("reviewTitle");
 		String reviewContent = multipartRequest.getParameter("reviewContent");
 		String roomName = multipartRequest.getParameter("roomName");
@@ -126,6 +127,7 @@ public class ReviewServiceImpl implements ReviewService {
 		ReviewDTO review = ReviewDTO.builder()
 				.reviewNo(reviewNo)
 				.memberId(memberId)
+				.memberName(memberName)
 				.reviewTitle(reviewTitle)
 				.reviewContent(reviewContent)
 				.roomName(roomName)
@@ -298,13 +300,20 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void changeReview(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
 		String memberId = multipartRequest.getParameter("memberId");
+		String memberName = multipartRequest.getParameter("memberName");
 		Long reviewNo = Long.parseLong(multipartRequest.getParameter("reviewNo"));
 		String reviewTitle = multipartRequest.getParameter("reviewTitle");
 		String reviewContent = multipartRequest.getParameter("reviewContent");
 		Integer reviewRevNo = Integer.parseInt(multipartRequest.getParameter("reviewRevNo"));
 
-		ReviewDTO review = ReviewDTO.builder().memberId(memberId).reviewNo(reviewNo).reviewTitle(reviewTitle)
-				.reviewContent(reviewContent).reviewRevNo(reviewRevNo).build();
+		ReviewDTO review = ReviewDTO.builder()
+				.memberId(memberId)
+				.memberName(memberName)
+				.reviewNo(reviewNo)
+				.reviewTitle(reviewTitle)
+				.reviewContent(reviewContent)
+				.reviewRevNo(reviewRevNo)
+				.build();
 
 		int reviewChangeResult = reviewMapper.updateReview(review);
 
