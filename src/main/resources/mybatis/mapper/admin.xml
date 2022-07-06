@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 			(#{rtNo}, #{roomName}, #{roomStatus}, NOW(), #{roomCheckOut}, #{roomPrice})
 	</insert>
-	<insert id="insertImage" parameterType="ImageDTO">
+	<insert id="insertImage" parameterType="ImageDTO" useGeneratedKeys="true" keyProperty="imageNo">
 		INSERT INTO IMAGE
 			(ROOM_NO, IMAGE_PATH, IMAGE_SAVED, IMAGE_ORIGIN)
 		VALUES

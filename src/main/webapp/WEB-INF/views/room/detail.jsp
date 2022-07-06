@@ -41,14 +41,6 @@
 		
 	}
 	
-	
-/* 	dt { 
-	
-	float: left;
-	font-weight: bold;
-	
-	 } */
-	
 	.btn-15 {
 	  background: #000;
 	  color: #fff;
@@ -135,10 +127,10 @@
 				<div>
 				<dl>
 					<dt>라운지</dt>
-				<dd><img src="../resources/image/rounge.jpg" width="350px" height="300px"></dd>
+					<dd><img src="../resources/image/rounge.jpg" width="350px" height="300px"></dd>
 				</dl>
 				<dl>
-				<dt>피트니스센터</dt>
+					<dt>피트니스센터</dt>
 					<dd><img src="../resources/image/gym.jpg" width="350px" height="300px"></dd>
 				</dl>				
 				</div>
@@ -146,11 +138,11 @@
 				
 				<dl>
 					<dt>레스토랑</dt>
-						<dd><img src="../resources/image/restaurant.jpg" width="350px" height="300px"></dd>
+					<dd><img src="../resources/image/restaurant.jpg" width="350px" height="300px"></dd>
 				</dl>
 				<dl>
 					<dt>야외 수영장</dt>
-						<dd><img src="../resources/image/pool.jpg" width="350px" height="300px"></dd>
+					<dd><img src="../resources/image/pool.jpg" width="350px" height="300px"></dd>
 				</dl>
 				 	
 				</div>
