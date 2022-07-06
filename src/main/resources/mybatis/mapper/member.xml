@@ -125,18 +125,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="insertNaverMember" parameterType="Map" useGeneratedKeys="true" keyProperty="memberNo">
-	INSERT INTO NAVER_MEMBER(NAVER_ID, NAVER_NAME, NAVER_EMAIL, NAVER_PHONE)
-		VALUES (#{id}, #{name}, #{email}, #{phone})
-		 <selectKey resultType="Long" keyProperty="memberNo" order="AFTER">
-	      	SELECT NAVER_NO FROM NAVER_MEMBER WHERE NAVER_ID = #{id}
-	    </selectKey>
+		INSERT INTO NAVER_MEMBER
+			(NAVER_ID, NAVER_NAME, NAVER_EMAIL, NAVER_PHONE)
+		VALUES
+			(#{id}, #{name}, #{email}, #{phone})
  	</insert>
  	
  	<insert id="insertNaverLog" parameterType="Long">
 	INSERT INTO NAVER_MEMBER_LOG
-		(NAVER_ID, NAVER_LOG_DATE)
+		(NAVER_NO, NAVER_LOG_DATE)
 	 VALUES
-	 	(#{id}, DATE_FORMAT(NOW(), '%Y/%m/%d'))
+	 	(#{no}, DATE_FORMAT(NOW(), '%Y/%m/%d'))
 	</insert>
 
 </mapper>	
