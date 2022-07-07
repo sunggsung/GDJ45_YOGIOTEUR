@@ -62,6 +62,8 @@
 	
 </script>
 <link rel="stylesheet" href="../resources/css/admin.css">
+<link rel="stylesheet" href="../resources/css/header.css">
+<link rel="stylesheet" href="../resources/css/footer.css">
 <style type="text/css">
 	
 	.type1 {
@@ -84,6 +86,7 @@
 </head>
 <body>
 	
+	<jsp:include page="../layout/header.jsp"></jsp:include>
 	<div class="container">
 		<jsp:include page="index.jsp"></jsp:include>
 		
@@ -130,6 +133,7 @@
 		</div>
 		
 	</div>
-
+	<jsp:include page="../layout/footer.jsp"></jsp:include>
+	
 </body>
 </html>

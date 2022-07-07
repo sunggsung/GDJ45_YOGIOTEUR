@@ -119,10 +119,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 예약 -->
-	<select id="selectReservationList" resultType="ReservationDTO">
-		SELECT RESER_NO, MEMBER_NO, ROOM_NO, RESER_CHECKIN, RESER_CHECKOUT, RESER_PEOPLE, RESER_STATUS
-		  FROM RESERVATION
-		 ORDER BY RESER_NO DESC
+	<select id="selectReservationList" resultMap="ReservationMap">
+		SELECT R.RESER_NO, R.RESER_CHECKIN, R.RESER_CHECKOUT, R.RESER_PEOPLE, R.RESER_STATUS, R.RESER_FOOD
+			 , M.MEMBER_NO, M.MEMBER_NAME, M.MEMBER_ID, M.MEMBER_PHONE
+			 , RO.ROOM_NO, RO.ROOM_NAME, RO.ROOM_PRICE
+		  FROM RESERVATION R INNER JOIN MEMBER M ON (R.MEMBER_NO = M.MEMBER_NO)
+		  					 INNER JOIN ROOM RO ON (R.ROOM_NO = RO.ROOM_NO)
 	</select>
 	
 	<select id="selectReservationCount" resultType="Integer">

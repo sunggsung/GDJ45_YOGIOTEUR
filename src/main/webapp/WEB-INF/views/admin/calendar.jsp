@@ -19,25 +19,16 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
 <!-- fullcalendar 언어 CDN -->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+<link rel="stylesheet" href="../resources/css/header.css">
+<link rel="stylesheet" href="../resources/css/footer.css">
 <style>
 
-  /* body 스타일 */
-/*   html, body {
-    overflow: hidden;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  } */
-	/* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
-	.fc-header-toolbar {
-	  padding-top: 1em;
-	  padding-left: 1em;
-	  padding-right: 1em;
-	}
 	.container {
-	display: flex;
-	margin-top: 50px;
-	margin-left: 10%;
-	margin-right: 10%;
+		display: flex;
+		margin-top: 50px;
+		margin-left: 10%;
+		margin-right: 10%;
+		margin-bottom: 5%;
 	}
 	
 	.grid_item {
@@ -51,10 +42,20 @@
 	
 	.grid_item.index {
 		text-align: center;
-		width: 20%;
+		width: 15%;
 		background-color: silver;
+		margin-right: 40px;
+		font-size: 18px;
 	}
-  
+	
+	h3 {
+		margin-bottom: 5px;
+	}
+	
+	#calendar a {
+		color: black;
+	}
+	
 </style>
 <script>
 
@@ -64,8 +65,8 @@
 		var calendarEl = $('#calendar')[0];
 		// full-calendar 생성하기
 		var calendar = new FullCalendar.Calendar(calendarEl, {
-			height: '600px', // calendar 높이 설정
-			//expandRows: true, // 화면에 맞게 높이 재설정
+			height: 'auto', // calendar 높이 설정
+			expandRows: true, // 화면에 맞게 높이 재설정
 			// 해더에 표시할 툴바
 			headerToolbar: {
 				left: 'prev,next today',
@@ -81,9 +82,6 @@
 			dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
 			locale: 'ko', // 한국어 설정
 			//timeZone: 'Asia/Seoul',
-			eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
-			  console.log(obj);
-			},
 			eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트
 			  console.log(obj);
 			},
@@ -99,7 +97,7 @@
 						$.each(obj.reservations, function(i, reservation) {
 							var status = reservation.reserStatus;
 							arr.push({
-								title: reservation.roomNo + '번 객실'
+								title: reservation.room.roomNo + '번 객실 ' + reservation.room.roomName
 								, start: replace(reservation.reserCheckIn)
 								, end : formatDate(reservation.reserCheckOut)
 								, extendedProps : {
@@ -151,7 +149,6 @@
      	}
  	}
      
- 	// 타임스탬프 형식을 yyyy-MM-dd 로 반환
  	function formatDate(date) {
  	    var d = new Date(date),
  	        month = '' + (d.getMonth() + 1),
@@ -174,13 +171,15 @@
 </script>
 </head>
 
-<body style="padding:30px;">
-	
+<body>
+
+	<jsp:include page="../layout/header.jsp"></jsp:include>
 	<!-- calendar 태그 -->
 	<div id="calendar-container" class="container">
 		<jsp:include page="index.jsp"></jsp:include>
 		<div id="calendar" class="grid_item"></div>
 	</div>
-	
+	<jsp:include page="../layout/footer.jsp"></jsp:include>
+		
 </body>
 </html>
