@@ -34,10 +34,21 @@
 	}
 	
 	.goPost {
-	  cursor: pointer;
-	  background: #000;
-	  color: #fff;
-	  z-index: 1;
+	  	font-size: 14px;
+    	padding: 0.655rem 1.75rem;
+    	border-radius: 0.3rem;
+    	border-color: #ba895d;
+   		color: #ba895d;
+    	background-color: transparent;
+    	font-weight: 600;
+    	border-width: 2px;
+   	 	box-shadow: 0 5px 10px 2px rgb(36 105 92 / 19%) !important;
+	}
+	.goPost:not(:disabled) {
+		cursor: pointer;
+	}
+	.goPost[type=button] {
+		-webkit-appearance: button;
 	}
 	.goPost:after {
 	  position: absolute;
@@ -47,15 +58,13 @@
 	  bottom: 0;
 	  left: 0;
 	  z-index: -1;
-	  background: #fff;
 	  transition: all 0.3s ease;
+	  font-size: 14px;
 	}
-	.goPost:hover:after {
-	  top: 0;
-	  height: 100%;
-	}
-	.goPost:active {
-	  top: 2px;
+	.goPost:hover {
+    	color: white;
+    	background-color: #a07044 !important;
+   	 	border-color: #a07044 !important;
 	}
 </style>
 <script type="text/javascript">
