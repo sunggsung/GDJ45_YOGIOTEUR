@@ -60,29 +60,18 @@
 		color : gray;
 	}
 	
-	
-	/*
-	#addRe{
-		text-decoration: none;
-		color: black;
+	.slick-prev slick-arrow{
+	  
+	  cursor: pointer;
 	}
-	.adminReply{
-		width : 850px;
-		height : 200px;
-		background-color : #e1dcd9;
-		margin-top : 10px;
-		text-align : center;
-	}
-	
-	.ab {
-	 text-align : center;
+	.slick-next slick-arrow{
+	  position:absolute;
+	  top:50%;
+	  left:30px;
+	  font-size:2em;
+	  color:gray;
+	    cursor: pointer;
 	}
 	
 	
-	.reviewListView{
-		width: 1200px;
-		margin : 0 auto;
-		
-
-	}
-	*/
+	

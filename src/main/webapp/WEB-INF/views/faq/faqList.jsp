@@ -11,69 +11,10 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
-   #faqUl{
-      list-style-type: none;   
-   } 
-   .faqDetailBtn{
-      cursor: pointer;
-       border: none;
-       outline: none;
-       background: none;
-   }
-   #faqUl {
-      
-      font-size: 25px;
-   }
-   .listOne{
-      border-bottom: 1px solid #e0e0e0;
-      padding : 40px 40px 20px 40px;
-   }
-   .answer{
-      padding: 30px 30px 30px 30px;
-      background: #f9f9f9;
-   }
-   #faqAdd {
-      box-sizing: border-box;
-      display: inline-block; 
-      padding: 10px;
-      margin: 5px;
-      border: 1px solid white;
-      text-decoration: none; 
-      color: gray;
-   }
-   .noList {
-      text-align: center;
-      
-   }
-   .question{
-      margin-bottom: 20px;
-   }
+<link rel="stylesheet" href="../resources/css/faq.css">
+
    
-   .faqA {
-   		color : blue;
-   }
-   
-   .faqListOne {
-   		width : 850px;
-   		margin : 0 auto;
-   }
-   
-   .unlink, .link {
-		display: inline-block;  /* 같은 줄에 둘 수 있고, width, height 등 크기 지정 속성을 지정할 수 있다. */
-		padding: 10px;
-		margin: 5px;
-		border: 1px solid white;
-		text-align: center;
-		text-decoration: none;  /* 링크 밑줄 없애기 */
-		color: gray;
-	}
-	.link:hover {
-		border: 1px solid orange;
-		color: limegreen;
-	}
-   
-</style>
+
 <script>
    
    $(function(){

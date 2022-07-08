@@ -11,12 +11,22 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+<link rel="stylesheet" href="../resources/css/qnaList.css?a">
 
 <script>
  
  	$(function(){
- 		fnDetailOneSelect();
+ 		$(document).ready(function(){
+ 		    $('table tbody tr td').click(function(){
+ 		    	if($(this).data('href') == null){
+ 		    		return false;
+ 		    	}
+ 		    	
+ 		        window.location = $(this).data('href');
+ 		        return false;
+ 		    });
+ 		    
+ 		});
  	})
  	
  	function fnDetailOneSelect(){
@@ -31,57 +41,10 @@
         }
   }
  	
+ 	
+ 	
 </script>
-<style>
-  table {
-    width: 1200px;
-    margin : 0 auto;
-    border-top: 1px solid #444444;
-    border-collapse: collapse;
-  }
-  th, td {
-    border-bottom: 1px solid #444444;
-    padding: 10px;
-    text-align : center;
-  }
-  
-  thead tr {
-    background-color: rgb(233, 233, 233);
-    
-  }
-  
-  .qnaNameA{
-  	color : black;
-  }
-  
-  h1 {
-  	text-align : center;
-  }
-  
-  .qnaAddA {
- 	 color : black;
- 	 margin : 400px;
-  }
-  
-  .unlink, .link {
-		display: inline-block;  /* 같은 줄에 둘 수 있고, width, height 등 크기 지정 속성을 지정할 수 있다. */
-		padding: 10px;
-		margin: 5px;
-		border: 1px solid white;
-		text-align: center;
-		text-decoration: none;  /* 링크 밑줄 없애기 */
-		color: gray;
-	}
-	.link:hover {
-		border: 1px solid orange;
-		color: limegreen;
-	}
-	
-	.paging{
-		text-align: center;
-	}
-  
-</style>
+
 </head>
 <body>
    
@@ -114,12 +77,12 @@
   	<tbody>
   			<c:forEach items="${qnas}" var="qna">
 	  				<tr id="qna_${qna.qnaNo}">
-	  					<td><a class="qnaNameA" href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</a></td>
-	  					<td>${qna.memberId}</td>
-	  					<td>${qna.qnaCreated}</td>
-	  					<td>${qna.qnaHit}</td>	  					
+	  					<td data-href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</td>
+	  					<td data-href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.memberName}</td>
+	  					<td data-href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaCreated}</td>
+	  					<td data-href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaHit}</td>	  					
 	  					<c:if test = "${loginMember.memberId eq qna.memberId || loginMember.memberId eq 'admin12'}">
-	  						<td><input type="button" value="삭제" data-qna_no = "${qna.qnaNo}" onclick="fnRemove(this)"></td>
+	  						<td><input id="qnaListDelBtn" type="button" value="삭제" data-qna_no = "${qna.qnaNo}" onclick="fnRemove(this)"></td>
 	  					</c:if>
 	  				</tr>
   			</c:forEach>

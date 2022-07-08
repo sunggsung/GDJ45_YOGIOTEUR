@@ -62,11 +62,13 @@ public class QnaServiceImpl implements QnaService {
 	public void AddQna(HttpServletRequest request, HttpServletResponse response) {
 		
 		String memberId = request.getParameter("memberId");
+		String memberName = request.getParameter("memberName");
 		String qnaTitle = request.getParameter("qnaTitle");
 		String qnaContent = request.getParameter("qnaContent");
 		
 		QnaDTO qna = QnaDTO.builder()
 				.memberId(memberId)
+				.memberName(memberName)
 				.qnaTitle(qnaTitle)
 				.qnaContent(qnaContent)
 				.build();
@@ -102,11 +104,13 @@ public class QnaServiceImpl implements QnaService {
 	public void saveReply(HttpServletRequest request, HttpServletResponse response) {
 		Long qnaNo = Long.parseLong(request.getParameter("qnaNo"));
 		String memberId = request.getParameter("memberId");
+		String memberName = request.getParameter("memberName");
 		String qnaReplyContent =request.getParameter("qnaReplyContent");
 		
 		QnaReplyDTO qnaReply = QnaReplyDTO.builder()
 				.qnaNo(qnaNo)
 				.memberId(memberId)
+				.memberName(memberName)
 				.qnaReplyContent(qnaReplyContent)
 				.build();
 		
@@ -151,6 +155,7 @@ public class QnaServiceImpl implements QnaService {
 	public void saveReplySecond(HttpServletRequest request, HttpServletResponse response) {
 		Long qnaNo = Long.parseLong(request.getParameter("qnaNo"));
 		String memberId = request.getParameter("memberId");
+		String memberName = request.getParameter("memberName");
 		String qnaReplyContent =request.getParameter("qnaReplyContent");
 		
 		int qnaReplyDepth = Integer.parseInt(request.getParameter("qnaReplyDepth"));
@@ -165,6 +170,7 @@ public class QnaServiceImpl implements QnaService {
 		QnaReplyDTO qnaReplySec = QnaReplyDTO.builder()
 				.qnaNo(qnaNo)
 				.memberId(memberId)
+				.memberName(memberName)
 				.qnaReplyContent(qnaReplyContent)
 				.qnaReplyDepth(qnaReplyDepth +1)
 				.qnaReplyGroupNo(qnaReplyGroupNo)

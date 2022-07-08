@@ -32,7 +32,7 @@
 	}
 	
 	#reviewTitle{
-		width: 500px;
+	width: 500px;
 	  height: 45px;
 	  font-size: 15px;
 	  border: 0;
@@ -57,7 +57,42 @@
 	
 	}
 
-	#memberId, #roomName, #rtType{
+	#roomName, #rtType, #memberName{
 		border : none;
+		font-size : 18px;
 	}
 
+	.memberName {
+		position: relative;
+		text-align: left;
+		left : 170px;
+		margin-bottom :20px;
+	}
+	
+	#roomName, #rtType {
+		width : 80px;
+		position: relative;
+		right : 170px;
+
+	}
+	
+	#reviewModifiyBtn{
+		background-color: #24695c;
+		border-color: #24695c;
+		color : #fff;
+		border: 1px solid transparent;
+		font-size : 18px;
+		padding : 10px 18px;
+		margin : 15px;
+	
+	}
+	
+	#reviewList{
+		background-color: #121319;
+		border-color: #121319;
+		color : #fff;
+		border: 1px solid transparent;
+		font-size : 18px;
+		padding : 10px 18px;
+		margin : 15px;
+	}

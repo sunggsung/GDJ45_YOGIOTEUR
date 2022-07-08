@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+<link rel="stylesheet" href="../resources/css/qnaUpdate.css?">
 
 <script>
  
@@ -52,20 +52,23 @@
 <body>
    <jsp:include page="../layout/header.jsp"></jsp:include>
    
-   <h1>QnA 문의사항 수정</h1>
-  
-   <a href="${contextPath}/qna/qnaList">목록으로</a>
-  
-  
-   <form id="QnaAddM" method="post" action="${contextPath}/qna/qnaUpdate">
-   
-   		<input type="hidden" name="qnaNo" value="${qna.qnaNo}"> 
-   		<input type="hidden" name="memberId" value="${qna.memberId}" readonly> 
-   		제목 : <input type="text" id="qnaTitleM" name="qnaTitle" value="${qna.qnaTitle}" readonly><br>
-   		내용 : <textarea rows="20" cols="50" id="qnaContentM" name="qnaContent">${qna.qnaTitle}</textarea><br>
-   		<div id="qnaContentM_cnt">(0 / 500)</div>
-   		<button>수정하기</button>
-   </form>
+   <div class="qnaUpdateOne">
+	   <h1>QnA 문의사항 수정</h1>
+	  
+	   <a class="toQnaList" href="${contextPath}/qna/qnaList">목록으로</a>
+	  
+	  
+	   <form id="QnaAddM" method="post" action="${contextPath}/qna/qnaUpdate">
+	   
+	   		<input type="hidden" name="qnaNo" value="${qna.qnaNo}"> 
+	   		<input type="hidden" name="memberId" value="${qna.memberId}" readonly> 
+	   		<input type="hidden" name="memberName" value="${qna.memberName}" readonly>
+	   		제목 : <input type="text" id="qnaTitleM" name="qnaTitle" value="${qna.qnaTitle}" readonly><br>
+	   		내용 : <textarea rows="20" cols="50" id="qnaContentM" name="qnaContent">${qna.qnaTitle}</textarea><br>
+	   		<div id="qnaContentM_cnt">(0 / 500)</div>
+	   		<button id="qnaUpdateBtn">수정하기</button>
+	   </form>
+   </div>
   
   <jsp:include page="../layout/footer.jsp"></jsp:include>
   

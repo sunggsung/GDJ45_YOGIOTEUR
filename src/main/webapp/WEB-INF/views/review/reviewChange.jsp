@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="../resources/css/reviewChange.css?af">
+<link rel="stylesheet" href="../resources/css/reviewChange.css?aft">
 <script>
 	
 	$(function(){
@@ -132,7 +132,8 @@
 	   		
 	   		
 	   		<input type="hidden" name="reviewNo" value="${review.reviewNo}">
-	   		아이디 : <input type="text" id="memberId" name="memberId" value="${loginMember.memberId}" readonly> <br>
+	   		<input type="hidden" id="memberId" name="memberId" value="${loginMember.memberId}" readonly> <br>
+	   		<div class="memberName">이름 : <input type="text" id="memberName" name="memberName" value="${loginMember.memberName}" readonly> <br></div>
 	   		<input type="text" id="roomName" name="roomName" value="방1" readonly> 
 		   	<input type="text" id="rtType" name="rtType" value="싱글" readonly> <br>
 	  		
@@ -151,8 +152,8 @@
 	   		
 	   		
 	   		<input type="file" name="files" id="files" multiple="multiple"/>
-	   		<button>수정하기</button>
 	   		<input type="button" id="reviewList" value="목록으로">
+	   		<button id="reviewModifiyBtn">수정하기</button>
 	   	
 	   	
 	 	  </form>
