@@ -60,6 +60,18 @@
 		color : gray;
 	}
 	
+	.slick-prev slick-arrow{
+	  
+	  cursor: pointer;
+	}
+	.slick-next slick-arrow{
+	  position:absolute;
+	  top:50%;
+	  left:30px;
+	  font-size:2em;
+	  color:gray;
+	    cursor: pointer;
+	}
 	
 	
 	

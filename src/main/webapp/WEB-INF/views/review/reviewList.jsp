@@ -11,8 +11,20 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="../resources/css/reviewList.css?after">
+<link rel="stylesheet" href="../resources/css/reviewList.css?aftera">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
+	
+	$(function(){
+		$('.slideImgs').slick({
+			 infinite: true,
+			 slidesToShow: 2,
+			 slidesToScroll: 2
+			
+		});
+	})
+	
 
 	// 리뷰수정
 	function fnReviewModify(mb){
@@ -39,6 +51,8 @@
 	          location.href='${contextPath}/reply/reviewReplyRemove?replyNo=' + $(rpn).data('reply_no');
 	       }
 	 }
+	 
+	
 	 
 </script>
 <style>
@@ -107,13 +121,15 @@
 	   					</div>
 	   					
 	   					<br><br>
-						
-						<c:forEach var="reImage" items="${reImages}">
-							<c:if test="${review.reviewNo eq reImage.reviewNo}">
-								<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}" width="300px" height="200px">					
-							</c:if>
-						</c:forEach>
-						
+						<div class="slideImgs">
+							<c:forEach var="reImage" items="${reImages}">
+								
+									<c:if test="${review.reviewNo eq reImage.reviewNo}">
+										<div class="slideImg"><img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}" width="300px" height="200px"></div>					
+									</c:if>
+									
+							</c:forEach>
+						</div>
 						<br>
 						<c:if test="${loginMember.memberId eq review.memberId || loginMember.memberId eq 'admin12'}">
 			   				<input type="button" value="삭제" name="reviewRemoveBtn" onclick="fnReviewRemove(${review.reviewNo})">					
