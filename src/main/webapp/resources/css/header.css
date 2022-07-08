@@ -1,5 +1,12 @@
 @charset "UTF-8";
 	
+	@font-face {
+	    font-family: 'MICEMyungjo';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
 	header{
 		position : absolute;
 		bottom : 0;
@@ -8,7 +15,8 @@
 	
 	body{
 			margin: 0;
-			font-family: 'Kdam Thmor Pro', sans-serif;
+			font-family: 'Kaushan Script', cursive;
+			font-size: 20px;
 		}
 		
 		
@@ -21,7 +29,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		background-color: silver;
+		background-color: #025949;
 		padding: 8px 12px;
 	}
 	
@@ -30,9 +38,10 @@
 	}
 	
 	.header a{
-		padding: 12px;
+		padding: 14px;
 		display: inline-block;
-		font-size: 18px;
+		font-size: 22px;
+		font-family: 'Kaushan Script', cursive;
 	}
 	
 	.header a:hover {
@@ -43,20 +52,31 @@
 	
 		
 	.title a{
-		font-size: 22px;
+		font-size: 25px;
+		font-family: 'Pacifico', cursive;
 	}
 	
 	.header2 a{
 		padding: 12px;
 		display: inline-block;
 		font-size: 18px;
+		font-family: 'MICEMyungjo';
+		
 	}
 	
 	.header2 a:hover {
 		
-		color: #999;
+		color: #FF960D;
 		
 	}
+	
+	.roomNo{
+		
+		font-size: 18px;
+    	font-family: 'MICEMyungjo';
+	
+	}
+	
 	
 	button {
 	  margin: 5px;
@@ -68,7 +88,7 @@
 	  height: 45px;
 	  padding: 8px 20px;
 	  border: 2px solid #000;
-	  font-family: 'Lato', sans-serif;
+	  font-family: 'MICEMyungjo';
 	  font-weight: 500;
 	  font-size: 18px;
 	  background: transparent;

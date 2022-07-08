@@ -16,6 +16,7 @@
 </head>
 <style type="text/css">
 	
+
 	
 	body{
 			margin: 0;
@@ -27,6 +28,7 @@
 	a{
 		text-decoration: none;
 		color: white;
+		
 	}
 	
 	form{
@@ -78,6 +80,12 @@
 	    color: #7e7e7e;
 	}
 	 
+	.checkInOut{
+		
+		font-family: 'Kaushan Script', cursive;
+	
+	} 
+	
 	
 	.post{
 		

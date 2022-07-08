@@ -16,12 +16,12 @@
 	<div class="head">
 	
 		<div class="header">
-				<a href="${contextPath}/review/reviewList">REVIEW</a>
-				<a href="${contextPath}/faq/faqList">FAQ</a>
+				<a href="${contextPath}/review/reviewList">Review</a>
+				<a href="${contextPath}/faq/faqList">Faq</a>
 		</div>
 		
 		<div class="title">
-			<a href="http://localhost:9090/yogioteur/">YOGIOTEUR</a>
+			<a href="http://localhost:9090/yogioteur/">Yogioteur</a>
 		</div>
 		 
 		<div class="header2">

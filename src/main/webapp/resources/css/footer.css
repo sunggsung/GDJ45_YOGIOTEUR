@@ -1,13 +1,21 @@
 @charset "UTF-8";
 	
+	@font-face {
+	    font-family: 'MICEMyungjo';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
 	body{
 			margin: 0;
-			font-family: 'Kdam Thmor Pro', sans-serif;
+			font-family: 'Kaushan Script', cursive;
 		}
 		
 	a{
 		text-decoration: none;
 		color: white;
+		
 	}	
 		
 	ul {
@@ -31,8 +39,8 @@
 	
 	
 	.footer{
-		background-color: silver;
-		height: 170px;
+		background-color: #025949;
+		height: 250px;
 	
 	}
 	
@@ -41,11 +49,26 @@
 		width: 1200px;
 		margin: 0 auto;
 		color: white;
+		font-family: 'MICEMyungjo';
 		
+	}
+	
+	.end_logo{
+		
+		font-family: 'Pacifico', cursive;
+	
 	}
 	
 	.info{
 		
 		display: block;
+		font-family: 'MICEMyungjo';
+	
+	}
+	
+	.infoP{
+		
+		font-family: 'MICEMyungjo';
+		font-size: 13px;
 	
 	}
