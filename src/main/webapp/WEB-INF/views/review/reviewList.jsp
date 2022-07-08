@@ -110,7 +110,7 @@
 						
 						<c:forEach var="reImage" items="${reImages}">
 							<c:if test="${review.reviewNo eq reImage.reviewNo}">
-								<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}" width="300px">					
+								<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}" width="300px" height="200px">					
 							</c:if>
 						</c:forEach>
 						

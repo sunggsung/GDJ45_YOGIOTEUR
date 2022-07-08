@@ -78,9 +78,49 @@
 	
 	.replyTable {
 		width : 100%;
-		border: 1px solid transparent;
+		border: 1px solid #aaa;
+		padding : 10px;
 	}
 	
+	.memberName {
+		width : 120px;
+		height: 25px;
+		text-align: center;
+		border : 3px solid #aaa;
+	  	border-radius: 10px;
+	  	outline: none;
+	  	padding-left: 10px;
+	  	margin : 30px 0;
+	}
 	
+	.qnaReplyContentAdd {
+		width : 460px;
+		height: 25px;
+		border : 3px solid #aaa;
+	  	border-radius: 10px;
+	  	outline: none;
+	  	padding-left: 10px;
+	}
+	
+	.qnaReplyContentAdd_cnt {
+		display: inline-block;
+	}
+	
+	.replyAdd2Btn {
+		background-color: white;
+		border : 3px solid #6666ff;
+	  	border-radius: 10px;
+	  	outline: none;
+	  	padding-left: 10px;
+	}
+	
+	.replayDel2Btn {
+		background-color: white;
+		border : 3px solid #ff9966;
+	  	border-radius: 10px;
+	  	outline: none;
+	  	padding-left: 10px;
+	  	margin : 10px;
+	}
 	
 }

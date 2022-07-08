@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="../resources/css/qnaDetail.css?">
+<link rel="stylesheet" href="../resources/css/qnaDetail.css?a">
 
 <script>
  
@@ -142,7 +142,7 @@
 		 
 		  
 		  <br><br>
-		<table class="replyTable">
+		<table class="replyTable" >
 		
 			<tbody>
 		 		<c:forEach items="${qnaReplies}" var="qnaReply">
@@ -174,24 +174,24 @@
 							<td><a class="reply_link">답글</a></td>	
 							<td>
 								<c:if test = "${loginMember.memberId eq qnaReply.memberId || loginMember.memberId eq 'admin12'}">
-									<td><input type="button" value="삭제" onclick="fnRemoveA(${qnaReply.qnaReplyNo}, ${qna.qnaNo})"></td>
+									<td><input type="button" class="replayDel2Btn" value="삭제" onclick="fnRemoveA(${qnaReply.qnaReplyNo}, ${qna.qnaNo})"></td>
 								</c:if>
 							</td>
 						</tr>
 						<tr class="reply_form blind">
-							<td >
+							<td colspan="6">
 								<form class="replyadd" action="${contextPath}/qnaReply/qnaReplySaveSecond" method="post">
 									<input type="hidden" name="qnaNo" value="${qna.qnaNo}" >
 									<input type="hidden" id="memberId" class="memberId" name="memberId" value="${loginMember.memberId}" readonly>
-									<input type="text" name="memberName" value="${loginMember.memberName}"  readonly>
-									<input type="text" class="qnaReplyContentAdd" id="qnaReplyContentAdd" name="qnaReplyContent">
+									<input type="text" class="memberName" name="memberName" value="${loginMember.memberName}"  readonly>&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="text" class="qnaReplyContentAdd" id="qnaReplyContentAdd" name="qnaReplyContent" placeholder="댓글을 입력해주세요">
 									<div class="qnaReplyContentAdd_cnt" id="qnaReplyContentAdd_cnt">(0 / 300)</div>
 					
 									<!-- 원글의 Depth, GroupNo, GroupOrd -->
 									<input type="hidden" name="qnaReplyDepth" value="${qnaReply.qnaReplyDepth}">
 									<input type="hidden" name="qnaReplyGroupNo" value="${qnaReply.qnaReplyGroupNo}">
 									<input type="hidden" name="qnaReplyGroupOrd" value="${qnaReply.qnaReplyGroupOrd}">
-									<button>답글달기</button>
+									<button class="replyAdd2Btn">답글달기</button>
 								</form>
 							</td>
 						</tr>
