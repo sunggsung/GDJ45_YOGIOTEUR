@@ -315,6 +315,7 @@ public class MemberServiceImpl implements MemberService {
 				.memberId(memberId)
 				.memberPw(memberPw)
 				.build();
+		System.out.println(member);
 		int res = memberMapper.removeMember(member);
 
 		try {
