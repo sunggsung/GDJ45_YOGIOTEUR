@@ -168,8 +168,12 @@
     	width: 390px;
     	height: 300px;
     	margin: 110px auto;
-    	padding: 60px 50px 51px;
+    	padding: 50px 50px 80px;
     	border: 1px solid #dadada;
+        font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
     }
     .title {
        	width: 100%;
@@ -177,8 +181,18 @@
        	margin: 0 auto 20px;
        	text-align: center;
     }
+    .title a {
+ 		text-decoration: none;
+		color: gray;	
+    }
     .content {
     	margin: 10px 0;
+    }
+    .authArea {
+       	font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
     }
      .InputArea {
 		display: block;
@@ -231,12 +245,13 @@
 </head>
 <body>
 		
-	<jsp:include page="../layout/header.jsp"></jsp:include>
 		
 		<div class="join" >
 			<form id="findPwForm" action="${contextPath}/member/findPw" method="post">
 			<div class="authArea">
-				<h3 class="title">비밀번호 찾기</h3>
+				<h3 class="title">
+					<a href="${contextPath}/member/findPwPage">비밀번호 찾기</a>
+				</h3>
 					<div class="text">
 						<p>본인확인 후 비밀번호를 다시 설정할 수 있습니다.</p>
 					</div>
@@ -254,8 +269,8 @@
 							<input type="button" value="인증하기" id="btnVerifyAuthCode">
 						</div>
 						<div class="button_box">
-							<a href="${contextPath}/member/loginPage">로그인</a> |
-							<a href="${contextPath}/member/findIdPage">아이디찾기</a>
+							<a href="${contextPath}/member/findIdPage">아이디찾기</a> |
+							<a href="${contextPath}/member/loginPage">로그인</a> 
 						</div>
 					</div>
 			</div>
@@ -273,7 +288,6 @@
 				</div>
 			</form>
 		</div>
-	<jsp:include page="../layout/footer.jsp"></jsp:include>
 
 </body>
 </html>

@@ -160,6 +160,7 @@ public class MemberController {
 	public String memberPage(){
 		return "member/memberInfo";
 	}
+	
 	@GetMapping("/member/memberInfo")
 	public String memberInfo(){
 		return "member/memberInfo";
@@ -171,6 +172,10 @@ public class MemberController {
 		memberService.changeMember(request, response);
 	}
 	
+	@GetMapping("/member/memberPwPage")
+	public String memberPwPage() {
+		return "member/modifyPw";
+	}
 	
 	// 비밀번호 재설정 페이지 이동
 	@GetMapping(value = "/member/modifyPwPage")
@@ -189,6 +194,5 @@ public class MemberController {
 		reservationService.reserList(request, model);
 		return "member/confirmReser";
 	}
-	
 	
 }

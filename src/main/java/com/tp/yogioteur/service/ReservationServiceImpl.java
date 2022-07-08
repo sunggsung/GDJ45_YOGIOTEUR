@@ -53,7 +53,7 @@ public class ReservationServiceImpl implements ReservationService {
 		String req = opt.orElse("요청사항없음");
 		
 		Integer people = adult + child;
-		
+		System.out.println("serviceImple(memberNo) : " + memberNo);
 		ReservationDTO reservation = ReservationDTO.builder()
 				.reserNo(reserNo)
 				.memberNo(memberNo)
@@ -65,7 +65,7 @@ public class ReservationServiceImpl implements ReservationService {
 				.reserStatus(status)
 				.reserRequest(req)
 				.build();
-		
+		System.out.println("serviceImple(reservation) : " + reservation);
 		int res = reservationMapper.reservationInsert(reservation);
 		
 		Integer totalPr = Integer.parseInt(request.getParameter("totalPrice"));

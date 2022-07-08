@@ -252,6 +252,7 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO memberCheck(String memberId) {
 		return memberMapper.selectMemberById(memberId);
 	}
+		 
 	
 	// 회원정보 수정
 	@Override
@@ -288,7 +289,7 @@ public class MemberServiceImpl implements MemberService {
 			if(res > 0) {
 				out.println("<script>");
 				out.println("alert('정상적으로 수정되었습니다.')");
-				out.println("location.href='"+ request.getContextPath() + "/member/memberPage'");		
+				out.println("location.href='"+ request.getContextPath() + "/'");		
 				out.println("</script>");
 				out.close();
 			} else {
@@ -449,8 +450,8 @@ public class MemberServiceImpl implements MemberService {
             	Long no = memberMapper.selectNaverNo(userInfo);
             	if(no == null) {
             		no = memberMapper.insertNaverMember(userInfo);
+            		memberMapper.insertNaverLog(no);
             	}
-            	memberMapper.insertNaverLog(no);
             	MemberDTO naver = MemberDTO.builder()
             			.memberNo(no)
             			.memberId(id)

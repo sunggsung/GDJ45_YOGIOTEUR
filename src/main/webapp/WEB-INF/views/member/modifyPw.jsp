@@ -74,17 +74,17 @@
 <body>
 		
 	<jsp:include page="../layout/header.jsp"></jsp:include>
-			
-	<ul>
-		<li><a href="${contextPath}/member/memberInfo">내정보</a></li>
-		<li><a href="${contextPath}/member/modifyPwPage">비밀번호 변경</a></li>
-		<li><a href="${contextPath}/member/confirmReserPage">예약내역</a></li>
-	</ul>
+		
+		<ul>
+			<li><a href="${contextPath}/member/memberInfo">내정보</a></li>
+			<li><a href="${contextPath}/member/modifyPwPage">비밀번호 변경</a></li>
+			<li><a href="${contextPath}/member/confirmReserPage">예약내역</a></li>
+		</ul>
 	<br>		
 		<div class="container">
     	<h3>비밀번호 변경</h3>
         <p>주기적인 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요.</p>
-			<form id="modifyPwForm" action="${contextPath}/member/modifyPw" method="post">
+			<form id="modifyPwForm" action="${contextPath}/member/modify" method="post">
 				<input type="password" name="memberPw" id="memberPw" placeholder="새 비밀번호"><br>
 				<span id="pwMsg"></span><br>
 				<input type="password" id="memberRePw" placeholder="새 비밀번호 확인"><br>
@@ -93,7 +93,7 @@
 				<button>변경</button>
 				<input type="button" value="취소" onclick="location.href='${contextPath}/'">
 			</form>
-    </div>
+   		 </div>
 
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
 

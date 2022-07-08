@@ -9,13 +9,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
 <style>
+	@font-face {
+	    font-family: 'MICEMyungjo';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+    }
 	body{
 		margin: 0 auto;
 		font-family: 'Kdam Thmor Pro', sans-serif;
 	}
 	.title {
 		text-align: center;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
 	}
 	#agreeForm {
 		text-align: center;
@@ -40,13 +51,41 @@
         overflow-y: scroll;
         font-size: 14px;
         margin-bottom: 24px;
-        display: inline-block;;
+        display: inline-block;
+        font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
       }
+     label > span {
+        font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+     }
+     .item {
+     	font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+      }
+     .items {
+     	font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+     }
 	.Btn {
 		text-align: center;
 		display: block;
 		line-height: 30px;
 		margin: 0 0 20px 0;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
 	}
 
 </style>
@@ -103,7 +142,7 @@
 </head>
 <body>
 	
-	<div class="title"><h3>약관 동의하기</h3></div>
+	<div class="title"><h2>약관 동의하기</h2></div>
 	
 	
 	<form id="agreeForm" action="${contextPath}/member/signInPage">

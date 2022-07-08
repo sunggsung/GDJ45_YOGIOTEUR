@@ -24,7 +24,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(#{memberId}, #{memberPw}, #{memberEmail}, #{memberName}, #{memberPhone}, #{memberBirth}, #{memberGender}, #{memberPromoAdd}, #{memberPostCode}, #{memberRoadAddr}, #{agreeState}, NOW())
 	</insert>
 	
-	<!-- 로그인 / 비밀번호 검증 -->
+	
+	
+	<!-- 로그인 / 회원 검증 -->
 	<select id="selectMemberByIdPw" parameterType="MemberDTO" resultType="MemberDTO">
 	SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_BIRTH, MEMBER_GENDER, MEMBER_PROMO_ADD, MEMBER_POST_CODE, MEMBER_ROAD_ADDR, AGREE_STATE, SIGN_IN
 	  FROM MEMBER
@@ -100,40 +102,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE ID = #{id}
 	</delete>
 	
-	<!-- 예약내역 
-	<select id="selectReserInfo">
-	SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_BIRTH, MEMBER_GENDER, MEMBER_PROMO_ADD, MEMBER_POST_CODE, MEMBER_ROAD_ADDR, AGREE_STATE, SIGN_IN
-	  FROM MEMEBER
-	 WHERE RESER_NO = #{reserNo}
-	</select>
- 	-->
-
-	<!-- qna내역 
-	<select id="selectQnaInfo">
-	SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_BIRTH, MEMBER_GENDER, MEMBER_PROMO_ADD, MEMBER_POST_CODE, MEMBER_ROAD_ADDR, AGREE_STATE, SIGN_IN
-	  FROM MEMBER
-	 WHERE QNA_NO = #{qnaNo}
-	</select>	
-	-->
 	<select id="selectNaverNo" parameterType="Map" resultType="Long">
 		SELECT NAVER_NO
-		FROM NAVER_MEMBER
-		where NAVER_ID = #{id}
+		  FROM NAVER_MEMBER
+		WHERE NAVER_ID = #{id}
 	</select>
 
 	<insert id="insertNaverMember" parameterType="Map" useGeneratedKeys="true" keyProperty="memberNo">
-	INSERT INTO NAVER_MEMBER(NAVER_ID, NAVER_NAME, NAVER_EMAIL, NAVER_PHONE)
-		VALUES (#{id}, #{name}, #{email}, #{phone})
-		 <selectKey resultType="Long" keyProperty="memberNo" order="AFTER">
-	      	SELECT NAVER_NO FROM NAVER_MEMBER WHERE NAVER_ID = #{id}
-	    </selectKey>
+		INSERT INTO NAVER_MEMBER
+			(NAVER_ID, NAVER_NAME, NAVER_EMAIL, NAVER_PHONE)
+		VALUES
+			(#{id}, #{name}, #{email}, #{phone})
  	</insert>
  	
  	<insert id="insertNaverLog" parameterType="Long">
 	INSERT INTO NAVER_MEMBER_LOG
-		(NAVER_ID, NAVER_LOG_DATE)
+		(NAVER_LOG_DATE)
 	 VALUES
-	 	(#{id}, DATE_FORMAT(NOW(), '%Y/%m/%d'))
+	 	(DATE_FORMAT(NOW(), '%Y/%m/%d'))
 	</insert>
 
 </mapper>	

@@ -50,7 +50,14 @@
 	}
 
 </script>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
 <style>
+	@font-face {
+	    font-family: 'MICEMyungjo';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+    }
 	form > a {
 		text-decoration: none;
 		color: gray;	
@@ -70,14 +77,19 @@
     .join {
     	width: 390px;
     	margin: 110px auto;
-    	padding: 60px 50px 51px;
+    	padding: 50px 50px 51px;
     	border: 1px solid #dadada;
+    	font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
     }
     .title {
        	width: 100%;
        	height: 40px;
-       	margin: 0 auto 30px;
+       	margin: 0 auto 60px;
        	text-align: center;
+       	font-family: 'Pacifico', cursive;
     }
     .content {
     	margin: 10px 0;
@@ -105,15 +117,21 @@
          height: 50px;
          width: 390px;
          background-color: black;
-         font-size: 14px;
-         font-weight: bold;
          color: #fff;
          letter-spacing: -0.5px;
          text-align: center;
          line-height: 51px;	
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-size: 14px;
+         font-weight: bold;
+         font-style: normal;
+     }
+     .auto {
+     	margin-top: 10px;
      }
 	.button_box {
-         margin-top: 30px;
+         margin: 30px 0;
          text-align: center;
          border-top: 1px solid #f2f2f5;
          font-size: 14px;
@@ -148,7 +166,7 @@
 				</div>
 				<button class="btn_login" >로그인</button>
 				
-				<div>
+				<div class="auto">
 					<label>
 						<input type="checkbox" id="rememberId">아이디저장
 					</label>
@@ -162,7 +180,7 @@
 			</div>
 			
 			<!-- 네이버 아이디 로그인 -->
-			<a href="${apiURL}"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+			<a href="${apiURL}"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG" class="btn_login"/></a>
 		
 		</div>
 

@@ -11,27 +11,20 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
-//비밀번호 정규식
-$(function(){
-		fnPwCheck();
+	//비밀번호 정규식
+	$(function(){
 		fnConfirm();
 	})
-
-	$('#confirmPwForm').on('submit', function(e){
-		if($('#memberId').val() == ''){
-			alert('아이디를 입력하세요.');
-			e.preventDefault();
-			return false;
-		}
-		if($('#memberPw').val() == ''){
-			alert('비밀번호를 입력하세요.');
-			e.preventDefault();
-			return false;
-		}
-	})
 	
-	
-	
+	function fnConfirm(){
+		$('#confirmPwForm').on('submit', function(e){
+			if($('#memberPw').val() == ''){
+				alert('비밀번호를 입력하세요.');
+				e.preventDefault();
+				return false;
+			}
+		})
+	}
 </script>
 <style>
 	.dont {

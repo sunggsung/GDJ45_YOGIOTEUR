@@ -10,7 +10,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
 <style>
+	@font-face {
+	    font-family: 'MICEMyungjo';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+    }
 	form > a {
 		text-decoration: none;
 		color: gray;	
@@ -29,12 +36,20 @@
     	margin: 110px auto;
     	padding: 60px 50px 51px;
     	border: 1px solid #dadada;
+   	    font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
     }
     .title {
        	width: 100%;
        	height: 40px;
        	margin: 0 auto 20px;
        	text-align: center;
+    }
+    .title a {
+ 		text-decoration: none;
+		color: gray;	
     }
     .content {
     	margin: 10px 0;
@@ -94,7 +109,6 @@
 </head>
 <body>
 
-	<jsp:include page="../layout/header.jsp"></jsp:include>
 
 	<c:if test="${memberConfirm != null}">
 		<div class="join" >
@@ -113,7 +127,9 @@
 	
 	<c:if test="${memberConfirm == null}">
 		<div class="false" >
-			<h3 class="title">아이디 찾기</h3>
+			<h3 class="title">
+				<a href="${contextPath}/member/findIdPage">아이디 찾기</a>
+			</h3>
 				<div class="content">
 					입력하신 정보로 등록된 회원이 없습니다.<br>
 					정보를 다시 확인하시고 시도해주세요.
@@ -125,7 +141,6 @@
 		</div>
 	</c:if>
 	
-	<jsp:include page="../layout/footer.jsp"></jsp:include>
 	
 	
 </body>

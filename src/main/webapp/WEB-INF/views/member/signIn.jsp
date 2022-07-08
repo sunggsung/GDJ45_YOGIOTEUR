@@ -19,6 +19,10 @@
 	.signIn {
 		text-align: center;
 	}
+	.signIn a {
+ 		text-decoration: none;
+		color: gray;	
+    }
 	.join_container {
 		margin: 0 auto;
 		width: 460px;
@@ -321,7 +325,9 @@
 <body>
 	
 	
-	<h2 class="signIn" >회원가입</h2>
+	<h2 class="signIn" >
+		<a href="${contextPath}/member/agreePage">회원가입</a>
+	</h2>
 	<hr>
 	
 	<div class="join_container">
