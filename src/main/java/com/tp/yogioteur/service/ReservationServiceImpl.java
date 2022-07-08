@@ -52,7 +52,7 @@ public class ReservationServiceImpl implements ReservationService {
 		String req = opt.orElse("요청사항없음");
 		
 		Integer people = adult + child;
-		
+		System.out.println("serviceImple(memberNo) : " + memberNo);
 		ReservationDTO reservation = ReservationDTO.builder()
 				.reserNo(reserNo)
 				.memberNo(memberNo)
@@ -64,7 +64,7 @@ public class ReservationServiceImpl implements ReservationService {
 				.reserStatus(status)
 				.reserRequest(req)
 				.build();
-		
+		System.out.println("serviceImple(reservation) : " + reservation);
 		int res = reservationMapper.reservationInsert(reservation);
 		
 		Integer totalPr = Integer.parseInt(request.getParameter("totalPrice"));
@@ -106,6 +106,7 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public void confirms(HttpServletRequest request, Model model) {		
 		String no = request.getParameter("reserNo");
+		System.out.println(no);
 		
 		model.addAttribute("reservation", reservationMapper.reservationSelectConfirm(no));
 		model.addAttribute("money", reservationMapper.priceSelectConfirm(no));

@@ -38,7 +38,14 @@
 	}
 
 </script>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
 <style>
+	@font-face {
+	    font-family: 'MICEMyungjo';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+    }
 	form > a {
 		text-decoration: none;
 		color: gray;	
@@ -57,12 +64,20 @@
     	margin: 110px auto;
     	padding: 60px 50px 51px;
     	border: 1px solid #dadada;
+  	    font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
     }
     .title {
        	width: 100%;
        	height: 40px;
        	margin: 0 auto 30px;
        	text-align: center;
+    }
+    .title a {
+ 		text-decoration: none;
+		color: gray;	
     }
     .content {
     	margin: 10px 0;
@@ -78,12 +93,14 @@
          width: 350px;
          height: 17px;
          padding: 16px 19px 15px;
-         font-size: 14px;
-         font-weight: bold;
          color: #333;
          outline: none;
          border: none;
          position: absolute;
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-size: 14px;
+         font-weight: bold;
         }
      .btn_findId {
          display: block;
@@ -96,12 +113,17 @@
          letter-spacing: -0.5px;
          text-align: center;
          line-height: 51px;	
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-size: 14px;
+         font-weight: bold;
      }
 	.button_box {
          margin-top: 30px;
          text-align: center;
          border-top: 1px solid #f2f2f5;
          font-size: 14px;
+         cursor: pointer;
      }
      .button_box > a {
          display: inline-block;
@@ -113,11 +135,12 @@
 </head>
 <body>
 	
-	<jsp:include page="../layout/header.jsp"></jsp:include>
 	
 	<div class="join" >
 		<form id="findIdForm" action="${contextPath}/member/findId" method="post">
-		<h3 class="title">아이디 찾기</h3>
+		<h3 class="title">
+			<a href="${contextPath}/member/findIdPage">아이디 찾기</a>
+		</h3>
 			<div class="content">
 				<div class="find_box">
 					<input type="text" name="memberName" id="memberName" placeholder="이름"><br>
@@ -129,12 +152,10 @@
 				<button class="btn_findId">확인</button> 
 		</form>
 		<div class="button_box">
-			<a href="${contextPath}/member/findPwPage">비밀번호 찾기</a> |
-			<a href="${contextPath}/member/agreePage">회원가입</a>
+			<a href="${contextPath}/member/agreePage">회원가입</a> |
+			<a href="${contextPath}/member/findPwPage">비밀번호 찾기</a> 
 		</div>
 	</div>
-	
-	<jsp:include page="../layout/footer.jsp"></jsp:include>
 	
 
 </body>

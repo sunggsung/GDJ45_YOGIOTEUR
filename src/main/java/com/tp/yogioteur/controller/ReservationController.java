@@ -57,12 +57,14 @@ public class ReservationController {
 	
 	@GetMapping("reservation/reservationConfirm")
 	public String reservationConfirm(HttpServletRequest request, Model model) {
+		System.out.println(request.getParameter("reserNo"));
 		reservationService.confirms(request, model);
 		return "reservation/reservationConfirm";
 	}
 	
 	@PostMapping("/payments")
 	public void payments(@RequestParam(value="resRoomNo", required=false) Long roomNo, HttpServletRequest request, HttpServletResponse response) throws ParseException {
+		System.out.println("controller(memberNo) : " + request.getParameter("resMemberNo"));
 		reservationService.payments(request, response);
 		roomService.changeRoomStatusOff(roomNo);
 	}
