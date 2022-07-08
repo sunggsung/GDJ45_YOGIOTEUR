@@ -376,7 +376,7 @@
 			<div><img class="po" src="resources/image/food3.jpg" alt="food" ></div>
 			<div><img class="po" src="resources/image/food4.jpg" alt="food" ></div>
 			<div><img class="po" src="resources/image/food5.jpg" alt="food" ></div>
-		    </div>
+		</div>
 	</div>
 	
 	<jsp:include page="layout/footer.jsp"></jsp:include>

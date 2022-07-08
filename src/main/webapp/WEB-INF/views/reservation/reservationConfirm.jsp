@@ -17,6 +17,7 @@
 		text-align: center;
 		font-size: 30px;
 		font-weight: 600;
+		margin-top: 40px;
 		margin-bottom: 25px;
 	}
 	.reser_complete {
@@ -25,7 +26,7 @@
 		padding: 28px 88px 28px 88px;
 		width: 680px;
         height: 880px;
-       	margin: 0 auto;
+       	margin: 50px auto;
        	font-size: 18px;
 	}
 	.reser_name {

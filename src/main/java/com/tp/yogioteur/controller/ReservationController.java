@@ -52,7 +52,7 @@ public class ReservationController {
 		roomInfo.put("roomPrice", request.getParameter("roomPr"));
 		
 		model.addAttribute("roomInfo", roomInfo);
-		System.out.println(roomInfo);
+		System.out.println();
 		
 		return "reservation/reservationPage";
 	}

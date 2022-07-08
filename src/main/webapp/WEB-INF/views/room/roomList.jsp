@@ -33,14 +33,13 @@
 	  outline: none;
 	}
 	
-	
-	
-	.btn-16 {
+	.goPost {
+	  cursor: pointer;
 	  background: #000;
 	  color: #fff;
 	  z-index: 1;
 	}
-	.btn-16:after {
+	.goPost:after {
 	  position: absolute;
 	  content: "";
 	  width: 100%;
@@ -51,14 +50,13 @@
 	  background: #fff;
 	  transition: all 0.3s ease;
 	}
-	.btn-16:hover:after {
+	.goPost:hover:after {
 	  top: 0;
 	  height: 100%;
 	}
-	.btn-16:active {
+	.goPost:active {
 	  top: 2px;
 	}
-
 </style>
 <script type="text/javascript">
 
@@ -72,33 +70,38 @@ function openChild(var roomNo)
     openWin = window.open("${contextPath}/room/detail?roomNo="+roomNo,
             "childForm", "width=570, height=350, resizable = no, scrollbars = no");    
 } */
-	
-	document.oncontextmenu = function(){return false;}
-	
-	function goPost() {
-		let f = document.createElement('form');
-		const chkIn = document.getElementById('chkIn');
-		const chkOut = document.getElementById('chkOut');
-		const roomNo = document.getElementById('roomNo');
-		const roomName = document.getElementById('roomName');
-		const roomPrice = document.getElementById('roomPr');
-		
-		f.appendChild(chkIn);
-		f.appendChild(chkOut);		
-		f.appendChild(roomNo);		
-		f.appendChild(roomName);		
-		f.appendChild(roomPrice);		
-		
-		f.setAttribute('method', 'post');
-		f.setAttribute('action', '${contextPath}/reservation/reservationPage?roomNo=' + $('#roomNo').val());
-		document.body.appendChild(f);
-		f.submit();
-	}
+	$(function(){
+		$(".goPost").click(function(){
+			var goBtn = $(this);
+			
+			// checkBtn.parent() : checkBtn의 부모는 <td>이다.
+			// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
+			var tr = goBtn.parent().parent();
+			var td = tr.children();
+			
+			var ro = td.eq(0).children().val();
+			
+			console.log(ro);
+			
+
+			let f = document.createElement('form');
+			const chkIn = document.getElementById('chkIn');
+			const chkOut = document.getElementById('chkOut');
+			
+			f.appendChild(chkIn);
+			f.appendChild(chkOut);			
+			
+			f.setAttribute('method', 'post');
+			f.setAttribute('action', '${contextPath}/reservation/reservationPage?roomNo=' + ro);
+			document.body.appendChild(f);
+			f.submit();
+		})
+	})
 </script>
 </head>
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
-	<table>
+	<table id="tbl">
 			
 		<tbody>
 			
@@ -107,14 +110,10 @@ function openChild(var roomNo)
 						<td>
 						   <input type="hidden" id="roomNo" name="roomNo" value="${room.roomNo}">
 						   <a href="${contextPath}/room/detail?roomNo=${room.roomNo}" class="roomNo"><img src="${contextPath}/room/view?roomNo=${room.roomNo}" width="400px" height="300px"></a>
-						   <input type="hidden" id="roomName" name="roomName" value="${room.roomName}">
 						   <a href="${contextPath}/room/detail?roomNo=${room.roomNo}" class="roomNo">${room.roomName}</a>
 						</td>	
 						<td>
-						   <input type="hidden" id="roomPr" name="roomPr" value="${room.roomPrice}">
-						   <input type="hidden" id="roomChkIn" name="roomChkIn" value="${room.roomCheckIn}">
-						   <input type="hidden" id="roomChkOut" name="roomChkOut" value="${room.roomCheckOut}">	
-						   <input type="button" class="custom-btn btn-16" value="${room.roomPrice}KRW" onclick="goPost()">
+						   <input type="button" id="goPost" name="goPost" class="goPost" value="${room.roomPrice}KRW">
 						</td>
 					</tr>
 			</c:forEach>

@@ -413,7 +413,7 @@
 
 	<div class="reser_main">
 		<div class="reser_image">
-			<img src="${contextPath}/room/view?roomNo=${roomInfo.roomNo}" width="700px;">
+			<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="700px;">
 		</div>
 		
 		<hr>
