@@ -99,7 +99,7 @@
 		padding: 10px 15px 15px 15px;
 	}
 	.chk_in {
-		padding: 10px 15px 15px 15px;
+		padding: 10px 12px 25px 20px;
 	}
 	.chk_out {
 		padding: 10px 15px 15px 15px;
@@ -301,11 +301,11 @@
 					<div class="chk_in">
 						<input type="hidden" id="chkIn" name="chkIn" value="${reservation.reserCheckIn}">
 						<span class="left_name">CHECK IN</span> 
-						<span class="right_name">${reservation.reserCheckIn}</span>
+						<span class="right_name">CHECK OUT</span>
 					</div>  
 					<div class="chk_out">
 						<input type="hidden" id="chkOut" name="chkOut" value="${reservation.reserCheckOut}">
-						<span class="left_name">CHECK OUT</span> 
+						<span class="left_name">${reservation.reserCheckIn}</span> 
 						<span class="right_name">${reservation.reserCheckOut}</span>
 					</div>
 				</div>	
@@ -350,6 +350,7 @@
 					예약 취소에 따른 위약금 규정
 				</button>
 				<div class="commission_body">
+				<br>
 					사용 예정일(체크인 날짜) 3일 전 15시 이후 예약취소 시<br>
 					- 하루 숙박 총 요금의 50% 부과<br>
 	
