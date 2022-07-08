@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.tp.yogioteur.domain.MemberDTO;
+import com.tp.yogioteur.domain.PaymentDTO;
 import com.tp.yogioteur.domain.PriceDTO;
 import com.tp.yogioteur.domain.ReservationDTO;
 import com.tp.yogioteur.mapper.ReservationMapper;
@@ -104,11 +105,15 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public void confirms(HttpServletRequest request, Model model) {		
+	public void confirms(HttpServletRequest request, Model model) {	
+		
 		String no = request.getParameter("reserNo");
+		PaymentDTO payment = reservationMapper.paymentSelectByNo(no);
+		String uid = payment.getImpUid();
 		
 		model.addAttribute("reservation", reservationMapper.reservationSelectConfirm(no));
 		model.addAttribute("money", reservationMapper.priceSelectConfirm(no));
+		model.addAttribute("impUid", uid);
 		
 		ReservationDTO reservation = reservationMapper.reservationSelectConfirm(no);
 		Long rNo = reservation.getRoomNo();

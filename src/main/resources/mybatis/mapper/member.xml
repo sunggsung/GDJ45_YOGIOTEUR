@@ -24,8 +24,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(#{memberId}, #{memberPw}, #{memberEmail}, #{memberName}, #{memberPhone}, #{memberBirth}, #{memberGender}, #{memberPromoAdd}, #{memberPostCode}, #{memberRoadAddr}, #{agreeState}, NOW())
 	</insert>
 	
-	
-	
 	<!-- 로그인 / 비밀번호 검증 -->
 	<select id="selectMemberByIdPw" parameterType="MemberDTO" resultType="MemberDTO">
 	SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE, MEMBER_BIRTH, MEMBER_GENDER, MEMBER_PROMO_ADD, MEMBER_POST_CODE, MEMBER_ROAD_ADDR, AGREE_STATE, SIGN_IN
@@ -48,7 +46,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  WHERE MEMBER_NAME = #{memberName}	
 	   AND MEMBER_EMAIL = #{memberEmail}
 	</select>
-	
 	
 	<!-- 비밀번호 -->
 	<select id="selectMemberByIdEmail" parameterType="MemberDTO" resultType="MemberDTO">

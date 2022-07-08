@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>	
 	
 	<select id="selectRoomTypeByNo" parameterType="Long" resultMap="RoomDTOMap">
-		SELECT T.RT_NO, T.RT_TYPE, T.RT_MAX, R.ROOM_NAME, R.ROOM_NO
+		SELECT T.RT_NO, T.RT_TYPE, T.RT_MAX, R.ROOM_NAME, R.ROOM_NO, R.ROOM_PRICE
 		  FROM ROOM R INNER JOIN ROOM_TYPE T
 		    ON R.RT_NO = T.RT_NO
 		 WHERE R.ROOM_NO = #{roomNo}
