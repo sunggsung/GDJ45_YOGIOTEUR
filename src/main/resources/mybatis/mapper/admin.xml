@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 			(#{rtNo}, #{roomName}, #{roomStatus}, NOW(), #{roomCheckOut}, #{roomPrice})
 	</insert>
-	<insert id="insertImage" parameterType="ImageDTO" useGeneratedKeys="true" keyProperty="imageNo">
+	<insert id="insertImage" parameterType="ImageDTO">
 		INSERT INTO IMAGE
 			(ROOM_NO, IMAGE_PATH, IMAGE_SAVED, IMAGE_ORIGIN)
 		VALUES
@@ -165,15 +165,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE R.RESER_NO = #{reserNo}
 	</select>
 	
-	<delete id="deleteReservation" parameterType="Long">
+	<delete id="deleteReservation" parameterType="String">
 		DELETE
 		  FROM RESERVATION
 		 WHERE RESER_NO = #{reserNo}
 	</delete>
 	
-	<update id="updateRoomStatus" parameterType="Long">
+	<update id="updateRoomStatusSet0" parameterType="Long">
 		UPDATE ROOM
 		   SET ROOM_STATUS = 0
+		 WHERE ROOM_NO = #{roomNo}
+	</update>
+	
+	<update id="updateRoomCheckInOut" parameterType="Map">
+		UPDATE ROOM
+		   SET ROOM_CHECKIN = #{roomCheckIn}
+		     , ROOM_CHECKOUT = #{roomCheckOut}
 		 WHERE ROOM_NO = #{roomNo}
 	</update>
 	

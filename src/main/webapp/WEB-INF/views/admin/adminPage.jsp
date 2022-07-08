@@ -36,7 +36,6 @@
 			<br><br><br><br><br>
 			<a href="${contextPath}/admin/room">객실목록</a><br><br><br>
 			<a href="${contextPath}/admin/addRoomPage">객실등록</a><br><br><br>
-			<a href="${contextPath}/admin/tourPage">API 조회</a>
 		</div>
 	</div>
 	<jsp:include page="../layout/footer.jsp"></jsp:include>

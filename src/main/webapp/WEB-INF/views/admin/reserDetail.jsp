@@ -49,7 +49,15 @@
 </script>
 <style type="text/css">
 	.item {
+		border: 1px solid;
 		margin: 10% 15%;
+		padding: 20px;
+	}
+	h3 {
+		text-align: center;
+	}
+	.btn {
+		text-align: center;
 	}
 </style>
 </head>
@@ -64,8 +72,10 @@
 		예약자 이름: ${member.memberName}<br><br>
 		예약자 아이디: ${member.memberId}<br><br>
 		예약자 전화번호: ${member.memberPhone}<br><br>
-		<input type="button" id="btnRemove" value="예약 삭제">
-		<input type="button" id="close" value="닫기">
+		<div class="btn">
+			<input type="button" id="btnRemove" value="예약 삭제">
+			<input type="button" id="close" value="닫기">
+		</div>
 	</div>
 		
 </body>

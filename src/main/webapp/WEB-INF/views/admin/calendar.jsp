@@ -115,11 +115,8 @@
 				})
 			},  //events
 			eventClick: function(info) {
-				//alert(info.event.extendedProps.reserNo)
-				//open('${contextPath}/admin/reserDetailPage', '', 'width=640, height=480, top=' + popupY + ', left=' + popupX);
 				$('#reserNo').val(info.event.extendedProps.reserNo);
 	            openChild(info.event.extendedProps.reserNo);
-			        
 			}
 			
 		}); //new FullCalendar.Calendar
