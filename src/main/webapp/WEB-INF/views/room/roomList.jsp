@@ -93,7 +93,7 @@ function openChild(var roomNo)
 		f.appendChild(roomPrice);		
 		
 		f.setAttribute('method', 'post');
-		f.setAttribute('action', '${contextPath}/reservation/reservationPage');
+		f.setAttribute('action', '${contextPath}/reservation/reservationPage?roomNo=' + $('#roomNo').val());
 		document.body.appendChild(f);
 		f.submit();
 	}

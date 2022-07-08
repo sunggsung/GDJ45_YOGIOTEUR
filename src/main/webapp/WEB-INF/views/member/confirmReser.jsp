@@ -63,6 +63,7 @@
 				dataType: 'json',
 				success: function(obj){
 					alert('예약 내역을 제거합니다.');
+					location.reload();
 					deleteReservation += obj.res1;
 					deletePayments += obj.res2;
 					deletePrice += obj.res3;
@@ -145,6 +146,9 @@
 									<input type="button" value="예약취소" class="cancelBtn">
 								</c:if>
 								<c:if test="${reservation.reserStatus eq 0}">
+									<input type="button" value="내역삭제" class="deleteBtn">
+								</c:if>
+								<c:if test="${reservation.reserStatus eq -1}">
 									<input type="button" value="내역삭제" class="deleteBtn">
 								</c:if>
 							</td>

@@ -1,6 +1,5 @@
 package com.tp.yogioteur.batch;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -10,8 +9,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.tp.yogioteur.domain.ReservationDTO;
-import com.tp.yogioteur.domain.RoomDTO;
-import com.tp.yogioteur.mapper.AdminMapper;
 import com.tp.yogioteur.mapper.ReservationMapper;
 
 @Component

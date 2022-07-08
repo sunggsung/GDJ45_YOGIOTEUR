@@ -42,6 +42,7 @@ public class ReservationController {
 	public String reservationPage(HttpServletRequest request, Model model) {
 
 		reservationService.reserToken(request, model);
+		roomService.findRoomTypeByNo(request, model);
 		
 		Map<String, Object> roomInfo = new HashMap<>();
 		roomInfo.put("chkIn", request.getParameter("chkIn"));
@@ -51,6 +52,7 @@ public class ReservationController {
 		roomInfo.put("roomPrice", request.getParameter("roomPr"));
 		
 		model.addAttribute("roomInfo", roomInfo);
+		System.out.println(roomInfo);
 		
 		return "reservation/reservationPage";
 	}
@@ -87,9 +89,10 @@ public class ReservationController {
 	
 	@ResponseBody
 	@PutMapping(value="/reserModify", produces="application/json")
-	public Map<String, Object> changeMember(@RequestBody ReservationDTO reservation)  throws IOException{ 
+	public Map<String, Object> changeMember(@RequestBody ReservationDTO reservation) throws IOException{ 
 		String resNo = reservation.getReserNo();
 		Long rooNo = reservation.getRoomNo();
+		String reason = reservation.getReserRequest();
 		
 		roomService.changeRoomStatusOn(rooNo);
 		
@@ -98,7 +101,7 @@ public class ReservationController {
 		
 		int amount = paymentService.paymentInfo(impUid, token);
 		
-		paymentService.paymentCancle(resNo, token, amount, "취소");
+		paymentService.paymentCancle(resNo, token, amount, reason);
 		
 		return reservationService.changeReservation(reservation);
 	}

@@ -1,6 +1,7 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -12,8 +13,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script>
 	$(document).ready(function(){
-		$('#total_price').attr('value', $('#room_price').val());
-		$('#hidden_price').attr('value', $('#room_price').val());
+		$('#hidden_tipPrice').attr('value', $('#hidden_roomPrice').val());
 		tipVal();
 	})
 	function fnPayment() {
@@ -35,34 +35,48 @@
 			}
 		}
 	}
+	function comma(str) {
+	     str = String(str);
+	     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	function uncomma(str) {
+	     str = String(str);
+	     return str.replace(/[^\d]+/g, '');
+	}
 	function tipVal() {
-		let roomPr = $('#room_price').val();
+		let roomPr = $('#hidden_roomPrice').val();
 		let tip = (roomPr / 10);
-		$('#tip_price').attr('value', Math.round(tip));
+		let tal = parseInt(roomPr) + parseInt(tip);
+		$('#tip_price').attr('value', comma(uncomma(Math.round(tip))));
+		$('#total_price').attr('value', comma(uncomma(Math.round(tal))));
 	}
 	function count(type) {
 		const cntFood1 = document.getElementById('food1');
 		const cntFood2 = document.getElementById('food2');
-		const cntAdult = document.getElementById('adult');
-		const cntChild = document.getElementById('child');
 		const cntRoomPr = document.getElementById('room_price');
 		const cntTotalPr = document.getElementById('total_price');
 		const cntTipPr = document.getElementById('tip_price');
-		const cntHidden = document.getElementById('hidden_price');
+		const cntHidden1 = document.getElementById('hidden_tipPrice');
+		const cntHidden2 = document.getElementById('hidden_foodPrice');
+		const cntHidden3 = document.getElementById('hidden_roomPrice');
 		const sum1 = document.getElementById('sum');
+		
+		const cntAdult = document.getElementById('adult');
+		let cntMax = cntAdult.value;;
 		
 		let food1 = cntFood1.value;
 		let food2 = cntFood2.value;
-		let adult = cntAdult.value;
-		let child = cntChild.value;
 		let sumVal = sum1.value; 
 		let roomPr = cntRoomPr.value;
 		let total = cntTotalPr.value;
 		let tip = cntTipPr.value;
-		let hidden = cntHidden.value;
+		let hiddenTip = cntHidden1.value;
+		let hiddenFood = cntHidden2.value;
+		let hiddenRoom = cntHidden3.value;
 		
 		let foodPrice = 50000;
-		let cntMax = cntAdult.value;;
+		let plusPrice = 0;
+		let minusPrice = 0;
 
 		/* if(tipPr != null) {
 			$('#tip_price').val('0');
@@ -70,40 +84,58 @@
 		if(type == 'plus1') {
 			food1 = parseInt(food1) + 1;
 			sumVal = parseInt(food1) * foodPrice;
-			hidden = parseInt(hidden) + foodPrice;
-			total = parseInt(hidden) + (parseInt(hidden) / 10);
+
+			hiddenTip = (parseInt(hiddenRoom) + parseInt(sumVal)) / 10;
+			tip = parseInt(hiddenRoom) + parseInt(sumVal);
+			total = parseInt(tip) + parseInt(hiddenTip);
 			if(cntFood1.value == cntMax) {
 				return false;
 			}
 		} else if(type == 'minus1') { 
 			if(cntFood1.value != 0) {
 				food1 = parseInt(food1) - 1;
-				sumVal = parseInt(sumVal) - foodPrice;
-				hidden = parseInt(hidden) - foodPrice;
-				total = parseInt(hidden) + (parseInt(hidden) / 10);
+				sumVal = parseInt(hiddenFood) - foodPrice;
+
+				tip = parseInt(hiddenTip) - foodPrice;
+				hiddenTip = (parseInt(hiddenTip) - foodPrice) / 10;
+				total = parseInt(tip) + parseInt(hiddenTip);
 			} else if(cntFood1.value == 0){
 				return false;
 			}
 			
 		}
-		tip = parseInt(hidden) / 10;
 		
-		$('#food1').attr('value', food1);
-		$('#food2').attr('value', food1);
-		$('#sum').attr('value', sumVal);
-		$('#total_price').attr('value', Math.round(total));
-		$('#hidden_price').attr('value', hidden);
-		$('#tip_price').attr('value', Math.round(tip));
+		$('#food1').attr('value', comma(uncomma(food1)));
+		$('#food2').attr('value', comma(uncomma(food1)));
+		$('#sum').attr('value', comma(uncomma(sumVal)));
+		$('#hidden_foodPrice').attr('value', sumVal);
+		$('#hidden_tipPrice').attr('value', tip);
+		$('#tip_price').attr('value', comma(uncomma(Math.round(hiddenTip))));
+		$('#total_price').attr('value', comma(uncomma(total)));
+		$('#real_food').attr('value', sumVal);
+		$('#real_tip').attr('value', hiddenTip);
+		$('#real_total').attr('value', total);
+		
+		return sumVal;
+	}
+	function countP(type) {
+		const cntAdult = document.getElementById('adult');
+		const cntChild = document.getElementById('child');
+
+		let adult = cntAdult.value;
+		let child = cntChild.value;
+		let cntMaxA = cntAdult.value;;
+		let cntMaxB = cntChild.value;;
 		
 		if(type == 'plus2') {
 			adult = parseInt(adult) + 1;
-			if(adult == cntMax) {
+			if(adult == cntMaxA) {
 				return false;
 			}
 		} else if(type == 'minus2') { 
 			if(cntAdult.value != 0) {
 				adult = parseInt(adult) - 1;
-			} else if(cntFood1.value == 0){
+			} else if(cntAdult.value == 0){
 				return false;
 			}
 		}
@@ -111,19 +143,17 @@
 
 		if(type == 'plus3') {
 			child = parseInt(child) + 1;
-			if(child == cntMax) {
+			if(child == cntMaxB) {
 				return false;
 			}
 		} else if(type == 'minus3') { 
 			if(cntChild.value != 0) {
 				child = parseInt(child) - 1;
-			} else if(cntFood1.value == 0){
+			} else if(cntChild.value == 0){
 				return false;
 			}
 		}
 		$('#child').attr('value', child);
-		
-		return sumVal;
 	}
 	function paymentData() {
 		const data = {
@@ -192,6 +222,21 @@
     }
 </script>
 <style>
+	div {
+		display: block;
+	}
+	.reser_image {
+		padding: 28px 28px 28px 28px;
+		width: 700px;
+        height: 450px;
+       	margin: 0 auto;
+	}
+	.reser_infoName {
+		position: relative;
+		font-weight: 600;
+		font-size: 22px;
+		margin: 28px 0 8px 198px;
+	}
 	.reser_option {
 		border: 1px solid #333;
 		margin: 20px 0 0;
@@ -299,25 +344,82 @@
 		position: relative;
 		float: right;
 	}
+	.reser_confirm {
+		border: 1px solid #333;
+		margin: 20px 0 0;
+		padding: 28px 48px 28px 48px;
+		width: 1080px;
+        height: 120px;
+       	margin: 28px auto;
+	}
+	.reser_textarea {
+		position: relative;
+		float: left;
+		width: calc(50% + 8px);
+		min-height: 40px;
+		padding-right: 8px;
+	}
+	.reser_button {
+		position: relative;
+		float: right;
+		min-height: 20px;
+		padding: 14px 60px;
+	}
+	/* .payment_btn:not(:disabled) {
+		cursor: pointer;
+		display: block;
+		width: 100%;
+		min-width: 260px;
+        height: 100px;
+        line-height: 106px;
+        background-color: Orange;
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 800;
+        color: #FFF;
+        text-align: center;
+	} */
+	.payment_btn:not(:disabled) {
+		cursor: pointer;
+	}
+	.payment_btn:hover {
+    	color: white;
+    	background-color: #a07044 !important;
+   	 	border-color: #a07044 !important;
+	}
+	.payment_btn {	
+		font-size: 14px;
+    	padding: 1.655rem 6.75rem;
+    	border-radius: 0.3rem;
+    	border-color: #ba895d;
+   		color: #ba895d;
+    	background-color: transparent;
+    	font-weight: 600;
+    	border-width: 2px;
+   	 	box-shadow: 0 5px 10px 2px rgb(36 105 92 / 19%) !important;
+	}
+	.payment_btn[type=button] {
+		-webkit-appearance: button;
+	}
+	button {
+		text-transform: none;
+		overflow: visible;
+	}
 </style>
 </head>
 <body>
 
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 
-	<h1>예약 페이지</h1>
-	<hr>
 	<div class="reser_main">
 		<div class="reser_image">
-			<img src="../resources/img/unnamed.jpg" width="50px" height="50px">
+			<img src="${contextPath}/room/view?roomNo=${roomInfo.roomNo}" width="700px;">
 		</div>
 		
 		<hr>
 		
-		<h3>예약자 정보</h3>
-		
-		
 		<form id="f" action="${contextPath}/payments" method="post">
+			<div class="reser_infoName">예약 옵션</div>
 			<div class="reser_option">
 				<div class="option_cnt">
 					<div class="people_cnt">
@@ -326,15 +428,15 @@
 						</div>
 						<div class="adult">
 							<span class="sub_name">성인</span> 
-							<span id="btn"><input type="button" value="+" onclick="count('plus2')">
+							<span id="btn"><input type="button" value="+" onclick="countP('plus2')">
 									<input type="text" id="adult" name="adult" value="0" style="width:14px;border:none;border:0px" readonly>
-							  	  <input type="button" value="-" onclick="count('minus2')"></span>
+							  	  <input type="button" value="-" onclick="countP('minus2')"></span>
 						</div>
 						<div class="child">
 							<span class="sub_name">어린이</span> 
-							<span id="btn"><input type="button" value="+" onclick="count('plus3')">
+							<span id="btn"><input type="button" value="+" onclick="countP('plus3')">
 									<input type="text" id="child" name="child" value="0" style="width:14px;border:none;border:0px" readonly>
-							 	  <input type="button" value="-" onclick="count('minus3')"></span>
+							 	  <input type="button" value="-" onclick="countP('minus3')"></span>
 						</div>
 					</div>
 					<div class="food_cnt">
@@ -354,7 +456,7 @@
 						<div class="option_name">
 							추가 요청
 						</div> 
-						<div class="text"><textarea rows="7px" cols="60px" name="req"></textarea></div>
+						<div class="text"><textarea rows="7px" cols="80px" name="req"></textarea></div>
 					</div>
 				</div>
 				<div class="option_result">
@@ -362,7 +464,8 @@
 						객실 요금
 					</div>
 					<div class="room_price2">
-						<span>2022년 06월 28일</span><span id="krw"><input type="text" id="room_price" name="roomPrice" size="6" value="${roomInfo.roomPrice}" style="border:none;border:0px" readonly> KRW</span> 
+						<input type="hidden" id="hidden_roomPrice" name="roomPrice" value="${rn.roomPrice}">
+						<span>2022년 06월 28일</span><span id="krw"><input type="text" id="room_price" size="6" value="<fmt:formatNumber value='${rn.roomPrice}' pattern='#,###' />" style="border:none;border:0px" readonly> KRW</span> 
 					</div>
 					<div class="option_price">
 						옵션 요금
@@ -371,15 +474,19 @@
 						조식신청(성인)
 					</div>
 					<div class="adult_food2">
+						<input type="hidden" id="hidden_foodPrice" name="hidden_foodPrice" value="0">
+						<input type="hidden" id="real_food" name="foodPrice" value="0">
 						<span>성인조식 <input type="text" id="food2" name="food" value="0" style="width:8px;border:none;border:0px" readonly>x박</span>
-						<span id="krw"><input type="text" id="sum" name="foodPrice" size="6" value="0" style="border:none;border:0px" readonly> KRW</span>
+						<span id="krw"><input type="text" id="sum" size="6" value="0" style="border:none;border:0px" readonly> KRW</span>
 					</div>
 					<div class="tip_price">
-						<input type="hidden" id="hidden_price" name="hidden_price" value="0">
-						<span id="tip_pr">세금 및 봉사료</span><span id="krw"><input type="text" id="tip_price" name="tipPrice" size="6" value="0" style="border:none;border:0px" readonly> KRW</span>
+						<input type="hidden" id="hidden_tipPrice" name="hidden_tipPrice" value="0">
+						<input type="hidden" id="real_tip" name="tipPrice" value="0">
+						<span id="tip_pr">세금 및 봉사료</span><span id="krw"><input type="text" id="tip_price" size="6" value="0" style="border:none;border:0px" readonly> KRW</span>
 					</div>
 					<div class="total_price">
-						<span id="total_pr">객실 총 요금</span><span id="krw"><input type="text" id="total_price" name="totalPrice" size="6" value="0" style="border:none;border:0px" readonly> KRW</span>
+						<input type="hidden" id="real_total" name="totalPrice" value="0">
+						<span id="total_pr">객실 총 요금</span><span id="krw"><input type="text" id="total_price" size="6" value="0" style="border:none;border:0px" readonly> KRW</span>
 					</div>
 				</div>
 			</div>
@@ -389,9 +496,9 @@
 				
 				<input type="hidden" name="resCheckIn" id="resCheckIn" value="${roomInfo.chkIn}">			
 				<input type="hidden" name="resCheckOut" id="resCheckOut" value="${roomInfo.chkOut}">	
-				<input type="hidden" name="resRoomNo" id="resRoomNo" value="${roomInfo.roomNo}">	
-				<input type="hidden" name="resRoomName" id="resRoomName" value="${roomInfo.roomName}">	
-				<input type="hidden" name="resRoomPr" id="resRoomPr" value="${roomInfo.roomPrice}">	
+				<input type="hidden" name="resRoomNo" id="resRoomNo" value="${rn.roomNo}">	
+				<input type="hidden" name="resRoomName" id="resRoomName" value="${rn.roomName}">	
+				<input type="hidden" name="resRoomPr" id="resRoomPr" value="${rn.roomPrice}">	
 				
 				<input type="hidden" name="userName" id="userName" value="${loginMember.memberName}">
 				<input type="hidden" name="userEmail" id="userEmail" value="${loginMember.memberEmail}">
@@ -399,14 +506,17 @@
 				<input type="hidden" name="userAddr" id="userAddr" value="${loginMember.memberRoadAddr}">
 				<input type="hidden" name="userPost" id="userPost" value="${loginMember.memberPostCode}">
 			
-			<textarea readonly>개인정보보호법에 따라 ...</textarea><br>
-			
-			<input type="checkbox" id="privacy">
-			<label for="privacy" class="item">개인정보 수집에 동의합니다.</label><br>
-			<br><br>
-			
-			<input type="button" value="돌아가기" onclick="location.href='${contextPath}'">
-			<input type="button" value="결제하기" onclick="fnPayment()">
+			<div class="reser_confirm">
+				<div class="reser_textarea">
+					<textarea rows="7px" cols="80px" readonly>개인정보보호법에 따라 ...</textarea><br>
+					<input type="checkbox" id="privacy">
+					<label for="privacy" class="item">개인정보 수집에 동의합니다.</label><br>
+				</div>
+				<div class="reser_button">
+					<!-- <a href="javascript:fnPayment()" class="payment_btn">결제하기</a> -->
+					<input type="button" value="결제하기" onclick="fnPayment()" class="payment_btn">
+				</div>
+			</div>
 		</form>
 	
 	</div>
