@@ -149,7 +149,7 @@
         <div class="join">
        		<form id="Loginform" action="${contextPath}/member/login" method="post">
 				<a href="${contextPath}/">
-					<h2 class="title">YOGIOTEUR</h2>
+					<h2 class="title">Yogioteur</h2>
 				</a>
 				<div class="text">
 				   <p><strong>아이디와 비밀번호를 입력해 주시기 바랍니다.</strong></p>

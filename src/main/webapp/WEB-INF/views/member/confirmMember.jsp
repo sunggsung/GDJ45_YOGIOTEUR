@@ -39,7 +39,7 @@
 		
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 		
-		<form id="confirmPwForm" action="${contextPath}/member/signOut">
+		<form id="confirmPwForm" action="${contextPath}/member/signOut" method="post">
 		<h3>회원 인증</h3>
 		<p>
 		<strong>정보를 안전하게 보호하기 위해 비밀번호를 다시 한 번 확인합니다.</strong>

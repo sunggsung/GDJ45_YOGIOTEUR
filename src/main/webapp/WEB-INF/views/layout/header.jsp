@@ -35,7 +35,7 @@
 			<c:if test="${loginMember ne null}">
 				${loginMember.memberName}님
 				<a href ="${contextPath}/member/logout">로그아웃</a>
-				<a href ="${contextPath}/member/memberPage">마이페이지</a>		
+				<a href ="${contextPath}/member/memberInfo">마이페이지</a>		
 			</c:if>
 			
 			<c:if test="${loginMember ne null and loginMember.memberId eq 'admin12'}">
