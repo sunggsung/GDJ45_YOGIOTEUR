@@ -86,7 +86,7 @@
 	function fnRemoveA(qnaReplyNo, qnaNo){      
 		
         if(confirm('게시글을 삭제할까요?')){
-           location.href='${contextPath}/qnaReply/qnaReplyRemove?qnaReplyNo=' + qnaReplyNo +'&qnaNo=' +qnaNo;
+           location.href='/qnaReply/qnaReplyRemove?qnaReplyNo=' + qnaReplyNo +'&qnaNo=' +qnaNo;
         }
   }
 	
@@ -104,30 +104,30 @@
    
 	  <h1>QnA 상세보기</h1>
 	  
-	  <a class="toQnaList" href="${contextPath}/qna/qnaList">목록으로</a>
+	  <a class="toQnaList" href="/qna/qnaList">목록으로</a>
 	  
 	  <div class="qnaDeatilName"><i class="fa-solid fa-user"></i>  ${qna.memberName}</div>
 	  <hr>
 		
 		 	
 		  		<div class="qnaDatailDate">
-		  		작성일 	: ${qna.qnaCreated}
+		  			작성일 	: ${qna.qnaCreated}
 		  		<c:if test="${qna.qnaCreated < qna.qnaModified}<br>">
 		  			수정일 : ${qna.qnaModified}<br>
 		  		</c:if>
 		  		</div>
 		  		<div class="qnaDetailTitle">${qna.qnaTitle}</div>
-		  		<div class="qnaDetailHit">조회수  : ${qna.qnaHit}<br><br></div>
+		  		<div class="qnaDetailHit">조회수 : ${qna.qnaHit}<br><br></div>
 		  		
 		  		<div class="qnaDetailContent">${qna.qnaContent}</div><br>
 		 		
 		 		<c:if test="${loginMember.memberId eq qna.memberId}">	 		
-			 		<a class="qnaDtailA"  href="${contextPath}/qna/qnaUpdatePage?qnaNo=${qna.qnaNo}">수정하기</a>
+			 		<a class="qnaDtailA"  href="/qna/qnaUpdatePage?qnaNo=${qna.qnaNo}">수정하기</a>
 		 		</c:if>
 		 	
 		 	<br><br>
 		 	
-		 	<form class="qnaReplyData" method="post" action="${contextPath}/qnaReply/qnaReplySave">
+		 	<form class="qnaReplyData" method="post" action="/qnaReply/qnaReplySave">
 		 		<input type="hidden" name="qnaNo" value="${qna.qnaNo}">
 			  	<input type="hidden" id="memberId" class="memberId" name="memberId" value="${loginMember.memberId}">		  
 			  	<input type="hidden" name="memberName" value="${loginMember.memberName}">		  
@@ -143,9 +143,9 @@
 		  
 		  <br><br>
 		
-		 		<c:forEach items="${qnaReplies}" var="qnaReply">
-		<table class="replyTable" >
-			<tbody>
+		 <c:forEach items="${qnaReplies}" var="qnaReply">
+		 	<table class="replyTable" >
+				<tbody>
 			 		<c:if test="${qnaReply.qnaReplyState == -1}">
 						<tr>
 							<td>이름 : ${qnaReply.memberName}</td>
@@ -180,7 +180,7 @@
 						</tr>
 						<tr class="reply_form blind">
 							<td colspan="5">
-								<form class="replyadd" action="${contextPath}/qnaReply/qnaReplySaveSecond" method="post">
+								<form class="replyadd" action="/qnaReply/qnaReplySaveSecond" method="post">
 									<input type="hidden" name="qnaNo" value="${qna.qnaNo}" >
 									<input type="hidden" id="memberId" class="memberId" name="memberId" value="${loginMember.memberId}" readonly>
 									<input type="text" class="memberName" name="memberName" value="${loginMember.memberName}"  readonly>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -196,22 +196,10 @@
 							</td>
 						</tr>
 					</c:if>
-			  			
-			</tbody>
-		</table>
-			  						 			
-		 		</c:forEach>
-			
-		
-		 			
-		 			
-		 			
-				   			
-		</div>		   		
-		 		 	
-		 			
-					
-		 
+				</tbody>
+		 	 </table>
+		 </c:forEach>   			
+	</div>		   		
 	   <br><br>
 	  <jsp:include page="../layout/footer.jsp"></jsp:include>
 	  	

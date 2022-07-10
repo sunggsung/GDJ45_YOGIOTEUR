@@ -52,7 +52,7 @@
 	
 	function fnReviewList(){
 		$('#reviewList').on('click', function(){
-			location.href="${contextPath}/review/reviewList";
+			location.href="/review/reviewList";
 		})
 	}
 	
@@ -128,7 +128,7 @@
    
    
    <div class ="reviewChangeOne">
-	   <form id="reviewChange" action="${contextPath}/review/reviewChange" method="post" enctype="multipart/form-data">
+	   <form id="reviewChange" action="/review/reviewChange" method="post" enctype="multipart/form-data">
 	   		
 	   		
 	   		<input type="hidden" name="reviewNo" value="${review.reviewNo}">
@@ -160,7 +160,7 @@
    		
 
    			<c:forEach var="reImage" items="${reImage}" varStatus="status">
-				<div>${reImage.reImageOrigin}<a href="${contextPath}/review/removeReImage?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}"><i class="fa-solid fa-circle-xmark"></i></a></div>
+				<div>${reImage.reImageOrigin}<a href="/review/removeReImage?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}"><i class="fa-solid fa-circle-xmark"></i></a></div>
 			</c:forEach>
 				
 				
@@ -168,7 +168,7 @@
 			
 			
 			<c:forEach var="reImage" items="${reImage}">
-				<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px" height=" 200px">					
+				<img alt="${reImage.reImageOrigin}" src="/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px" height=" 200px">					
 			</c:forEach>
    		
    	</div>

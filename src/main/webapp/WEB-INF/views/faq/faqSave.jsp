@@ -30,8 +30,7 @@
 		
 		$('#faqSv').on('submit', function(ev){
 			if($('#faqTitle').val() == '' || $('#faqContent').val() == ''){
-				
-				
+
 				alert('작성된 내용이 없습니다.');
 				ev.preventDefault();
 				return false;
@@ -51,13 +50,13 @@
 	
  	<h1>FAQ 게시글 작성</h1>
 	
-	<form id="faqSv" action="${contextPath}/faq/faqSave" method="post">
+	<form id="faqSv" action="/faq/faqSave" method="post">
 		<input type="text" id="faqTitle" name="faqTitle" maxlength = "25" ><br>
 		<textarea rows="5" cols="50" id="faqContent" name="faqContent"></textarea><br><br>
 		<div id="faqContent_cnt">(0 / 500)</div><br><br>
 		<div class="faqSaveBtnList">
 			<button>등록</button>
-			<input type="button" value="목록" onclick="location.href='${contextPath}/faq/faqList'">
+			<input type="button" value="목록" onclick="location.href='/faq/faqList'">
 			<input type="reset" value="초기화">
 		</div>
 	</form>

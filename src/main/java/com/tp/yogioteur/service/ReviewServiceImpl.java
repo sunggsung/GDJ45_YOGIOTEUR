@@ -65,7 +65,7 @@ public class ReviewServiceImpl implements ReviewService {
       model.addAttribute("reImages", reImages);
       model.addAttribute("reviewReplies", reviewReply);
       model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtils.getRecordPerPage());
-      model.addAttribute("paging", pageUtils.getPaging1(request.getContextPath() + "/review/reviewList"));
+      model.addAttribute("paging", pageUtils.getPaging1("/review/reviewList"));
 
    }
 
@@ -208,7 +208,7 @@ public class ReviewServiceImpl implements ReviewService {
          if (ReviewResult == 1 && ReImageResult >= 1) {
             out.println("<script>");
             out.println("alert('리뷰가 등록되었습니다.')");
-            out.println("location.href='" + multipartRequest.getContextPath() + "/review/reviewList'");
+            out.println("location.href='/review/reviewList'");
             out.println("</script>");
             out.close();
          } else {
@@ -240,7 +240,7 @@ public class ReviewServiceImpl implements ReviewService {
          if (resRev >= 1) {
             out.println("<script>");
             out.println("alert('리뷰가 삭제되었습니다')");
-            out.println("location.href='" + request.getContextPath() + "/review/reviewList'");
+            out.println("location.href='/review/reviewList'");
             out.println("</script>");
             out.close();
          } else {
@@ -368,7 +368,7 @@ public class ReviewServiceImpl implements ReviewService {
             if (reviewChangeResult >= 1 && reviewImageResult >= 1) {
                out.println("<script>");
                out.println("alert('리뷰가 수정되었습니다.')");
-               out.println("location.href='" + multipartRequest.getContextPath() + "/review/reviewList'");
+               out.println("location.href='/review/reviewList'");
                out.println("</script>");
                out.close();
             } else {

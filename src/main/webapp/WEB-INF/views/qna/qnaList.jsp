@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="../resources/css/qnaList.css?aft">
+<link rel="stylesheet" href="../resources/css/qnaList.css?afte">
 
 <script>
  
@@ -31,13 +31,13 @@
  	
  	function fnDetailOneSelect(){
  		$('#qna_${qna.qnaNo}').on('click', function(){
- 			location.href='${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}';
+ 			location.href='/qna/qnaDetailPage?qnaNo=${qna.qnaNo}';
  		});
  	}
     
  	function fnRemove(no){      
         if(confirm('게시글을 삭제할까요?')){
-           location.href='${contextPath}/qna/qnaRemove?qnaNo=' + $(no).data('qna_no');
+           location.href='/qna/qnaRemove?qnaNo=' + $(no).data('qna_no');
         }
   }
  	
@@ -54,10 +54,10 @@
   
   
    <c:if test = "${loginMember.memberId eq null}">
-	   	로그인 후 작성가능합니다.
+	   <div class="logintext">로그인 후 작성가능합니다.</div>
    </c:if> 
    <c:if test = "${loginMember.memberId ne null}">
-	   	<a class="qnaAddA" href="${contextPath}/qna/qnaSavePage">새글작성</a>
+	   	<a class="qnaAddA" href="/qna/qnaSavePage">새글작성</a>
    </c:if>
   
   <hr>
@@ -77,10 +77,10 @@
   	<tbody>
   			<c:forEach items="${qnas}" var="qna">
 	  				<tr id="qna_${qna.qnaNo}">
-	  					<td data-href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</td>
-	  					<td data-href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.memberName}</td>
-	  					<td data-href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaCreated}</td>
-	  					<td data-href="${contextPath}/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaHit}</td>	  					
+	  					<td data-href="/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaTitle}</td>
+	  					<td data-href="/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.memberName}</td>
+	  					<td data-href="/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaCreated}</td>
+	  					<td data-href="/qna/qnaDetailPage?qnaNo=${qna.qnaNo}">${qna.qnaHit}</td>	  					
 	  					<c:if test = "${loginMember.memberId eq qna.memberId || loginMember.memberId eq 'admin12'}">
 	  						<td><input id="qnaListDelBtn" type="button" value="삭제" data-qna_no = "${qna.qnaNo}" onclick="fnRemove(this)"></td>
 	  					</c:if>

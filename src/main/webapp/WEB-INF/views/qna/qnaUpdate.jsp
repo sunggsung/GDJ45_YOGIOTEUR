@@ -55,10 +55,10 @@
    <div class="qnaUpdateOne">
 	   <h1>QnA 문의사항 수정</h1>
 	  
-	   <a class="toQnaList" href="${contextPath}/qna/qnaList">목록으로</a>
+	   <a class="toQnaList" href="/qna/qnaList">목록으로</a>
 	  
 	  
-	   <form id="QnaAddM" method="post" action="${contextPath}/qna/qnaUpdate">
+	   <form id="QnaAddM" method="post" action="/qna/qnaUpdate">
 	   
 	   		<input type="hidden" name="qnaNo" value="${qna.qnaNo}"> 
 	   		<input type="hidden" name="memberId" value="${qna.memberId}" readonly> 

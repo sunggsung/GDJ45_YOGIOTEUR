@@ -23,13 +23,13 @@
    })
    function fnRemove(no){      
          if(confirm('삭제할까요?')){
-            location.href='${contextPath}/faq/remove?faqNo=' + $(no).data('faq_no');
+            location.href='/faq/remove?faqNo=' + $(no).data('faq_no');
          }
    }
    
    function fnListSelect(){
       $('#faqListSel').on('click', function(){
-         location.href="${contextPath}/faq/faqList";
+         location.href="/faq/faqList";
       })
    }
    
@@ -55,7 +55,7 @@
 <body>
    <div class="faqListOne">
 	   <c:if test = "${loginMember.memberId eq 'admin12'}">
-		   <a class="faqA" href="${contextPath}/faq/faqSavePage">새글작성</a>   	
+		   <a class="faqA" href="/faq/faqSavePage">새글작성</a>   	
 	   </c:if>
 	   
 	   <input type="button" value="목록보기" id="faqListSel">
@@ -68,7 +68,7 @@
 	                     	<c:if test = "${loginMember.memberId eq 'admin12'}">
 	                     		<button type="button" class="faqDelBtn" value="삭제" data-faq_no = "${faq.faqNo}" onclick="fnRemove(this)"><i class="fa-solid fa-x"></i></button>
 	                     	</c:if>
-	                     <button type="button" class="faqDetailBtn" id="que_${faq.faqNo}" data-faq_detail_no = "${faq.faqNo}" onclick="fnOpenCloseAnswer(this)" value = "상세내용 보기"><i class="fa-solid fa-angle-down"></i></button>               
+	                     	<button type="button" class="faqDetailBtn" id="que_${faq.faqNo}" data-faq_detail_no = "${faq.faqNo}" onclick="fnOpenCloseAnswer(this)" value = "상세내용 보기"><i class="fa-solid fa-angle-down"></i></button>               
 	                  </div>
 	                  <div class ="answer" id="ans_${faq.faqNo}" style="display:none;">${faq.faqContent}</div>
 	               </div>

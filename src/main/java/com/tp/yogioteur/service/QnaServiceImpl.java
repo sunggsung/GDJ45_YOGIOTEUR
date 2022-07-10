@@ -44,7 +44,7 @@ public class QnaServiceImpl implements QnaService {
 		
 		model.addAttribute("qnas", qnas);
 		model.addAttribute("totalRecord", totalRecord);
-		model.addAttribute("paging", pageUtils.getPaging1(request.getContextPath() + "/qna/qnaList"));
+		model.addAttribute("paging", pageUtils.getPaging1("/qna/qnaList"));
 		
 	}
 	
@@ -81,7 +81,7 @@ public class QnaServiceImpl implements QnaService {
 			if(AddQnaRes == 1) {
 				out.println("<script>");
 				out.println("alert('QnA가 등록되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/qna/qnaList'");
+				out.println("location.href='/qna/qnaList'");
 				out.println("</script>");
 				out.close();
 			}else {
@@ -123,7 +123,7 @@ public class QnaServiceImpl implements QnaService {
 			if(AddQnaReply == 1) {
 				out.println("<script>");
 				out.println("alert('댓글이 등록되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/qna/qnaDetailPage?qnaNo=" + qnaNo+"'");
+				out.println("location.href='/qna/qnaDetailPage?qnaNo=" + qnaNo+"'");
 				out.println("</script>");
 				out.close();
 			}else {
@@ -185,7 +185,7 @@ public class QnaServiceImpl implements QnaService {
 			if(AddQnaReply == 1) {
 				out.println("<script>");
 				out.println("alert('댓글이 등록되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/qna/qnaDetailPage?qnaNo=" + qnaNo+"'");
+				out.println("location.href='/qna/qnaDetailPage?qnaNo=" + qnaNo+"'");
 				out.println("</script>");
 				out.close();
 			}else {
@@ -216,7 +216,7 @@ public class QnaServiceImpl implements QnaService {
 			if(removeReplyRes == 1) {
 				out.println("<script>");
 				out.println("alert('댓글이 삭제되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/qna/qnaDetailPage?qnaNo=" + qnaNo+"'");
+				out.println("location.href='/qna/qnaDetailPage?qnaNo=" + qnaNo+"'");
 				out.println("</script>");
 				out.close();
 			}else {
@@ -246,7 +246,7 @@ public class QnaServiceImpl implements QnaService {
 			if(removeQnaRes == 1 || removeQnaReplyRes >= 1) {
 				out.println("<script>");
 				out.println("alert('게시글이 삭제되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/qna/qnaList'");
+				out.println("location.href='/qna/qnaList'");
 				out.println("</script>");
 				out.close();
 			}else {
@@ -282,7 +282,7 @@ public class QnaServiceImpl implements QnaService {
 			if(modifyQnaRes == 1 ) {
 				out.println("<script>");
 				out.println("alert('게시글이 수정되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/qna/qnaDetailPage?qnaNo=" + qnaNo+"'");
+				out.println("location.href='/qna/qnaDetailPage?qnaNo=" + qnaNo+"'");
 				out.println("</script>");
 				out.close();
 			}else {

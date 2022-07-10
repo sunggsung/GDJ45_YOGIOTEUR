@@ -55,10 +55,10 @@
    <div class="qnaSaveOne">
 	   <h1>QnA 문의사항</h1>
 	  
-	   <a id="toQnaList" href="${contextPath}/qna/qnaList">목록으로</a>
+	   <a id="toQnaList" href="/qna/qnaList">목록으로</a>
 	  
 	  
-	   <form id="QnaAdd" method="post" action="${contextPath}/qna/qnaSave">
+	   <form id="QnaAdd" method="post" action="/qna/qnaSave">
 	   		<input type="hidden" id="memberId" name="memberId" value="${loginMember.memberId}"> 
 	   		<input type="hidden" id="memberName" name="memberName" value="${loginMember.memberName}"> 
 	   		제목 : <input type="text" id="qnaTitle" name="qnaTitle" maxlength = "40"><br>

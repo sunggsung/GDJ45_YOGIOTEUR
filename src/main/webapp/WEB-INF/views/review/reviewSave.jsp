@@ -86,7 +86,7 @@
    <h1 class="reAddtitle">새 리뷰 작성</h1>
    
    <div class ="reviewAddWriter">
-	   <form id="reviewAdd" action="${contextPath}/review/reviewSave" method="post" enctype="multipart/form-data">
+	   <form id="reviewAdd" action="/review/reviewSave" method="post" enctype="multipart/form-data">
 	   		
 	   		<input type="hidden" id="memberId" name="memberId" value="${loginMember.memberId}" readonly> <br>
 	   		이름 : <input type="text" id="memberName" name="memberName" value="${loginMember.memberName}" readonly> <br>
@@ -107,9 +107,8 @@
 	  		<textarea rows="10" cols="50" id="review_textarea" class="review_textarea" name="reviewContent" placeholder="리뷰 내용"></textarea><br>
 	   		<div id="review_textarea_cnt">(0 / 500)</div>
 	   		
-	   		
-		   		<input type="file" name="files" id="files" multiple="multiple"/>
-		   		<button id="addBtn">등록</button>
+		   	<input type="file" name="files" id="files" multiple="multiple"/>
+		   	<button id="addBtn">등록</button>
 	   </form>
    </div>
    <jsp:include page="../layout/footer.jsp"></jsp:include>

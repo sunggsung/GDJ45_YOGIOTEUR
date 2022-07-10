@@ -8,7 +8,7 @@
 	if('${type}' == 'insert') {
 		if('${insRes}' > '0') {
 			alert('등록 성공');
-			location.href='${contextPath}/faq/faqList';
+			location.href='/faq/faqList';
 		} else {
 			alert('등록 실패');
 			history.back();
@@ -16,7 +16,7 @@
 	}  else if('${type}' == 'delete') {
 		if('${delRes}' > '0') {
 			alert('삭제 성공');
-			location.href='${contextPath}/faq/faqList';
+			location.href='/faq/faqList';
 		} else {
 			alert('삭제 실패');
 			history.back();
