@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="../resources/css/faq.css">
+<link rel="stylesheet" href="../resources/css/faq.css?af">
 
    
 
@@ -66,7 +66,7 @@
 	                  <div class = "question" >
 	                     ${faq.faqTitle}
 	                     	<c:if test = "${loginMember.memberId eq 'admin12'}">
-	                     		<input type="button" value="삭제" data-faq_no = "${faq.faqNo}" onclick="fnRemove(this)">
+	                     		<button type="button" class="faqDelBtn" value="삭제" data-faq_no = "${faq.faqNo}" onclick="fnRemove(this)"><i class="fa-solid fa-x"></i></button>
 	                     	</c:if>
 	                     <button type="button" class="faqDetailBtn" id="que_${faq.faqNo}" data-faq_detail_no = "${faq.faqNo}" onclick="fnOpenCloseAnswer(this)" value = "상세내용 보기"><i class="fa-solid fa-angle-down"></i></button>               
 	                  </div>
@@ -76,9 +76,9 @@
 	            </c:forEach>
 	      </div>
    
-   
+   		<br>
          <div class="noList">${paging}</div>
-            
+        <br>    
    </div>
 
 	

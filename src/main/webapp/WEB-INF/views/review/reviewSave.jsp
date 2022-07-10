@@ -103,7 +103,7 @@
 	    	</fieldset>
 	  		
 	        <br>
-	  		<input type="text" id="reviewTitle" name="reviewTitle" placeholder="리뷰 제목" maxlength='50'><br>
+	  		<input type="text" id="reviewTitle" name="reviewTitle" placeholder="리뷰 제목" maxlength='40'><br>
 	  		<textarea rows="10" cols="50" id="review_textarea" class="review_textarea" name="reviewContent" placeholder="리뷰 내용"></textarea><br>
 	   		<div id="review_textarea_cnt">(0 / 500)</div>
 	   		

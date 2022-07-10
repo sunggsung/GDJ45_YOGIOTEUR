@@ -311,10 +311,13 @@ public class MemberServiceImpl implements MemberService {
 		String memberId = SecurityUtils.xss(request.getParameter("memberId"));
 		String memberPw = SecurityUtils.sha256(request.getParameter("memberPw"));
 		
+		System.out.println(memberId);
 		MemberDTO member = MemberDTO.builder()
 				.memberId(memberId)
 				.memberPw(memberPw)
 				.build();
+		
+		System.out.println(member);
 		int res = memberMapper.removeMember(member);
 
 		try {

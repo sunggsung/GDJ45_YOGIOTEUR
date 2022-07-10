@@ -6,7 +6,7 @@
     font-weight: normal;
     font-style: normal;
    }
-
+	
 
 	.qnaSaveOne {
 		width : 700px;
@@ -15,6 +15,7 @@
 	
 	h1 {
 		text-align: center;
+		font-family: 'MICEMyungjo';
 	}
 	
 	#toQnaList{
@@ -25,6 +26,7 @@
 		padding : 10px 20px;
 		margin : 30px 0px;
 		background-color: transparent;
+		font-family: 'MICEMyungjo';
 	}
 	
 	#toQnaList:horver{
@@ -43,6 +45,7 @@
 		margin-bottom : 30px;
 		font-size : 20px;
 		padding : 5px 30px;
+		font-family: 'MICEMyungjo';
 	}
 	
 	#qnaContent {
@@ -55,10 +58,12 @@
 		margin-bottom : 10px;
 		font-size : 20px;
 		padding : 30px;
+		font-family: 'MICEMyungjo';
 	}
 	
 	#qnaContent_cnt {
 		text-align: right;
+		font-family: 'MICEMyungjo';
 	}
 	
 	#qnaAddBtn {
@@ -72,11 +77,15 @@
 		font-size : 18px;
 		padding : 10px 18px;
 		margin : 15px;
-		
+		font-family: 'MICEMyungjo';
 	}
 	
 	#qnaAddBtn:hover {
     	cursor: pointer;
+    }
+    
+    #QnaAdd {
+    	font-family: 'MICEMyungjo';
     }
 	
 }

@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="../resources/css/reviewList.css?aftera">
+<link rel="stylesheet" href="../resources/css/reviewList.css?afterafter">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
@@ -20,8 +20,9 @@
 		$('.slideImgs').slick({
 			 infinite: true,
 			 slidesToShow: 2,
-			 slidesToScroll: 2
-			
+			  slidesToScroll: 2,
+			  prevArrow : "<button type='button' class='slick-prev'><i class='fa-solid fa-angle-left fa-2x'></i></button>",
+		      nextArrow : "<button type='button' class='slick-next'><i class='fa-solid fa-angle-right fa-2x'></i></button>"
 		});
 	})
 	
@@ -55,32 +56,7 @@
 	
 	 
 </script>
-<style>
-	.unlink, .link {
-		display: inline-block;  /* 같은 줄에 둘 수 있고, width, height 등 크기 지정 속성을 지정할 수 있다. */
-		padding: 10px;
-		margin: 5px;
-		border: 1px solid white;
-		text-align: center;
-		text-decoration: none;  /* 링크 밑줄 없애기 */
-		color: gray;
-	}
-	.link:hover {
-		border: 1px solid orange;
-		color: limegreen;
-	}
-	
-	.paging{
-		text-align: center;
-	}
-	input[type=button] { 	
-	 	color : white;
-		background-color : #696969;
-		padding : 10px;
-		border : none;
-	}
-	
-</style>
+
 </head>
 <body>
 
@@ -114,36 +90,45 @@
 	   					
 	   					<br>
 	   					
-	   					이름 : ${review.memberName}<br>
-	   					${review.roomName} ${review.rtType}<br>
-	   					${review.reviewContent}<br>
-	   					${review.reviewCreated}<br>
+	   					
+	   					<div class="reveiwName"><i class="fa-solid fa-user">&nbsp;</i>${review.memberName}<br></div>
+	   					<div class="roomName">${review.roomName} ${review.rtType}</div><br>
+	   					<div class="reviewContent">${review.reviewContent}</div><br>
 	   					</div>
 	   					
-	   					<br><br>
+	   					
+	   					
 						<div class="slideImgs">
 							<c:forEach var="reImage" items="${reImages}">
 								
 									<c:if test="${review.reviewNo eq reImage.reviewNo}">
-										<div class="slideImg"><img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}" width="300px" height="200px"></div>					
+										<div class="slideImg"><img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}" width="365px" height="265px"></div>					
 									</c:if>
 									
 							</c:forEach>
 						</div>
-						<br>
-						<c:if test="${loginMember.memberId eq review.memberId || loginMember.memberId eq 'admin12'}">
-			   				<input type="button" value="삭제" name="reviewRemoveBtn" onclick="fnReviewRemove(${review.reviewNo})">					
-						</c:if>
 						
-						<c:if test = "${loginMember.memberId eq review.memberId}">
-							<input type="button" value="리뷰 수정" name="reviewModifyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewModify(this)">
-			   			</c:if>
+		   					
+						
+	   					
+						<div class="reviewCreated">${review.reviewCreated}</div>
+						<br>
+						<div class="ListBtn">
+							<c:if test="${loginMember.memberId eq review.memberId || loginMember.memberId eq 'admin12'}">
+				   				<input type="button" value="삭제" name="reviewRemoveBtn" onclick="fnReviewRemove(${review.reviewNo})">					
+							</c:if>
+							
+							<c:if test = "${loginMember.memberId eq review.memberId}">
+								<input type="button" value="리뷰 수정" name="reviewModifyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewModify(this)">
+				   			</c:if>
+				   			
+				   			<c:if test = "${loginMember.memberId eq 'admin12'}">
+				   				<input type="button" value="댓글달기" id ="reviewReplyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewReply(this)">
+				   			</c:if>
+						</div>
 			   			
-			   			<c:if test = "${loginMember.memberId eq 'admin12'}">
-			   				<input type="button" value="댓글달기" id ="reviewReplyBtn" data-review_no="${review.reviewNo}" onclick="fnReviewReply(this)">
-			   			</c:if>
-			   			
-			   			
+						
+			   			<br><br>
 			   			
 	   				</div>
 	   			</div>
@@ -155,13 +140,15 @@
 			   							<div id="adminReplyList" >
 					   						<div>
 												${reviewReply.replyContent}
-												<c:if test = "${loginMember.memberId eq 'admin12'}">		   					
-								   					<input type="button" id="reviewReplyRemoveBtn" value="댓글 삭제" data-reply_no="${reviewReply.replyNo}" onclick="fnReviewReplyRemove(this)">
-								   					<input type="button" id="reviewReplyModifyBtn" value="댓글 수정" data-reply_no="${reviewReply.replyNo}" data-review_no="${review.reviewNo}" onclick="fnReviewReplyModify(this)">
-					   							</c:if>
 					   						</div>					
 					   					</div>		   					   						
 		   							</div>
+												<div class="reviewReplyBtn">
+													<c:if test = "${loginMember.memberId eq 'admin12'}">		   					
+									   					<input type="button" id="reviewReplyRemoveBtn" value="댓글 삭제" data-reply_no="${reviewReply.replyNo}" onclick="fnReviewReplyRemove(this)">
+									   					<input type="button" id="reviewReplyModifyBtn" value="댓글 수정" data-reply_no="${reviewReply.replyNo}" data-review_no="${review.reviewNo}" onclick="fnReviewReplyModify(this)">
+						   							</c:if>
+												</div>
 		   						</c:if>
 						</c:forEach>
 	   			
@@ -172,7 +159,7 @@
    
    
    <div class="paging">${paging}</div>
-   
+   <br><br>
    <jsp:include page="../layout/footer.jsp"></jsp:include>
    
 </body>
