@@ -42,19 +42,6 @@ public class UpdateRoomStatus {
 		
 	}
 	
-	public void checkIn() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<ReservationDTO> reservations = adminMapper.selectReservationList();
-		
-		int size = reservations.size();
-		for(int i = 0; i < size; i++) {
-			map.put("roomNo", reservations.get(i).getRoomNo());
-			map.put("reserCheckIn", reservations.get(i).getReserCheckIn());
-			map.put("reserCheckOut", reservations.get(i).getReserCheckOut());
-			adminMapper.updateRoomCheckInOut(map);
-		}
-	}
-	
 	// 매일 예약 내역의 체크인 날짜 확인
 	// 객실의 체크인,아웃 날짜 갱신
 	@Scheduled(cron = "0 0 1 1/1 * *")
