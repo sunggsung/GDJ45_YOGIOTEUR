@@ -140,17 +140,6 @@
 	.ok {
 		color: blue;
 	}
-	.InputArea {
-		display: block;
-		position: relative;
-		margin: 0;
-		width: 100%;
-		height: 51px;
-		border: solid 1px #dadada;
-		padding: 10px 110px 10px 14px;
-		box-sizing: border-box;
-		vertical-align: top;
-	}
 	form > a {
 		text-decoration: none;
 		color: gray;	
@@ -166,57 +155,82 @@
     }
     .join {
     	width: 390px;
-    	height: 300px;
+    	height: 350px;
     	margin: 110px auto;
     	padding: 50px 50px 80px;
     	border: 1px solid #dadada;
+    }
+    .findPw {
+       	width: 100%;
+       	height: 40px;
+       	margin: 0 auto 30px;
+       	text-align: center;
+       	font-size: 40px;
         font-family: 'MICEMyungjo';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
         font-weight: normal;
         font-style: normal;
     }
-    .title {
-       	width: 100%;
-       	height: 30px;
-       	margin: 0 auto 20px;
-       	text-align: center;
-    }
-    .title a {
+    .findPw a {
  		text-decoration: none;
-		color: gray;	
-    }
-    .content {
-    	margin: 10px 0;
-    }
-    .authArea {
-       	font-family: 'MICEMyungjo';
+		color: #333;	
+		font-family: 'MICEMyungjo';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
         font-weight: normal;
         font-style: normal;
     }
-     .InputArea {
+    .text {
+       font-size: 18px;
+       font-family: 'MICEMyungjo';
+       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+       font-weight: normal;
+       font-style: normal;
+    }
+    .content {
+    	margin: 10px 0;
+    }
+    .msg {
+       font-size: 16px;
+       font-family: 'MICEMyungjo';
+       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+       font-weight: 600;
+       font-style: normal;
+       padding: 5px 0 12px 0;
+    }
+    .InputArea {
 		display: block;
 		position: relative;
-		margin: 20px 0;
 		width: 100%;
-		height: 51px;
+		height: 60px;
 		border: solid 1px #dadada;
-		padding: 10px 110px 10px 14px;
+		padding: 9px 0px 10px 12px;
 		box-sizing: border-box;
 		vertical-align: top;
 	}
-     .box {
+    .box {
 		border: 0 none;
 		display: block;
-		width: 100%;
+		width: 90%;
 		height: 30px;
 		outline: none;
+		font-size: 18px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: bold;
+        font-style: normal;
+		padding: 7px 10px 0 5px;
 	 }
-     .boxes {
-		height: 20px;
-		width: 60%;
+    .boxes {
+		height: 30px;
+		width: 70%;
 		border: solid 1px #dadada;
 		outline: none;
+		padding: 4px 0px 4px 6px;
+		font-size: 18px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: bold;
+        font-style: normal;
 	 }
 	.button_box {
          margin-top: 20px;
@@ -224,36 +238,60 @@
          border-top: 1px solid #f2f2f5;
          font-size: 14px;
      }
-     .button_box > a {
+    .button_box > a {
          display: inline-block;
          padding: 19px 18px 0;
          color: #333;
+         font-size: 16px;
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-weight: normal;
+         font-style: normal;
      }
-     .btn_find {
+    .btn_find {
          display: block;
-         height: 50px;
+         height: 60px;
          width: 390px;
          background-color: black;
-         font-size: 14px;
-         font-weight: bold;
+         font-size: 16px;
          color: #fff;
          letter-spacing: -0.5px;
          text-align: center;
-         line-height: 51px;	
+         line-height: 60px;	
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-weight: bold;
+         font-style: normal;
+         margin: 0 auto;
+         cursor: pointer;
      } 
+     .btn_send {
+     	 text-align: center;
+     	 font-size: 15px;
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-weight: bold;
+         font-style: normal;
+         margin: 0 auto;
+         padding: 5px;
+         background-color: black;
+         color: #fff;
+         cursor: pointer;
+     }
 </style>
 </head>
 <body>
-		
+
+		<jsp:include page="../layout/header.jsp"></jsp:include>
 		
 		<div class="join" >
 			<form id="findPwForm" action="${contextPath}/member/findPw" method="post">
 			<div class="authArea">
-				<h3 class="title">
+				<div class="findPw">
 					<a href="${contextPath}/member/findPwPage">비밀번호 찾기</a>
-				</h3>
+				</div>
 					<div class="text">
-						<p>본인확인 후 비밀번호를 다시 설정할 수 있습니다.</p>
+						<p><strong>본인확인 후 비밀번호를 다시 설정할 수 있습니다.</strong></p>
 					</div>
 					<div class="InputArea">	
 						<input type="text" name="memberId" id="memberId" class="box" placeholder="아이디">
@@ -261,12 +299,12 @@
 					<div class="find_box">
 						<div class="InputArea">
 							<input type="text" id="memberEmail" class="boxes" placeholder="이메일">
-							<input type="button" value="인증번호받기" id="btnGetAuthCode">
+							<input type="button" class="btn_send" value="인증번호받기" id="btnGetAuthCode">
 						</div>
 							<span id="emailMsg"></span>
 						<div class="InputArea">
 							<input type="text" id="authCode" class="boxes" placeholder="인증코드를 입력하세요">
-							<input type="button" value="인증하기" id="btnVerifyAuthCode">
+							<input type="button" class="btn_send" value="인증하기" id="btnVerifyAuthCode">
 						</div>
 						<div class="button_box">
 							<a href="${contextPath}/member/findIdPage">아이디찾기</a> |
@@ -275,16 +313,18 @@
 					</div>
 			</div>
 				<div class="changeArea">
-					<h3 class="title">비밀번호 재설정</h3>
-						<div class="InputArea">
-							<input type="password" name="memberPw" id="memberPw" class="box" placeholder="새 비밀번호">
-						</div>
-						<span id="pwMsg"></span>
-						<div class="InputArea">
-							<input type="password" id="memberRePw" class="box" placeholder="새 비밀번호 확인">
-						</div>
-							<span id="rePwMsg"></span>
-						<button class="btn_find">확인</button>
+					<div class="findPw">
+						비밀번호 재설정
+					</div>
+					<div class="InputArea">
+						<input type="password" name="memberPw" id="memberPw" class="box" placeholder="새 비밀번호">
+					</div>
+					<div id="pwMsg" class="msg"></div>
+					<div class="InputArea">
+						<input type="password" id="memberRePw" class="box" placeholder="새 비밀번호 확인">
+					</div>
+						<div id="rePwMsg" class="msg"></div>
+					<button class="btn_find">확인</button>
 				</div>
 			</form>
 		</div>

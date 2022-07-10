@@ -12,34 +12,44 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
+	* {
+		box-sizing: border-box;
+	}
 	.ok {
 		color: blue;
 	}
 	.dont {
 		color: red;
 	} 
+	body {
+		margin: 0 auto;
+	}
 	.container {
 		padding-left: 20px;
 	}
 	.tab {
 	  float: left;
 	  border: 1px solid #ccc;
-	  background-color: #f1f1f1;
+	  background-color: #214DA6;
 	  width: 20%;
-	  height: 500px;
+	  height: 650px;
 	}
 	
 	.tab button {
 	  display: block;
 	  background-color: inherit;
-	  color: black;
+	  color: #fff;
 	  padding: 22px 16px;
 	  width: 100%;
 	  border: none;
 	  outline: none;
 	  text-align: left;
 	  cursor: pointer;
-	  font-size: 17px;
+	  font-size: 20px;
+	  font-family: 'MICEMyungjo';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
 	}
 	
 	.tab button:hover {
@@ -51,14 +61,182 @@
 	}
 	
 	.tabcontent {
-	  padding: 0px 50px;
+	  padding: 0 15% 2% 0;
 	  border: 1px solid #ccc;
-	  width: 80%;
+	  width: 100%;
 	  border-left: none;
-	  height: 500px;
+	  height: 650px;
 	  display: none;
 	}
-	
+	.page {
+	  text-align: center;
+	  padding: 2% 15% 5%;
+	}
+	.myPage {
+		font-family: 'MICEMyungjo';
+		font-size: 30px;
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+		text-align: left;
+        margin: 30px 0;
+	}
+	.con {
+		text-align: left;
+		font-size: 20px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        margin: 5px 0;
+	}
+	.contain {
+		font-family: 'MICEMyungjo';
+		font-size: 25px;
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        margin: 30px 0;
+	}
+	.contains {
+		padding-left: 30%;
+		font-family: 'MICEMyungjo';
+		font-size: 25px;
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        margin: 30px 0;
+	}
+	.pw {
+		padding-left: 40%;
+		font-family: 'MICEMyungjo';
+		font-size: 25px;
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        margin: 30px 0;
+	}
+	.container {
+		margin: 20px auto;
+		text-align: center;
+		padding-left: 40%;
+	}
+	.contain_text {
+		font-size: 18px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+	}
+	.conInput {
+		width: 60%;
+		height: 35px;
+		font-size: 20px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        outline: none;
+        margin: 5px 0;
+	}
+	.conInput_ex {
+		width: 50%;
+		height: 35px;
+		font-size: 20px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        outline: none;
+        margin: 2% 0 2% 15%;
+	}
+    .msg {
+       text-align: left;
+       font-size: 16px;
+       font-family: 'MICEMyungjo';
+       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+       font-weight: 600;
+       font-style: normal;
+       padding: 2px 0 8px 0;
+    }
+	.con_choose {
+		text-align: left;
+		font-size: 20px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+		padding-left: 20%;
+		margin: 2% 0;
+	}
+    .InputArea {
+		display: block;
+		position: relative;
+		margin: 10px 0;
+		width: 100%;
+		height: 60px;
+		border: solid 1px #dadada;
+		padding: 9px 0px 10px 10px;
+		box-sizing: border-box;
+		vertical-align: top;
+	}
+	.box {
+		border: 0 none;
+		display: block;
+		width: 90%;
+		height: 30px;
+		outline: none;
+		font-size: 18px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: bold;
+        font-style: normal;
+		padding: 7px 10px 0 5px;
+	 }
+	 .reser {
+	 	font-size: 18px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: bold;
+        font-style: normal;
+	 }
+	.resers {
+		font-size: 18px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: bold;
+        font-style: normal;
+        padding: 0 15% 2% 35%;
+	}
+	.btn_area {
+		display: block;
+		text-align: center;
+		margin: 0 auto;
+		line-height: 30px;
+	}
+	.btn {
+		font-size: 18px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+		padding: 15px 40px;
+		border: 1px solid #dadada;
+		background-color: black;
+		color: #fff;
+		cursor: pointer;
+	}
+	.btn_send {
+     	text-align: center;
+     	font-size: 15px;
+        font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: bold;
+        font-style: normal;
+        margin: 0 auto;
+        padding: 5px;
+        cursor: pointer;
+     }
 </style>
 <script>
 	$(document).ready(function(){
@@ -281,7 +459,10 @@
 	
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 	
-	<h2>마이페이지</h2>
+	<div class="page">
+		<div class="myPage">
+			마이페이지
+		</div>
 	<div class="tab">
 	  <button class="tablinks" onclick="openInfo(event, 'memberInfo')">내정보</button>
 	  <button class="tablinks" onclick="openInfo(event, 'modifyPw')">비밀번호변경</button>
@@ -289,65 +470,128 @@
 	</div>
 	
 	<div id="memberInfo" class="tabcontent">
-	  <h3>내정보</h3>
+	  <div class="contain">
+	  	내정보
+	  </div>
 	  <div class="container">
-	      <form id="modifyForm" action="${contextPath}/member/modifyMember" method="post">
-           	아이디<input type="text" name="memberId" id="memberId" value="${loginMember.memberId}" readonly="readonly"><br>
-           	이름<input type="text" name="memberName" id="memberName" value="${loginMember.memberName}" readonly="readonly"><br>
-			생년월일
-			<input type="text" name="memberBirth" id="memberBirth" value="${loginMember.memberBirth}" readonly="readonly"><br>
-           	연락처
-           	<input type="text" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" maxlength="13"><br>
-			<span id="memberPhoneMsg"></span>
-			주소<br>
-			<input type="text" id="memberPostcode" name="memberPostCode" value="${loginMember.memberPostCode}">
-			<input type="button" onclick="fnPostcode()" value="우편번호 찾기"><br>
-			<input type="text" id="memberRoadAddress" name="memberRoadAddr" value="${loginMember.memberRoadAddr}"><br>
-			성별
-			<label>Male
-				<input type="radio" name="memberGender" value="male" <c:if test="${loginMember.memberGender eq 'male'}">checked="checked"</c:if>/>
-			</label>
-			<label>Female
-			<input type="radio" name="memberGender" value="female" <c:if test="${loginMember.memberGender eq 'female'}">checked="checked"</c:if>/>
-			</label>
-			<br>
-			이메일<br>
-			<input type="text" name="memberEmail" id="memberEmail" value="${loginMember.memberEmail}" >
-			<input type="button" value="중복확인" id="btnConfirmEmail"><br>
-			<span id="memberEmailMsg"></span>
-			<input type="hidden" name="memberId" value="${loaginMember.memberId}"><br>
-			이메일 수신여부
-			<label>동의함
-				<input type="radio" name="memberPromoAdd" value="yes" <c:if test="${loginMember.memberPromoAdd eq 'yes'}">checked="checked"</c:if>/>
-			</label>
-			<label>동의안함
-				<input type="radio" name="memberPromoAdd" value="no" <c:if test="${loginMember.memberPromoAdd eq 'no'}">checked="checked"</c:if>/>
-			</label>
-          		<br>
-			<button>수정</button>
-			<input type="button" value="회원탈퇴" onclick="location.href='${contextPath}/member/confirm'">
+	      <form id="modifyForm" class="modifyForm" action="${contextPath}/member/modifyMember" method="post">
+			<table>
+				<tbody>
+					<tr>
+						<td><label class="con">아이디</label></td>
+						<td>
+          				 	<input type="text" class="conInput" name="memberId" id="memberId" class="form-controll" value="${loginMember.memberId}" readonly="readonly"><br>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="con">이름</label></td>
+						<td>
+							<input type="text" class="conInput" name="memberName" id="memberName" value="${loginMember.memberName}" readonly="readonly">							</div>	
+						</td>
+					</tr>
+					<tr>
+						<td><label class="con">생년월일</label></td>
+						<td>
+							<input type="text" class="conInput" name="memberBirth" id="memberBirth" value="${loginMember.memberBirth}" readonly="readonly"><br>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="con">연락처</label></td>
+						<td>
+							<input type="text" class="conInput" name="memberPhone" id="memberPhone" value="${loginMember.memberPhone}" maxlength="13">						
+							<br>
+							<span id="memberPhoneMsg" class="conInput"></span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="con">주소</label></td>
+						<td colspan="2">
+							<input type="text" class="conInput_ex" id="memberPostcode" name="memberPostCode" value="${loginMember.memberPostCode}">
+							<input type="button" class="btn_send" onclick="fnPostcode()" value="우편번호 찾기">
+							<input type="text" class="conInput" id="memberRoadAddress" name="memberRoadAddr" value="${loginMember.memberRoadAddr}"><br>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="con">성별</label></td>
+						<td>
+							<div class="con_choose">
+								<input type="radio" name="memberGender" id="male" value="male" <c:if test="${loginMember.memberGender eq 'male'}">checked="checked"</c:if>/>
+								<label for="male">Male</label>
+								<input type="radio" name="memberGender" id="female" value="female" <c:if test="${loginMember.memberGender eq 'female'}">checked="checked"</c:if>/>
+								<label for="female">Female</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="con">이메일</label></td>
+						<td>
+							<input type="text" class="conInput_ex" name="memberEmail" id="memberEmail" value="${loginMember.memberEmail}" >
+							<input type="button" class="btn_send" value="중복확인" id="btnConfirmEmail"><br>
+							<span id="memberEmailMsg" class="conInput_ex"></span>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="con">이메일 수신여부</label></td>
+						<td>
+							<div class="con_choose">
+								<input type="radio" name="memberPromoAdd" id="yes" value="yes" <c:if test="${loginMember.memberPromoAdd eq 'yes'}">checked="checked"</c:if>/>
+								<label for="yes">동의함</label>
+								<input type="radio" name="memberPromoAdd" id="no" value="no" <c:if test="${loginMember.memberPromoAdd eq 'no'}">checked="checked"</c:if>/>
+								<label for="no">동의안함</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="hidden" name="memberId" value="${loaginMember.memberId}"><br>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div class="btn_area">
+								<button class="btn">수정</button>
+								<input type="button" class="btn" value="회원탈퇴" onclick="location.href='${contextPath}/member/confirm'">
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
            </form>
 		</div>
 	</div>
 	
 	<div id="modifyPw" class="tabcontent">
-	  <h3>비밀번호 변경</h3>
+	  <div class="pw">
+	  	비밀번호 변경
+	  </div>
 	  <div class="container">
-        <p>주기적인 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요.</p>
+        <div class="contain_text">
+        	주기적인 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요.
+        </div>
+        <div class="form">
 			<form id="modifyPwForm" action="${contextPath}/member/modify" method="post">
-				<input type="password" name="memberPw" id="memberPw" placeholder="새 비밀번호"><br>
-				<span id="pwMsg"></span><br>
-				<input type="password" id="memberRePw" placeholder="새 비밀번호 확인"><br>
-				<span id="rePwMsg"></span><br>
+				<div class="InputArea">
+					<input type="password" class="box" name="memberPw" id="memberPw" placeholder="새 비밀번호"><br>
+				</div>
+					<div id="pwMsg" class="msg"></div>
+				<div class="InputArea">
+					<input type="password" class="box" id="memberRePw" placeholder="새 비밀번호 확인"><br>
+				</div>
+					<div id="rePwMsg" class="msg"></div>
 				<input type="hidden" name="memberId" value="${loginMember.memberId}">
-				<button>변경</button>
-				<input type="button" value="취소" onclick="location.href='${contextPath}/'">
+				<br>
+				<div class="btn_area">
+					<button class="btn">변경</button>
+					<input type="button" class="btn" value="취소" onclick="location.href='${contextPath}/'">
+				</div>
 			</form>
-   		 </div>
+        </div>
+   	  </div>
 	</div>
 	
 	<div id="reservation" class="tabcontent">
-       <h3>예약 확인</h3>
+		<div class="resers">
+			<div class="contains">예약 확인</div>
 			<table class="reser" border="1">
 				<thead>
 					<tr>
@@ -397,7 +641,8 @@
 					</c:forEach> <!--  -->
 				</tbody>
 			</table>
+		  </div>
 		</div>
-
+	</div>
 </body>
 </html>

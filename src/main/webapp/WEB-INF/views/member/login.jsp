@@ -57,6 +57,11 @@
 	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
 	    font-weight: normal;
 	    font-style: normal;
+	    font-family: 'Kaushan Script', cursive; 
+ 	}
+    * {
+    	padding: 0;
+    	margin: 0;
     }
 	form > a {
 		text-decoration: none;
@@ -67,93 +72,123 @@
 		color : #333;
 		text-decoration: none;
 	}
+	.login > a {
+		color : #333;
+		text-decoration: none;
+	}
     .text {
     	text-align: center;
-    }
-    * {
-    	padding: 0;
-    	margin: 0;
-    }
-    .join {
-    	width: 390px;
-    	margin: 110px auto;
-    	padding: 50px 50px 51px;
-    	border: 1px solid #dadada;
     	font-family: 'MICEMyungjo';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
         font-weight: normal;
         font-style: normal;
     }
-    .title {
-       	width: 100%;
-       	height: 40px;
-       	margin: 0 auto 60px;
-       	text-align: center;
-       	font-family: 'Pacifico', cursive;
+    .text_con {
+    	font-size: 16px;
+    	font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
     }
+    .join {
+    	width: 410px;
+    	margin: 110px auto;
+    	padding: 30px 60px 50px;
+    	border: 1px solid #dadada;
+    }
+    .login {
+       	width: 100%;
+       	height: 50px;
+       	margin: 0 0 85px 0;
+       	text-align: center;
+	    font-size: 80px;
+	}
     .content {
     	margin: 10px 0;
     }
     .login_box {
         display: block;
-        height: 48px;
-        margin-bottom: 6px;
+        height: 60px;
+        margin-top: 10px;
+        margin-bottom: 12px;
         border: 1px solid #d7d7d7;
         position: relative;
     }
 	.login_box > input {
          width: 350px;
          height: 17px;
-         padding: 16px 19px 15px;
-         font-size: 14px;
-         font-weight: bold;
+         position: absolute;
+         padding: 20px 19px 15px;
          color: #333;
          outline: none;
          border: none;
-         position: absolute;
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-style: normal;
+         font-size: 20px;
+         font-weight: bold;
         }
      .btn_login {
          display: block;
-         height: 50px;
-         width: 390px;
+         height: 60px;
+         width: 410px;
          background-color: black;
          color: #fff;
          letter-spacing: -0.5px;
          text-align: center;
-         line-height: 51px;	
+         line-height: 60px;	
          font-family: 'MICEMyungjo';
          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
-         font-size: 14px;
+         font-size: 18px;
          font-weight: bold;
          font-style: normal;
+         margin: 0 auto;
      }
      .auto {
      	margin-top: 10px;
+     	font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-size: 18px;
      }
 	.button_box {
          margin: 30px 0;
          text-align: center;
          border-top: 1px solid #f2f2f5;
          font-size: 14px;
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-weight: normal;
+         font-style: normal;
      }
      .button_box > a {
          display: inline-block;
          padding: 19px 18px 0;
          color: #333;
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-weight: normal;
+         font-style: normal; 
+         font-size: 16px;
      }
 
 </style>
 </head>
 <body>
+
+	<jsp:include page="../layout/header.jsp"></jsp:include>
 	
         <div class="join">
        		<form id="Loginform" action="${contextPath}/member/login" method="post">
-				<a href="${contextPath}/">
-					<h2 class="title">Yogioteur</h2>
-				</a>
+				<div class="login">
+					<a href="${contextPath}/">Yogioteur</a>
+				</div>
+				
 				<div class="text">
-				   <p><strong>아이디와 비밀번호를 입력해 주시기 바랍니다.</strong></p>
-				   <p>YOGIOTEUR 호텔 회원이되시면 회원만을 위한 다양한 서비스와 혜택을 받으실 수 있습니다.</p>
+				   <p class="text_con"><strong>아이디와 비밀번호를 입력해 주시기 바랍니다.</strong></p>
+				   <p class="text_con">Yogioteur 호텔 회원이되시면 회원만을 위한 다양한 서비스와 
+				      혜택을 받으실 수 있습니다.</p>
 				</div>
 				<input type="hidden" name="url" value="${url}">
 				<div class="content">

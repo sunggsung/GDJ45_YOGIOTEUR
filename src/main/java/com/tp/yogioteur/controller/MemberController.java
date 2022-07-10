@@ -77,7 +77,6 @@ public class MemberController {
 	public String naverLogin(HttpServletRequest request, HttpServletResponse response, Model model) {
 		String token = memberService.getAccessToken(request, response);
 		MemberDTO loginMember = memberService.getMemberProfile(request, response, token);
-		System.out.println("네이버 로그인 회원정보확인 : " + loginMember);
 		if(loginMember != null) {
 			model.addAttribute("loginMember", loginMember);
 		} 
