@@ -193,7 +193,7 @@
 				<input type="hidden" name="url" value="${url}">
 				<div class="content">
 					<div class="login_box">
-						<input type="text" id="memberId" name="memberId" class="login_id" placeholder="아이디"><br>
+						<input type="text" id="memberId" name="memberId" class="login_id" placeholder="아이디">
 					</div>
 					<div class="login_box">
 						<input type="password" id="memberPw" name="memberPw" class="login_pw" placeholder="비밀번호">

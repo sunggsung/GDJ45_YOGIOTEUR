@@ -119,7 +119,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	INSERT INTO NAVER_MEMBER_LOG
 		(NAVER_LOG_DATE)
 	 VALUES
-	 	(DATE_FORMAT(NOW(), '%Y/%m/%d'))
+	 	(DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'))
 	</insert>
 
 </mapper>	

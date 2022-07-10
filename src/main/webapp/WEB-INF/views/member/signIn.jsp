@@ -18,26 +18,26 @@
 	}
 	.signIn {
 		text-align: center;
-		border-bottom: 1px solid #black;
+		border-bottom: 1px solid black;
 		width: 40%;
 		margin: 30px auto;
 		padding-bottom: 20px;
+	}
+	.signIn a {
+ 		text-decoration: none;
+		color: #333;	
 		font-size: 40px;
 		font-family: 'MICEMyungjo';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
         font-weight: 500;
         font-style: normal;
-	}
-	.signIn a {
- 		text-decoration: none;
-		color: gray;	
     }
 	.join_container {
 		margin: 0 auto;
 		width: 460px;
 		box-sizing: border-box;
 	}
-	.title {
+	.input {
 		margin: 22px 0 8px;
 		font-size: 22px;
 		font-weight: 600;
@@ -178,7 +178,7 @@
 				event.preventDefault();
 				return false;
 			}
-			if($('#memberPostCode').val() == ''){
+			if($('#memberPostcode').val() == ''){
 				alert('우편번호를 확인하세요.');
 				event.preventDefault();
 				return false;
@@ -325,7 +325,7 @@
 		$('#memberPw').on('keyup', function(){
 			let regPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/; 
 			if(regPw.test($('#memberPw').val())==false){
-				$('#memberPwMsg').text('8~12자 영문 소문자, 숫자, 특수문자 모두포함으로만 가능합니다.').addClass('dont').removeClass('ok');
+				$('#memberPwMsg').text('8~12자리 영문, 숫자, 특수문자 모두포함으로만 가능합니다.').addClass('dont').removeClass('ok');
 				pwPass = false;
 			} else {
 				$('#memberPwMsg').text('사용 가능한 비밀번호입니다.').addClass('ok').removeClass('dont');
@@ -396,7 +396,7 @@
 				<input type="hidden" name="event" value="${agreements[1]}">
 				<div class="group">
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							<label for="memberId">아이디</label>
 						</div>
 							<div class="InputArea">
@@ -406,27 +406,27 @@
 					</div>
 					
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							<label for="memberPw">비밀번호</label>
 						</div>
 							<div class="InputArea">
-								<input type="password" name="memberPw" id="memberPw" class="box" placeholder="8~12자 영문 소문자, 숫자, 특수문자">
+								<input type="password" name="memberPw" id="memberPw" class="box" placeholder="영문, 숫자, 특수문자 모두포함 8~12자">
 							</div>
-							<div id="memberPwMsg" class=""></div>
+							<div id="memberPwMsg" class="msg"></div>
 					</div>
 					
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							<label for="memberPwConfirm">비밀번호 재확인</label>
 						</div>
 							<div class="InputArea">
-								<input type="password" id="memberPwConfirm" class="box" placeholder="8~12자 영문 소문자, 숫자, 특수문자">
+								<input type="password" id="memberPwConfirm" class="box" placeholder="영문, 숫자, 특수문자 모두포함 8~12자">
 							</div>
 							<div id="memberPwConfirmMsg" class="msg"></div>
 					</div>
 					
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							<label for="memberName">이름</label>
 						</div>
 							<div class="InputArea">
@@ -435,7 +435,7 @@
 					</div>
 					
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							<label for="memberPhone">연락처</label>
 						</div>	
 							<div class="InputArea">
@@ -445,7 +445,7 @@
 					</div>
 					
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							<label for="memberBirth">생년월일</label>
 						</div>	
 							<div class="InputArea">
@@ -455,7 +455,7 @@
 					</div>
 					
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							<label for="memberGender">성별</label>
 						</div>	
 							<div class="InputArea">
@@ -467,7 +467,7 @@
 					</div>
 					
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							주소
 						</div>	
 							<div class="InputArea_con">
@@ -478,7 +478,7 @@
 					</div>
 					
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							<label for="memberEmail">이메일 확인</label>
 						</div>	
 							<div class="InputArea">
@@ -488,7 +488,7 @@
 							</div>
 					</div>
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							<label for="authCode">이메일 인증</label>
 						</div>
 							<div class="InputArea">	
@@ -498,7 +498,7 @@
 					</div>
 					
 					<div class="InputAreaWapper">
-						<div class="title">
+						<div class="input">
 							<label for="memberPromoAdd">이메일 수신여부</label>
 						</div>	
 							<div class="InputArea">

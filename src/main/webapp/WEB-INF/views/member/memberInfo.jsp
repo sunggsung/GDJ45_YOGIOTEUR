@@ -332,7 +332,7 @@
 		$('#memberPw').on('keyup', function(){
 			let regPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/; 
 			if(regPw.test($('#memberPw').val())==false){
-				$('#pwMsg').text('영문 소문자, 숫자, 특수문자 포함 8~12자로 입력해주세요.').addClass('dont').removeClass('ok');
+				$('#pwMsg').text('영문, 숫자, 특수문자 포함 8~12자로 입력해주세요.').addClass('dont').removeClass('ok');
 				pwPass = false;
 			} else {
 				$('#pwMsg').text('사용 가능한 비밀번호입니다.').addClass('ok').removeClass('dont');
@@ -464,8 +464,10 @@
 			마이페이지
 		</div>
 	<div class="tab">
-	  <button class="tablinks" onclick="openInfo(event, 'memberInfo')">내정보</button>
-	  <button class="tablinks" onclick="openInfo(event, 'modifyPw')">비밀번호변경</button>
+	  <c:if test="${loginMember.memberGender ne null}">
+		  <button class="tablinks" onclick="openInfo(event, 'memberInfo')">내정보</button>
+		  <button class="tablinks" onclick="openInfo(event, 'modifyPw')">비밀번호변경</button>
+	  </c:if>
 	  <button class="tablinks" onclick="openInfo(event, 'reservation')">예약확인</button>
 	</div>
 	
