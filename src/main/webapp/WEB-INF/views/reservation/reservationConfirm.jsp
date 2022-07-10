@@ -21,7 +21,7 @@
 		margin-bottom: 25px;
 	}
 	.reser_complete {
-		border: 1px solid #333;
+		border: 4px solid #025949;
 		margin: 20px 0 0;
 		padding: 28px 88px 28px 88px;
 		width: 680px;
