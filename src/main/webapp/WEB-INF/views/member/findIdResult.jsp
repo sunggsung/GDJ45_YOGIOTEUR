@@ -23,6 +23,10 @@
 		color: gray;	
 		font-size: 30px;
 	}
+	.findId_result > a {
+		text-decoration: none;
+		color: #333;
+	}
 	.button_box > a {
 		color : #333;
 		text-decoration: none;
@@ -36,54 +40,70 @@
     	margin: 110px auto;
     	padding: 60px 50px 51px;
     	border: 1px solid #dadada;
-   	    font-family: 'MICEMyungjo';
+    }
+    .findId_result {
+       	width: 100%;
+       	height: 40px;
+       	margin: 0 auto 40px;
+       	text-align: center;
+       	font-size: 40px;
+       	font-family: 'MICEMyungjo';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
         font-weight: normal;
         font-style: normal;
     }
-    .title {
-       	width: 100%;
-       	height: 40px;
-       	margin: 0 auto 20px;
-       	text-align: center;
-    }
-    .title a {
+    .findId_result > a {
  		text-decoration: none;
-		color: gray;	
+		color: #333;	
     }
     .content {
     	margin: 10px 0;
     	text-align: center;
+    	font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
     }
     .find_box {
         display: block;
-        height: 48px;
-        margin-bottom: 6px;
+        height: 30px;
+        margin-bottom: 12px;
         border: 1px solid #d7d7d7;
         position: relative;
+        padding: 20px 0 10px 15px;
+        text-align: left;
     }
 	.find_box > input {
          width: 350px;
          height: 17px;
          padding: 16px 19px 15px;
-         font-size: 14px;
+         font-size: 18px;
          font-weight: bold;
          color: #333;
          outline: none;
          border: none;
          position: absolute;
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-weight: normal;
+         font-style: normal;
         }
      .btn_findId {
          display: block;
-         height: 50px;
+         height: 60px;
          width: 390px;
          background-color: black;
-         font-size: 14px;
+         font-size: 16px;
          font-weight: bold;
          color: #fff;
          letter-spacing: -0.5px;
          text-align: center;
-         line-height: 51px;	
+         line-height: 60px;	
+         font-family: 'MICEMyungjo';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+         font-weight: bold;
+         font-style: normal;
+         cursor: pointer;
      }
 	.button_box {
          margin-top: 30px;
@@ -99,23 +119,43 @@
     .false {
    		width: 390px;
    		margin: 110px auto;
-  	 	padding: 60px 50px 51px;
+  	 	padding: 60px 50px 40px;
   	 	border: 1px solid #dadada;
     }
-    .btn_notFound {
-    	text-align: center;
+    .Btn {
+    	display: block;
+		text-align: center;
+		margin: 0 auto;
+		line-height: 30px;
+		margin: 20px 0 10px 0;
     }
+    .btn_notFound {
+    	padding: 20px 30px;
+    	font-size: 18px;
+    	font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+		border: 1px solid #dadada;
+		background-color: black;
+		color: #fff;
+		cursor: pointer;
+    }
+
 </style>
 </head>
 <body>
 
-
+	<jsp:include page="../layout/header.jsp"></jsp:include>
+	
 	<c:if test="${memberConfirm != null}">
 		<div class="join" >
-			<h3 class="title">아이디 찾기</h3>
+			<div class="findId_result">
+				<a href="${contextPath}/member/findIdPage">아이디 찾기</a>
+			</div>
 				<div class="content">
 					<div class="find_box">
-						회원님의 아이디 : ${memberConfirm.memberId} 
+						아이디 : ${memberConfirm.memberId} 
 					</div>
 					<div class="find_box">
 						가입일 : ${memberConfirm.signIn}
@@ -127,16 +167,16 @@
 	
 	<c:if test="${memberConfirm == null}">
 		<div class="false" >
-			<h3 class="title">
+			<div class="findId_result">
 				<a href="${contextPath}/member/findIdPage">아이디 찾기</a>
-			</h3>
+			</div>
 				<div class="content">
 					입력하신 정보로 등록된 회원이 없습니다.<br>
 					정보를 다시 확인하시고 시도해주세요.
 				</div>
-				<div class="btn_notFound">
-					<input type="button" value="취소" onclick="location.href='${contextPath}/'">
-					<input type="button" value="회원가입" onclick="location.href='${contextPath}/member/agreePage'">
+				<div class="Btn">
+					<input type="button" class="btn_notFound" value="취소" onclick="location.href='${contextPath}/'">
+					<input type="button" class="btn_notFound" value="회원가입" onclick="location.href='${contextPath}/member/agreePage'">
 				</div>
 		</div>
 	</c:if>

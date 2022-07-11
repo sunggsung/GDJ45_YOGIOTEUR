@@ -18,20 +18,33 @@
 	}
 	.signIn {
 		text-align: center;
+		border-bottom: 1px solid black;
+		width: 40%;
+		margin: 30px auto;
+		padding-bottom: 20px;
 	}
 	.signIn a {
  		text-decoration: none;
-		color: gray;	
+		color: #333;	
+		font-size: 40px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
     }
 	.join_container {
 		margin: 0 auto;
 		width: 460px;
 		box-sizing: border-box;
 	}
-	.title {
-		margin: 19px 0 8px;
-		font-size: 16px;
-		font-weight: 800;
+	.input {
+		margin: 22px 0 8px;
+		font-size: 22px;
+		font-weight: 600;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
 	}
 	label {
 		cursor: pointer;
@@ -44,11 +57,15 @@
 		position: relative;
 		margin: 0;
 		width: 100%;
-		height: 51px;
+		height: 60px;
 		border: solid 1px #dadada;
 		padding: 10px 110px 10px 14px;
 		box-sizing: border-box;
 		vertical-align: top;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
 	}
 	.InputArea_con {
 		display: block;
@@ -64,21 +81,62 @@
 		border: 0 none;
 		display: block;
 		width: 100%;
-		height: 30px;
+		height: 40px;
 		outline: none;
+		font-size: 20px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
 	}
 	.boxes {
-		height: 20px;
+		height: 30px;
 		width: 60%;
 		border: solid 1px #dadada;
 		outline: none;
+		font-size: 20px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
 	}
+	.msg {
+       font-size: 16px;
+       font-family: 'MICEMyungjo';
+       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+       font-weight: 600;
+       font-style: normal;
+       padding: 2px 0 8px 0;
+    }
 	.BtnArea {
 		text-align: center;
 		display: block;
 		line-height: 30px;
 		margin: 20px 0;
 	}
+	.btn_signIn {
+		font-size: 18px;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+		padding: 20px 40px;
+		border: 1px solid #dadada;
+		background-color: black;
+		color: #fff;
+		cursor: pointer;
+	}
+	.btn_send {
+     	text-align: center;
+     	font-size: 15px;
+        font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: bold;
+        font-style: normal;
+        margin: 0 auto;
+        padding: 5px;
+        cursor: pointer;
+     }
 </style>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -120,7 +178,7 @@
 				event.preventDefault();
 				return false;
 			}
-			if($('#memberPostCode').val() == ''){
+			if($('#memberPostcode').val() == ''){
 				alert('우편번호를 확인하세요.');
 				event.preventDefault();
 				return false;
@@ -267,7 +325,7 @@
 		$('#memberPw').on('keyup', function(){
 			let regPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/; 
 			if(regPw.test($('#memberPw').val())==false){
-				$('#memberPwMsg').text('8~12자 영문 소문자, 숫자, 특수문자 모두포함으로만 가능합니다.').addClass('dont').removeClass('ok');
+				$('#memberPwMsg').text('8~12자리 영문, 숫자, 특수문자 모두포함으로만 가능합니다.').addClass('dont').removeClass('ok');
 				pwPass = false;
 			} else {
 				$('#memberPwMsg').text('사용 가능한 비밀번호입니다.').addClass('ok').removeClass('dont');
@@ -323,134 +381,142 @@
 </script>
 </head>
 <body>
-	
-	
-	<h2 class="signIn" >
-		<a href="${contextPath}/member/agreePage">회원가입</a>
-	</h2>
-	<hr>
-	
-	<div class="join_container">
-		<form id="SignInform" action="${contextPath}/member/signIn" method="post">
-		
-			<input type="hidden" name="info" value="${agreements[0]}">
-			<input type="hidden" name="event" value="${agreements[1]}">
-			<div class="group">
-				<div class="InputAreaWapper">
-					<h4 class="title">
-						<label for="memberId">아이디</label>
-					</h4>
-						<div class="InputArea">
-							<input type="text" name="memberId" id="memberId" class="box" placeholder="6~12자 영문,숫자">
-						</div>
-						<span id="memberIdMsg"></span>
-				</div>
-				
-				<div class="InputAreaWapper">
-					<h4 class="title">
-						<label for="memberPw">비밀번호</label>
-					</h4>
-						<div class="InputArea">
-							<input type="password" name="memberPw" id="memberPw" class="box" placeholder="8~12자 영문 소문자, 숫자, 특수문자">
-						</div>
-						<span id="memberPwMsg"></span>
-				</div>
-				
-				<div class="InputAreaWapper">
-					<h4 class="title">
-						<label for="memberPwConfirm">비밀번호 재확인</label>
-					</h4>
-						<div class="InputArea">
-							<input type="password" id="memberPwConfirm" class="box" placeholder="8~12자 영문 소문자, 숫자, 특수문자">
-						</div>
-						<span id="memberPwConfirmMsg"></span>
-				</div>
-				
-				<div class="InputAreaWapper">
-					<h4 class="title">
-						<label for="memberName">이름</label>
-					</h4>
-						<div class="InputArea">
-							<input type="text" name="memberName" id="memberName" class="box" placeholder="이름">
-						</div>
-				</div>
-				
-				<div class="InputAreaWapper">
-					<h4 class="title">
-						<label for="memberPhone">연락처</label>
-					</h4>	
-						<div class="InputArea">
-							<input type="text" name="memberPhone" id="memberPhone" class="box" placeholder="하이픈(-)을 포함 입력" maxlength="13">
-						</div>
-						<span id="memberPhoneMsg"></span>
-				</div>
-				
-				<div class="InputAreaWapper">
-					<h4 class="title">
-						<label for="memberBirth">생년월일</label>
-					</h4>	
-						<div class="InputArea">
-							<input type="text" name="memberBirth" id="memberBirth" class="box" placeholder="생년월일(6자)" maxlength="6">
-						</div>
-						<span id="memberBirthMsg"></span>
-				</div>
-				
-				<div class="InputAreaWapper">
-					<h4 class="title">
-						<label for="memberGender">성별</label>
-					</h4>	
-						<div class="InputArea">
-							<input type="radio" name="memberGender" id="male" value="male" checked="checked">
-							<label for="male" >Male</label>
-							<input type="radio" name="memberGender" id="female" value="female">
-							<label for="female" >Female</label>
-						</div>
-				</div>
-				
-				<div class="InputAreaWapper">
-					<h4 class="title">
-						주소
-					</h4>	
-						<div class="InputArea_con">
-							<input type="text" name="memberPostCode" id="memberPostcode" class="boxes" placeholder="우편번호">
-							<input type="button" onclick="fnPostcode()" value="우편번호 찾기">
-							<input type="text" name="memberRoadAddr" id="memberRoadAddress" class="boxes"  placeholder="도로명주소">
-						</div>
-				</div>
-				
-				<div class="InputAreaWapper_con">
-					<h4 class="title">
-						<label for="memberEmail">이메일</label>
-					</h4>	
-						<div class="InputArea_con">
-							<input type="text" name="memberEmail" id="memberEmail" class="boxes" placeholder="이메일">
-							<input type="button" id="btnGetAuthCode" value="인증번호받기"><br>
-							<span id="memberEmailMsg"></span><br>
-							<input type="text" name="authCode" id="authCode" class="boxes" placeholder="인증코드를 입력하세요">
-							<input type="button" value="인증하기" id="btnVerifyAuthCode">
-						</div>
-				</div>
-				
-				<div class="InputAreaWapper">
-					<h4 class="title">
-						<label for="memberPromoAdd">이메일 수신여부</label>
-					</h4>	
-						<div class="InputArea">
-							<input type="radio" name="memberPromoAdd" id="agree_yes" value="yes" checked="checked">
-							<label for="agree_yes">동의함</label>
-							<input type="radio" name="memberPromoAdd" id="agree_no" value="no">
-							<label for="agree_no">동의안함</label>
-						</div>
-				</div>
-			</div>
-			
-			<div class="BtnArea">
-				<input type="button" value="취소" onclick="location.href='${contextPath}/'"> 
-				<button>확인</button>
-			</div>
-		</form>
-	</div>
 
+	<jsp:include page="../layout/header.jsp"></jsp:include>
+	
+	<div class="signInWapper">
+		<div class="signIn" >
+			<a href="${contextPath}/member/agreePage">회원가입</a>
+		</div>
+		
+		<div class="join_container">
+			<form id="SignInform" action="${contextPath}/member/signIn" method="post">
+			
+				<input type="hidden" name="info" value="${agreements[0]}">
+				<input type="hidden" name="event" value="${agreements[1]}">
+				<div class="group">
+					<div class="InputAreaWapper">
+						<div class="input">
+							<label for="memberId">아이디</label>
+						</div>
+							<div class="InputArea">
+								<input type="text" name="memberId" id="memberId" class="box" placeholder="6~12자 영문,숫자">
+							</div>
+							<div id="memberIdMsg" class="msg"></div>
+					</div>
+					
+					<div class="InputAreaWapper">
+						<div class="input">
+							<label for="memberPw">비밀번호</label>
+						</div>
+							<div class="InputArea">
+								<input type="password" name="memberPw" id="memberPw" class="box" placeholder="영문, 숫자, 특수문자 모두포함 8~12자">
+							</div>
+							<div id="memberPwMsg" class="msg"></div>
+					</div>
+					
+					<div class="InputAreaWapper">
+						<div class="input">
+							<label for="memberPwConfirm">비밀번호 재확인</label>
+						</div>
+							<div class="InputArea">
+								<input type="password" id="memberPwConfirm" class="box" placeholder="영문, 숫자, 특수문자 모두포함 8~12자">
+							</div>
+							<div id="memberPwConfirmMsg" class="msg"></div>
+					</div>
+					
+					<div class="InputAreaWapper">
+						<div class="input">
+							<label for="memberName">이름</label>
+						</div>
+							<div class="InputArea">
+								<input type="text" name="memberName" id="memberName" class="box" placeholder="이름">
+							</div>
+					</div>
+					
+					<div class="InputAreaWapper">
+						<div class="input">
+							<label for="memberPhone">연락처</label>
+						</div>	
+							<div class="InputArea">
+								<input type="text" name="memberPhone" id="memberPhone" class="box" placeholder="하이픈(-)을 포함 입력" maxlength="13">
+							</div>
+							<div id="memberPhoneMsg" class="msg"></div>
+					</div>
+					
+					<div class="InputAreaWapper">
+						<div class="input">
+							<label for="memberBirth">생년월일</label>
+						</div>	
+							<div class="InputArea">
+								<input type="text" name="memberBirth" id="memberBirth" class="box" placeholder="생년월일(6자)" maxlength="6">
+							</div>
+							<div id="memberBirthMsg" class="msg"></div>
+					</div>
+					
+					<div class="InputAreaWapper">
+						<div class="input">
+							<label for="memberGender">성별</label>
+						</div>	
+							<div class="InputArea">
+								<input type="radio" name="memberGender" id="male" value="male" checked="checked">
+								<label for="male" >Male</label>
+								<input type="radio" name="memberGender" id="female" value="female">
+								<label for="female" >Female</label>
+							</div>
+					</div>
+					
+					<div class="InputAreaWapper">
+						<div class="input">
+							주소
+						</div>	
+							<div class="InputArea_con">
+								<input type="text" name="memberPostCode" id="memberPostcode" class="boxes" placeholder="우편번호">
+								<input type="button" class="btn_send" onclick="fnPostcode()" value="우편번호 찾기">
+								<input type="text" name="memberRoadAddr" id="memberRoadAddress" class="boxes"  placeholder="도로명주소">
+							</div>
+					</div>
+					
+					<div class="InputAreaWapper">
+						<div class="input">
+							<label for="memberEmail">이메일 확인</label>
+						</div>	
+							<div class="InputArea">
+								<input type="text" name="memberEmail" id="memberEmail" class="boxes" placeholder="이메일">
+								<input type="button" class="btn_send" id="btnGetAuthCode" value="인증번호받기"><br>
+								<div id="memberEmailMsg" class="msg"></div>
+							</div>
+					</div>
+					<div class="InputAreaWapper">
+						<div class="input">
+							<label for="authCode">이메일 인증</label>
+						</div>
+							<div class="InputArea">	
+								<input type="text" name="authCode" id="authCode" class="boxes" placeholder="인증코드를 입력하세요">
+								<input type="button" class="btn_send" value="인증하기" id="btnVerifyAuthCode">
+							</div>
+					</div>
+					
+					<div class="InputAreaWapper">
+						<div class="input">
+							<label for="memberPromoAdd">이메일 수신여부</label>
+						</div>	
+							<div class="InputArea">
+								<input type="radio" name="memberPromoAdd" id="agree_yes" value="yes" checked="checked">
+								<label for="agree_yes">동의함</label>
+								<input type="radio" name="memberPromoAdd" id="agree_no" value="no">
+								<label for="agree_no">동의안함</label>
+							</div>
+					</div>
+				</div>
+				
+				<div class="BtnArea">
+					<input type="button" class="btn_signIn" value="취소" onclick="location.href='${contextPath}/'"> 
+					<button class="btn_signIn">확인</button>
+				</div>
+			</form>
+		</div>
+	</div>
 
 </body>
 </html>

@@ -21,15 +21,29 @@
 		margin: 0 auto;
 		font-family: 'MICEMyungjo';
 	}
-	.title {
+	.agree {
 		text-align: center;
+		border-bottom: 1px solid gray;
+		width: 40%;
+		margin: 30px auto;
+		font-family: 'MICEMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-size: 40px;
+        padding-bottom: 15px;
+	}
+	#agreeForm {
+		text-align: center;
+	}
+	.text {
+		text-align: left;
+		margin: 0 30% 2% 33%;
 		font-family: 'MICEMyungjo';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
         font-weight: normal;
         font-style: normal;
-	}
-	#agreeForm {
-		text-align: center;
+        font-size: 16px;
 	}
 	.blind {
 		display: none;
@@ -68,26 +82,34 @@
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
         font-weight: 600;
         font-style: normal;
-        font-size: 16px;
+        font-size: 18px;
+        text-align: left;
       }
      .items {
      	font-family: 'MICEMyungjo';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
         font-weight: 600;
         font-style: normal;
-        font-size: 16px;
+        font-size: 24px;
      }
 	.Btn {
 		text-align: center;
 		display: block;
 		line-height: 30px;
-		margin: 0 0 20px 0;
+		margin: 0 0 20px;
+	}
+	.btn_agree {
+		font-size: 18px;
 		font-family: 'MICEMyungjo';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
-        font-weight: normal;
+        font-weight: 600;
         font-style: normal;
+		padding: 20px 40px;
+		border: 1px solid #dadada;
+		background-color: black;
+		color: #fff;
+		cursor: pointer;
 	}
-
 </style>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
@@ -142,21 +164,25 @@
 </head>
 <body>
 	
-	<div class="title"><h2>약관 동의하기</h2></div>
+	<jsp:include page="../layout/header.jsp"></jsp:include>
 	
+	<div class="agreeWrapper">
+	<div class="agree">
+		약관 동의하기
+	</div>
 	
 	<form id="agreeForm" action="${contextPath}/member/signInPage">
 		<div class="box">
 			<input type="checkbox" id="checkAll" class="blind checkAll">
 			<label for="checkAll" class="items">
 			모두 동의합니다.<br>
-				<span>
-				※아래 동의서를 각각 확인한 후 개별적으로 동의하실 수 있습니다.전체 동의 시 체크되는 동의 항목에는 선택동의 항목이 포함되어 있습니다.
-				</span>
 			</label>
 		</div>
+			<div class="text">
+				※아래 동의서를 각각 확인한 후 개별적으로 동의하실 수 있습니다.
+			    <br>※전체 동의 시 체크되는 동의 항목에는 선택동의 항목이 포함되어 있습니다.
+			</div>
 		
-		<hr>
 		
 		<div class="box">
 			<input type="checkbox" id="service" class="blind checkOne">
@@ -258,12 +284,11 @@
 			</div>
 		</div>
 		<div class="Btn">
-			<input type="button" value="취소" onclick="history.back()">
-			<input type="submit" value="다음">
+			<input type="button" class="btn_agree" value="취소" onclick="history.back()">
+			<input type="submit" class="btn_agree" value="다음">
 		</div>
-			
 	</form>
-	
+	</div>
 
 </body>
 </html>

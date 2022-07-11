@@ -77,7 +77,6 @@ public class MemberController {
 	public String naverLogin(HttpServletRequest request, HttpServletResponse response, Model model) {
 		String token = memberService.getAccessToken(request, response);
 		MemberDTO loginMember = memberService.getMemberProfile(request, response, token);
-		System.out.println("네이버 로그인 회원정보확인 : " + loginMember);
 		if(loginMember != null) {
 			model.addAttribute("loginMember", loginMember);
 		} 
@@ -144,7 +143,7 @@ public class MemberController {
 	}
 	
 	// 회원 탈퇴
-	@GetMapping("/member/signOut")
+	@PostMapping("/member/signOut")
 	public void signOut(HttpServletRequest request, HttpServletResponse response) {
 		memberService.signOut(request, response);
 	}
@@ -156,13 +155,9 @@ public class MemberController {
 	}
 	
 	// 회원 정보
-	@GetMapping("/member/memberPage")
-	public String memberPage(){
-		return "member/memberInfo";
-	}
-	
 	@GetMapping("/member/memberInfo")
-	public String memberInfo(){
+	public String memberInfo(HttpServletRequest request, Model model){
+		reservationService.reserList(request, model);
 		return "member/memberInfo";
 	}
 	
@@ -172,27 +167,11 @@ public class MemberController {
 		memberService.changeMember(request, response);
 	}
 	
-	@GetMapping("/member/memberPwPage")
-	public String memberPwPage() {
-		return "member/modifyPw";
-	}
-	
-	// 비밀번호 재설정 페이지 이동
-	@GetMapping(value = "/member/modifyPwPage")
-	public String modifyPwPage() {
-		return "member/modifyPw";
-	}
 	//회원비밀번호 재설정
-	@PostMapping("/member/modifyPw")
+	@PostMapping("/member/modify")
 	public void modifyPw(HttpServletRequest request, HttpServletResponse response) {
 		memberService.changePw(request, response);
 	}
-	
-	//예약내역
-	@GetMapping("/member/confirmReserPage")
-	public String confirmReserPage(HttpServletRequest request, Model model) {
-		reservationService.reserList(request, model);
-		return "member/confirmReser";
-	}
+
 	
 }
