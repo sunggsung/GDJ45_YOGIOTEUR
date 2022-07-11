@@ -54,7 +54,7 @@
 	  border: 1px solid #ccc;
 	  background-color: #214DA6;
 	  width: 20%;
-	  height: 650px;
+	  height: 670px;
 	}
 	
 	.tab button {
@@ -87,7 +87,7 @@
 	  border: 1px solid #ccc;
 	  width: 100%;
 	  border-left: none;
-	  height: 650px;
+	  height: 670px;
 	  display: none;
 	}
 	.page {
@@ -426,7 +426,7 @@
 			let deletePayments = 0;
 			let deletePrice = 0;
 			$.ajax({
-				url: '${contextPath}/reserRemove/' + resNo,
+				url: '/reserRemove/' + resNo,
 				type: 'DELETE',
 				dataType: 'json',
 				success: function(obj){
@@ -443,22 +443,12 @@
 		$(".reviewBtn").click(function(){ 
 			var reviewBtn = $(this);
 			
-			// checkBtn.parent() : checkBtn의 부모는 <td>이다.
-			// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
 			var tr = reviewBtn.parent().parent();
 			var td = tr.children();
 			
 			var roomNo = td.eq(1).text();
 			
-			console.log(roomNo);
-			/*
-			$.ajax({
-				url: '${contextPath}/review/reviewSavePage',
-				type: 'GET',
-				data: { "roomNo" : roomNo }
-			})
-			*/
-			location.href = '${contextPath}/review/reviewSavePage?roomNo=' + roomNo;
+			location.href = '/review/reviewSavePage?roomNo=' + roomNo;
 		})
 	}
 	
@@ -498,7 +488,7 @@
 	  	내정보
 	  </div>
 	  <div class="container">
-	      <form id="modifyForm" class="modifyForm" action="${contextPath}/member/modifyMember" method="post">
+	      <form id="modifyForm" class="modifyForm" action="/member/modifyMember" method="post">
 			<table>
 				<tbody>
 					<tr>
@@ -593,7 +583,7 @@
         	주기적인 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요.
         </div>
         <div class="form">
-			<form id="modifyPwForm" action="${contextPath}/member/modify" method="post">
+			<form id="modifyPwForm" action="/member/modify" method="post">
 				<div class="InputArea">
 					<input type="password" class="box" name="memberPw" id="memberPw" placeholder="새 비밀번호"><br>
 				</div>
@@ -606,7 +596,7 @@
 				<br>
 				<div class="btn_area">
 					<button class="btn">변경</button>
-					<input type="button" class="btn" value="취소" onclick="location.href='${contextPath}/'">
+					<input type="button" class="btn" value="취소" onclick="location.href='/'">
 				</div>
 			</form>
         </div>
@@ -662,7 +652,7 @@
 								</c:if>
 							</td>
 						</tr>
-					</c:forEach> <!--  -->
+					</c:forEach>
 				</tbody>
 			</table>
 		  </div>

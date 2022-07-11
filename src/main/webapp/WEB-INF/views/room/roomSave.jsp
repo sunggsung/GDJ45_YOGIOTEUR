@@ -44,11 +44,10 @@
 </head>
 <body>
 	
-	<form id="f" action="${contextPath}/room/save" method="post" enctype="multipart/form-data">
+	<form id="f" action="/room/save" method="post" enctype="multipart/form-data">
 		<input type="file" name="files" id="files" multiple="multiple"><br>
 		<button>작성완료</button>
 	</form>
-	
 	
 </body>
 </html>

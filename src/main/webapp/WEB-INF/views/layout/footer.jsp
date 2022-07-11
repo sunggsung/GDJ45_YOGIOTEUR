@@ -16,7 +16,7 @@
 	<div class="footer">
 		<div class="end_title">
 			<span class="end_logo">Yogioteur</span>
-			<a href="${contextPath}/reservation/reservationPage">예약</a>
+			<a href="/reservation/reservationPage">예약</a>
 
 			<hr>
 				<div class="info">

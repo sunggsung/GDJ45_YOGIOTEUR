@@ -241,7 +241,7 @@
 			}
 			// 중복 
 			$.ajax({
-				url: '${contextPath}/member/emailCheck',
+				url: '/member/emailCheck',
 				type: 'get',
 				data: 'memberEmail=' + $('#memberEmail').val(),
 				dataType: 'json',
@@ -276,7 +276,7 @@
 			fnEmailCheck().then(
 				function(){
 					$.ajax({
-						url: '${contextPath}/member/sendAuthCode',
+						url: '/member/sendAuthCode',
 						type: 'get',
 						data: 'memberEmail=' + $('#memberEmail').val(),
 						dataType: 'json',
@@ -348,7 +348,7 @@
 			}
 			// 아이디 중복 체크
 			$.ajax({
-				url: '${contextPath}/member/idCheck',
+				url: '/member/idCheck',
 				type: 'get',
 				data: 'memberId=' + $('#memberId').val(),
 				dataType: 'json',
@@ -386,11 +386,11 @@
 	
 	<div class="signInWapper">
 		<div class="signIn" >
-			<a href="${contextPath}/member/agreePage">회원가입</a>
+			<a href="/member/agreePage">회원가입</a>
 		</div>
 		
 		<div class="join_container">
-			<form id="SignInform" action="${contextPath}/member/signIn" method="post">
+			<form id="SignInform" action="/member/signIn" method="post">
 			
 				<input type="hidden" name="info" value="${agreements[0]}">
 				<input type="hidden" name="event" value="${agreements[1]}">

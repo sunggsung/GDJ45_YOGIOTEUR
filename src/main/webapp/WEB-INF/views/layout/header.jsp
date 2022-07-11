@@ -16,19 +16,19 @@
 	<div class="head1">
 	
 		<div class="title">
-			<a href="http://localhost:9090/yogioteur/">Yogioteur</a>
+			<a href="http://yogioteur.cafe24.com">Yogioteur</a>
 		</div>
 		 
 		<div class="headerMain">
 		
 			<div class="header">
 			
-				<a href="${contextPath}/review/reviewList">REVIEW</a>
-				<a href="${contextPath}/faq/faqList">FAQ</a>
+				<a href="/review/reviewList">REVIEW</a>
+				<a href="/faq/faqList">FAQ</a>
 				<!-- 로그인 이전 -->
 				<c:if test="${loginMember eq null}">
-					<a href ="${contextPath}/member/loginPage">LOGIN</a>
-					<a href ="${contextPath}/member/agreePage">SIGN</a>	
+					<a href ="/member/loginPage">LOGIN</a>
+					<a href ="/member/agreePage">SIGN</a>	
 				</c:if>
 			
 				<!-- 로그인 이후 -->
@@ -36,13 +36,13 @@
 						${loginMember.memberName}님
 						<c:choose>
 							<c:when test="${loginMember.memberId eq 'admin12' }">
-								<a href="${contextPath}/admin/adminPage">ADMIN PAGE</a>
+								<a href="/admin/adminPage">ADMIN PAGE</a>
 							</c:when>
 							<c:when test="${loginMember.memberId ne 'admin12' }">
-								<a href ="${contextPath}/member/memberInfo">MY PAGE</a>		
+								<a href ="/member/memberInfo">MY PAGE</a>		
 							</c:when>
 						</c:choose>
-						<a href ="${contextPath}/member/logout">LOGOUT</a>
+						<a href ="/member/logout">LOGOUT</a>
 					</c:if>
 				
 			</div>

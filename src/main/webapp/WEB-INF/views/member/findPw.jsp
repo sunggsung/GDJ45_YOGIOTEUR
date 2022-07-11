@@ -54,7 +54,7 @@
 				return;
 			}
 			$.ajax({
-				url: '${contextPath}/member/idEmailCheck',
+				url: '/member/idEmailCheck',
 				type: 'get',
 				data: 'memberId=' + $('#memberId').val() + '&memberEmail=' + $('#memberEmail').val(),
 				dataType: 'json',
@@ -74,7 +74,7 @@
 			fnIdEmailCheck()
 				.then(function(){
 					$.ajax({
-						url: '${contextPath}/member/sendAuthCode',
+						url: '/member/sendAuthCode',
 						type: 'get',
 						data: 'memberEmail=' + $('#memberEmail').val(),
 						dataType: 'json',
@@ -307,8 +307,8 @@
 							<input type="button" class="btn_send" value="인증하기" id="btnVerifyAuthCode">
 						</div>
 						<div class="button_box">
-							<a href="${contextPath}/member/findIdPage">아이디찾기</a> |
-							<a href="${contextPath}/member/loginPage">로그인</a> 
+							<a href="/member/findIdPage">아이디찾기</a> |
+							<a href="/member/loginPage">로그인</a> 
 						</div>
 					</div>
 			</div>

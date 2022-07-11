@@ -65,7 +65,6 @@ public class ReservationServiceImpl implements ReservationService {
 				.reserStatus(status)
 				.reserRequest(req)
 				.build();
-		System.out.println("serviceImple(reservation) : " + reservation);
 		int res = reservationMapper.reservationInsert(reservation);
 		
 		Integer totalPr = Integer.parseInt(request.getParameter("totalPrice"));
@@ -89,7 +88,7 @@ public class ReservationServiceImpl implements ReservationService {
 			if(res == 1) {
 				out.println("<script>");
 				out.println("alert('결제 완료 되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/reservation/reservationConfirm?reserNo=" + reserNo + "'");
+				out.println("location.href='/reservation/reservationConfirm?reserNo=" + reserNo + "'");
 				out.println("</script>");
 				out.close();
 			} else {
@@ -138,8 +137,6 @@ public class ReservationServiceImpl implements ReservationService {
 		Long no = member.getMemberNo();
 		
 		List<ReservationDTO> resers = reservationMapper.reservationMemberSelectConfirm(no);
-		
-		System.out.println(resers);
 		
 		model.addAttribute("reservations", resers);
 	}

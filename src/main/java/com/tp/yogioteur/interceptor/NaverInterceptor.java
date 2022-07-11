@@ -22,10 +22,10 @@ public class NaverInterceptor implements HandlerInterceptor {
 		if(loginMember != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);
-			response.sendRedirect(request.getContextPath());
+			response.sendRedirect("/");
 		} 
 		else {
-			response.sendRedirect(request.getContextPath());	
+			response.sendRedirect("/");	
 		}
 	}
 }

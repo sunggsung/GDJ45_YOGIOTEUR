@@ -31,12 +31,12 @@
 	<div class="container">
 		<div class="grid_item index">
 			<h3>관리자 메뉴</h3><br>
-			<a href="${contextPath}/admin/member">회원목록</a>
+			<a href="/admin/member">회원목록</a>
 			<br><br><br><br><br>
-			<a href="${contextPath}/admin/reservationList">예약목록</a>
+			<a href="/admin/reservationList">예약목록</a>
 			<br><br><br><br><br>
-			<a href="${contextPath}/admin/room">객실목록</a><br><br><br>
-			<a href="${contextPath}/admin/addRoomPage">객실등록</a><br><br><br>
+			<a href="/admin/room">객실목록</a><br><br><br>
+			<a href="/admin/addRoomPage">객실등록</a><br><br><br>
 		</div>
 	</div>
 	<jsp:include page="../layout/footer.jsp"></jsp:include>

@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${contextPath}/resources/css/footer.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/header.css">
+<link rel="stylesheet" href="/resources/css/footer.css">
+<link rel="stylesheet" href="/resources/css/header.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -80,7 +80,7 @@
 		<c:choose>
 			<c:when test="${rn.rtNo eq 1}">
 				<div>
-				<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="500px;">
+				<img src="/room/view?roomNo=${rn.roomNo}" width="500px;">
 				<h2>${rn.roomName}</h2>
 				<span>현대적 세련미와 은은한 불빛이 조화롭게 어우러진 객실로, 비즈니스 여행객과 레저 여행객 모두에게 아늑한 숙박을 제공 합니다.</span>
 				<br><br>
@@ -95,7 +95,7 @@
 			</c:when>
 			<c:when test="${rn.rtNo eq 2}">
 				<div>
-				<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="500px;">
+				<img src="/room/view?roomNo=${rn.roomNo}" width="500px;">
 				<h2>${rn.roomName}</h2>
 				<span>현대적 세련미와 은은한 불빛이 조화롭게 어우러진 객실로, 비즈니스 여행객과 레저 여행객 모두에게 아늑한 숙박을 제공 합니다.</span>
 				<br><hr>
@@ -109,7 +109,7 @@
 			</c:when>
 			<c:when test="${rn.rtNo eq 3}">
 				<div>
-				<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="500px;">
+				<img src="/room/view?roomNo=${rn.roomNo}" width="500px;">
 				<h2>${rn.roomName}</h2>
 				<span>현대적 세련미와 은은한 불빛이 조화롭게 어우러진 객실로, 비즈니스 여행객과 레저 여행객 모두에게 아늑한 숙박을 제공 합니다.</span>
 				<br><hr>

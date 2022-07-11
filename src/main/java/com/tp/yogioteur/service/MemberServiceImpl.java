@@ -28,6 +28,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -36,11 +38,18 @@ import com.tp.yogioteur.domain.SignOutMemberDTO;
 import com.tp.yogioteur.mapper.MemberMapper;
 import com.tp.yogioteur.util.SecurityUtils;
 
+@PropertySource(value={"classpath:api/api.properties"})
+
 @Service
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberMapper memberMapper;
+	
+	@Value(value="${USERNAME}") private String USERNAME;
+	@Value(value="${PASSWORD}") private String PASSWORD;
+	@Value(value="${clientId}") private String clientId;
+	@Value(value="${clientSecret}") private String clientSecret;
 	
 	// 아이디확인
 	@Override
@@ -66,10 +75,6 @@ public class MemberServiceImpl implements MemberService {
 		props.put("mail.smtp.auth", "true");            
 		props.put("mail.smtp.starttls.enable", "true");
 		
-		// 메일을 보내는 사용자 정보
-		final String USERNAME = "forspringlec@gmail.com";
-		final String PASSWORD = "ukpiajijxfirdgcz";   
-		
 		// 사용자 정보를 javax.mail.Session에 저장
 		Session session = Session.getInstance(props, new Authenticator() {
 			@Override
@@ -77,7 +82,6 @@ public class MemberServiceImpl implements MemberService {
 				return new PasswordAuthentication(USERNAME, PASSWORD);
 			}
 		});
-		
 	
 		try {
 			
@@ -156,7 +160,7 @@ public class MemberServiceImpl implements MemberService {
 			if(res == 1) {
 				out.println("<script>");
 				out.println("alert('회원 가입이 완료되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/member/loginPage'");
+				out.println("location.href='/member/loginPage'");
 				out.println("</script>");
 				out.close();
 			} else {
@@ -232,7 +236,7 @@ public class MemberServiceImpl implements MemberService {
 			if(res == 1) {
 				out.println("<script>");
 				out.println("alert('비밀번호가 수정되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/'");
+				out.println("location.href='/'");
 				out.println("</script>");
 				out.close();
 			} else {
@@ -289,7 +293,7 @@ public class MemberServiceImpl implements MemberService {
 			if(res > 0) {
 				out.println("<script>");
 				out.println("alert('정상적으로 수정되었습니다.')");
-				out.println("location.href='"+ request.getContextPath() + "/'");		
+				out.println("location.href='/'");		
 				out.println("</script>");
 				out.close();
 			} else {
@@ -327,7 +331,7 @@ public class MemberServiceImpl implements MemberService {
 				request.getSession().invalidate();									
 				out.println("<script>");
 				out.println("alert('탈퇴되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "'");	
+				out.println("location.href='/'");	
 				out.println("</script>");
 				out.close();
 			} else {
@@ -353,8 +357,7 @@ public class MemberServiceImpl implements MemberService {
 	public void loginPage(HttpServletRequest request, Model model) {
 		
 		try {
-			String clientId = "fdXdRAviHENtwQcHVArh";
-		    String redirectURI = URLEncoder.encode("http://localhost:9090/" + request.getContextPath() + "/member/naver/login", "UTF-8");
+		    String redirectURI = URLEncoder.encode("http://yogioteur.cafe24.com/member/naver/login", "UTF-8");
 		    SecureRandom random = new SecureRandom();
 		    String state = new BigInteger(130, random).toString();
 		    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -373,11 +376,9 @@ public class MemberServiceImpl implements MemberService {
 	public String getAccessToken(HttpServletRequest request, HttpServletResponse response) {
 		StringBuffer res = new StringBuffer();
 		try {
-			String clientId = "fdXdRAviHENtwQcHVArh";
-			String clientSecret = "izECEfZOzv";
 			String code = request.getParameter("code");
 			String state = request.getParameter("state");
-			String redirectURI = URLEncoder.encode("http://localhost:9090/" + request.getContextPath() + "/member/naver/login", "UTF-8");
+			String redirectURI = URLEncoder.encode("http://yogioteur.cafe24.com/member/naver/login", "UTF-8");
 			String apiURL;
 			apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
 			apiURL += "client_id=" + clientId;

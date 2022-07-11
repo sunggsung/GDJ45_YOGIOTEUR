@@ -33,7 +33,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('탈퇴한 회원입니다.')");
-			out.println("location.href='" + request.getContextPath() + "'");
+			out.println("location.href='/'");
 			out.println("</script>");
 			return false;
 		}
@@ -53,16 +53,16 @@ public class LoginInterceptor implements HandlerInterceptor {
 			session.setAttribute("loginMember", loginMember);
 			
 			if(url.toString().isEmpty()) {		
-				response.sendRedirect(request.getContextPath());
+				response.sendRedirect("/");
 			} else {							
 				response.sendRedirect(url.toString());
 			}
 		} 
 		else {
 			if(url.toString().isEmpty()) {		
-				response.sendRedirect(request.getContextPath() + "/member/loginPage");	
+				response.sendRedirect("/member/loginPage");	
 			} else {
-				response.sendRedirect(request.getContextPath() + "/member/loginPage?url=" + url.toString());									
+				response.sendRedirect("/member/loginPage?url=" + url.toString());									
 			}
 		}
 	}

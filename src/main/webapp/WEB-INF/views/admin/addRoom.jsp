@@ -103,7 +103,7 @@
 		
 		<div class="grid_item room">
 			<h3>객실등록</h3>
-			<form id="f" action="${contextPath}/room/saveRoom" method="post" enctype="multipart/form-data">
+			<form id="f" action="/room/saveRoom" method="post" enctype="multipart/form-data">
 				객실타입:
 				<select id="rtNo" name="rtNo" class="roomType">
 					<option value="">선택</option>

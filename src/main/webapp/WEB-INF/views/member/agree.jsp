@@ -171,7 +171,7 @@
 		약관 동의하기
 	</div>
 	
-	<form id="agreeForm" action="${contextPath}/member/signInPage">
+	<form id="agreeForm" action="/member/signInPage">
 		<div class="box">
 			<input type="checkbox" id="checkAll" class="blind checkAll">
 			<label for="checkAll" class="items">

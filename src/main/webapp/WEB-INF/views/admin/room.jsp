@@ -26,7 +26,7 @@
 	// 예약상태(0, 1)로 분류
 	function fnSelectStatus(status) {
 		$.ajax({
-			url: '${contextPath}/admin/findRoomByStatus',
+			url: '/admin/findRoomByStatus',
 			data: 'roomStatus=' + status,
 			type: 'GET',
 			success: function(obj) {
@@ -53,12 +53,12 @@
 	}
 	function fnRoomDetail() {
 		$(document).on('click', '.btnDetail', function() {
-			location.href='${contextPath}/admin/roomDetail?roomNo=' + $(this).data('room_no');
+			location.href='/admin/roomDetail?roomNo=' + $(this).data('room_no');
 		})
 	}
 	
 	function fnReset() {
-		location.href='${contextPath}/admin/room';
+		location.href='/admin/room';
 	}
 	
 </script>

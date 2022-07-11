@@ -114,7 +114,7 @@ public class AdminServiceImpl implements AdminService {
 			out.println("<script>");
 			if(res == 1 && fileAttachResult == files.size()) {
 				out.println("alert('객실이 등록되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/admin/room'");
+				out.println("location.href='/admin/room'");
 			} else {
 				out.println("alert('객실 등록에 실패했습니다.')");
 				out.println("history.back()");
@@ -144,7 +144,7 @@ public class AdminServiceImpl implements AdminService {
 		model.addAttribute("totalRecord", totalRecord);
 		model.addAttribute("rooms", rooms);
 		model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtils.getRecordPerPage());
-		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/admin/room"));
+		model.addAttribute("paging", pageUtils.getPaging("/admin/room"));
 	}
 	
 	@Override
@@ -222,7 +222,7 @@ public class AdminServiceImpl implements AdminService {
 			out.println("<script>");
 			if(res == 1) {
 				out.println("alert('객실이 삭제되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/admin/room'");
+				out.println("location.href='/admin/room'");
 			} else {
 				out.println("alert('객실이 삭제되지 않았습니다.')");
 				out.println("history.back()");
@@ -318,7 +318,7 @@ public class AdminServiceImpl implements AdminService {
 			out.println("<script>");
 			if(res == 1 || fileAttachResult == files.size()) {
 				out.println("alert('객실이 수정되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/admin/roomDetail?roomNo=" + roomNo + "'");
+				out.println("location.href='/admin/roomDetail?roomNo=" + roomNo + "'");
 			} else {
 				out.println("alert('객실이 수정되지 않았습니다.')");
 				out.println("history.back()");
@@ -359,7 +359,7 @@ public class AdminServiceImpl implements AdminService {
 		model.addAttribute("totalRecord", totalRecord);
 		model.addAttribute("members", members);
 		model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtils.getRecordPerPage());
-		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/admin/member"));
+		model.addAttribute("paging", pageUtils.getPaging("/admin/member"));
 	}
 	
 	@Override

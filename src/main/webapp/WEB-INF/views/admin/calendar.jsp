@@ -102,7 +102,7 @@
 			// DB에 저장된 예약 정보들을 조회후 달력에 표시
 			events: function(info, successCallback, failureCallback) {
 				$.ajax({
-					url: '${contextPath}/admin/reserList',
+					url: '/admin/reserList',
 					type: 'GET',
 					dataType: 'json',
 					success: function(obj) {
@@ -143,7 +143,7 @@
      const popupX = (window.screen.width / 2) - 640/2;
 	 const popupY = (window.screen.height / 2) - 480/2;
      function openChild(reserNo){
-         childWindow = open('${contextPath}/admin/reserDetail?reserNo=' + reserNo
+         childWindow = open('/admin/reserDetail?reserNo=' + reserNo
         		 , '', 'width=640, height=480, top=' + popupY + ', left=' + popupX);
      }
      function sendData(){

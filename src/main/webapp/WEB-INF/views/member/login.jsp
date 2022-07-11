@@ -180,9 +180,9 @@
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 	
         <div class="join">
-       		<form id="Loginform" action="${contextPath}/member/login" method="post">
+       		<form id="Loginform" action="/member/login" method="post">
 				<div class="login">
-					<a href="${contextPath}/">Yogioteur</a>
+					<a href="/">Yogioteur</a>
 				</div>
 				
 				<div class="text">
@@ -209,9 +209,9 @@
 			</form>
 	
 			<div class="button_box">
-				<a href="${contextPath}/member/findIdPage">아이디 찾기</a> |
-				<a href="${contextPath}/member/findPwPage">비밀번호 찾기</a> |
-				<a href="${contextPath}/member/agreePage">회원가입</a> 
+				<a href="/member/findIdPage">아이디 찾기</a> |
+				<a href="/member/findPwPage">비밀번호 찾기</a> |
+				<a href="/member/agreePage">회원가입</a> 
 			</div>
 			
 			<!-- 네이버 아이디 로그인 -->

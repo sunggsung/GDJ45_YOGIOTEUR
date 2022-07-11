@@ -111,7 +111,7 @@
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 		
 		<div class="join" >
-			<form id="confirmPwForm" action="${contextPath}/member/signOut" method="post">
+			<form id="confirmPwForm" action="/member/signOut" method="post">
 				<div class="authArea">
 					<div class="confirm">회원 인증</div>
 					<div class="text">
@@ -129,7 +129,7 @@
 					<input type="hidden" name="memberId" value="${loginMember.memberId}">
 					<div class="btn">
 						<button class="btn_confirm">확인</button>
-						<input type="button" class="btn_confirm" value="취소" onclick="location.href='${contextPath}/'">
+						<input type="button" class="btn_confirm" value="취소" onclick="location.href='/'">
 					</div>
 				</div>
 			</form>

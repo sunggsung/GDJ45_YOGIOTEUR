@@ -40,5 +40,4 @@ public class RoomController {
 		roomService.findRoomTypeByNo(request, model);
 		return "room/detail";
 	}
-	// 객실 상세 이미지
 }

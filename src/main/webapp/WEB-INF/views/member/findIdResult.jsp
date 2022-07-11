@@ -151,7 +151,7 @@
 	<c:if test="${memberConfirm != null}">
 		<div class="join" >
 			<div class="findId_result">
-				<a href="${contextPath}/member/findIdPage">아이디 찾기</a>
+				<a href="/member/findIdPage">아이디 찾기</a>
 			</div>
 				<div class="content">
 					<div class="find_box">
@@ -160,7 +160,7 @@
 					<div class="find_box">
 						가입일 : ${memberConfirm.signIn}
 					</div>
-					<input type="button" value="로그인" class="btn_findId" onclick="location.href='${contextPath}/member/loginPage'">
+					<input type="button" value="로그인" class="btn_findId" onclick="location.href='/member/loginPage'">
 				</div>
 		</div>
 	</c:if>
@@ -168,15 +168,15 @@
 	<c:if test="${memberConfirm == null}">
 		<div class="false" >
 			<div class="findId_result">
-				<a href="${contextPath}/member/findIdPage">아이디 찾기</a>
+				<a href="/member/findIdPage">아이디 찾기</a>
 			</div>
 				<div class="content">
 					입력하신 정보로 등록된 회원이 없습니다.<br>
 					정보를 다시 확인하시고 시도해주세요.
 				</div>
 				<div class="Btn">
-					<input type="button" class="btn_notFound" value="취소" onclick="location.href='${contextPath}/'">
-					<input type="button" class="btn_notFound" value="회원가입" onclick="location.href='${contextPath}/member/agreePage'">
+					<input type="button" class="btn_notFound" value="취소" onclick="location.href='/'">
+					<input type="button" class="btn_notFound" value="회원가입" onclick="location.href='/member/agreePage'">
 				</div>
 		</div>
 	</c:if>

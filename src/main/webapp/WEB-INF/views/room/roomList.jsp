@@ -67,30 +67,13 @@
 </style>
 <script type="text/javascript">
 
-/* var openWin;
-
-function openChild(var roomNo)
-{
-    // window.name = "부모창 이름"; 
-    window.name = "parentForm";
-    // window.open("open할 window", "자식창 이름", "팝업창 옵션");
-    openWin = window.open("${contextPath}/room/detail?roomNo="+roomNo,
-            "childForm", "width=570, height=350, resizable = no, scrollbars = no");    
-} */
 	$(function(){
 		$(".goPost").click(function(){
 			var goBtn = $(this);
-			
-			// checkBtn.parent() : checkBtn의 부모는 <td>이다.
-			// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
 			var tr = goBtn.parent().parent();
 			var td = tr.children();
-			
 			var ro = td.eq(0).children().val();
 			
-			console.log(ro);
-			
-
 			let f = document.createElement('form');
 			const chkIn = document.getElementById('chkIn');
 			const chkOut = document.getElementById('chkOut');
@@ -99,7 +82,7 @@ function openChild(var roomNo)
 			f.appendChild(chkOut);			
 			
 			f.setAttribute('method', 'post');
-			f.setAttribute('action', '${contextPath}/reservation/reservationPage?roomNo=' + ro);
+			f.setAttribute('action', '/reservation/reservationPage?roomNo=' + ro);
 			document.body.appendChild(f);
 			f.submit();
 		})
@@ -116,8 +99,8 @@ function openChild(var roomNo)
 					<tr>
 						<td>
 						   <input type="hidden" id="roomNo" name="roomNo" value="${room.roomNo}">
-						   <a href="${contextPath}/room/detail?roomNo=${room.roomNo}" class="roomNo"><img src="${contextPath}/room/view?roomNo=${room.roomNo}" width="400px" height="300px"></a>
-						   <a href="${contextPath}/room/detail?roomNo=${room.roomNo}" class="roomNo">${room.roomName}</a>
+						   <a href="/room/detail?roomNo=${room.roomNo}" class="roomNo"><img src="/room/view?roomNo=${room.roomNo}" width="400px" height="300px"></a>
+						   <a href="/room/detail?roomNo=${room.roomNo}" class="roomNo">${room.roomName}</a>
 						</td>	
 						<td>
 						   <input type="button" id="goPost" name="goPost" class="goPost" value="${room.roomPrice}KRW">

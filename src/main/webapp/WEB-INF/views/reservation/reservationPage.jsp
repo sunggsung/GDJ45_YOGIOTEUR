@@ -197,7 +197,7 @@
 	    			}		
 	    		);
 	        	$.ajax({
-	        		url: '${contextPath}/payment/complete',
+	        		url: '/payment/complete',
 	        		type: 'POST',
 	        		data: payments,
 	        		contentType: 'application/json',
@@ -423,20 +423,6 @@
 		min-height: 20px;
 		padding: 14px 60px;
 	}
-	/* .payment_btn:not(:disabled) {
-		cursor: pointer;
-		display: block;
-		width: 100%;
-		min-width: 260px;
-        height: 100px;
-        line-height: 106px;
-        background-color: Orange;
-        text-decoration: none;
-        font-size: 22px;
-        font-weight: 800;
-        color: #FFF;
-        text-align: center;
-	} */
 	.payment_btn:not(:disabled) {
 		cursor: pointer;
 	}
@@ -471,12 +457,12 @@
 
 	<div class="reser_main">
 		<div class="reser_image">
-			<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="700px;">
+			<img src="/room/view?roomNo=${rn.roomNo}" width="700px;">
 		</div>
 		
 		<hr>
 		
-		<form id="f" action="${contextPath}/payments" method="post">
+		<form id="f" action="/payments" method="post">
 			<div class="reser_infoName">예약 옵션</div>
 			<div class="reser_option">
 				<div class="option_cnt">
@@ -587,24 +573,23 @@ ex) 추가 베개 요청
 			<div class="reser_confirm">
 				<div class="reser_textarea">
 					<textarea rows="7px" cols="80px" readonly>
-1. 개인정보 수집항목
-- 성명(영문), 연락처(모바일, 자택 또는 회사), 이메일 등
-
-2. 개인정보 수집 및 이용목적
-- 객실 예약 서비스 제공, 예약 관련 안내 및 고지사항 전달, 익스프레스 체크인 서비스 제공, 고객 불만 등 민원 처리, 부정이용 방지, 법적 분쟁 등의 처리
-* 수집된 신용카드 정보는 개런티/위약금 결제를 위해 이용되며, 객실요금은 추후 체크인시 결제됩니다.
-
-3. 개인 정보 보유 및 이용 기간
-- 수집일로부터 2년. 단, 예약 취소 시 취소일로부터 5일후 파기됩니다.
-
-4. 동의를 거부할 권리 및 동의를 거부할 경우의 불이익
-- 귀하는 위와 같은 개인정보의 수집이용에 대한 동의를 거부할 수 있으나, 동의 거부 시, 객실 예약이 불가능합니다.
+						1. 개인정보 수집항목
+						- 성명(영문), 연락처(모바일, 자택 또는 회사), 이메일 등
+						
+						2. 개인정보 수집 및 이용목적
+						- 객실 예약 서비스 제공, 예약 관련 안내 및 고지사항 전달, 익스프레스 체크인 서비스 제공, 고객 불만 등 민원 처리, 부정이용 방지, 법적 분쟁 등의 처리
+						* 수집된 신용카드 정보는 개런티/위약금 결제를 위해 이용되며, 객실요금은 추후 체크인시 결제됩니다.
+						
+						3. 개인 정보 보유 및 이용 기간
+						- 수집일로부터 2년. 단, 예약 취소 시 취소일로부터 5일후 파기됩니다.
+						
+						4. 동의를 거부할 권리 및 동의를 거부할 경우의 불이익
+						- 귀하는 위와 같은 개인정보의 수집이용에 대한 동의를 거부할 수 있으나, 동의 거부 시, 객실 예약이 불가능합니다.
 					</textarea><br>
 					<input type="checkbox" id="privacy">
 					<label for="privacy" class="item">개인정보 수집에 동의합니다.</label><br>
 				</div>
 				<div class="reser_button">
-					<!-- <a href="javascript:fnPayment()" class="payment_btn">결제하기</a> -->
 					<input type="button" value="결제하기" onclick="fnPayment()" class="payment_btn">
 				</div>
 			</div>

@@ -29,7 +29,7 @@
 			} else {
 				if (confirm('예약을 취소하시겠습니까?')) {
 					$.ajax({
-						url : '${contextPath}/reserModify',
+						url : '/reserModify',
 						type : 'PUT',
 						data : reservation,
 						contentType : 'application/json',

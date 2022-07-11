@@ -33,14 +33,13 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 public class DBConfig {
 
-	// mybatis/properties/db.properties 파일에 등록된 프로퍼티 값을 변수에 저장합니다.
-	// 프로퍼티들은 ${}로 처리합니다.
-	@Value(value="${hikariConfig.driverClassName}") private String driverClassName;
-	@Value(value="${hikariConfig.jdbcUrl}") private String jdbcUrl;
-	@Value(value="${hikariConfig.username}") private String username;
-	@Value(value="${hikariConfig.password}") private String password;
+	@Value(value="${spring.datasource.driver-class-name}") private String driverClassName;
+	@Value(value="${spring.datasource.url}") private String jdbcUrl;
+	@Value(value="${spring.datasource.username}") private String username;
+	@Value(value="${spring.datasource.password}") private String password;
+	@Value(value="${mybatis.config-location}") private String configLocation;
+	@Value(value="${mybatis.mapper-locations}") private String mapperLocations;
 	
-	// HikariCP 환경 설정
 	@Bean
 	public HikariConfig hikariConfig() {
 		HikariConfig hikariConfig = new HikariConfig();
@@ -51,32 +50,25 @@ public class DBConfig {
 		return hikariConfig;
 	}
 	
-	// HikariCP DataSource
 	@Bean(destroyMethod="close")
 	public HikariDataSource dataSource() {
 		return new HikariDataSource(hikariConfig());
 	}
 	
-	// SqlSessionFactory
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource());  // HikariCP DataSource 전달
-		sqlSessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("mybatis/config/mybatis-config.xml"));
-		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("mybatis/mapper/*.xml"));
+		sqlSessionFactoryBean.setDataSource(dataSource());
+		sqlSessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource(configLocation));
+		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocations));
 		return sqlSessionFactoryBean.getObject();
 	}
 	
-	// SqlSessionTemplate : 지금까지 만든 bean은 모두 이걸 위해서 존재한다.
-	// SqlSessionTemplate은 SqlSession을 의미한다.
-	// 모든 Repository에서 이 bean을 가져다 사용한다.
 	@Bean
 	public SqlSessionTemplate sqlSessionTemplate() throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory());
 	}
 	
-	// 트랜잭션 매니저
-	// 트랜잭션 매니저의 동작을 위해서 DBConfig에 @EnableTransactionManagement 애너테이션을 추가해야 한다.
 	@Bean
 	public TransactionManager transactionManager() {
 		return new DataSourceTransactionManager(dataSource());

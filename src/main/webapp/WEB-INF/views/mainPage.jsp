@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/footer.css">
+<link rel="stylesheet" href="/resources/css/footer.css">
 </head>
 <style type="text/css">
 	
@@ -453,12 +453,10 @@
   var cc = jQuery.noConflict();
 	function fnTour(){
 		cc.ajax({
-			url: '${contextPath}/admin/tour',
+			url: '/admin/tour',
 			type: 'get',
 			dataType: 'json',
 			success: function(responseText){
-				//var items = responseText.response.body.items.item;
-				//$('#items').empty();
 				var html = '';
 				cc.each(responseText, function(i, item){
 					html += '<td>' + item.spotName + '&nbsp; </td><br>';
@@ -529,19 +527,19 @@
 			</div>
 			
 			<div class="title">
-				<a href="http://localhost:9090/yogioteur/">Yogioteur</a>
+				<a href="http://yogioteur.cafe24.com">Yogioteur</a>
 			</div>
 				 
 			<div class="headerMain">
 			
 				<div class="header">
 				
-					<a href="${contextPath}/review/reviewList">REVIEW</a>
-					<a href="${contextPath}/faq/faqList">FAQ</a>
+					<a href="/review/reviewList">REVIEW</a>
+					<a href="/faq/faqList">FAQ</a>
 					<!-- 로그인 이전 -->
 					<c:if test="${loginMember eq null}">
-						<a href ="${contextPath}/member/loginPage">LOGIN</a>
-						<a href ="${contextPath}/member/agreePage">SIGN</a>	
+						<a href ="/member/loginPage">LOGIN</a>
+						<a href ="/member/agreePage">SIGN</a>	
 					</c:if>
 				
 					<!-- 로그인 이후 -->
@@ -549,13 +547,13 @@
 						${loginMember.memberName}님
 						<c:choose>
 							<c:when test="${loginMember.memberId eq 'admin12' }">
-								<a href="${contextPath}/admin/adminPage">ADMIN PAGE</a>
+								<a href="/admin/adminPage">ADMIN PAGE</a>
 							</c:when>
 							<c:when test="${loginMember.memberId ne 'admin12' }">
-								<a href ="${contextPath}/member/memberInfo">MY PAGE</a>		
+								<a href ="/member/memberInfo">MY PAGE</a>		
 							</c:when>
 						</c:choose>
-						<a href ="${contextPath}/member/logout">LOGOUT</a>
+						<a href ="/member/logout">LOGOUT</a>
 					</c:if>
 					
 				</div>
@@ -567,7 +565,7 @@
 	
 	<div class="center">
 		
-		<form id="f"  class="search" action="${contextPath}/room/roomList" method="post">
+		<form id="f"  class="search" action="/room/roomList" method="post">
 		
 		<div class="searchBar">
 			

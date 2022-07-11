@@ -142,9 +142,9 @@
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 	
 	<div class="join" >
-		<form id="findIdForm" action="${contextPath}/member/findId" method="post">
+		<form id="findIdForm" action="/member/findId" method="post">
 		<div class="findId">
-			<a href="${contextPath}/member/findIdPage">아이디 찾기</a>
+			<a href="/member/findIdPage">아이디 찾기</a>
 		</div>
 			<div class="content">
 				<div class="find_box">
@@ -157,8 +157,8 @@
 				<button class="btn_findId">확인</button> 
 		</form>
 		<div class="button_box">
-			<a href="${contextPath}/member/agreePage">회원가입</a> |
-			<a href="${contextPath}/member/findPwPage">비밀번호 찾기</a> 
+			<a href="/member/agreePage">회원가입</a> |
+			<a href="/member/findPwPage">비밀번호 찾기</a> 
 		</div>
 	</div>
 	

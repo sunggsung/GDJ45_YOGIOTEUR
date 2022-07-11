@@ -160,7 +160,7 @@
    		
 
    			<c:forEach var="reImage" items="${reImage}" varStatus="status">
-				<div>${reImage.reImageOrigin}<a href="/review/removeReImage?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}"><i class="fa-solid fa-circle-xmark"></i></a></div>
+				<div>${reImage.reImageOrigin}<a class="deleteReImage" href="/review/removeReImage?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}"><i class="fa-solid fa-circle-xmark"></i></a></div>
 			</c:forEach>
 				
 				

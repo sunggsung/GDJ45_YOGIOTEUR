@@ -230,7 +230,7 @@
 				<span class="reser_data"><fmt:formatNumber value="${money.totalPrice}" pattern="#,###" /></span>
 			</div>
 			<div class="home_button">
-				<input type="button" value="메인화면으로" onclick="location.href='${contextPath}'" class="home_btn">
+				<input type="button" value="메인화면으로" onclick="location.href='/'" class="home_btn">
 			</div>
 		</div> 
 	</div>

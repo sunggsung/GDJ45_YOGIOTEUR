@@ -27,7 +27,7 @@
 		
 		$('#btnRemove').on('click', function() {
 			if(confirm('삭제하시겠습니까?')) {
-				location.href='${contextPath}/room/removeRoom?roomNo=${room.roomNo}';
+				location.href='/room/removeRoom?roomNo=${room.roomNo}';
 			}
 		})
 		fnPreview($('#image1'), $('#preview1'));
@@ -91,7 +91,7 @@
 		
 		<div class="grid_item room">
 			<h3>객실상세</h3>
-			<form id="f" action="${contextPath}/room/changeRoom" method="post" enctype="multipart/form-data">
+			<form id="f" action="/room/changeRoom" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="roomNo" value="${room.roomNo}">
 				객실타입:
 				<select class="rtNo" name="rtNo" id="rtNo">
@@ -113,16 +113,16 @@
 				
 				사진1 <input type="file" name="image1" id="image1">
 				<div>
-					<img id="preview1" alt="${image[0].imageOrigin}" src="${contextPath}/room/displayImage?imageNo=${image[0].imageNo}" width="300px">
+					<img id="preview1" alt="${image[0].imageOrigin}" src="/room/displayImage?imageNo=${image[0].imageNo}" width="300px">
 					<input type="hidden" name="image1No" value="${image[0].imageNo}">
 				</div>
 				사진2 <input type="file" name="image1" id="image2">
 				<div>
-					<img id="preview2" alt="${image[1].imageOrigin}" src="${contextPath}/room/displayImage?imageNo=${image[1].imageNo}" width="300px">
+					<img id="preview2" alt="${image[1].imageOrigin}" src="/room/displayImage?imageNo=${image[1].imageNo}" width="300px">
 					<input type="hidden" name="image2No" value="${image[1].imageNo}">
 				</div>
 				<button>수정</button>
-				<input type="button" value="목록으로" onclick="location.href='${contextPath}/admin/room'">
+				<input type="button" value="목록으로" onclick="location.href='/admin/room'">
 				<input type="button" value="삭제" id="btnRemove">
 			</form>
 		</div>
