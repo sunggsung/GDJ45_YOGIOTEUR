@@ -1,10 +1,16 @@
 @charset "UTF-8";
-
-
+	@font-face {
+    font-family: 'MICEMyungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+   }
+	
 
 	.rivewListTitle{
 		text-align: center;
-		margin-top : 30px;
+		margin-top : 80px;
+		font-family: 'MICEMyungjo';
 	}
 	
 	.reviewListView{
@@ -22,23 +28,28 @@
 	
 	.adminReply {
 		
-	    background-color : #e1dcd9;
+	    background-color : #ebeffc;
 	    margin-top : 10px;
 	    margin-left : 50px;
 	    margin-right: 30px;
 	    text-align : center;
 	    border-radius: 10px;
 	    padding : 30px 20px;
+	    font-family: 'MICEMyungjo';
 	
 	}
 	
 	.usericon {
 		color : #e1dcd9;
+		font-family: 'MICEMyungjo';
 	}
 	
 	.reviewTitleName{
-	  font-size: 30px;
-	
+		display: inline-block;
+	 	 font-size: 30px;
+		 font-family: 'MICEMyungjo';
+		margin-bottom : 20px;
+		
 	}
 	
 	.ReviewNomal {
@@ -53,6 +64,7 @@
 	
 	.adminicon{
 		text-align : right;
+		font-family: 'MICEMyungjo';
 		
 	}
 	
@@ -60,18 +72,113 @@
 		color : gray;
 	}
 	
-	.slick-prev slick-arrow{
-	  
-	  cursor: pointer;
+	
+	
+	.unlink, .link {
+		display: inline-block;  /* 같은 줄에 둘 수 있고, width, height 등 크기 지정 속성을 지정할 수 있다. */
+		padding: 10px;
+		margin: 5px;
+		border: 1px solid white;
+		text-align: center;
+		text-decoration: none;  /* 링크 밑줄 없애기 */
+		color: gray;
+		font-family: 'MICEMyungjo';
 	}
-	.slick-next slick-arrow{
-	  position:absolute;
-	  top:50%;
-	  left:30px;
-	  font-size:2em;
-	  color:gray;
-	    cursor: pointer;
+	.link:hover {
+		border: 1px solid orange;
+		color: limegreen;
 	}
 	
+	.paging{
+		text-align: center;
+		font-family: 'MICEMyungjo';
+	}
+	 input[type=button] { 
+	 	color : white;
+		background-color : #696969;
+		padding : 10px;
+		border : none;
+		display: inline-block;
+		font-family: 'MICEMyungjo';
+		
+	}
+	
+	input[type=button]:hover {
+		cursor: pointer;
+	} 
+	
+	
+	
+	.slick-prev, .slick-next {
+	 	width: 71px;
+    	height: 71px;
+        color: #444444;
+        border-radius: 100%;
+    	background : rgba(0, 0, 0, .5);
+   		border : none;
+      }
+      .slick-prev{
+      	color : #fff;
+      	font-size : 20px;
+      	font-weight: 800;
+      	cursor: pointer;
+      	position: relative;
+      	right : 100px;
+      	top : 170px;
+    	
+      }
+	
+		.slick-next{
+		color : #fff;
+      	font-size : 20px;
+      	font-weight: 800;
+      	cursor: pointer;
+      	position: relative;
+      	left : 770px;
+      	bottom : 170px;
+		}
+	
+	.reviewCreated {
+		margin-top : 20px;
+		margin-left : 610px;
+		font-family: 'MICEMyungjo';
+	}
+	
+	.reveiwName {
+		margin : 20px 0;
+		display: inline-block;
+		font-family: 'MICEMyungjo';
+		color : #999ba1;
+	}
+	
+	.roomName {
+		margin-bottom : 20px;
+		margin-left : 10px;
+		display: inline-block;
+		font-family: 'MICEMyungjo';
+		color : #999ba1;
+	}
+	
+	.reviewContent {
+		width : 600px;
+		margin-top : 50px;
+		font-family: 'MICEMyungjo';
+		
+	} 
+	
+	.ListBtn {
+		position: relative;
+		left : 600px;
+		margin-bottom : 20px;
+		font-family: 'MICEMyungjo';
+	}
+	
+	.reviewReplyBtn {
+		position: relative;
+		left : 550px;
+		margin-top : 20px;
+		margin-bottom : 20px;
+		font-family: 'MICEMyungjo';
+	}
 	
 	

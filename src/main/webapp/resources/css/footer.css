@@ -8,8 +8,9 @@
 	}
 	
 	body{
-			margin: 0;
-			font-family: 'Kaushan Script', cursive;
+			margin: 0 auto;
+			height: 100%;
+			font-family: 'MICEMyungjo';
 		}
 		
 	a{
@@ -39,8 +40,9 @@
 	
 	
 	.footer{
-		background-color: #025949;
-		height: 250px;
+		padding-top: 30px;
+		background-color: #214DA6;
+		height: 300px;
 	
 	}
 	

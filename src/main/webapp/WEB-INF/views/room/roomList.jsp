@@ -5,8 +5,6 @@
 <!DOCTYPE html>
 <html>
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${contextPath}/resources/css/footer.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <script src="https://kit.fontawesome.com/148c1051b1.js" crossorigin="anonymous"></script>
 <head>
 <meta charset="UTF-8">
@@ -33,11 +31,8 @@
 	  outline: none;
 	}
 	
-	
-	
 	.btn-16 {
-	  background: #000;
-	  color: #fff;
+	  color: #214DA6;
 	  z-index: 1;
 	}
 	.btn-16:after {
@@ -51,10 +46,7 @@
 	  background: #fff;
 	  transition: all 0.3s ease;
 	}
-	.btn-16:hover:after {
-	  top: 0;
-	  height: 100%;
-	}
+	
 	.btn-16:active {
 	  top: 2px;
 	}

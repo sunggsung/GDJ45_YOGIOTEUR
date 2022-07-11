@@ -43,8 +43,7 @@
 	}
 	
 	.btn-15 {
-	  background: #000;
-	  color: #fff;
+	  color: #214DA6;
 	  z-index: 1;
 	}
 	.btn-15:after {

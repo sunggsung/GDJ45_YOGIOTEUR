@@ -1,21 +1,30 @@
 @charset "UTF-8";
 
-	#reviewAdd fieldset{
+	@font-face {
+    font-family: 'MICEMyungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+   }
+   
+   
+   
+		#reviewChange fieldset{
     display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
     border: 0; /* 필드셋 테두리 제거 */
 	}
-	#reviewAdd input[type=radio]{
+	#reviewChange input[type=radio]{
 	    display: none; /* 라디오박스 감춤 */
 	}
-	#reviewAdd label{
+	#reviewChange label{
     font-size: 3em; /* 이모지 크기 */
     color: transparent; /* 기존 이모지 컬러 제거 */
     text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
 	}
-	#reviewAdd input[type=radio]:checked ~ label{
+	#reviewChange input[type=radio]:checked ~ label{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99); /* 마우스 클릭 체크 */
 }
-	#reviewAdd fieldset{
+	#reviewChange fieldset{
     display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
     direction: rtl; /* 이모지 순서 반전 */
     border: 0; /* 필드셋 테두리 제거 */
@@ -25,10 +34,12 @@
 		width : 850px;
 		margin : 0 auto;
 		text-align : center;
+		font-family: 'MICEMyungjo';
 	}
 	
 	.reChangetitle{
 		text-align : center;
+		font-family: 'MICEMyungjo';
 	}
 	
 	#reviewTitle{
@@ -39,8 +50,9 @@
 	  border-radius: 10px;
 	  outline: none;
 	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
+	  background-color: #e4e7f2;
 	  margin : 15px 0;
+	  font-family: 'MICEMyungjo';
 	}
 	
 	#review_textarea{
@@ -51,15 +63,17 @@
 	  border-radius: 10px;
 	  outline: none;
 	  padding-left: 10px;
-	  background-color: rgb(233, 233, 233);
+	  background-color: #e4e7f2;
 	  margin : 15px 0;
 	  padding : 10px;
+	  font-family: 'MICEMyungjo';
 	
 	}
 
 	#roomName, #rtType, #memberName{
 		border : none;
 		font-size : 18px;
+		font-family: 'MICEMyungjo';
 	}
 
 	.memberName {
@@ -67,23 +81,26 @@
 		text-align: left;
 		left : 170px;
 		margin-bottom :20px;
+		font-family: 'MICEMyungjo';
 	}
 	
 	#roomName, #rtType {
 		width : 80px;
 		position: relative;
 		right : 170px;
+		font-family: 'MICEMyungjo';
 
 	}
 	
 	#reviewModifiyBtn{
-		background-color: #24695c;
-		border-color: #24695c;
+		background-color: #214DA6;
+		border-color: #214DA6;
 		color : #fff;
 		border: 1px solid transparent;
 		font-size : 18px;
 		padding : 10px 18px;
 		margin : 15px;
+		font-family: 'MICEMyungjo';
 	
 	}
 	
@@ -95,4 +112,15 @@
 		font-size : 18px;
 		padding : 10px 18px;
 		margin : 15px;
+		font-family: 'MICEMyungjo';
+	}
+	
+	.starBtn {
+		position: relative;
+		right: 70px;
+	}
+	
+	#review_textarea_cnt {
+		position: relative;
+		left: 210px;
 	}

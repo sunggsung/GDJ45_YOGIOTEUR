@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <html>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
 <head>
 <style type="text/css">
 	@font-face {
@@ -27,8 +28,8 @@
 		<br><br><br><br><br>
 		<a href="${contextPath}/admin/reservationList">예약목록</a>
 		<br><br><br><br><br>
-		<a href="${contextPath}/admin/room">객실목록</a><br><br><br>
-		<a href="${contextPath}/admin/addRoomPage">객실등록</a><br><br><br>
+		<a href="${contextPath}/admin/room">객실목록</a><br><br><br><br><br>
+		<a href="${contextPath}/admin/addRoomPage">객실등록</a><br><br><br><br>
 	</div>
 	
 </body>

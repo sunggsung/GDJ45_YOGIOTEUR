@@ -10,27 +10,23 @@
 	header{
 		position : absolute;
 		bottom : 0;
+		padding-right: 10px;
 		
 	}
 	
 	body{
 			margin: 0;
-			font-family: 'Kaushan Script', cursive;
+			font-family: 'MICEMyungjo';
 			font-size: 20px;
 		}
 		
-		
-		a{
-			text-decoration: none;
-			color: white;
-		}
 	
-	.head{
+	.head1{
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		background-color: #025949;
 		padding: 8px 12px;
+		background:#214DA6;
 	}
 	
 	section{
@@ -41,7 +37,7 @@
 		padding: 14px;
 		display: inline-block;
 		font-size: 22px;
-		font-family: 'Kaushan Script', cursive;
+		font-family: 'MICEMyungjo';
 	}
 	
 	.header a:hover {
@@ -52,29 +48,22 @@
 	
 		
 	.title a{
-		font-size: 25px;
+		font-size: 28px;
 		font-family: 'Pacifico', cursive;
 	}
 	
-	.header2 a{
+	.header a{
 		padding: 12px;
 		display: inline-block;
-		font-size: 18px;
+		font-size: 22px;
 		font-family: 'MICEMyungjo';
 		
 	}
 	
-	.header2 a:hover {
+	.header a:hover {
 		
-		color: #FF960D;
+		color: #FFF944;
 		
-	}
-	
-	.roomNo{
-		
-		font-size: 18px;
-    	font-family: 'MICEMyungjo';
-	
 	}
 	
 	
@@ -84,10 +73,9 @@
 	}
 	
 	.custom-btn {
-	  width: 122px;
 	  height: 45px;
 	  padding: 8px 20px;
-	  border: 2px solid #000;
+	  border: 2px solid #214DA6;
 	  font-family: 'MICEMyungjo';
 	  font-weight: 500;
 	  font-size: 18px;
@@ -98,56 +86,3 @@
 	  display: inline-block;
 	}
 	
-	/* 13 */
-	.btn-13 {
-	  background: #000;
-	  color: #fff;
-	  z-index: 1;
-	}
-	.btn-13:after {
-	  position: absolute;
-	  content: "";
-	  width: 100%;
-	  height: 0;
-	  bottom: 0;
-	  left: 0;
-	  z-index: -1;
-	  background: #fff;
-	  transition: all 0.3s ease;
-	}
-	.btn-13:hover {
-	  color: #000;
-	}
-	.btn-13:hover:after {
-	  top: 0;
-	  height: 100%;
-	}
-	.btn-13:active {
-	  top: 2px;
-	}
-	.btn-14 {
-	  background: #000;
-	  color: #fff;
-	  z-index: 1;
-	}
-	.btn-14:after {
-	  position: absolute;
-	  content: "";
-	  width: 100%;
-	  height: 0;
-	  bottom: 0;
-	  left: 0;
-	  z-index: -1;
-	  background: #fff;
-	  transition: all 0.3s ease;
-	}
-	.btn-14:hover {
-	  color: #000;
-	}
-	.btn-14:hover:after {
-	  top: 0;
-	  height: 100%;
-	}
-	.btn-14:active {
-	  top: 2px;;
-	}

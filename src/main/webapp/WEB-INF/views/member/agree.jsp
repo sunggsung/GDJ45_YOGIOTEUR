@@ -19,7 +19,7 @@
     }
 	body{
 		margin: 0 auto;
-		font-family: 'Kdam Thmor Pro', sans-serif;
+		font-family: 'MICEMyungjo';
 	}
 	.title {
 		text-align: center;

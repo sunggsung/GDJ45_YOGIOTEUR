@@ -12,15 +12,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/footer.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 </head>
 <style type="text/css">
 	
-
+	@font-face {
+	    font-family: 'MICEMyungjo';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
+	@font-face {
+    font-family: 'MICEGothic Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 	
 	body{
 			margin: 0;
-			font-family: 'Kaushan Script', cursive;
+			font-family: 'MICEMyungjo';
 			font-size: 20px;
 		}
 		
@@ -31,11 +42,155 @@
 		
 	}
 	
-	form{
+	header{
+		position : absolute;
+		bottom : 0;
 		
-		background: #24695c;
+	}
 		
+	a{
+		text-decoration: none;
+		color: white;
+	}
 	
+	.mainImg{
+		
+		position: relative;
+	}
+	
+	
+	section{
+		a
+	}
+	
+	.headerMain{
+		
+		position: absolute;
+		top:0;
+		right: 5%;
+		padding: 20px;
+	
+	}
+	
+	.header{
+		padding: 14px;
+		display: inline-block;
+		font-size: 25px;
+		font-family: 'MICEMyungjo';
+	}
+	
+	.header a{
+		
+		margin: 0 15px;
+	
+	}
+	
+	.header a:hover {
+		
+		color: #FFF944;
+		
+	}
+	
+	.title{
+		
+		top: 0;
+		left: 5%;
+		position: absolute;
+		padding: 20px;
+	}
+		
+	.title a{
+		font-size: 30px;
+		font-family: 'Pacifico', cursive;
+	}
+	
+	.roomNo{
+		
+		font-size: 18px;
+    	font-family: 'MICEMyungjo';
+	
+	}
+	
+	.post{
+		
+		width: 100%;
+		height: 850px;
+		
+	}
+	
+	.po{
+		
+		width: 300px;
+		height: 400px;
+	
+	}
+	
+	button {
+	  margin: 5px;
+	  outline: none;
+	}
+	
+	.custom-btn {
+	  width: 122px;
+	  height: 45px;
+	  padding: 8px 20px;
+	  border: 2px solid #214DA6;
+	  font-family: 'MICEMyungjo';
+	  font-weight: 500;
+	  font-size: 18px;
+	  background: transparent;
+	  cursor: pointer;
+	  transition: all 0.3s ease;
+	  position: relative;
+	  display: inline-block;
+	}
+	
+	/* 13 */
+	.btn-13 {
+	  background: #214DA6;
+	  color: #fff;
+	  z-index: 1;
+	}
+	.btn-13:after {
+	  position: absolute;
+	  content: "";
+	  width: 100%;
+	  height: 0;
+	  bottom: 0;
+	  left: 0;
+	  z-index: -1;
+	  background: #fff;
+	  transition: all 0.3s ease;
+	}
+	
+	.btn-13:active {
+	  top: 2px;
+	}
+	.btn-14 {
+	  background: #fff;
+	  color: #214DA6;
+	  z-index: 1;
+	}
+	.btn-14:after {
+	  position: absolute;
+	  content: "";
+	  width: 100%;
+	  height: 0;
+	  bottom: 0;
+	  left: 0;
+	  z-index: -1;
+	  background: #fff;
+	  transition: all 0.3s ease;
+	}
+	.btn-14:hover {
+	  color: #214DA6;
+	}
+	.btn-14:hover:after {
+	  top: 0;
+	  height: 100%;
+	}
+	.btn-14:active {
+	  top: 2px;;
 	}
 	
 	tr, td{
@@ -47,7 +202,7 @@
     font-size: 0;
     position: absolute;
     bottom: 20px;
-    color: #fff;;
+    color: #fff;
     border: 0;
     background: none;
     z-index: 1;
@@ -80,119 +235,166 @@
 	    color: #7e7e7e;
 	}
 	 
-	.checkInOut{
-		
-		font-family: 'Kaushan Script', cursive;
+	.center{
+		width: auto;
+		height: 300px;
+	}
 	
-	} 
-	
-	
-	.post{
+	.search{
 		
-		width: 100%;
-		height: 850px;
-		
+		background: white;
+		width: 1220px;
+		height: 90px;
+		margin: 0 400px;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	
 	}
 	
 	.searchBar{
 		display: flex;
 		align-items: center;
-		background-color: #025949;
 	    height: 80px;
-		font-size: 25px;
-		padding-left: 300px;
-		color: white;
+		font-size: 30px;
+		color: #214DA6;
+		padding-left: 190px;
+		font-family: 'MICEMyungjo';
 		
 	}
 	
+	.about{
+		
+		font-family: 'MICEGothic Bold';
+		font-size: 50px;
+		margin-left: 660px;
+		margin-top: 50px;
+		margin-bottom: 50px;
+		color: #202426;
+		
 	
-	.breakfast{
+	}
+	
+	.aboutColor{
 		
-		display: flex;
+		color: #214DA6;
+	
+	}
+	
+	.aboutHotel{
 		
+		font-family: 'MICEMyungjo';
+		font-size: 30px;
+		margin-left: 400px;
+		color: #202426;
+	}
+	
+	.aboutHotelSpan{
+		
+		font-family: 'MICEMyungjo';
+		font-size: 18px;
+		margin-left: 400px;
+		color: #3c4043;
+	
+	}
+	
+	.aboutImg{
+		
+		margin-left: 400px;
+		margin-top: 20px;
+		
+	}
+	
+	.aboutImg img{
+		
+		width: 300px;
+		height: 600px;
+		object-fit: cover;
 	}
 	
 	.weather_api{
+
+		width: 100%;
+		height: 700px;
+		margin-top: 100px;
+		background: #EDEDED;
 		
+				
+	}
+	
+	.weatherA{
 		display: flex;
-		width: 1200px;
-		margin: auto;
+		width: 1220px;
+		margin-left: 400px;
+		padding-top: 82px;
 		
 	}
-	
-	.weather_api{
-		
-		position: relative;
-	
-	}
-	
-	
 	
 	.index0{
 		
-		position: absolute;
 		top: 80%;
 		left: 20px;
-		display: block;
-		color: white;
+		color: #202426;
 		font-size: 25px;
-		background-color: rgba(0,0,0,0.3);	
+		text-align: center;
 		
 	}
 	
 	.index1{
-		
-		position: absolute;
+	
 		top: 80%;
 		right: 470px;
-		display: block;
-		color: white;
+		color: #202426;
 		font-size: 25px;
-		background-color: rgba(0,0,0,0.3);	
-	
+		text-align: center;
+		
 	}
 	.index2{
 		
-		position: absolute;
 		top: 80%;
 		right: 140px;
-		display: block;
-		color: white;
+		color: #202426;
 		font-size: 25px;
-		background-color: rgba(0,0,0,0.3);	
+		text-align: center;
+	
+	} 
+	
+	h1{
+		
+		font-family: 'MICEGothic Bold';
+		font-size: 50px;
+	
+	}
+	
+	.restaurantInfo{
+		
+		width: 100%;
+		height: 800px;
 	
 	}
 	
 	.breakfast{
 		
-		position: relative;
 		display: inline-block;
-		width: 100%;
-		height: 600px;
-		background-color: #F2EDE4;
+		width: 1200px;
+		height: 300px;
+		padding-left: 184px;
+		padding-top: 184px;
 	
 	}
 	
 	.fixBreak{
 		
-		position: absolute;
-		display: block;
-				
+		vertical-align: top; 
+		display:inline-block;
+		width:500px;
+		height: 500px;
+		padding-left: 60px;
+		padding-top: 160px;	
+		color: #202426;	
 	}
-	
 	
 	.po{
 		
-		width: 380px;
-		height: 275px;
-		
-	
-	}
-	
-	.res slick-initialized slick-slider{
-		
-		position: absolute;
-		width: 600px;
+		object-fit: cover;
 	
 	}
 	
@@ -236,7 +438,7 @@
 			
 		})
 		
-		fnTour();
+		 fnTour(); 
 	
 	})
 	
@@ -293,6 +495,7 @@
 	bb(function(){
 	 bb('.mainImg').slick({
 		 autoplay: true,
+		 infinite: true,
 		 autoplaySpeed: 2000
 		
 		}); 
@@ -306,8 +509,10 @@
 		dd('.res').slick({
 			  slidesToShow: 3,
 			  slidesToScroll: 1,
+			  infinite: true,
 			  autoplay: true,
-			  autoplaySpeed: 2000,
+			  autoplaySpeed: 2000
+			  
 			});
 		})		
 
@@ -315,22 +520,54 @@
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
 
 	
-	<jsp:include page="layout/header.jsp"></jsp:include>
 	
-	<div class="mainImg">
-			<div><img class="post" src="resources/image/hotel.jpg" alt="main" ></div>
-			<div><img class="post" src="resources/image/rounge.jpg" alt="main"></div>
-			<div><img class="post" src="resources/image/pool.jpg" alt="main" ></div>
-			<div><img class="post" src="resources/image/restaurant.jpg" alt="main" ></div>
+	<div class="head">
+	
+			<div class="mainImg">
+					<div><img class="post" src="resources/image/hotel.jpg" alt="main" ></div>
+					<div><img class="post" src="resources/image/rounge.jpg" alt="main"></div>
+					<div><img class="post" src="resources/image/pool.jpg" alt="main" ></div>
+					<div><img class="post" src="resources/image/restaurant.jpg" alt="main"></div>
+			</div>
+			
+			<div class="title">
+				<a href="http://localhost:9090/yogioteur/">Yogioteur</a>
+			</div>
+				 
+			<div class="headerMain">
+			
+				<div class="header">
+				
+					<a href="${contextPath}/review/reviewList">REVIEW</a>
+					<a href="${contextPath}/faq/faqList">FAQ</a>
+					<!-- 로그인 이전 -->
+					<c:if test="${loginMember eq null}">
+						<a href ="${contextPath}/member/loginPage">LOGIN</a>
+						<a href ="${contextPath}/member/agreePage">SIGN</a>	
+					</c:if>
+				
+					<!-- 로그인 이후 -->
+					<c:if test="${loginMember ne null}">
+						${loginMember.memberName}님
+						<a href ="${contextPath}/member/logout">LOGIN OUT</a>
+						<a href ="${contextPath}/member/memberPage">MY PAGE</a>		
+						<a href="${contextPath}/admin/adminPage">ADMIN PAGE</a>
+					</c:if>
+					
+				</div>
+			</div>
+			
+		
 	</div>
+	
 	
 	<div class="center">
 		
-		<form id="f" action="${contextPath}/room/roomList" method="post">
+		<form id="f"  class="search" action="${contextPath}/room/roomList" method="post">
 		
 		<div class="searchBar">
 			
-			<div id="checkInOut" style= "padding-left: 200px;">
+			<div id="checkInOut">
 			Check In/Out
 			<input type="text" id="roomCheckIn" name="roomCheckIn" style="padding-top: 8px;" autocomplete="off">
 			~
@@ -343,17 +580,42 @@
 		
 		</form>
 		
+		<div class="about">
+			About <span class="aboutColor">YOGIOTEUR</span> HOTEL
+		</div>
+		
+		<p class="aboutHotel">
+			
+			아름다운 자연 속에서 진정한 휴식
+		</p>
+		<p class="aboutHotelSpan">
+			특급 호텔 YOGIOTEUR은 수려한 자연경관에 위치한 제주도에서 운영하고 있어<br>
+			자연이 주는 여유로움을 만끽할 수 있습니다.
+		</p>
+		
 	</div>
 	
-	<br>
+	<br><br>
+	
+	<div class="aboutImg">
+		
+		<img src="resources/image/gym.jpg" alt="gym">
+		<img src="resources/image/rounge.jpg" alt="rounge">
+		<img src="resources/image/restaurant.jpg" alt="restaurant">
+		<img src="resources/image/pool1.jpg" alt="pool1">
+		
+	
+	</div>
+	
+	
 	<div class="weather_api">
 		
-		<table>
-			<tbody id="weatherA">
+		<table class="weatherA">
+			<tbody>
 				<tr>
-					<td class="img-index"><img src="resources/image/hill1.jpg" alt="image1" width="410px;" height="500px;"></td>
+					<td><img src="resources/image/waterfall.jpg" alt="image1" width="410px;" height="500px;"></td>
 					<td><img src="resources/image/hill.jpg" alt="image2" width="410px;" height="500px;"></td>
-					<td><img src="resources/image/mainPageImage3.jpg" alt="image3" width="410px;" height="500px;"></td>
+					<td><img src="resources/image/hill1.jpg" alt="image3" width="410px;" height="500px;"></td>
 				</tr>
 				<tr id="items">
 					<td class="index0"></td>
@@ -364,21 +626,25 @@
 		</table>
 	</div>
 	<br>
-	<div class="breakfast">
 	
+	<div class="restaurantInfo">
 		<div class="fixBreak">
-			<img src="resources/image/restaurant.jpg" alt="mainFood" width="650px;" height="600px;">
+			<h1>DINING</h1>
+			YOGIOTEUR만의 호텔 직영 농장에서 수확한<br>
+			식재료로 셰프가 정성을 담아 준비한 다이닝을 만나보세요.
 		</div>
-	
-    	<div class="res">
-			<div><img class="po" src="resources/image/food1.jpg" alt="food" ></div>
-			<div><img class="po" src="resources/image/food2.jpg" alt="food" ></div>
-			<div><img class="po" src="resources/image/food3.jpg" alt="food" ></div>
-			<div><img class="po" src="resources/image/food4.jpg" alt="food" ></div>
-			<div><img class="po" src="resources/image/food5.jpg" alt="food" ></div>
+		<div class="breakfast">
+		
+		  	<div class="res">
+				<div><img class="po" src="resources/image/food1.jpg" alt="food" ></div>
+				<div><img class="po" src="resources/image/food2.jpg" alt="food" ></div>
+				<div><img class="po" src="resources/image/food3.jpg" alt="food" ></div>
+				<div><img class="po" src="resources/image/food4.jpg" alt="food" ></div>
+				<div><img class="po" src="resources/image/food5.jpg" alt="food" ></div>
 		    </div>
+		</div>
 	</div>
-	
+    
 	<jsp:include page="layout/footer.jsp"></jsp:include>
 </body>
 </html>

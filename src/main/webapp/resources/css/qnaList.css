@@ -1,5 +1,16 @@
 @charset "UTF-8";
-
+	@font-face {
+    font-family: 'MICEMyungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+   }
+	
+	.logintext {
+		font-family: 'MICEMyungjo';
+		margin-left : 350px;
+	}
+	
 	table {
     width: 1200px;
     margin : 0px auto 30px;
@@ -8,30 +19,35 @@
     border-collapse: collapse;
     border : none;
     color: #242934;
+    font-family: 'MICEMyungjo';
   }
   th, td {
   	border : none;
     border-bottom: 1px solid rgb(233, 233, 233);
     padding: 12px;
     text-align : center;
+    font-family: 'MICEMyungjo';
   }
   
    table tbody tr:hover {
-    background-color: #98FB98;
+    background-color: #c9dbff;
     cursor: pointer;
    }
   
   thead tr {
     font-weight: 900;
+    font-family: 'MICEMyungjo';
     
   }
   
   .qnaNameA{
   	color : black;
+  	font-family: 'MICEMyungjo';
   }
   
   h1 {
   	text-align : center;
+  	font-family: 'MICEMyungjo';
   }
   
   .qnaAddA {
@@ -41,15 +57,17 @@
  	 border: 2px solid #212529;
 	 padding : 10px 20px;
 	 bottom : 10px;
+	 font-family: 'MICEMyungjo';
   }
   
   #qnaListDelBtn {
-	 background-color: #24695c;
-		border-color: #24695c;
+	 background-color: #214DA6;
+		border-color: #214DA6;
 		color : #fff;
 		border: 1px solid transparent;
 		font-size : 18px;
 		padding : 0px 18px;
+		font-family: 'MICEMyungjo';
   }
   #qnaListDelBtn:hover {
   	cursor: pointer;
@@ -63,6 +81,7 @@
 		text-align: center;
 		text-decoration: none;  /* 링크 밑줄 없애기 */
 		color: gray;
+		font-family: 'MICEMyungjo';
 	}
 	.link:hover {
 		border: 1px solid orange;
@@ -71,6 +90,7 @@
 	
 	.paging{
 		text-align: center;
+		font-family: 'MICEMyungjo';
 	}
 	
 	

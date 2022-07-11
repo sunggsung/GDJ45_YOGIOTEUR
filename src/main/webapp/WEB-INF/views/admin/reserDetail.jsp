@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>예약 정보</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link href="https://fonts.googleapis.com/css2?famixly=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
 <script>
 
 	$(function() {

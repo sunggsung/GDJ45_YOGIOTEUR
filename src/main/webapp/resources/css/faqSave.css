@@ -1,0 +1,93 @@
+@charset "UTF-8";
+	@font-face {
+    font-family: 'MICEMyungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+   }
+   	body {
+   		font-family: 'MICEMyungjo';
+   	}
+
+	#faqSv {
+		width : 500px;
+		margin : 0 auto;
+	}
+	
+	h1 {
+		text-align : center;
+		font-family: 'MICEMyungjo';
+	}
+	
+	#faqTitle{
+		width: 500px;
+		height: 45px;
+		font-size: 15px;
+		border: 0;
+		border-radius: 10px;
+		outline: none;
+		padding-left: 10px;
+		background-color: rgb(233, 233, 233);
+		margin : 15px 0;
+		font-family: 'MICEMyungjo';
+		
+	}
+	
+	#faqContent {
+		width: 500px;
+	    height: 300px;
+	    font-size: 15px;
+	    border: 0;
+	    border-radius: 10px;
+	    outline: none;
+	    padding-left: 10px;
+	    background-color: rgb(233, 233, 233);
+	    margin : 15px 0;
+	    padding : 10px;
+	    font-family: 'MICEMyungjo';
+	}
+	
+	#faqContent_cnt {
+		font-family: 'MICEMyungjo';
+		position: relative;
+		left: 430px;
+	}
+	.faqSaveBtnList {
+		font-family: 'MICEMyungjo';
+		position: relative;
+		left: 220px;
+	}
+	
+	input[type=button] {
+		text-align: right;
+		background-color: #121319;
+		border-color: #121319;
+		color : #fff;
+		border: 1px solid transparent;
+		font-size : 18px;
+		padding : 10px 18px;
+		margin : 15px;
+	}
+	
+	input[type=reset]{
+		text-align: right;
+		background-color: #121319;
+		border-color: #121319;
+		color : #fff;
+		border: 1px solid transparent;
+		font-size : 18px;
+		padding : 10px 18px;
+		margin : 5px;
+	}
+	
+	button{
+		text-align: right;
+		background-color: #214DA6;
+		border-color: #214DA6;
+		color : #fff;
+		border: 1px solid transparent;
+		font-size : 18px;
+		padding : 10px 18px;
+		margin : 15px;
+	}
+}

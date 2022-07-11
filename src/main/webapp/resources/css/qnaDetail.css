@@ -1,5 +1,16 @@
 @charset "UTF-8";
+	@font-face {
+    font-family: 'MICEMyungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+   }
 
+	body {
+	font-family: 'MICEMyungjo';
+		
+	}
+	
 	.blind {
 		display: none;
 	}
@@ -13,6 +24,7 @@
 		padding : 10px 20px;
 		margin : 10px 0px;
 		background-color: transparent;
+		font-family: 'MICEMyungjo';
 	}
 	
 	
@@ -24,19 +36,28 @@
 	
 	h1 {
 		text-align : center;
+		font-family: 'MICEMyungjo';
 	}
-	.qnaDatailDate{ text-align: right;}
-	.qnaDetailHit { text-align: right;}
-	.qnaDeatilName{ font-size: 20px; text-align: right;}
+	
+	.qnaDtailA {
+		color : #214DA6;
+		font-family: 'MICEMyungjo';
+	}
+	
+	.qnaDatailDate{ text-align: right; font-family: 'MICEMyungjo';}
+	.qnaDetailHit { text-align: right; font-family: 'MICEMyungjo';}
+	.qnaDeatilName{ font-size: 20px; text-align: right; font-family: 'MICEMyungjo';}
 	.qnaDetailTitle{
 		font-size: 35px;
 		font-weight: 700;
 		text-align: center;
+		font-family: 'MICEMyungjo';
 	}
 	.qnaDetailContent{
 		margin : 30px;
 		margin-top :50px;
 		text-align : center;
+		font-family: 'MICEMyungjo';
 		
 	}
 	
@@ -50,22 +71,25 @@
 	  padding-left: 10px;
 	  margin : 15px auto;
 	  padding : 15px;
+	  font-family: 'MICEMyungjo';
 	  
 	}
 	
 	.qnaReplyContent_cnt{
 		text-align : right;
+		font-family: 'MICEMyungjo';
 	}
 	
 	#qnaReplyAddBtn{
 		text-align: right;
-		background-color: #24695c;
-		border-color: #24695c;
+		background-color: #214DA6;
+		border-color: #214DA6;
 		color : #fff;
 		border: 1px solid transparent;
 		font-size : 18px;
 		padding : 10px 18px;
 		margin : 15px;
+		font-family: 'MICEMyungjo';
 	}
 	
 	#qnaReplyAddBtn:hover {
@@ -73,37 +97,38 @@
 	}
 	
 	.reply_link {
-		color : green;
+		color : #214DA6;
 	}
 	
 	.replyTable {
 		width : 100%;
-		border: 1px solid #aaa;
 		padding : 10px;
+		font-family: 'MICEMyungjo';
 	}
 	
 	.memberName {
-		width : 120px;
+		width : 100px;
 		height: 25px;
 		text-align: center;
 		border : 3px solid #aaa;
 	  	border-radius: 10px;
 	  	outline: none;
-	  	padding-left: 10px;
 	  	margin : 30px 0;
+	  	font-family: 'MICEMyungjo';
 	}
 	
 	.qnaReplyContentAdd {
-		width : 460px;
+		width : 490px;
 		height: 25px;
 		border : 3px solid #aaa;
 	  	border-radius: 10px;
 	  	outline: none;
-	  	padding-left: 10px;
+	  	font-family: 'MICEMyungjo';
 	}
 	
 	.qnaReplyContentAdd_cnt {
 		display: inline-block;
+		font-family: 'MICEMyungjo';
 	}
 	
 	.replyAdd2Btn {
@@ -112,6 +137,7 @@
 	  	border-radius: 10px;
 	  	outline: none;
 	  	padding-left: 10px;
+	  	font-family: 'MICEMyungjo';
 	}
 	
 	.replayDel2Btn {
@@ -119,8 +145,13 @@
 		border : 3px solid #ff9966;
 	  	border-radius: 10px;
 	  	outline: none;
-	  	padding-left: 10px;
-	  	margin : 10px;
+	  	margin : 10p 0x;
+	  	font-family: 'MICEMyungjo';
 	}
+	.qnaReplyData{
+		font-family: 'MICEMyungjo';
+	}
+	
+	
 	
 }

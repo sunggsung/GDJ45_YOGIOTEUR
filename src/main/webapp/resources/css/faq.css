@@ -1,4 +1,13 @@
 @charset "UTF-8";
+	@font-face {
+    font-family: 'MICEMyungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+   }
+   	body {
+   		font-family: 'MICEMyungjo';
+   	}
 
 	 #faqQuery {
       text-align: center;
@@ -8,6 +17,7 @@
       border : none;
       border-bottom: 1px solid #000;
       padding : 13px 70px;
+      font-family: 'MICEMyungjo';
       
    }
    
@@ -23,6 +33,7 @@
   
    .faqSearch {
    		text-align : center;
+   		font-family: 'MICEMyungjo';
    }
    
     #faqUl{
@@ -33,10 +44,12 @@
        border: none;
        outline: none;
        background: none;
+       font-family: 'MICEMyungjo';
    }
    #faqUl {
       
       font-size: 25px;
+      font-family: 'MICEMyungjo';
    }
    .listOne{
       border-bottom: 1px solid #e0e0e0;
@@ -54,17 +67,21 @@
       border: 1px solid white;
       text-decoration: none; 
       color: gray;
+      font-family: 'MICEMyungjo';
    }
    .noList {
       text-align: center;
+      font-family: 'MICEMyungjo';
       
    }
    .question{
       margin-bottom: 20px;
+      font-family: 'MICEMyungjo';
    }
    
    .faqA {
    		color : blue;
+   		font-family: 'MICEMyungjo';
    }
    
    .faqListOne {
@@ -95,9 +112,19 @@
 		font-size : 18px;
 		padding : 10px 18px;
 		margin : 15px;
+		font-family: 'MICEMyungjo';
    }
 	
 	#faqListSel:hover {
 		cursor: pointer;
+	}
+	
+	.faqDelBtn{
+		color : red;
+		background-color : #fff;
+		padding : 5px;
+		border : none;
+		display: inline-block;
+		font-family: 'MICEMyungjo';
 	}
 }
