@@ -53,6 +53,9 @@
 	}
 	
 </script>
+<link rel="stylesheet" href="../resources/css/admin.css">
+<link rel="stylesheet" href="../resources/css/header.css">
+<link rel="stylesheet" href="../resources/css/footer.css">
 <style type="text/css">
 	table {
 		margin: 0 auto;
@@ -72,10 +75,12 @@
 	li {
 		margin-bottom: 20px;
 	}
+	.member {
+		font-family: 'MICEMyungjo';
+	}
+	td:nth-of-type(3) { width: 160px; }
+	td:nth-of-type(4) { width: 160px; }
 </style>
-<link rel="stylesheet" href="../resources/css/admin.css">
-<link rel="stylesheet" href="../resources/css/header.css">
-<link rel="stylesheet" href="../resources/css/footer.css">
 </head>
 <body>
 

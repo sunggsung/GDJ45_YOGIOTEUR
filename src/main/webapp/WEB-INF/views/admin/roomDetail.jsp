@@ -79,6 +79,9 @@
 	.rtNo {
 		margin-right: 20px;
 	}
+	.room {
+		font-family: 'MICEMyungjo';
+	}
 </style>
 </head>
 <body>

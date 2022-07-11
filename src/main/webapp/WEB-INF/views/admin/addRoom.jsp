@@ -90,9 +90,10 @@
 		border: 1px solid #ced4da;
 		border-radius: 4px;
 	}
-	.roomType {
-		
+	.room {
+		font-family: 'MICEMyungjo';
 	}
+	input:focus {outline: none;}
 </style>
 </head>
 <body>

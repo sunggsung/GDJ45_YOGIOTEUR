@@ -465,6 +465,7 @@
 				var html = '';
 				cc.each(responseText, function(i, item){
 					html += '<td>' + item.spotName + '</td><br>';
+					html += '<td>' + item.th3 + '</td><br>';
 					var sky;
 					switch(item.sky){
 					case 1: sky = '맑음'; break;

@@ -23,7 +23,13 @@
 <link rel="stylesheet" href="../resources/css/header.css">
 <link rel="stylesheet" href="../resources/css/footer.css">
 <style>
-
+	
+	@font-face {
+		font-family: 'MICEMyungjo';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEMyungjo.woff2') format('woff2');
+		font-weight: normal;
+		font-style: normal;
+	}
 	.container {
 		display: flex;
 		margin-top: 50px;
@@ -55,6 +61,12 @@
 	
 	#calendar a {
 		color: black;
+		font-family: 'MICEMyungjo';
+	}
+	
+	
+	.container {
+		font-family: 'MICEMyungjo';
 	}
 	
 </style>
