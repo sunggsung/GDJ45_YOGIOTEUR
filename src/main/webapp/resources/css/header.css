@@ -7,6 +7,12 @@
 	    font-style: normal;
 	}
 	
+	a{
+		text-decoration: none;
+		color: white;
+		
+	}
+	
 	header{
 		position : absolute;
 		bottom : 0;
@@ -40,24 +46,17 @@
 		font-family: 'MICEMyungjo';
 	}
 	
-	.header a:hover {
-		
-		color: #999;
-		
+	.header{
+		padding: 14px;
+		display: inline-block;
+		font-size: 25px;
+		font-family: 'MICEMyungjo';
+		color: white;
 	}
-	
 		
 	.title a{
 		font-size: 28px;
 		font-family: 'Pacifico', cursive;
-	}
-	
-	.header a{
-		padding: 12px;
-		display: inline-block;
-		font-size: 22px;
-		font-family: 'MICEMyungjo';
-		
 	}
 	
 	.header a:hover {
@@ -65,7 +64,6 @@
 		color: #FFF944;
 		
 	}
-	
 	
 	button {
 	  margin: 5px;

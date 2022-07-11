@@ -32,12 +32,18 @@
 				</c:if>
 			
 				<!-- 로그인 이후 -->
-				<c:if test="${loginMember ne null}">
-					${loginMember.memberName}님
-					<a href ="${contextPath}/member/logout">LOGIN OUT</a>
-					<a href ="${contextPath}/member/memberPage">MY PAGE</a>		
-					<a href="${contextPath}/admin/adminPage">ADMIN PAGE</a>
-				</c:if>
+					<c:if test="${loginMember ne null}">
+						${loginMember.memberName}님
+						<c:choose>
+							<c:when test="${loginMember.memberId eq 'admin12' }">
+								<a href="${contextPath}/admin/adminPage">ADMIN PAGE</a>
+							</c:when>
+							<c:when test="${loginMember.memberId ne 'admin12' }">
+								<a href ="${contextPath}/member/memberInfo">MY PAGE</a>		
+							</c:when>
+						</c:choose>
+						<a href ="${contextPath}/member/logout">LOGOUT</a>
+					</c:if>
 				
 			</div>
 		</div>

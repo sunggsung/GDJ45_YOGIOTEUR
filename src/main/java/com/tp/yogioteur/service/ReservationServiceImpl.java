@@ -119,8 +119,6 @@ public class ReservationServiceImpl implements ReservationService {
 		Long rNo = reservation.getRoomNo();
 		model.addAttribute("room", reservationMapper.reservationRoomSelectConfirm(rNo));
 		
-//		System.out.println(reservationMapper.reservationSelectConfirm(no));
-//		System.out.println(reservationMapper.priceSelectConfirm(no));
 	}
 	
 	@Override

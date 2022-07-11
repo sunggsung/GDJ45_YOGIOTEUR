@@ -15,6 +15,28 @@
 	* {
 		box-sizing: border-box;
 	}
+	
+	a{
+		text-decoration: none;
+		color: white;
+		
+	}
+	
+	header{
+		position : absolute;
+		bottom : 0;
+		color: white;
+		
+	}
+	
+	.header{
+		padding: 14px;
+		display: inline-block;
+		font-size: 25px;
+		font-family: 'MICEMyungjo';
+		color: white;
+	}
+	
 	.ok {
 		color: blue;
 	}

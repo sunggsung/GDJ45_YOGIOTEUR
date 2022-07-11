@@ -71,12 +71,6 @@ public class PaymentServiceImpl implements PaymentService {
 		StringBuilder sb = new StringBuilder();
 		sb.append(bw);
 		
-//		System.out.println("gson:" + gson);
-//		System.out.println("bw:" + sb.toString());		
-//		System.out.println("br:" + br.toString());
-//		System.out.println("conn:" + conn);		
-//		System.out.println("response:" + response);
-
 		String token = gson.fromJson(response, Map.class).get("access_token").toString();
 
 		br.close();
@@ -94,8 +88,6 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	@Override
 	public String paymentSearch(String resNo) {
-		System.out.println(resNo);
-		
 		PaymentDTO payment = reservationMapper.paymentSelectByNo(resNo);
 		
 		return payment.getImpUid();
@@ -151,12 +143,6 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public void paymentCancle(String merchant_uid, String access_token, int amount, String reason) throws IOException {
-		System.out.println("결제 취소");
-		
-		System.out.println(access_token);
-		
-		System.out.println(merchant_uid);
-		
 		reservationMapper.deletePayments(merchant_uid);
 		
 		HttpsURLConnection conn = null;

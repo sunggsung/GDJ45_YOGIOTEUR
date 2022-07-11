@@ -2,7 +2,6 @@ package com.tp.yogioteur.service;
 
 import java.io.File;
 import java.io.PrintWriter;
-import java.nio.file.Files;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -31,7 +29,6 @@ import com.tp.yogioteur.mapper.AdminMapper;
 import com.tp.yogioteur.mapper.ReservationMapper;
 import com.tp.yogioteur.util.MyFileUtils;
 import com.tp.yogioteur.util.NaverPageUtils;
-import com.tp.yogioteur.util.PageUtils;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -268,7 +265,6 @@ public class AdminServiceImpl implements AdminService {
 		}
 		for(int i = 0; i < files.size(); i++) {
 			MultipartFile multipartFile = files.get(i);
-			System.out.println(multipartFile);
 			try {
 				if(multipartFile != null && multipartFile.isEmpty() == false) {  // 첨부가 있다.(둘 다 필요함)
 					Long imageNo = Long.parseLong(request.getParameter("image" + (i + 1) + "No"));

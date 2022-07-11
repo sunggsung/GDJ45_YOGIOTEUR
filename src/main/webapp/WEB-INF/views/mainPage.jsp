@@ -45,12 +45,8 @@
 	header{
 		position : absolute;
 		bottom : 0;
-		
-	}
-		
-	a{
-		text-decoration: none;
 		color: white;
+		
 	}
 	
 	.mainImg{
@@ -77,6 +73,7 @@
 		display: inline-block;
 		font-size: 25px;
 		font-family: 'MICEMyungjo';
+		color: white;
 	}
 	
 	.header a{
@@ -464,9 +461,9 @@
 				//$('#items').empty();
 				var html = '';
 				cc.each(responseText, function(i, item){
-					html += '<td>' + item.spotName + '</td><br>';
-					html += '<td>' + item.th3 + '</td><br>';
-					var sky;
+					html += '<td>' + item.spotName + '&nbsp; </td><br>';
+					html += '<td>' + item.th3 + '°C &nbsp; </td><br>';
+					var sky; 
 					switch(item.sky){
 					case 1: sky = '맑음'; break;
 					case 2: sky = '구름조금'; break;
@@ -550,9 +547,15 @@
 					<!-- 로그인 이후 -->
 					<c:if test="${loginMember ne null}">
 						${loginMember.memberName}님
-						<a href ="${contextPath}/member/logout">LOGIN OUT</a>
-						<a href ="${contextPath}/member/memberPage">MY PAGE</a>		
-						<a href="${contextPath}/admin/adminPage">ADMIN PAGE</a>
+						<c:choose>
+							<c:when test="${loginMember.memberId eq 'admin12' }">
+								<a href="${contextPath}/admin/adminPage">ADMIN PAGE</a>
+							</c:when>
+							<c:when test="${loginMember.memberId ne 'admin12' }">
+								<a href ="${contextPath}/member/memberInfo">MY PAGE</a>		
+							</c:when>
+						</c:choose>
+						<a href ="${contextPath}/member/logout">LOGOUT</a>
 					</c:if>
 					
 				</div>

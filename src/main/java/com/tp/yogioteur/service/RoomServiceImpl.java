@@ -27,28 +27,8 @@ public class RoomServiceImpl implements RoomService {
 	@Autowired
 	private RoomMapper roomMapper;
 
-	/*
-	 * @Override public void roomList(HttpServletRequest request, Model model) {
-	 * 
-	 * checkIn > checkOut 되어있다면 alert창 뜨게하기 roomStatus 0이 없다면 예약이 꽉찼다는 alert창 뜨게하기
-	 * //checkIn, out 데이터 받기 String checkIn = request.getParameter("checkIn");
-	 * String checkOut = request.getParameter("checkOut");
-	 * 
-	 * 
-	 * //mapper 데이터 받기 model.addAttribute("roomList", roomMapper.checkInRoomList());
-	 * 
-	 * }
-	 */
-
 	@Override
 	public List<RoomDTO> roomList(HttpServletRequest request, Model model) {
-		
-		
-		
-		/*
-		 * Date checkIn = Date.valueOf(request.getParameter("checkIn"));
-		 * Date checkOut =Date.valueOf(request.getParameter("checkOut"));
-		 */
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("roomCheckIn", request.getParameter("roomCheckIn"));

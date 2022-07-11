@@ -16,7 +16,6 @@
 	$(function() {
 		closeWindow();
 		fnRemoveReser();
-		
 	})
 	
 	function closeWindow() {
@@ -30,7 +29,7 @@
 			if(confirm('선택하신 예약을 삭제하시겠습니까?')) {
 				$.ajax({
 					url: '${contextPath}/admin/removeReser',
-					data: 'reserNo=' + ${reservation.reserNo},
+					data: 'reserNo=${reservation.reserNo}',
 					type: 'GET',
 					dataType: 'json',
 					success: function(obj) {
