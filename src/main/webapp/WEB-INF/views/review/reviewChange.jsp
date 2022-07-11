@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="../resources/css/reviewChange.css?aft">
+<link rel="stylesheet" href="../resources/css/reviewChange.css?afte">
 <script>
 	
 	$(function(){
@@ -52,7 +52,7 @@
 	
 	function fnReviewList(){
 		$('#reviewList').on('click', function(){
-			location.href="${contextPath}/review/reviewList";
+			location.href="/review/reviewList";
 		})
 	}
 	
@@ -116,7 +116,7 @@
     direction: rtl; /* 이모지 순서 반전 */
     border: 0; /* 필드셋 테두리 제거 */
 }
-}
+
 </style>
 
 </head>
@@ -128,7 +128,7 @@
    
    
    <div class ="reviewChangeOne">
-	   <form id="reviewChange" action="${contextPath}/review/reviewChange" method="post" enctype="multipart/form-data">
+	   <form id="reviewChange" action="/review/reviewChange" method="post" enctype="multipart/form-data">
 	   		
 	   		
 	   		<input type="hidden" name="reviewNo" value="${review.reviewNo}">
@@ -136,7 +136,7 @@
 	   		<div class="memberName">이름 : <input type="text" id="memberName" name="memberName" value="${loginMember.memberName}" readonly> <br></div>
 	   		<input type="text" id="roomName" name="roomName" value="방1" readonly> 
 		   	<input type="text" id="rtType" name="rtType" value="싱글" readonly> <br>
-	  		
+	  		<div class="starBtn">
 	  		별점 :
 	   		<fieldset>
 		        <input type="radio" name="reviewRevNo" value="5" id="rate1"><label for="rate1">★</label>
@@ -145,7 +145,7 @@
 		        <input type="radio" name="reviewRevNo" value="2" id="rate4"><label for="rate4">★</label>
 		        <input type="radio" name="reviewRevNo" value="1" id="rate5"><label for="rate5">★</label>
 	    	</fieldset>
-	  		<br>
+	  		</div>
 	  		<input type="text" id="reviewTitle" name="reviewTitle" value="${review.reviewTitle}" ><br>
 	  		<textarea rows="10" cols="50" id="review_textarea" class="review_textarea" id="reviewContent" name="reviewContent" >${review.reviewContent}</textarea><br>
 	   		<div id="review_textarea_cnt">(0 / 500)</div>
@@ -160,7 +160,7 @@
    		
 
    			<c:forEach var="reImage" items="${reImage}" varStatus="status">
-				<div>${reImage.reImageOrigin}<a href="${contextPath}/review/removeReImage?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}"><i class="fa-solid fa-circle-xmark"></i></a></div>
+				<div>${reImage.reImageOrigin}<a href="/review/removeReImage?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}"><i class="fa-solid fa-circle-xmark"></i></a></div>
 			</c:forEach>
 				
 				
@@ -168,7 +168,7 @@
 			
 			
 			<c:forEach var="reImage" items="${reImage}">
-				<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px" height=" 200px">					
+				<img alt="${reImage.reImageOrigin}" src="/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px" height=" 200px">					
 			</c:forEach>
    		
    	</div>

@@ -104,15 +104,15 @@
 			   	<c:if test="${review.reviewRevNo lt i}">
 				   	<span id="staro">☆</span>					
 			   	</c:if>	
-		   	</c:forEach>
+		</c:forEach>
 		    
 		   <br><br>
 	    
 	    <c:forEach var="reImage" items="${reImage}">
-			<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px">					
+			<img alt="${reImage.reImageOrigin}" src="/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px">					
 		</c:forEach>
 	   	
-		<form id="replyChangeData"  action="${contextPath}/review/reviewReplyChange" method="post">
+		<form id="replyChangeData"  action="/review/reviewReplyChange" method="post">
 			<input type="hidden" name="replyNo" value="${reviewReply.replyNo}">		
 			<textarea rows="10" cols="50" id="replyContent" name="replyContent" >${reviewReply.replyContent}</textarea>
 			<div id="replyContent_cnt">(0 / 500)</div>

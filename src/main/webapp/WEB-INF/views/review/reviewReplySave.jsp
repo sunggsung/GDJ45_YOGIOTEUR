@@ -101,10 +101,10 @@
 	   <br><br>
 	    
 	    <c:forEach var="reImage" items="${reImage}">
-			<img alt="${reImage.reImageOrigin}" src="${contextPath}/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px">					
+			<img alt="${reImage.reImageOrigin}" src="/review/display?reImageNo=${reImage.reImageNo}&reviewNo=${reImage.reviewNo}" width="300px">					
 		</c:forEach>
 	   	
-		<form id="replydata"  action="${contextPath}/review/reviewReplySave" method="post">
+		<form id="replydata"  action="/review/reviewReplySave" method="post">
 			<input type="hidden" name="reviewNo" value="${review.reviewNo}">
 			<textarea rows="10" cols="50" id="replyContent" name="replyContent"></textarea>
 			<div id="replyContent_cnt">(0 / 500)</div>

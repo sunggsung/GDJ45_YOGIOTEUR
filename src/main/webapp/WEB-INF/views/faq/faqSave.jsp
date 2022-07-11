@@ -9,6 +9,7 @@
 <title>FAQ</title>
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
 <script src="../resources/js/jquery-3.6.0.js"></script>
+<link rel="stylesheet" href="../resources/css/faqSave.css?a">
 <script>
 	$(function(){
 		fnFaqAddLimit();
@@ -30,8 +31,7 @@
 		
 		$('#faqSv').on('submit', function(ev){
 			if($('#faqTitle').val() == '' || $('#faqContent').val() == ''){
-				
-				
+
 				alert('작성된 내용이 없습니다.');
 				ev.preventDefault();
 				return false;
@@ -44,57 +44,24 @@
 	
 	
 </script>
-<style type="text/css">
-	#faqSv {
-		width : 500px;
-		margin : 0 auto;
-	}
-	
-	h1 {
-		text-align : center;
-	}
-	
-	#faqTitle{
-		width: 500px;
-		height: 45px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 10px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		margin : 15px 0;
-		
-	}
-	
-	#faqContent {
-		width: 500px;
-	    height: 300px;
-	    font-size: 15px;
-	    border: 0;
-	    border-radius: 10px;
-	    outline: none;
-	    padding-left: 10px;
-	    background-color: rgb(233, 233, 233);
-	    margin : 15px 0;
-	    padding : 10px;
-	}
-	
-</style>
+
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 	
  	<h1>FAQ 게시글 작성</h1>
 	
-	<form id="faqSv" action="${contextPath}/faq/faqSave" method="post">
-		<input type="text" id="faqTitle" name="faqTitle"><br>
+	<form id="faqSv" action="/faq/faqSave" method="post">
+		<input type="text" id="faqTitle" name="faqTitle" maxlength = "25" ><br>
 		<textarea rows="5" cols="50" id="faqContent" name="faqContent"></textarea><br><br>
 		<div id="faqContent_cnt">(0 / 500)</div><br><br>
-		<button>등록</button>
-		<input type="button" value="목록" onclick="location.href='${contextPath}/faq/faqList'">
-		<input type="reset" value="초기화">
+		<div class="faqSaveBtnList">
+			<button>등록</button>
+			<input type="button" value="목록" onclick="location.href='/faq/faqList'">
+			<input type="reset" value="초기화">
+		</div>
 	</form>
+	<br><br>
 
 	<jsp:include page="../layout/footer.jsp"></jsp:include>
 </body>

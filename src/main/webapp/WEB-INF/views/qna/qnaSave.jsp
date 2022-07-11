@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="../resources/css/qnaSave.css">
+<link rel="stylesheet" href="../resources/css/qnaSave.css?a">
 
 <script>
  
@@ -55,13 +55,13 @@
    <div class="qnaSaveOne">
 	   <h1>QnA 문의사항</h1>
 	  
-	   <a id="toQnaList" href="${contextPath}/qna/qnaList">목록으로</a>
+	   <a id="toQnaList" href="/qna/qnaList">목록으로</a>
 	  
 	  
-	   <form id="QnaAdd" method="post" action="${contextPath}/qna/qnaSave">
+	   <form id="QnaAdd" method="post" action="/qna/qnaSave">
 	   		<input type="hidden" id="memberId" name="memberId" value="${loginMember.memberId}"> 
 	   		<input type="hidden" id="memberName" name="memberName" value="${loginMember.memberName}"> 
-	   		제목 : <input type="text" id="qnaTitle" name="qnaTitle"><br>
+	   		제목 : <input type="text" id="qnaTitle" name="qnaTitle" maxlength = "40"><br>
 	   		내용 : <textarea rows="20" cols="50" id="qnaContent" name="qnaContent"></textarea><br>
 	   		<div id="qnaContent_cnt">(0 / 500)</div>
 	   		<button id="qnaAddBtn">등록하기</button>

@@ -41,7 +41,7 @@ public class ReviewReplyServiceImpl implements ReviewReplyService {
 			if(reviewReplyResult == 1) {
 				out.println("<script>");
 				out.println("alert('리뷰댓글이 등록되었습니다.')");
-				out.println("location.href='" + request.getContextPath() + "/review/reviewList'");
+				out.println("location.href='/review/reviewList'");
 				out.println("</script>");
 				out.close();
 			} else {
@@ -72,7 +72,7 @@ public class ReviewReplyServiceImpl implements ReviewReplyService {
 			  if(replyRemoveResult ==1 ) {
 				  out.println("<script>");
 				  out.println("alert('리뷰가 삭제되었습니다')");
-				  out.println("location.href='" + request.getContextPath() + "/review/reviewList'");
+				  out.println("location.href='/review/reviewList'");
 				  out.println("</script>");
 				  out.close();
 			  } else {
@@ -118,7 +118,7 @@ public class ReviewReplyServiceImpl implements ReviewReplyService {
 			  if(ReviewReplyChangeRes == 1 ) {
 				  out.println("<script>");
 				  out.println("alert('댓글이 수정되었습니다')");
-				  out.println("location.href='" + request.getContextPath() + "/review/reviewList'");
+				  out.println("location.href='/review/reviewList'");
 				  out.println("</script>");
 				  out.close();
 			  } else {

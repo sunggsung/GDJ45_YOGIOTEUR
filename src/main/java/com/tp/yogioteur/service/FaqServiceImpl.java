@@ -41,7 +41,7 @@ public class FaqServiceImpl implements FaqService {
 		List<FaqDTO> faqs = faqMapper.selectFaqList(map);
 		model.addAttribute("faqs", faqs);
 		model.addAttribute("totalRecord", totalRecord);
-		model.addAttribute("paging", pageUtils.getPaging1(request.getContextPath() + "/faq/faqList"));
+		model.addAttribute("paging", pageUtils.getPaging1("/faq/faqList"));
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class FaqServiceImpl implements FaqService {
 		
 		model.addAttribute("faqs", faqs);
 		model.addAttribute("beginNo", findRecord - pageUtils.getRecordPerPage() * (page - 1));
-		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/faq/faqSearch?faqQuery=" + faqQuery));
+		model.addAttribute("paging", pageUtils.getPaging("/faq/faqSearch?faqQuery=" + faqQuery));
 		
 	}
 }

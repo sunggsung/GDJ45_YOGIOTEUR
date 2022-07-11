@@ -488,7 +488,7 @@
 					<tr>
 						<td><label class="con">이름</label></td>
 						<td>
-							<input type="text" class="conInput" name="memberName" id="memberName" value="${loginMember.memberName}" readonly="readonly">							</div>	
+							<input type="text" class="conInput" name="memberName" id="memberName" value="${loginMember.memberName}" readonly="readonly">								
 						</td>
 					</tr>
 					<tr>
