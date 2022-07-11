@@ -11,6 +11,7 @@
 <script src="../resources/js/jquery-3.6.0.js"></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
 	$(document).ready(function(){
 		$('#hidden_tipPrice').attr('value', $('#hidden_roomPrice').val());
@@ -226,7 +227,7 @@
 		display: block;
 	}
 	.reser_image {
-		padding: 28px 28px 28px 28px;
+		padding: 28px 28px 14px 28px;
 		width: 700px;
         height: 450px;
        	margin: 0 auto;
@@ -238,7 +239,7 @@
 		margin: 28px 0 8px 198px;
 	}
 	.reser_option {
-		border: 1px solid #333;
+		border: 3px solid #025949;
 		margin: 20px 0 0;
 		padding: 28px 48px 28px 48px;
 		width: 1080px;
@@ -278,7 +279,7 @@
 		padding-top: 15px;
 	}
 	.child {
-		padding-top: 5px;
+		padding-top: 10px;
 	}
 	.food {
 		padding-top: 15px;
@@ -343,9 +344,66 @@
 	#btn {
 		position: relative;
 		float: right;
+		padding: 0;
+		width: 102px;
+		height: 30px;
+	}
+	.subBtn {
+		margin: 0;
+		widht: 50px;
+		height: 15px;
+	}
+	.plusBtn {
+		cursor: pointer;
+		margin: 0;
+		height: 30px;
+		background-color: #025949;
+    	color: #ffeee4;
+	}
+	.minusBtn {
+		cursor: pointer;
+		margin: 0;
+		height: 30px;
+		background-color: #025949;
+    	color: #ffeee4;
+	}
+	.out_line {
+		padding: 5px 5px;
+	    border-radius: 15px;
+	    font-family: "paybooc-Light", sans-serif;
+	    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	    text-decoration: none;
+	    font-weight: 600;
+	    transition: 0.25s;
+	}
+	.out_line:hover {
+		letter-spacing: 2px;
+	    transform: scale(1.2);
+	    cursor: pointer;
+	}
+	.out_line:active {
+		transform: scale(1.5);
+	}
+	.input_text {
+		margin: 0;
+		padding: 0 12px;
+		position: relative;
+    	-webkit-box-flex: 1;
+   	 	flex: 1 1 auto;
+   	 	width: 1%;
+    	min-width: 0;
+    	background-color: #fff;
+	    font-size: 14px;
+	    border-color: #e6edef;
+	    color: #717171;
+	    font-weight: 400;
+	    line-height: 1.5;
+	    background-clip: padding-box;
+	    border: 1px solid #ced4da;
+	    appearance: none;
 	}
 	.reser_confirm {
-		border: 1px solid #333;
+		border: 3px solid #025949;
 		margin: 20px 0 0;
 		padding: 28px 48px 28px 48px;
 		width: 1080px;
@@ -413,7 +471,7 @@
 
 	<div class="reser_main">
 		<div class="reser_image">
-			<img src="${contextPath}/room/view?roomNo=${roomInfo.roomNo}" width="700px;">
+			<img src="${contextPath}/room/view?roomNo=${rn.roomNo}" width="700px;">
 		</div>
 		
 		<hr>
@@ -428,15 +486,27 @@
 						</div>
 						<div class="adult">
 							<span class="sub_name">성인</span> 
-							<span id="btn"><input type="button" value="+" onclick="countP('plus2')">
-									<input type="text" id="adult" name="adult" value="0" style="width:14px;border:none;border:0px" readonly>
-							  	  <input type="button" value="-" onclick="countP('minus2')"></span>
+								<div id="btn">
+								  	<span><button type="button" value="+" onclick="countP('plus2')" class="plusBtn out_line">
+										<i class="fa-solid fa-plus"></i>
+								  	</button></span>
+									<input type="text" id="adult" name="adult" value="0" class="input_text" style="width:9px;border:none;border:0px;" readonly>
+							  	  	<span><button type="button" value="-" onclick="countP('minus2')" class="minusBtn out_line">
+							  	  		<i class="fa-solid fa-minus"></i>
+							  	  	</button></span>
+							  	</div>
 						</div>
 						<div class="child">
 							<span class="sub_name">어린이</span> 
-							<span id="btn"><input type="button" value="+" onclick="countP('plus3')">
-									<input type="text" id="child" name="child" value="0" style="width:14px;border:none;border:0px" readonly>
-							 	  <input type="button" value="-" onclick="countP('minus3')"></span>
+								<div id="btn">
+								  	<span><button type="button" value="+" onclick="countP('plus3')" class="plusBtn out_line">
+										<i class="fa-solid fa-plus"></i>
+								  	</button></span>
+									<span><input type="text" id="child" name="child" value="0" class="input_text" style="width:9px;border:none;border:0px;" readonly></span>
+							  	  	<span><button type="button" value="-" onclick="countP('minus3')" class="minusBtn out_line">
+							  	  		<i class="fa-solid fa-minus"></i>
+							  	  	</button></span>
+							  	</div>
 						</div>
 					</div>
 					<div class="food_cnt">
@@ -446,9 +516,15 @@
 						</div>
 						<div class="food">
 							<span class="sub_name">성인 조식  50,000 KRW / 1인 1박</span>
-							<span id="btn"><input type="button" value="+" onclick="count('plus1')">
-									<input type="text" id="food1" name="food" value="0" style="width:14px;border:none;border:0px" readonly>
-							  	  <input type="button" value="-" onclick="count('minus1')"></span>
+								<div id="btn">
+								  	<span><button type="button" value="+" onclick="count('plus1')" class="plusBtn out_line">
+										<i class="fa-solid fa-plus"></i>
+								  	</button></span>
+									<input type="text" id="food1" name="food" value="0" class="input_text" style="width:9px;border:none;border:0px;" readonly>
+							  	  	<span><button type="button" value="-" onclick="count('minus1')" class="minusBtn out_line">
+							  	  		<i class="fa-solid fa-minus"></i>
+							  	  	</button></span>
+							  	</div>
 						</div>
 							  	
 					</div>
@@ -456,7 +532,9 @@
 						<div class="option_name">
 							추가 요청
 						</div> 
-						<div class="text"><textarea rows="7px" cols="80px" name="req"></textarea></div>
+						<div class="text"><textarea rows="7px" cols="80px" name="req">
+ex) 추가 베개 요청
+						</textarea></div>
 					</div>
 				</div>
 				<div class="option_result">
@@ -508,7 +586,20 @@
 			
 			<div class="reser_confirm">
 				<div class="reser_textarea">
-					<textarea rows="7px" cols="80px" readonly>개인정보보호법에 따라 ...</textarea><br>
+					<textarea rows="7px" cols="80px" readonly>
+1. 개인정보 수집항목
+- 성명(영문), 연락처(모바일, 자택 또는 회사), 이메일 등
+
+2. 개인정보 수집 및 이용목적
+- 객실 예약 서비스 제공, 예약 관련 안내 및 고지사항 전달, 익스프레스 체크인 서비스 제공, 고객 불만 등 민원 처리, 부정이용 방지, 법적 분쟁 등의 처리
+* 수집된 신용카드 정보는 개런티/위약금 결제를 위해 이용되며, 객실요금은 추후 체크인시 결제됩니다.
+
+3. 개인 정보 보유 및 이용 기간
+- 수집일로부터 2년. 단, 예약 취소 시 취소일로부터 5일후 파기됩니다.
+
+4. 동의를 거부할 권리 및 동의를 거부할 경우의 불이익
+- 귀하는 위와 같은 개인정보의 수집이용에 대한 동의를 거부할 수 있으나, 동의 거부 시, 객실 예약이 불가능합니다.
+					</textarea><br>
 					<input type="checkbox" id="privacy">
 					<label for="privacy" class="item">개인정보 수집에 동의합니다.</label><br>
 				</div>
