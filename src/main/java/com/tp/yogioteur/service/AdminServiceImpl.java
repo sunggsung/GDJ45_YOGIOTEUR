@@ -401,7 +401,6 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public Map<String, Object> removeReservation(String reserNo){
 		int res = adminMapper.deleteReservation(reserNo);
-		reservationMapper.deletePrice(reserNo);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("res", res);
 		

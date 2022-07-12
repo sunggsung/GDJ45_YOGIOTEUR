@@ -145,7 +145,6 @@ public class ReservationServiceImpl implements ReservationService {
 	public Map<String, Object> removeReservation(String resNo) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("res1", reservationMapper.deleteReservation(resNo));
-		map.put("res2", reservationMapper.deletePrice(resNo));
 		return map;
 	}
 	

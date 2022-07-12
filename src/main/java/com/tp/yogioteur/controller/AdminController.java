@@ -18,12 +18,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tp.yogioteur.service.AdminService;
 import com.tp.yogioteur.service.OpenAPIService;
+import com.tp.yogioteur.service.PaymentService;
 
 @Controller
 public class AdminController {
 	
 	@Autowired private OpenAPIService openAPIService;
 	@Autowired private AdminService adminService;
+	@Autowired private PaymentService paymentService;
 	
 	/* OPEN API */
 	@GetMapping("/admin/tour")

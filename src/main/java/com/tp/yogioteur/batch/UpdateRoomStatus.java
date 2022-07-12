@@ -44,7 +44,7 @@ public class UpdateRoomStatus {
 	
 	// 매일 예약 내역의 체크인 날짜 확인
 	// 객실의 체크인,아웃 날짜 갱신
-	@Scheduled(cron = "0 0 1 1/1 * *")
+	@Scheduled(cron = "0 0/1 * * * ?")
 	public void update() {
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -60,8 +60,8 @@ public class UpdateRoomStatus {
 			
 			if(date.equals(reserCheckIn)) {
 				map.put("roomNo", reservations.get(i).getRoomNo());
-				map.put("reserCheckIn", reservations.get(i).getReserCheckIn());
-				map.put("reserCheckOut", reservations.get(i).getReserCheckOut());
+				map.put("roomCheckIn", reservations.get(i).getReserCheckIn());
+				map.put("roomCheckOut", reservations.get(i).getReserCheckOut());
 				adminMapper.updateRoomCheckInOut(map);
 			}
 		}

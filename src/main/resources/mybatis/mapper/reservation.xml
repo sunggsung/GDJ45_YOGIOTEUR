@@ -63,13 +63,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<delete id="deletePayments" parameterType="String"> 
 		DELETE 
-		  FROM Payments 
+		  FROM PAYMENTS 
 		 WHERE RESER_NO = #{resNo} 
 	</delete>
 	
 	<delete id="deletePrice" parameterType="String"> 
 		DELETE 
-		  FROM Price 
+		  FROM PRICE
 		 WHERE PRICE_NO = #{resNo} 
 	</delete>
 	

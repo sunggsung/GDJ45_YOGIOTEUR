@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Yogioteur</title>
 <script src="https://kit.fontawesome.com/148c1051b1.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&display=swap" rel="stylesheet">
@@ -371,7 +371,7 @@
 	.breakfast{
 		
 		display: inline-block;
-		width: 1200px;
+		width: 1100px;
 		height: 300px;
 		padding-left: 184px;
 		padding-top: 184px;
